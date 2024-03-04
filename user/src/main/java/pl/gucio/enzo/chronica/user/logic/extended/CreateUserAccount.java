@@ -25,14 +25,14 @@ public class CreateUserAccount {
         final AccountEntity accountEntity = new AccountEntity();
         final PersonEntity personEntity = new PersonEntity();
 
-        personEntity.setName(createUserRequest.getPersonDto().getName());
-        personEntity.setLastName(createUserRequest.getPersonDto().getLastName());
-        personEntity.setAge(createUserRequest.getPersonDto().getAge());
+        personEntity.setName(createUserRequest.personDto().getName());
+        personEntity.setLastName(createUserRequest.personDto().getLastName());
+        personEntity.setAge(createUserRequest.personDto().getAge());
 
-        accountEntity.setUsername(createUserRequest.getAccountDto().getUsername());
-        accountEntity.setMail(createUserRequest.getAccountDto().getMail());
-        accountEntity.setPhoneNumber(createUserRequest.getAccountDto().getPhoneNumber());
-        accountEntity.setPassword(createUserRequest.getAccountDto().getPassword());
+        accountEntity.setUsername(createUserRequest.accountDto().getUsername());
+        accountEntity.setMail(createUserRequest.accountDto().getMail());
+        accountEntity.setPhoneNumber(createUserRequest.accountDto().getPhoneNumber());
+        accountEntity.setPassword(createUserRequest.accountDto().getPassword());
         accountEntity.setPerson(personEntity);
 
         accountService.create(accountEntity);

@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "c3e44d56-df77-4a3b-a7ff-59d4b1bf9d8f",
+		"name": "Chronica-User-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18656948"
+	},
+	"item": [
+		{
+			"name": "CreateUserAccount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"accountDto\": {\r\n    \"username\": \"kuba\",\r\n    \"mail\": \"test@o2.pl\",\r\n    \"phoneNumber\": 123456789,\r\n    \"password\": \"123456\"\r\n  },\r\n  \"personDto\": {\r\n    \"name\": \"Kuba\",\r\n    \"lastName\": \"Testowy\",\r\n    \"age\": 12\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/account/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"account",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
