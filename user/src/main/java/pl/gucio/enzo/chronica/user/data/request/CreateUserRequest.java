@@ -1,7 +1,7 @@
 package pl.gucio.enzo.chronica.user.data.request;
 
-import pl.gucio.enzo.chronica.user.data.model.AccountData;
-import pl.gucio.enzo.chronica.user.data.model.PersonalInformation;
+import pl.gucio.enzo.chronica.user.data.dto.AccountDto;
+import pl.gucio.enzo.chronica.user.data.dto.PersonDto;
 
-public record CreateUserRequest(AccountData accountData, PersonalInformation personalInformation) {
+public record CreateUserRequest(AccountDto accountDto, PersonDto personDto) {
 }

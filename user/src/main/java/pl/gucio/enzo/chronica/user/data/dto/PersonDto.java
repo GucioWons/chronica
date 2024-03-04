@@ -1,4 +1,4 @@
-package pl.gucio.enzo.chronica.user.data.model;
+package pl.gucio.enzo.chronica.user.data.dto;
 
 
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.With;
 @Builder
 @Data
 @With
-public class PersonalInformation {
+public class PersonDto {
     private String name;
     private String lastName;
     private Integer age;

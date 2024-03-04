@@ -1,4 +1,4 @@
-package pl.gucio.enzo.chronica.user.data.model;
+package pl.gucio.enzo.chronica.user.data.dto;
 
 
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.With;
 @Data
 @Builder
 @With
-public class AccountData {
+public class AccountDto {
     private String username;
     private String mail;
     private Long phoneNumber;
