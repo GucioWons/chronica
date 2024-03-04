@@ -13,9 +13,12 @@ import pl.gucio.enzo.chronica.user.logic.AccountApi;
 
 @RestController
 @RequestMapping(path = "/api/account")
-@RequiredArgsConstructor
 public class AccountController {
     private final AccountApi accountApi;
+
+    public AccountController(AccountApi accountApi){
+        this.accountApi = accountApi;
+    }
 
     @PostMapping("/sign-in")
     public ResponseEntity<CreateUserResponse> createAccount(@RequestBody CreateUserRequest createUserRequest){

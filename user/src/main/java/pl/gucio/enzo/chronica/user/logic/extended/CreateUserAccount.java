@@ -3,6 +3,7 @@ package pl.gucio.enzo.chronica.user.logic.extended;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.gucio.enzo.chronica.user.data.entity.AccountEntity;
@@ -19,12 +20,17 @@ import pl.gucio.enzo.chronica.user.mapper.PersonMapper;
 import java.time.LocalDateTime;
 
 @Service
-@RequiredArgsConstructor
 public class CreateUserAccount {
     private final AccountService accountService;
     private final PersonService personService;
-    private final AccountMapper accountMapper;
-    private final PersonMapper personMapper;
+
+    private AccountMapper accountMapper;
+    private PersonMapper personMapper;
+
+    public CreateUserAccount(AccountService accountService, PersonService personService) {
+        this.accountService = accountService;
+        this.personService = personService;
+    }
 
     @Transactional
     public ResponseEntity<CreateUserResponse> create(CreateUserRequest createUserRequest){
