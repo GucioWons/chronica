@@ -1,4 +1,4 @@
-package pl.gucio.enzo.chronica.user.data.mapper;
+package pl.gucio.enzo.chronica.user.mapper;
 
 import org.mapstruct.Mapper;
 import pl.gucio.enzo.chronica.user.data.entity.AccountEntity;
