@@ -7,36 +7,35 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.gucio.enzo.chronica.user.data.entity.AccountEntity;
 import pl.gucio.enzo.chronica.user.data.entity.PersonEntity;
-import pl.gucio.enzo.chronica.user.data.dto.AccountDto;
-import pl.gucio.enzo.chronica.user.data.dto.PersonDto;
 import pl.gucio.enzo.chronica.user.data.request.CreateUserRequest;
 import pl.gucio.enzo.chronica.user.data.response.CreateUserResponse;
 import pl.gucio.enzo.chronica.user.logic.basic.AccountService;
 import pl.gucio.enzo.chronica.user.logic.basic.PersonService;
-import pl.gucio.enzo.chronica.user.mapper.AccountMapper;
-import pl.gucio.enzo.chronica.user.mapper.PersonMapper;
+
 
 import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class CreateUserAccount {
     private final AccountService accountService;
-    private final PersonService personService;
-
-
-    public CreateUserAccount(AccountService accountService, PersonService personService) {
-        this.accountService = accountService;
-        this.personService = personService;
-    }
 
     @Transactional
     public ResponseEntity<CreateUserResponse> create(CreateUserRequest createUserRequest){
+        final AccountEntity accountEntity = new AccountEntity();
+        final PersonEntity personEntity = new PersonEntity();
 
-        final AccountEntity accountEntity = AccountMapper.INSTANCE.mappToEntity(createUserRequest.getAccountDto());
-        final PersonEntity personEntity = PersonMapper.INSTANCE.mappToEntity(createUserRequest.getPersonDto());
+        personEntity.setName(createUserRequest.getPersonDto().getName());
+        personEntity.setLastName(createUserRequest.getPersonDto().getLastName());
+        personEntity.setAge(createUserRequest.getPersonDto().getAge());
+
+        accountEntity.setUsername(createUserRequest.getAccountDto().getUsername());
+        accountEntity.setMail(createUserRequest.getAccountDto().getMail());
+        accountEntity.setPhoneNumber(createUserRequest.getAccountDto().getPhoneNumber());
+        accountEntity.setPassword(createUserRequest.getAccountDto().getPassword());
+        accountEntity.setPerson(personEntity);
 
         accountService.create(accountEntity);
-        personService.create(personEntity);
 
         final LocalDateTime createdAt = LocalDateTime.now();
 

@@ -1,18 +1,19 @@
 package pl.gucio.enzo.chronica.user.data.entity;
 
-import jakarta.annotation.Nonnull;
+
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ACCOUNTS")
-@Data
 @RequiredArgsConstructor
-@NoArgsConstructor
+@Setter
+@Getter
 public class AccountEntity {
 
     @Id
@@ -20,19 +21,15 @@ public class AccountEntity {
     @Column(name = "account_id")
     private Long id;
 
-    @Nonnull
     @Column(unique = true)
     private String username;
 
-    @Nonnull
     @Column(unique = true)
     private String mail;
 
-    @Nonnull
     @Column(unique = true)
     private Long phoneNumber;
 
-    @Nonnull
     private String password;
 
     private Boolean isActive = false;

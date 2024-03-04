@@ -1,19 +1,17 @@
 package pl.gucio.enzo.chronica.user.data.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 
 @Entity
 @Table(name = "PEOPLE")
-@Data
 @RequiredArgsConstructor
-@NoArgsConstructor
+@Setter
+@Getter
 public class PersonEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "person_id")
     private Long id;
 
