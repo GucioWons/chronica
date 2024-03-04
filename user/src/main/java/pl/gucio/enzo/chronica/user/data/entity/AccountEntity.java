@@ -32,6 +32,9 @@ public class AccountEntity {
     @Column(unique = true)
     private Long phoneNumber;
 
+    @Nonnull
+    private String password;
+
     private Boolean isActive = false;
 
     private LocalDateTime createdAt = LocalDateTime.now();

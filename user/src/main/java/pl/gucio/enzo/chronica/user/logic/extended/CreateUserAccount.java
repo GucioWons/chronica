@@ -2,6 +2,7 @@ package pl.gucio.enzo.chronica.user.logic.extended;
 
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.gucio.enzo.chronica.user.data.entity.AccountEntity;
@@ -22,8 +23,6 @@ public class CreateUserAccount {
     private final AccountService accountService;
     private final PersonService personService;
 
-    private AccountMapper accountMapper;
-    private PersonMapper personMapper;
 
     public CreateUserAccount(AccountService accountService, PersonService personService) {
         this.accountService = accountService;
@@ -33,14 +32,20 @@ public class CreateUserAccount {
     @Transactional
     public ResponseEntity<CreateUserResponse> create(CreateUserRequest createUserRequest){
 
-        final AccountDto accountDto = AccountDto.builder()
-                .username(createUserRequest.accountDto().getUsername())
-                .mail(createUserRequest.accountDto().getMail())
-                .phoneNumber(createUserRequest.accountDto().getPhoneNumber())
-                .password(createUserRequest.accountDto().getPassword()).build();
-        final PersonDto personDto = createUserRequest.personDto();
-        final AccountEntity accountEntity = accountMapper.mappToEntity(accountDto);
-        final PersonEntity personEntity = personMapper.mappToEntity(personDto);
+        final AccountDto accountDto = new AccountDto();
+        final PersonDto personDto = new PersonDto();
+
+        accountDto.setUsername(createUserRequest.getUsername());
+        accountDto.setMail(createUserRequest.getMail());
+        accountDto.setPhoneNumber(createUserRequest.getPhoneNumber());
+        accountDto.setPassword(createUserRequest.getPassword());
+
+        personDto.setName(createUserRequest.getName());
+        personDto.setLastName(createUserRequest.getLastName());
+        personDto.setAge(createUserRequest.getAge());
+
+        final AccountEntity accountEntity = AccountMapper.INSTANCE.mappToEntity(accountDto);
+        final PersonEntity personEntity = PersonMapper.INSTANCE.mappToEntity(personDto);
 
         accountService.create(accountEntity);
         personService.create(personEntity);
