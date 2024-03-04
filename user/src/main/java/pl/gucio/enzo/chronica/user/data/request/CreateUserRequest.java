@@ -1,72 +1,25 @@
 package pl.gucio.enzo.chronica.user.data.request;
 
-
-
-
-
+import pl.gucio.enzo.chronica.user.data.dto.AccountDto;
+import pl.gucio.enzo.chronica.user.data.dto.PersonDto;
 
 public class CreateUserRequest {
-    private String username;
-    private String mail;
-    private String password;
-    private Long phoneNumber;
-    private String name;
-    private String lastName;
-    private Integer age;
+  private AccountDto accountDto;
+  private PersonDto personDto;
 
-    public String getUsername() {
-        return username;
+    public AccountDto getAccountDto() {
+        return accountDto;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAccountDto(AccountDto accountDto) {
+        this.accountDto = accountDto;
     }
 
-    public String getMail() {
-        return mail;
+    public PersonDto getPersonDto() {
+        return personDto;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Long getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setPersonDto(PersonDto personDto) {
+        this.personDto = personDto;
     }
 }

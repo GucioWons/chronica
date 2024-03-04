@@ -32,20 +32,8 @@ public class CreateUserAccount {
     @Transactional
     public ResponseEntity<CreateUserResponse> create(CreateUserRequest createUserRequest){
 
-        final AccountDto accountDto = new AccountDto();
-        final PersonDto personDto = new PersonDto();
-
-        accountDto.setUsername(createUserRequest.getUsername());
-        accountDto.setMail(createUserRequest.getMail());
-        accountDto.setPhoneNumber(createUserRequest.getPhoneNumber());
-        accountDto.setPassword(createUserRequest.getPassword());
-
-        personDto.setName(createUserRequest.getName());
-        personDto.setLastName(createUserRequest.getLastName());
-        personDto.setAge(createUserRequest.getAge());
-
-        final AccountEntity accountEntity = AccountMapper.INSTANCE.mappToEntity(accountDto);
-        final PersonEntity personEntity = PersonMapper.INSTANCE.mappToEntity(personDto);
+        final AccountEntity accountEntity = AccountMapper.INSTANCE.mappToEntity(createUserRequest.getAccountDto());
+        final PersonEntity personEntity = PersonMapper.INSTANCE.mappToEntity(createUserRequest.getPersonDto());
 
         accountService.create(accountEntity);
         personService.create(personEntity);
