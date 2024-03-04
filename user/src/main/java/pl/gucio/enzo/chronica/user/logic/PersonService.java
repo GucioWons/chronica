@@ -1,4 +1,4 @@
-package pl.gucio.enzo.chronica.user.logic.basic;
+package pl.gucio.enzo.chronica.user.logic;
 
 
 

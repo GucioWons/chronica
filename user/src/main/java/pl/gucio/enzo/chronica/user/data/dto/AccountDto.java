@@ -10,5 +10,4 @@ public class AccountDto {
     private String mail;
     private Long phoneNumber;
     private String password;
-
 }
