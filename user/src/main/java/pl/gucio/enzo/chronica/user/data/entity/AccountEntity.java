@@ -21,15 +21,16 @@ public class AccountEntity {
     @Column(name = "account_id")
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String username;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String mail;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private Long phoneNumber;
 
+    @Column(nullable = false)
     private String password;
 
     private Boolean isActive = false;

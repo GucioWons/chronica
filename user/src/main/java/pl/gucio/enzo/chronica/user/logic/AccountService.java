@@ -15,7 +15,6 @@ import pl.gucio.enzo.chronica.user.data.request.CreateOrUpdateUserRequest;
 import pl.gucio.enzo.chronica.user.data.response.CreateUserResponse;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +22,7 @@ public class AccountService {
     private final AccountRepository accountRepository;
 
     @Transactional
-    public ResponseEntity<CreateUserResponse> create(CreateOrUpdateUserRequest createOrUpdateUserRequest){
+    public ResponseEntity<CreateUserResponse> create(CreateOrUpdateUserRequest createOrUpdateUserRequest) {
         final AccountEntity accountEntity = new AccountEntity();
         final PersonEntity personEntity = new PersonEntity();
 
@@ -36,6 +35,7 @@ public class AccountService {
         accountEntity.setPhoneNumber(createOrUpdateUserRequest.accountDto().getPhoneNumber());
         accountEntity.setPassword(createOrUpdateUserRequest.accountDto().getPassword());
         accountEntity.setPerson(personEntity);
+
 
         accountRepository.save(accountEntity);
 

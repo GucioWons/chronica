@@ -19,7 +19,7 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping("/sign-in")
-    public ResponseEntity<CreateUserResponse> createAccount(@RequestBody CreateOrUpdateUserRequest createOrUpdateUserRequest){
+    public ResponseEntity<CreateUserResponse> createAccount(@RequestBody CreateOrUpdateUserRequest createOrUpdateUserRequest) {
         return accountService.create(createOrUpdateUserRequest);
     }
 }
