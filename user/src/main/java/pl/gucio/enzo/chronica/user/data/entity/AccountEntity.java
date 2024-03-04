@@ -1,11 +1,10 @@
-package pl.gucio.enzo.chronica.user.domain.entity;
+package pl.gucio.enzo.chronica.user.data.entity;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import pl.gucio.enzo.chronica.user.domain.entity.PersonEntity;
 
 import java.time.LocalDateTime;
 

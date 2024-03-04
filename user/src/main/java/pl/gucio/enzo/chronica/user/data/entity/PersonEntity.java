@@ -1,4 +1,4 @@
-package pl.gucio.enzo.chronica.user.domain.entity;
+package pl.gucio.enzo.chronica.user.data.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

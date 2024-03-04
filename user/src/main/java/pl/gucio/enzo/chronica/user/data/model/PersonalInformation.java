@@ -1,4 +1,4 @@
-package pl.gucio.enzo.chronica.user.domain.model;
+package pl.gucio.enzo.chronica.user.data.model;
 
 
 import lombok.Builder;

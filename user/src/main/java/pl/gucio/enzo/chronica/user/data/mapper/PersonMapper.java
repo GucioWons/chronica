@@ -1,10 +1,10 @@
-package pl.gucio.enzo.chronica.user.domain.mapper;
+package pl.gucio.enzo.chronica.user.data.mapper;
 
 
 import org.mapstruct.Mapper;
 
-import pl.gucio.enzo.chronica.user.domain.entity.PersonEntity;
-import pl.gucio.enzo.chronica.user.domain.model.PersonalInformation;
+import pl.gucio.enzo.chronica.user.data.entity.PersonEntity;
+import pl.gucio.enzo.chronica.user.data.model.PersonalInformation;
 
 @Mapper
 public interface PersonMapper {

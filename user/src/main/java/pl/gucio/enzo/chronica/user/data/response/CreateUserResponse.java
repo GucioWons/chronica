@@ -1,4 +1,4 @@
-package pl.gucio.enzo.chronica.user.domain.response;
+package pl.gucio.enzo.chronica.user.data.response;
 
 import java.time.LocalDateTime;
 
