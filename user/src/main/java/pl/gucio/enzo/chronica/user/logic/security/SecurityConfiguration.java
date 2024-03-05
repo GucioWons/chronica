@@ -29,6 +29,7 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests(auth ->
                         auth
                                 .requestMatchers(mvcMatcherBuilder.pattern(Api.ACCOUNT)).permitAll()
+                                .requestMatchers(mvcMatcherBuilder.pattern(Api.LINK)).permitAll()
                                 .requestMatchers(mvcMatcherBuilder.pattern(Api.SWAGGER_UI)).permitAll()
                                 .requestMatchers(mvcMatcherBuilder.pattern(Api.V_3)).permitAll()
                                 .anyRequest().hasAuthority("USER")

@@ -13,7 +13,37 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"accountDto\": {\r\n    \"username\": \"kuba\",\r\n    \"mail\": \"test@o2.pl\",\r\n    \"phoneNumber\": 123456789,\r\n    \"password\": \"123456\"\r\n  },\r\n  \"personDto\": {\r\n    \"name\": \"Kuba\",\r\n    \"lastName\": \"Testowy\",\r\n    \"age\": 12\r\n  }\r\n}",
+					"raw": "{\r\n  \"accountDto\": {\r\n    \"username\": \"kuba\",\r\n    \"mail\": \"kuba@o2.pl\",\r\n    \"phoneNumber\": 123456789,\r\n    \"password\": \"123456\"\r\n  },\r\n  \"personDto\": {\r\n    \"name\": \"Kuba\",\r\n    \"lastName\": \"Testowy\",\r\n    \"age\": 12\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/account/sign-up",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"account",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"mail\": \"kuba@o2.pl\",\r\n  \"password\": \"123456\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -31,6 +61,28 @@
 						"api",
 						"account",
 						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindAccountById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/account/read/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"account",
+						"read",
+						"1"
 					]
 				}
 			},
