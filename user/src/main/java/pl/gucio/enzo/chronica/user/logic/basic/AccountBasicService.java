@@ -1,6 +1,7 @@
 package pl.gucio.enzo.chronica.user.logic.basic;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.gucio.enzo.chronica.user.data.entity.AccountEntity;
 import pl.gucio.enzo.chronica.user.data.repository.AccountRepository;
@@ -33,8 +34,10 @@ public class AccountBasicService {
        accountRepository.delete(accountEntity);
     }
 
-    public AccountEntity findAccountByMailPasswordAndEnabled(String mail, String password){
-        return accountRepository.findAccountEntityByMailAndPasswordAndIsActive(mail,password,true)
-                .orElseThrow(() -> new WrongCredentialsException("Wrong mail or password ! Try again"));
+    public AccountEntity findAccountByMailAndEnabled(String mail){
+        return accountRepository.findAccountEntityByMailAndIsActive(mail,true)
+                .orElseThrow(() -> new WrongCredentialsException("Wrong mail ! Try again"));
     }
+
+
 }

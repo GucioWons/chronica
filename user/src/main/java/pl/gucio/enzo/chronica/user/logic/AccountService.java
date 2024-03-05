@@ -5,10 +5,16 @@ package pl.gucio.enzo.chronica.user.logic;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.gucio.enzo.chronica.user.data.entity.AccountEntity;
 import pl.gucio.enzo.chronica.user.data.entity.LinkEntity;
@@ -26,6 +32,7 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AccountService {
     private final AccountBasicService accountBasicService;
     private final EmailService emailService;
@@ -33,6 +40,8 @@ public class AccountService {
     private final Jwt jwt;
     @Value("${app.account.confirmation.api}")
     private String confirmationAddress;
+    private final Logger logger = LoggerFactory.getLogger(AccountService.class);
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Transactional
@@ -40,6 +49,7 @@ public class AccountService {
         final AccountEntity accountEntity = new AccountEntity();
         final PersonEntity personEntity = new PersonEntity();
         final String mail = createOrUpdateUserRequest.accountDto().getMail();
+        final String password = createOrUpdateUserRequest.accountDto().getPassword();
 
         personEntity.setName(createOrUpdateUserRequest.personDto().getName());
         personEntity.setLastName(createOrUpdateUserRequest.personDto().getLastName());
@@ -48,7 +58,7 @@ public class AccountService {
         accountEntity.setUsername(createOrUpdateUserRequest.accountDto().getUsername());
         accountEntity.setMail(mail);
         accountEntity.setPhoneNumber(createOrUpdateUserRequest.accountDto().getPhoneNumber());
-        accountEntity.setPassword(createOrUpdateUserRequest.accountDto().getPassword());
+        accountEntity.setPassword(bCryptPasswordEncoder.encode(password));
         accountEntity.setPerson(personEntity);
 
         accountBasicService.update(accountEntity);
@@ -82,20 +92,29 @@ public class AccountService {
     public ResponseEntity<SignInResponse> signIn(SignInRequest request){
         final String mail = request.mail();
         final String password = request.password();
+        final AccountEntity account = accountBasicService.findAccountByMailAndEnabled(mail);
 
-        final AccountEntity account = accountBasicService.findAccountByMailPasswordAndEnabled(mail,password);
+        if(checkPassword(password,account.getPassword())){
+            final String token = jwt.generateToken(mail);
+            final HttpHeaders headers = new HttpHeaders();
 
-        final String token = jwt.generateToken(mail);
-        final HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization","Bearer " + token);
+            headers.add("Authorization", "Bearer " + token);
 
-        SignInResponse response = new SignInResponse("Zalogowano pomyślnie", token);
+            final SignInResponse response = new SignInResponse("Zalogowano pomyślnie", token);
+
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .headers(headers)
+                    .body(response);
+        }
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(response);
+                .status(HttpStatus.UNAUTHORIZED)
+                .build();
     }
 
+    private boolean checkPassword(String password, String encodedPassword) {
+        return bCryptPasswordEncoder.matches(password, encodedPassword);
+    }
 
 }
