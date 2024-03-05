@@ -4,10 +4,8 @@ package pl.gucio.enzo.chronica.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pl.gucio.enzo.chronica.user.data.entity.AccountEntity;
 import pl.gucio.enzo.chronica.user.data.request.CreateOrUpdateUserRequest;
 import pl.gucio.enzo.chronica.user.data.response.CreateUserResponse;
 import pl.gucio.enzo.chronica.user.logic.AccountService;
@@ -18,8 +16,13 @@ import pl.gucio.enzo.chronica.user.logic.AccountService;
 public class AccountController {
     private final AccountService accountService;
 
-    @PostMapping("/sign-in")
+    @PostMapping(value = "/sign-in")
     public ResponseEntity<CreateUserResponse> createAccount(@RequestBody CreateOrUpdateUserRequest createOrUpdateUserRequest) {
         return accountService.create(createOrUpdateUserRequest);
+    }
+
+    @GetMapping(value = "/read/{id}")
+    public ResponseEntity<AccountEntity> createAccount(@PathVariable Long id) { //TODO mapping variable
+        return accountService.findAccountById(id);
     }
 }

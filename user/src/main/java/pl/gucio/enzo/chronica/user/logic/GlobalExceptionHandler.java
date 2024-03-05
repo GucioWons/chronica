@@ -29,4 +29,17 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(errorResponseBuilder, HttpStatus.FOUND);
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponseDto> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest){
+        final ErrorResponseDto errorResponseBuilder = ErrorResponseDto.builder()
+                .message(exception.getMessage())
+                .apiPath(webRequest.getDescription(false))
+                .statusCode(HttpStatus.BAD_REQUEST)
+                .at(LocalDateTime.now()).build();
+
+        LOGGER.error(exception.getMessage() + " at " + errorResponseBuilder.getAt());
+
+        return new ResponseEntity<>(errorResponseBuilder, HttpStatus.BAD_REQUEST);
+    }
 }
