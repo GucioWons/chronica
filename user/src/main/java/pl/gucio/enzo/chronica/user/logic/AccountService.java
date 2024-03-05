@@ -14,8 +14,10 @@ import pl.gucio.enzo.chronica.user.data.entity.LinkEntity;
 import pl.gucio.enzo.chronica.user.data.entity.PersonEntity;
 import pl.gucio.enzo.chronica.user.data.repository.AccountRepository;
 import pl.gucio.enzo.chronica.user.data.request.CreateOrUpdateUserRequest;
+import pl.gucio.enzo.chronica.user.data.request.SignInRequest;
 import pl.gucio.enzo.chronica.user.data.response.CreateUserResponse;
 import pl.gucio.enzo.chronica.user.data.response.ReadUserResponse;
+import pl.gucio.enzo.chronica.user.data.response.SignInResponse;
 import pl.gucio.enzo.chronica.user.logic.basic.AccountBasicService;
 
 import java.time.LocalDateTime;
@@ -71,6 +73,18 @@ public class AccountService {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build(); //TODO need mapper to JSON
+    }
+
+    public ResponseEntity<SignInResponse> signIn(SignInRequest request){
+        final String mail = request.mail();
+        final String password = request.password();
+        final AccountEntity account = accountBasicService.findAccountByMailPasswordAndEnabled(mail,password);
+
+        SignInResponse response = new SignInResponse("Zalogowano pomyślnie");
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
     }
 
 
