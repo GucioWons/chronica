@@ -1,4 +1,4 @@
-package com.chronica.snap.api.snap;
+package com.chronica.snap.api.snap.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class Snap {
     private Long id;
     private Integer time;
     private Long chainId;
-    private Object activity;
+    private Activity activity;
     private String description;
     private LocalDateTime creationDate;
     private Date logDate;
