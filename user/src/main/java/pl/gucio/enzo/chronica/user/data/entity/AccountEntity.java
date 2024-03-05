@@ -34,6 +34,7 @@ public class AccountEntity {
     private String password;
 
     private Boolean isActive = false;
+    private Boolean deprecated;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
