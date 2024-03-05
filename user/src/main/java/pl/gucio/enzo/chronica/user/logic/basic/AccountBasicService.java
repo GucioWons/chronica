@@ -18,6 +18,12 @@ public class AccountBasicService {
                 .orElseThrow(() -> new AccountDoesntExistException("Account not found"));
     }
 
+    public AccountEntity findAccountByMail(String mail){
+        return accountRepository
+                .findAccountByMail(mail)
+                .orElseThrow(() -> new AccountDoesntExistException("Account not found"));
+    }
+
     public void update(AccountEntity accountEntity){
         accountRepository.save(accountEntity);
     }

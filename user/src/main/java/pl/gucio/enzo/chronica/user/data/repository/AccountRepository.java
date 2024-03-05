@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface AccountRepository extends JpaRepository<AccountEntity,Long> {
     Optional<AccountEntity> findAccountEntityByMailAndPasswordAndIsActive(String mail, String password, boolean isActive);
+
+    Optional<AccountEntity> findAccountByMail(String mail);
 }

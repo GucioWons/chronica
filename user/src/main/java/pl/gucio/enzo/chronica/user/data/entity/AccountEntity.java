@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import pl.gucio.enzo.chronica.user.data.constant.Role;
 
 
 import java.time.LocalDateTime;
@@ -33,9 +34,9 @@ public class AccountEntity {
     @Column(nullable = false)
     private String password;
 
-    private Boolean isActive = false;
+    private Boolean isActive = true; //TODO dla produkcji ustawic na false
     private Boolean deprecated;
-
+    private Role role = Role.USER;
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToOne(cascade = CascadeType.ALL)

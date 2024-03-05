@@ -6,6 +6,7 @@ package pl.gucio.enzo.chronica.user.logic;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import pl.gucio.enzo.chronica.user.data.response.CreateUserResponse;
 import pl.gucio.enzo.chronica.user.data.response.ReadUserResponse;
 import pl.gucio.enzo.chronica.user.data.response.SignInResponse;
 import pl.gucio.enzo.chronica.user.logic.basic.AccountBasicService;
+import pl.gucio.enzo.chronica.user.logic.security.Jwt;
 
 import java.time.LocalDateTime;
 
@@ -28,8 +30,10 @@ public class AccountService {
     private final AccountBasicService accountBasicService;
     private final EmailService emailService;
     private final LinkService linkService;
+    private final Jwt jwt;
     @Value("${app.account.confirmation.api}")
     private String confirmationAddress;
+
 
     @Transactional
     public ResponseEntity<CreateUserResponse> create(CreateOrUpdateUserRequest createOrUpdateUserRequest) {
@@ -78,12 +82,18 @@ public class AccountService {
     public ResponseEntity<SignInResponse> signIn(SignInRequest request){
         final String mail = request.mail();
         final String password = request.password();
+
         final AccountEntity account = accountBasicService.findAccountByMailPasswordAndEnabled(mail,password);
 
-        SignInResponse response = new SignInResponse("Zalogowano pomyślnie");
+        final String token = jwt.generateToken(mail);
+        final HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization","Bearer " + token);
+
+        SignInResponse response = new SignInResponse("Zalogowano pomyślnie", token);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
+                .headers(headers)
                 .body(response);
     }
 
