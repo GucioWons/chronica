@@ -34,10 +34,10 @@ public class AccountEntity {
     @Column(nullable = false)
     private String password;
 
-    private Boolean isActive = true; //TODO dla produkcji ustawic na false
+    private Boolean isActive = false; //For testing switch to true
     private Boolean deprecated;
-    private Role role = Role.USER;
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private final Role role = Role.USER;
+    private final LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "person_id")

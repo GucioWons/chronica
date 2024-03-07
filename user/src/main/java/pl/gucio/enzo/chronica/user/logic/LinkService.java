@@ -45,10 +45,10 @@ public class LinkService {
         final List<LinkEntity> links = readAll();
         final LocalDateTime now = LocalDateTime.now();
 
-        logger.info("Czyszczenie kont: ");
+        logger.info("Deletion of inactive accounts: ");
 
         for (LinkEntity link : links) {
-            if (link.getGeneratedAt().plusMinutes(link.getExperienceTime()).isBefore(now)) {
+            if (link.getGeneratedAt().plusMinutes(link.getExpiryTime()).isBefore(now)) {
                 accountBasicService.delete(link.getAccount().getId());
                 logger.info(String.valueOf(link.getAccount().getId()));
             }

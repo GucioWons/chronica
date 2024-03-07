@@ -20,6 +20,6 @@ public class LinkEntity {
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
     private AccountEntity account;
     private LocalDateTime generatedAt = LocalDateTime.now();
-    private Integer experienceTime = 30;
+    private Integer expiryTime = 30;
     private final String generatedCode = ConfirmationLinkGenerator.generate();
 }

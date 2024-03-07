@@ -19,27 +19,23 @@ public class GlobalExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
     @ExceptionHandler(SQLException.class)
     public ResponseEntity<ErrorResponseDto> handleSQLException(SQLException exception, WebRequest webRequest){
-        final ErrorResponseDto errorResponseBuilder = ErrorResponseDto.builder()
-                .message("User already exist")
-                .apiPath(webRequest.getDescription(false))
-                .statusCode(HttpStatus.FOUND)
-                .at(LocalDateTime.now()).build();
+        final ErrorResponseDto errorResponseDto = new ErrorResponseDto("user already exist",
+                                                  webRequest.getDescription(false),
+                                                  HttpStatus.BAD_REQUEST,
+                                                  LocalDateTime.now());
+        LOGGER.error(exception.getMessage() + " at " + errorResponseDto.at());
 
-        LOGGER.error(exception.getMessage() + " at " + errorResponseBuilder.getAt());
-
-        return new ResponseEntity<>(errorResponseBuilder, HttpStatus.FOUND);
+        return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponseDto> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest){
-        final ErrorResponseDto errorResponseBuilder = ErrorResponseDto.builder()
-                .message(exception.getMessage())
-                .apiPath(webRequest.getDescription(false))
-                .statusCode(HttpStatus.BAD_REQUEST)
-                .at(LocalDateTime.now()).build();
+        final ErrorResponseDto errorResponseDto = new ErrorResponseDto(exception.getMessage(),
+                webRequest.getDescription(false),
+                HttpStatus.BAD_REQUEST,
+                LocalDateTime.now());
+        LOGGER.error(exception.getMessage() + " at " + errorResponseDto.at());
 
-        LOGGER.error(exception.getMessage() + " at " + errorResponseBuilder.getAt());
-
-        return new ResponseEntity<>(errorResponseBuilder, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
     }
 }

@@ -48,16 +48,16 @@ public class AccountService {
     public ResponseEntity<CreateUserResponse> create(CreateOrUpdateUserRequest createOrUpdateUserRequest) {
         final AccountEntity accountEntity = new AccountEntity();
         final PersonEntity personEntity = new PersonEntity();
-        final String mail = createOrUpdateUserRequest.accountDto().getMail();
-        final String password = createOrUpdateUserRequest.accountDto().getPassword();
+        final String mail = createOrUpdateUserRequest.accountDto().mail();
+        final String password = createOrUpdateUserRequest.accountDto().password();
 
-        personEntity.setName(createOrUpdateUserRequest.personDto().getName());
-        personEntity.setLastName(createOrUpdateUserRequest.personDto().getLastName());
-        personEntity.setAge(createOrUpdateUserRequest.personDto().getAge());
+        personEntity.setName(createOrUpdateUserRequest.personDto().name());
+        personEntity.setLastName(createOrUpdateUserRequest.personDto().lastName());
+        personEntity.setAge(createOrUpdateUserRequest.personDto().age());
 
-        accountEntity.setUsername(createOrUpdateUserRequest.accountDto().getUsername());
+        accountEntity.setUsername(createOrUpdateUserRequest.accountDto().username());
         accountEntity.setMail(mail);
-        accountEntity.setPhoneNumber(createOrUpdateUserRequest.accountDto().getPhoneNumber());
+        accountEntity.setPhoneNumber(createOrUpdateUserRequest.accountDto().phoneNumber());
         accountEntity.setPassword(bCryptPasswordEncoder.encode(password));
         accountEntity.setPerson(personEntity);
 
