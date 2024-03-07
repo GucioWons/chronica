@@ -38,13 +38,13 @@ public class FilterBeforeRequest extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
             mail = jwt.extractUsername(token);
-            LOGGER.info("Pobrano mail: " + mail);
+            LOGGER.info("Account mail: " + mail);
         }
 
         if (mail != null && jwt.validateToken(token, mail)) {
 
             final Role role = accountBasicService.findAccountByMail(mail).getRole();
-            LOGGER.info("Etap 2, pobrano role:" + role);
+            LOGGER.info("Account role: " + role);
             Collection<GrantedAuthority> getRoleAuthorities = new ArrayList<>();
             getRoleAuthorities.add((GrantedAuthority) () -> String.valueOf(role));
 
