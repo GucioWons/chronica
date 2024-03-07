@@ -34,8 +34,8 @@ public class AccountEntity {
     @Column(nullable = false)
     private String password;
 
-    private Boolean isActive = false; //For testing switch to true
-    private Boolean deprecated;
+    private final Boolean isActive = false; //For testing switch to true
+    private final Boolean deprecated = false;
     private final Role role = Role.USER;
     private final LocalDateTime createdAt = LocalDateTime.now();
 
