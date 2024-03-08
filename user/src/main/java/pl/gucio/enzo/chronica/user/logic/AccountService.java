@@ -8,22 +8,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.gucio.enzo.chronica.user.data.entity.AccountEntity;
-import pl.gucio.enzo.chronica.user.data.entity.LinkEntity;
-import pl.gucio.enzo.chronica.user.data.entity.PersonEntity;
-import pl.gucio.enzo.chronica.user.data.repository.AccountRepository;
+import pl.gucio.enzo.chronica.user.data.entity.Account;
+import pl.gucio.enzo.chronica.user.data.entity.Link;
+import pl.gucio.enzo.chronica.user.data.entity.Person;
 import pl.gucio.enzo.chronica.user.data.request.CreateOrUpdateUserRequest;
 import pl.gucio.enzo.chronica.user.data.request.SignInRequest;
 import pl.gucio.enzo.chronica.user.data.response.CreateUserResponse;
-import pl.gucio.enzo.chronica.user.data.response.ReadUserResponse;
 import pl.gucio.enzo.chronica.user.data.response.SignInResponse;
 import pl.gucio.enzo.chronica.user.logic.basic.AccountBasicService;
 import pl.gucio.enzo.chronica.user.logic.security.Jwt;
@@ -46,25 +42,25 @@ public class AccountService {
 
     @Transactional
     public ResponseEntity<CreateUserResponse> create(CreateOrUpdateUserRequest createOrUpdateUserRequest) {
-        final AccountEntity accountEntity = new AccountEntity();
-        final PersonEntity personEntity = new PersonEntity();
+        final Account account = new Account();
+        final Person person = new Person();
         final String mail = createOrUpdateUserRequest.accountDto().mail();
         final String password = createOrUpdateUserRequest.accountDto().password();
 
-        personEntity.setName(createOrUpdateUserRequest.personDto().name());
-        personEntity.setLastName(createOrUpdateUserRequest.personDto().lastName());
-        personEntity.setAge(createOrUpdateUserRequest.personDto().age());
+        person.setName(createOrUpdateUserRequest.personDto().name());
+        person.setLastName(createOrUpdateUserRequest.personDto().lastName());
+        person.setAge(createOrUpdateUserRequest.personDto().age());
 
-        accountEntity.setUsername(createOrUpdateUserRequest.accountDto().username());
-        accountEntity.setMail(mail);
-        accountEntity.setPhoneNumber(createOrUpdateUserRequest.accountDto().phoneNumber());
-        accountEntity.setPassword(bCryptPasswordEncoder.encode(password));
-        accountEntity.setPerson(personEntity);
+        account.setUsername(createOrUpdateUserRequest.accountDto().username());
+        account.setMail(mail);
+        account.setPhoneNumber(createOrUpdateUserRequest.accountDto().phoneNumber());
+        account.setPassword(bCryptPasswordEncoder.encode(password));
+        account.setPerson(person);
 
-        accountBasicService.update(accountEntity);
+        accountBasicService.update(account);
 
-        final LinkEntity linkEntity = new LinkEntity();
-        linkEntity.setAccount(accountEntity);
+        final Link linkEntity = new Link();
+        linkEntity.setAccount(account);
         linkService.createLinkForAccount(linkEntity);
 
         final String link = confirmationAddress + linkEntity.getGeneratedCode();
@@ -81,8 +77,8 @@ public class AccountService {
                 .body(response);
     }
 
-    public ResponseEntity<AccountEntity> findAccountById(Long id){
-        final AccountEntity response = accountBasicService.findAccountById(id);
+    public ResponseEntity<Account> findAccountById(Long id){
+        final Account response = accountBasicService.findAccountById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -92,7 +88,7 @@ public class AccountService {
     public ResponseEntity<SignInResponse> signIn(SignInRequest request){
         final String mail = request.mail();
         final String password = request.password();
-        final AccountEntity account = accountBasicService.findAccountByMailAndEnabled(mail);
+        final Account account = accountBasicService.findAccountByMailAndEnabled(mail);
 
         if(checkPassword(password,account.getPassword())){
             final String token = jwt.generateToken(mail);

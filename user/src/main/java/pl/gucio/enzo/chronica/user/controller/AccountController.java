@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.gucio.enzo.chronica.user.data.entity.AccountEntity;
+import pl.gucio.enzo.chronica.user.data.entity.Account;
 import pl.gucio.enzo.chronica.user.data.request.CreateOrUpdateUserRequest;
 import pl.gucio.enzo.chronica.user.data.request.SignInRequest;
 import pl.gucio.enzo.chronica.user.data.response.CreateUserResponse;
@@ -30,7 +30,7 @@ public class AccountController {
     }
 
     @GetMapping(value = "/read/{id}")
-    public ResponseEntity<AccountEntity> createAccount(@PathVariable Long id) { //TODO mapping variable
+    public ResponseEntity<Account> createAccount(@PathVariable Long id) { //TODO mapping variable
         return accountService.findAccountById(id);
     }
 

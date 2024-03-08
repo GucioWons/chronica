@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Table(name = "LINKS")
-public class LinkEntity {
+public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "link_id")
     private Long id;
     @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
-    private AccountEntity account;
+    private Account account;
     private LocalDateTime generatedAt = LocalDateTime.now();
     private Integer expiryTime = 30;
     private final String generatedCode = ConfirmationLinkGenerator.generate();

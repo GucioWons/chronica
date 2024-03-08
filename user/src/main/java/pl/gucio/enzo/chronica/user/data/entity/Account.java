@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @Setter
 @Getter
-public class AccountEntity {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,12 +34,12 @@ public class AccountEntity {
     @Column(nullable = false)
     private String password;
 
-    private final Boolean isActive = false; //For testing switch to true
-    private final Boolean deprecated = false;
-    private final Role role = Role.USER;
-    private final LocalDateTime createdAt = LocalDateTime.now();
+    private Boolean isActive = false; //For testing switch to true
+    private Boolean deprecated = false;
+    private Role role = Role.USER;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "person_id")
-    private PersonEntity person;
+    private Person person;
 }

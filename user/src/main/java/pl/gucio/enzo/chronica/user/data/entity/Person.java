@@ -9,7 +9,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @Setter
 @Getter
-public class PersonEntity {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "person_id")
@@ -20,5 +20,5 @@ public class PersonEntity {
     private Integer age;
 
     @OneToOne(mappedBy = "person")
-    private AccountEntity account;
+    private Account account;
 }
