@@ -1,4 +1,4 @@
-package pl.gucio.enzo.chronica.user.data.dto;
+package pl.gucio.enzo.chronica.user.data.dto.response;
 
 import org.springframework.http.HttpStatus;
 

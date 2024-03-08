@@ -45,7 +45,7 @@ public class LinkService {
         final LocalDateTime now = LocalDateTime.now();
 
         for (Link link : links) {
-            if (link.getGeneratedAt().plusMinutes(link.getExpiryTime()).isBefore(now)) {
+            if (link.getGeneratedAt().plusMinutes(link.getExpirationTime()).isBefore(now)) {
                 final Account account = link.getAccount();
 
                 account.setDeprecated(true);

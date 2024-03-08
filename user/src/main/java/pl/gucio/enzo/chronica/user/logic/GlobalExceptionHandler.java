@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import pl.gucio.enzo.chronica.user.data.dto.ErrorResponseDto;
+import pl.gucio.enzo.chronica.user.data.dto.response.ErrorResponseDto;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;

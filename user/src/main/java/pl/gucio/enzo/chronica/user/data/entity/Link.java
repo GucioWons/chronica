@@ -20,7 +20,7 @@ public class Link {
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
     private Account account;
     private LocalDateTime generatedAt = LocalDateTime.now();
-    private Integer expiryTime = 30;
+    private Integer expirationTime = 30;
     private final String generatedCode = ConfirmationLinkGenerator.generate();
     private Boolean deprecated = false;
 }
