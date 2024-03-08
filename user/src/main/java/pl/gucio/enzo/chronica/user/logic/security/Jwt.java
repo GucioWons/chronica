@@ -1,5 +1,6 @@
 package pl.gucio.enzo.chronica.user.logic.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,9 +13,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import pl.gucio.enzo.chronica.user.logic.util.JsonReader;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.security.Key;
 import java.util.Date;
@@ -32,9 +33,8 @@ public class Jwt {
 
     @Bean
     public void getValuesFromJson() throws IOException {
-        final JsonReader jsonReader = new JsonReader();
-        jsonReader.readJsonToMap(filepath);
-        final Map map = jsonReader.getJsonMap();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final Map map = objectMapper.readValue(new File(filepath), Map.class);
         this.SECRET = (String) map.get("SECRET");
         LOGGER.info(SECRET);
     }

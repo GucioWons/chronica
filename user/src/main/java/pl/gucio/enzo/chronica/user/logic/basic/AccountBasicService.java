@@ -27,12 +27,7 @@ public class AccountBasicService {
     public void update(Account account){
         accountRepository.save(account);
     }
-
-    public void delete(Long id){
-       final Account account = findAccountById(id);
-       accountRepository.delete(account);
-    }
-
+    
     public Account findAccountByMailAndEnabled(String mail){
         return accountRepository.findAccountEntityByMailAndIsActive(mail,true)
                 .orElseThrow(() -> new WrongCredentialsException("Wrong mail ! Try again"));
