@@ -38,7 +38,6 @@ public class AccountService {
     private final Jwt jwt;
     @Value("${app.account.confirmation.api}")
     private String confirmationAddress;
-    private final Logger logger = LoggerFactory.getLogger(AccountService.class);
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
@@ -70,7 +69,7 @@ public class AccountService {
 
         emailService.sendEmail(mail, "Welcome: Account Confirmation", htmlBody);
 
-        final SignUpResponseDto response = new SignUpResponseDto(mail, LocalDateTime.now());
+        final SignUpResponseDto response = new SignUpResponseDto(mail, LocalDateTime.now(), account.getIsActive());
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)

@@ -19,7 +19,6 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id")
     private Long id;
 
     @Column(unique = true, nullable = false)
@@ -34,12 +33,12 @@ public class Account {
     @Column(nullable = false)
     private String password;
 
-    private Boolean isActive = false; //For testing switch to true
+    private Boolean isActive = true; //For testing switch to true
     private Boolean deprecated = false;
     private Role role = Role.USER;
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id", referencedColumnName = "person_id")
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 }

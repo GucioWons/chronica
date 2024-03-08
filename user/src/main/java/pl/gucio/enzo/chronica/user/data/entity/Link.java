@@ -14,10 +14,9 @@ import java.time.LocalDateTime;
 public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "link_id")
     private Long id;
     @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
-    @JoinColumn(name = "account_id", referencedColumnName = "account_id")
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
     private LocalDateTime generatedAt = LocalDateTime.now();
     private Integer expirationTime = 30;
