@@ -5,8 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import pl.gucio.enzo.chronica.user.data.dto.response.AccountConfirmedResponseDto;
 import pl.gucio.enzo.chronica.user.data.entity.Account;
 import pl.gucio.enzo.chronica.user.data.entity.Link;
 import pl.gucio.enzo.chronica.user.data.repository.LinkRepository;
@@ -29,7 +32,7 @@ public class LinkService {
     }
 
     @Transactional
-    public void confirmAccount(String generatedVal){
+    public ResponseEntity<AccountConfirmedResponseDto> confirmAccount(String generatedVal){
         final Link link = linkRepository.findLinkEntityByGeneratedCode(generatedVal);
         final Account account = link.getAccount();
 
@@ -38,6 +41,11 @@ public class LinkService {
 
         link.setDeprecated(true);
         linkRepository.save(link);
+
+        final AccountConfirmedResponseDto response = new AccountConfirmedResponseDto(account.getMail(),true,LocalDateTime.now());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
     }
     @Scheduled(fixedRate = 1800000)
     public void checkLinkExpiration() {
