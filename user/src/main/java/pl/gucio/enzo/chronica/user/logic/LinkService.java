@@ -17,11 +17,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class LinkService {
     private final LinkRepository linkRepository;
     private final AccountBasicService accountBasicService;
-    private final Logger logger = LoggerFactory.getLogger(LinkService.class);
     public void createLinkForAccount(Link link) {
         linkRepository.save(link);
     }
@@ -38,19 +36,23 @@ public class LinkService {
         account.setIsActive(true);
         accountBasicService.update(account);
 
-        linkRepository.delete(link);
+        link.setDeprecated(true);
+        linkRepository.save(link);
     }
     @Scheduled(fixedRate = 1800000)
     public void checkLinkExpiration() {
         final List<Link> links = readAll();
         final LocalDateTime now = LocalDateTime.now();
 
-        logger.info("Deletion of inactive accounts: ");
-
         for (Link link : links) {
             if (link.getGeneratedAt().plusMinutes(link.getExpiryTime()).isBefore(now)) {
-                accountBasicService.delete(link.getAccount().getId());
-                logger.info(String.valueOf(link.getAccount().getId()));
+                final Account account = link.getAccount();
+
+                account.setDeprecated(true);
+                link.setDeprecated(true);
+
+                accountBasicService.update(account);
+                linkRepository.save(link);
             }
         }
     }

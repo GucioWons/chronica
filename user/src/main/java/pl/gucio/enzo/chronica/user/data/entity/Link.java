@@ -22,4 +22,5 @@ public class Link {
     private LocalDateTime generatedAt = LocalDateTime.now();
     private Integer expiryTime = 30;
     private final String generatedCode = ConfirmationLinkGenerator.generate();
+    private Boolean deprecated = false;
 }
