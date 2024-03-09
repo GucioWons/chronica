@@ -4,24 +4,26 @@ import com.chronica.notification.data.constant.NotificationType;
 import com.chronica.notification.data.constant.PriorityType;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Value;
 
 import java.time.LocalDateTime;
 
 
 @Builder
 @Data
+@Value
 public class UpdateNoticeRequestDto {
-    protected Long id;
-    protected String title;
-    protected String content;
-    protected LocalDateTime createdAt;
-    protected LocalDateTime openAt;
-    protected Long receiverId;
-    protected Boolean deprecated;
-    protected NotificationType notificationType;
-    private Long messageFromId;
-    private Long invitationFromId;
-    private Boolean accepted;
-    private LocalDateTime acceptedAt;
-    private PriorityType priorityType;
+    Long id;
+    String title;
+    String content;
+    LocalDateTime createdAt;
+    LocalDateTime openAt;
+    Long receiverId;
+    Boolean deprecated;
+    NotificationType notificationType;
+    Long messageFromId;
+    Long invitationFromId;
+    Boolean accepted;
+    LocalDateTime acceptedAt;
+    PriorityType priorityType;
 }
