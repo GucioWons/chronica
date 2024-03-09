@@ -3,16 +3,15 @@ package com.chronica.notification.logic;
 import com.chronica.notification.data.constant.NotificationType;
 import com.chronica.notification.data.dto.request.CreateNoticeRequestDto;
 import com.chronica.notification.data.dto.request.QueryNoticeRequestDto;
-import com.chronica.notification.data.dto.response.CreateNoticeResponseDto;
-import com.chronica.notification.data.dto.response.DeprecateNoticeResponseDto;
-import com.chronica.notification.data.dto.response.QueryNoticeResponseDto;
-import com.chronica.notification.data.dto.response.ReadNoticeResponseDto;
+import com.chronica.notification.data.dto.request.UpdateNoticeRequestDto;
+import com.chronica.notification.data.dto.response.*;
 import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Invitation;
 import com.chronica.notification.data.entity.Message;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.logic.notification.NotificationService;
 import com.chronica.notification.logic.mapper.NoticeMapper;
+import com.chronica.notification.logic.util.PropertyTransfer;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -47,6 +46,22 @@ public class NotificationApi {
         final CreateNoticeResponseDto response = new CreateNoticeResponseDto(notificationType, createdAt);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
+                .body(response);
+    }
+
+    @Transactional
+    public ResponseEntity<UpdateNoticeResponseDto> updateNotice(UpdateNoticeRequestDto request, Long id){
+        final LocalDateTime updatedAt = LocalDateTime.now();
+        Notification notification = notificationService.findById(id);
+
+        PropertyTransfer.copyNonNullProperties(request,notification);
+
+        notificationService.save(notification);
+
+        final UpdateNoticeResponseDto response = new UpdateNoticeResponseDto(id, updatedAt);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
                 .body(response);
     }
 

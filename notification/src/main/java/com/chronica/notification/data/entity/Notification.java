@@ -4,6 +4,7 @@ package com.chronica.notification.data.entity;
 import com.chronica.notification.data.constant.NotificationType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "NOTIFICATIONS")
+@DynamicUpdate
 public class Notification implements Serializable {
 
     @Id
