@@ -15,9 +15,8 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 public class Alert extends Notification {
-private PriorityType priorityType;
+private PriorityType priorityType = PriorityType.Default;
     public Alert(Long id, String title, String content, LocalDateTime createdAt, LocalDateTime openAt, Long receiverId, Boolean deprecated, PriorityType priorityType) {
         super(id,title,content,createdAt,openAt,receiverId,deprecated);
-        this.priorityType = priorityType;
     }
 }
