@@ -2,24 +2,40 @@ package com.chronica.notification.controller;
 
 
 import com.chronica.notification.data.dto.request.CreateNoticeRequestDto;
+import com.chronica.notification.data.dto.request.QueryNoticeRequestDto;
 import com.chronica.notification.data.dto.response.CreateNoticeResponseDto;
-import com.chronica.notification.logic.GlobalService;
+import com.chronica.notification.data.dto.response.DeprecateNoticeResponseDto;
+import com.chronica.notification.data.dto.response.QueryNoticeResponseDto;
+import com.chronica.notification.data.dto.response.ReadNoticeResponseDto;
+import com.chronica.notification.logic.NotificationApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api/notification", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/api/notifications", produces = {MediaType.APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
 public class NotificationController {
-    private final GlobalService globalService;
+    private final NotificationApi notificationApi;
 
     @PostMapping(path = "/create")
     public ResponseEntity<CreateNoticeResponseDto> createNotice(@RequestBody CreateNoticeRequestDto request){
-        return globalService.createNotice(request);
+        return notificationApi.createNotice(request);
+    }
+
+    @GetMapping(path = "/read/{id}")
+    public ResponseEntity<ReadNoticeResponseDto> readNotice(@PathVariable Long id){
+        return notificationApi.readNotice(id);
+    }
+
+    @PostMapping(path = "/query-all")
+    public ResponseEntity<QueryNoticeResponseDto> queryNotices(@RequestBody QueryNoticeRequestDto filter){
+        return notificationApi.queryAll(filter);
+    }
+
+    @GetMapping(path = "/delete/{id}")
+    public ResponseEntity<DeprecateNoticeResponseDto> queryNotices(@PathVariable Long id){
+        return notificationApi.deleteNotice(id);
     }
 }
