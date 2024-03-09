@@ -4,8 +4,8 @@ import com.chronica.user.data.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.chronica.user.data.entity.Account;
-import com.chronica.user.logic.exception.AccountDoesntExistException;
-import com.chronica.user.logic.exception.WrongCredentialsException;
+import com.chronica.user.data.exception.AccountDoesntExistException;
+import com.chronica.user.data.exception.WrongCredentialsException;
 
 @Service
 @RequiredArgsConstructor

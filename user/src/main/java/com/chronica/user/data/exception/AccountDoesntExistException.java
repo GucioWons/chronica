@@ -1,4 +1,4 @@
-package com.chronica.user.logic.exception;
+package com.chronica.user.data.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
