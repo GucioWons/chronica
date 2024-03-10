@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api/snaps", produces = {MediaType.APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
@@ -40,5 +42,12 @@ public class SnapController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(snapService.deprecateSnap(id));
+    }
+
+    @GetMapping(value = "/chain/{chainId}")
+    public ResponseEntity<List<SnapDTO>> getSnapsByChainId(@PathVariable Long chainId) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(snapService.getSnapsByChainId(chainId));
     }
 }

@@ -8,6 +8,8 @@ import com.chronica.snap.api.snap.mapper.SnapMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SnapService {
@@ -40,5 +42,11 @@ public class SnapService {
         snap.setDeprecated(true);
         snapRepository.save(snap);
         return "Snap has been deprecated.";
+    }
+
+    public List<SnapDTO> getSnapsByChainId(Long chainId) {
+        return snapRepository.findAllByChainId(chainId).stream()
+                .map(snapMapper::mapToDTO)
+                .toList();
     }
 }
