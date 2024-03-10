@@ -3,8 +3,8 @@ package com.chronica.snap.api.snap.logic;
 import com.chronica.snap.api.snap.data.SnapRepository;
 import com.chronica.snap.api.snap.dto.SnapDTO;
 import com.chronica.snap.api.snap.entity.Snap;
+import com.chronica.snap.api.snap.exceptions.NoSnapException;
 import com.chronica.snap.api.snap.mapper.SnapMapper;
-import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class SnapService {
     public SnapDTO getSnapById(Long id) {
         return snapRepository.findById(id)
                 .map(snapMapper::mapToDTO)
-                .orElseThrow(NoResultException::new);
+                .orElseThrow(() -> new NoSnapException("Cannot find Snap with id " + id));
     }
 
     public SnapDTO createSnap(SnapDTO snap) {
@@ -33,7 +33,7 @@ public class SnapService {
     public String deprecateSnap(Long id) {
         return snapRepository.findById(id)
                 .map(this::handleSnapDeprecation)
-                .orElseThrow(NoResultException::new);
+                .orElseThrow(() -> new NoSnapException("Cannot find Snap with id " + id));
     }
 
     private String handleSnapDeprecation(Snap snap) {

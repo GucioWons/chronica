@@ -1,31 +1,32 @@
 package com.chronica.snap.api.snap.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Snap {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private Integer time;
+    @Column(nullable = false)
     private Long chainId;
+    @Column(nullable = false)
     private Activity activity;
     private String description;
-    private LocalDateTime creationDate;
-    private Date logDate;
-    private boolean deprecated;
+    @Column(nullable = false)
+    private LocalDateTime creationDate = LocalDateTime.now();
+    @Column(nullable = false)
+    private LocalDate logDate;
+    @Column(nullable = false)
+    private boolean deprecated = false;
 }

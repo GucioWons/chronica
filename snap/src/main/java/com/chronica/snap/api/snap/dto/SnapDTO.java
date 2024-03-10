@@ -2,8 +2,8 @@ package com.chronica.snap.api.snap.dto;
 
 import com.chronica.snap.api.snap.entity.Activity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public record SnapDTO(Long id,
                       Integer time,
@@ -11,6 +11,6 @@ public record SnapDTO(Long id,
                       Activity activity,
                       String description,
                       LocalDateTime creationDate,
-                      Date logDate,
+                      LocalDate logDate,
                       boolean deprecated) {
 }

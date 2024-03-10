@@ -12,9 +12,7 @@ public class SnapMapper {
         entity.setChainId(dto.chainId());
         entity.setActivity(dto.activity());
         entity.setDescription(dto.description());
-        entity.setCreationDate(dto.creationDate());
         entity.setLogDate(dto.logDate());
-        entity.setDeprecated(dto.deprecated());
         return entity;
     }
 
