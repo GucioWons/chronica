@@ -24,7 +24,21 @@ public class SnapController {
     @PostMapping
     public ResponseEntity<SnapDTO> createSnap(@RequestBody SnapDTO snap) {
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .status(HttpStatus.CREATED)
                 .body(snapService.createSnap(snap));
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<SnapDTO> updateSnap(@PathVariable Long id, @RequestBody SnapDTO snap) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(snapService.updateSnap(id, snap));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteSnap(@PathVariable Long id) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(snapService.deprecateSnap(id));
     }
 }

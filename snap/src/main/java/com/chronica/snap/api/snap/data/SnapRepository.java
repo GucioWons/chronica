@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SnapRepository extends JpaRepository<Snap,Long> {
+
 }

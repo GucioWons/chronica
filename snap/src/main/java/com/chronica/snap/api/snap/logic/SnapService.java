@@ -2,6 +2,7 @@ package com.chronica.snap.api.snap.logic;
 
 import com.chronica.snap.api.snap.data.SnapRepository;
 import com.chronica.snap.api.snap.dto.SnapDTO;
+import com.chronica.snap.api.snap.entity.Snap;
 import com.chronica.snap.api.snap.mapper.SnapMapper;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,25 @@ public class SnapService {
                 .orElseThrow(NoResultException::new);
     }
 
-    public SnapDTO createSnap(SnapDTO dto) {
-        return snapMapper.mapToDTO(snapRepository.save(snapMapper.mapToSaveEntity(dto)));
+    public SnapDTO createSnap(SnapDTO snap) {
+        return snapMapper.mapToDTO(snapRepository.save(snapMapper.mapToEntity(snap)));
+    }
+
+    public SnapDTO updateSnap(Long id, SnapDTO snap) {
+        Snap toUpdate = snapMapper.mapToEntity(snap);
+        toUpdate.setId(id);
+        return snapMapper.mapToDTO(snapRepository.save(toUpdate));
+    }
+
+    public String deprecateSnap(Long id) {
+        return snapRepository.findById(id)
+                .map(this::handleSnapDeprecation)
+                .orElseThrow(NoResultException::new);
+    }
+
+    private String handleSnapDeprecation(Snap snap) {
+        snap.setDeprecated(true);
+        snapRepository.save(snap);
+        return "Snap has been deprecated.";
     }
 }
