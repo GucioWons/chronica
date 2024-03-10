@@ -45,7 +45,7 @@ public class SnapService {
     }
 
     public List<SnapDTO> getSnapsByChainId(Long chainId) {
-        return snapRepository.findAllByChainId(chainId).stream()
+        return snapRepository.findAllByChainIdAndDeprecatedFalse(chainId).stream()
                 .map(snapMapper::mapToDTO)
                 .toList();
     }

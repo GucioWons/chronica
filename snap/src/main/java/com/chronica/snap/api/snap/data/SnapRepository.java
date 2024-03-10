@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface SnapRepository extends JpaRepository<Snap,Long> {
     Optional<Snap> findByIdAndDeprecatedFalse(Long id);
-    List<Snap> findAllByChainId(Long chainId);
+    List<Snap> findAllByChainIdAndDeprecatedFalse(Long chainId);
 
 }
