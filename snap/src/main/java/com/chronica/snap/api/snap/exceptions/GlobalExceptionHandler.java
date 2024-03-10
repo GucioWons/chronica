@@ -11,8 +11,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(value = { SnapApiException.class })
-    protected ResponseEntity<Object> handleSnapApiException(NoSnapException e, WebRequest request) {
+    @ExceptionHandler(value = { NoSnapException.class })
+    protected ResponseEntity<Object> handleNoSnapException(NoSnapException e, WebRequest request) {
+        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(value = { AlreadyDeprecatedException.class })
+    protected ResponseEntity<Object> handleAlreadyDeprecatedException(AlreadyDeprecatedException e, WebRequest request) {
         return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
