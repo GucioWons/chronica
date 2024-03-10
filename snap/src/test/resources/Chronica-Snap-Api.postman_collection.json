@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "75ecd725-e240-480d-bf9f-1e8582973911",
+		"name": "Chronica-Snap-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33506091"
+	},
+	"item": [
+		{
+			"name": "CreateSnap",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"time\": 1,\r\n    \"chainId\": 1,\r\n    \"activity\": \"DEVELOPMENT\",\r\n    \"description\": \"Test snap\",\r\n    \"logDate\": \"2024-03-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/snaps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"snaps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSnapById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/snaps/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"snaps",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateSnapbyId",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/snaps/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"snaps",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteSnapById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/snaps/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"snaps",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSnapsByChainId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/snaps/chain/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"snaps",
+						"chain",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
