@@ -16,11 +16,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
-    @ExceptionHandler(value = { AlreadyDeprecatedException.class })
-    protected ResponseEntity<Object> handleAlreadyDeprecatedException(AlreadyDeprecatedException e, WebRequest request) {
-        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
-    }
-
     @ExceptionHandler(value = { PropertyValueException.class })
     protected ResponseEntity<Object> handlePropertyValueException(PropertyValueException e, WebRequest request) {
         return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);

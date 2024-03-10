@@ -3,7 +3,6 @@ package com.chronica.snap.api.snap.logic;
 import com.chronica.snap.api.snap.data.SnapRepository;
 import com.chronica.snap.api.snap.dto.SnapDTO;
 import com.chronica.snap.api.snap.entity.Snap;
-import com.chronica.snap.api.snap.exceptions.AlreadyDeprecatedException;
 import com.chronica.snap.api.snap.exceptions.NoSnapException;
 import com.chronica.snap.api.snap.mapper.SnapMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,7 @@ public class SnapService {
     private final SnapMapper snapMapper;
 
     public SnapDTO getSnapById(Long id) {
-        return snapRepository.findById(id)
+        return snapRepository.findByIdAndDeprecatedFalse(id)
                 .map(snapMapper::mapToDTO)
                 .orElseThrow(() -> new NoSnapException("Cannot find Snap with id " + id));
     }
@@ -32,15 +31,12 @@ public class SnapService {
     }
 
     public String deprecateSnap(Long id) {
-        return snapRepository.findById(id)
+        return snapRepository.findByIdAndDeprecatedFalse(id)
                 .map(this::handleSnapDeprecation)
                 .orElseThrow(() -> new NoSnapException("Cannot find Snap with id " + id));
     }
 
     private String handleSnapDeprecation(Snap snap) {
-        if (snap.isDeprecated()) {
-            throw new AlreadyDeprecatedException("Cannot find Snap with id " + snap.getId());
-        }
         snap.setDeprecated(true);
         snapRepository.save(snap);
         return "Snap has been deprecated.";
