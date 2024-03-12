@@ -25,9 +25,9 @@ import java.util.Collection;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class FilterBeforeRequest extends OncePerRequestFilter {
-    private final static Logger LOGGER = LoggerFactory.getLogger(FilterBeforeRequest.class);
-    private final Jwt jwt;
+public class RequestAuthenticator extends OncePerRequestFilter {
+    private final static Logger LOGGER = LoggerFactory.getLogger(RequestAuthenticator.class);
+    private final JWTHandler JWTHandler;
     private final AccountBasicService accountBasicService;
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
@@ -37,11 +37,11 @@ public class FilterBeforeRequest extends OncePerRequestFilter {
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
-            mail = jwt.extractUsername(token);
+            mail = JWTHandler.extractUsername(token);
             LOGGER.info("Account mail: " + mail);
         }
 
-        if (mail != null && jwt.validateToken(token, mail)) {
+        if (mail != null && JWTHandler.validateToken(token, mail)) {
 
             final Role role = accountBasicService.findAccountByMail(mail).getRole();
             LOGGER.info("Account role: " + role);

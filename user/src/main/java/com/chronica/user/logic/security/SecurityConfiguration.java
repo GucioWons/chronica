@@ -17,23 +17,24 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    private final FilterBeforeRequest filterBeforeRequest;
+    private final RequestAuthenticator requestAuthenticator;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
         MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
 
-        http.addFilterBefore(filterBeforeRequest, UsernamePasswordAuthenticationFilter.class).csrf(csrfConfigurer ->
-                csrfConfigurer.ignoringRequestMatchers(mvcMatcherBuilder.pattern(Api.ACCOUNT))
-        );
+        http.addFilterBefore(requestAuthenticator, UsernamePasswordAuthenticationFilter.class)
+                .csrf(csrfConfigurer -> csrfConfigurer
+                                                    .ignoringRequestMatchers(mvcMatcherBuilder.pattern(Api.ACCOUNT))
+                );
 
-        http.authorizeHttpRequests(auth ->
-                        auth
+        http.authorizeHttpRequests( auth -> auth
                                 .requestMatchers(mvcMatcherBuilder.pattern(Api.ACCOUNT)).permitAll()
                                 .requestMatchers(mvcMatcherBuilder.pattern(Api.LINK)).permitAll()
                                 .requestMatchers(mvcMatcherBuilder.pattern(Api.SWAGGER_UI)).permitAll()
                                 .requestMatchers(mvcMatcherBuilder.pattern(Api.V_3)).permitAll()
-                                .anyRequest().hasAuthority("USER")
+                                .anyRequest()
+                                .hasAuthority("USER")
                 )
                 .logout((logout) -> logout
                         .logoutUrl("/api/account/logout")
@@ -47,6 +48,5 @@ public class SecurityConfiguration {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
 }

@@ -25,8 +25,8 @@ import java.util.function.Function;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class Jwt {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Jwt.class);
+public class JWTHandler {
+    private final static Logger LOGGER = LoggerFactory.getLogger(JWTHandler.class);
     @Value("${app.key.dir}")
     private String filepath;
     private String SECRET;

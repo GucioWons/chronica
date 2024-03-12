@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chronica.user.data.dto.response.AccountConfirmedResponseDto;
 
 @RestController
-@RequestMapping(path = "/api/link")
+@RequestMapping(path = "/api/links")
 @RequiredArgsConstructor
 public class LinkController {
     private final LinkService linkService;

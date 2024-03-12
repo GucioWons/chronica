@@ -7,7 +7,7 @@ import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.entity.Link;
 import com.chronica.user.data.entity.Person;
 import com.chronica.user.logic.basic.AccountBasicService;
-import com.chronica.user.logic.security.Jwt;
+import com.chronica.user.logic.security.JWTHandler;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +32,7 @@ public class AccountService {
     private final AccountBasicService accountBasicService;
     private final EmailService emailService;
     private final LinkService linkService;
-    private final Jwt jwt;
+    private final JWTHandler JWTHandler;
     @Value("${app.account.confirmation.api}")
     private String confirmationAddress;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -88,7 +88,7 @@ public class AccountService {
         final Account account = accountBasicService.findAccountByMailAndEnabled(mail);
 
         if(checkPassword(password,account.getPassword())){
-            final String token = jwt.generateToken(mail);
+            final String token = JWTHandler.generateToken(mail);
             final HttpHeaders headers = new HttpHeaders();
 
             headers.add("Authorization", "Bearer " + token);

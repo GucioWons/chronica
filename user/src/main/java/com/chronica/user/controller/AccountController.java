@@ -12,7 +12,7 @@ import com.chronica.user.data.dto.response.SignUpResponseDto;
 import com.chronica.user.logic.AccountService;
 
 @RestController
-@RequestMapping(path = "/api/account", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/api/accounts", produces = {MediaType.APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountService accountService;
@@ -27,8 +27,8 @@ public class AccountController {
         return accountService.signIn(request);
     }
 
-    @GetMapping(value = "/read/{id}")
-    public ResponseEntity<FindAccountResponseDto> createAccount(@PathVariable Long id) {
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<FindAccountResponseDto> getAccount(@PathVariable Long id) {
         return accountService.findAccountById(id);
     }
 
