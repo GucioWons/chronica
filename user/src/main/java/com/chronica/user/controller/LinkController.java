@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.chronica.user.data.dto.response.AccountConfirmedResponseDto;
+import com.chronica.user.data.dto.response.AccountConfirmedResponseDTO;
 
 @RestController
 @RequestMapping(path = "/api/links")
@@ -15,7 +15,7 @@ import com.chronica.user.data.dto.response.AccountConfirmedResponseDto;
 public class LinkController {
     private final LinkService linkService;
     @GetMapping(value = "/confirmation/{generatedCode}")
-    public ResponseEntity<AccountConfirmedResponseDto> confirmAccount(@PathVariable String generatedCode) {
+    public ResponseEntity<AccountConfirmedResponseDTO> confirmAccount(@PathVariable String generatedCode) {
         return linkService.confirmAccount(generatedCode);
     }
 }

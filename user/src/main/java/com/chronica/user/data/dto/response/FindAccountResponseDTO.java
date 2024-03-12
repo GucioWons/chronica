@@ -1,6 +1,6 @@
 package com.chronica.user.data.dto.response;
 
-public record FindAccountResponseDto(String username,
+public record FindAccountResponseDTO(String username,
                                      String mail,
                                      Long phoneNumber){
 }

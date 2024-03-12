@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.chronica.user.data.dto.request.SignInRequestDto;
-import com.chronica.user.data.dto.request.SignUpRequestDto;
-import com.chronica.user.data.dto.response.FindAccountResponseDto;
-import com.chronica.user.data.dto.response.SignInResponseDto;
-import com.chronica.user.data.dto.response.SignUpResponseDto;
+import com.chronica.user.data.dto.request.SignInRequestDTO;
+import com.chronica.user.data.dto.request.SignUpRequestDTO;
+import com.chronica.user.data.dto.response.FindAccountResponseDTO;
+import com.chronica.user.data.dto.response.SignInResponseDTO;
+import com.chronica.user.data.dto.response.SignUpResponseDTO;
 import com.chronica.user.logic.AccountService;
 
 @RestController
@@ -18,17 +18,17 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping(value = "/sign-up")
-    public ResponseEntity<SignUpResponseDto> createAccount(@RequestBody SignUpRequestDto request) {
+    public ResponseEntity<SignUpResponseDTO> createAccount(@RequestBody SignUpRequestDTO request) {
         return accountService.create(request);
     }
 
     @PostMapping(value = "/sign-in")
-    public ResponseEntity<SignInResponseDto> loggIn(@RequestBody SignInRequestDto request) {
+    public ResponseEntity<SignInResponseDTO> loggIn(@RequestBody SignInRequestDTO request) {
         return accountService.signIn(request);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<FindAccountResponseDto> getAccount(@PathVariable Long id) {
+    public ResponseEntity<FindAccountResponseDTO> getAccount(@PathVariable Long id) {
         return accountService.findAccountById(id);
     }
 

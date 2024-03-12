@@ -17,11 +17,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.chronica.user.data.dto.request.SignInRequestDto;
-import com.chronica.user.data.dto.request.SignUpRequestDto;
-import com.chronica.user.data.dto.response.FindAccountResponseDto;
-import com.chronica.user.data.dto.response.SignInResponseDto;
-import com.chronica.user.data.dto.response.SignUpResponseDto;
+import com.chronica.user.data.dto.request.SignInRequestDTO;
+import com.chronica.user.data.dto.request.SignUpRequestDTO;
+import com.chronica.user.data.dto.response.FindAccountResponseDTO;
+import com.chronica.user.data.dto.response.SignInResponseDTO;
+import com.chronica.user.data.dto.response.SignUpResponseDTO;
 
 import java.time.LocalDateTime;
 
@@ -39,7 +39,7 @@ public class AccountService {
 
 
     @Transactional
-    public ResponseEntity<SignUpResponseDto> create(SignUpRequestDto request) {
+    public ResponseEntity<SignUpResponseDTO> create(SignUpRequestDTO request) {
         final Account account = new Account();
         final Person person = new Person();
         final String mail = request.account().mail();
@@ -66,23 +66,23 @@ public class AccountService {
 
         emailService.sendEmail(mail, "Welcome: Account Confirmation", htmlBody);
 
-        final SignUpResponseDto response = new SignUpResponseDto(mail, LocalDateTime.now(), account.getIsActive());
+        final SignUpResponseDTO response = new SignUpResponseDTO(mail, LocalDateTime.now(), account.getIsActive());
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
     }
 
-    public ResponseEntity<FindAccountResponseDto> findAccountById(Long id){
+    public ResponseEntity<FindAccountResponseDTO> findAccountById(Long id){
         final Account account = accountBasicService.findAccountById(id);
-        final FindAccountResponseDto response = new FindAccountResponseDto(account.getUsername(), account.getMail(), account.getPhoneNumber());
+        final FindAccountResponseDTO response = new FindAccountResponseDTO(account.getUsername(), account.getMail(), account.getPhoneNumber());
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(response);
     }
 
-    public ResponseEntity<SignInResponseDto> signIn(SignInRequestDto request){
+    public ResponseEntity<SignInResponseDTO> signIn(SignInRequestDTO request){
         final String mail = request.mail();
         final String password = request.password();
         final Account account = accountBasicService.findAccountByMailAndEnabled(mail);
@@ -93,7 +93,7 @@ public class AccountService {
 
             headers.add("Authorization", "Bearer " + token);
 
-            final SignInResponseDto response = new SignInResponseDto(mail,token, LocalDateTime.now());
+            final SignInResponseDTO response = new SignInResponseDTO(mail,token, LocalDateTime.now());
 
             return ResponseEntity
                     .status(HttpStatus.OK)
