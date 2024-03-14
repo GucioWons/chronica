@@ -1,4 +1,4 @@
-package com.chronica.snap.api.snap.exceptions;
+package com.chronica.snap.api.snap.exception;
 
 import org.hibernate.PropertyValueException;
 import org.springframework.http.HttpHeaders;

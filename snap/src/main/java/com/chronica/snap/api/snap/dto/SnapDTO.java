@@ -1,6 +1,6 @@
 package com.chronica.snap.api.snap.dto;
 
-import com.chronica.snap.api.snap.entity.Activity;
+import com.chronica.snap.api.snap.enumerated.Activity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

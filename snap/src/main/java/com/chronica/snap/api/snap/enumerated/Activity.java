@@ -1,4 +1,4 @@
-package com.chronica.snap.api.snap.entity;
+package com.chronica.snap.api.snap.enumerated;
 
 public enum Activity {
     DEVELOPMENT,

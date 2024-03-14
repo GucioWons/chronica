@@ -1,5 +1,6 @@
 package com.chronica.snap.api.snap.entity;
 
+import com.chronica.snap.api.snap.enumerated.Activity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
