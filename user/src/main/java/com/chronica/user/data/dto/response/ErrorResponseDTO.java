@@ -8,4 +8,5 @@ import java.time.LocalDateTime;
 public record ErrorResponseDTO(String apiPath,
                                String message,
                                HttpStatus statusCode,
-                               LocalDateTime at) {}
+                               LocalDateTime at) {
+}

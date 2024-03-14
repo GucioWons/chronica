@@ -20,16 +20,17 @@ import java.util.List;
 public class LinkService {
     private final LinkRepository linkRepository;
     private final AccountBasicService accountBasicService;
+
     public void createLinkForAccount(Link link) {
         linkRepository.save(link);
     }
 
-    public List<Link> readAll(){
+    public List<Link> readAll() {
         return linkRepository.findAll();
     }
 
     @Transactional
-    public ResponseEntity<AccountConfirmedResponseDTO> confirmAccount(String generatedVal){
+    public ResponseEntity<AccountConfirmedResponseDTO> confirmAccount(String generatedVal) {
         final Link link = linkRepository.findLinkEntityByGeneratedCode(generatedVal);
         final Account account = link.getAccount();
 
@@ -39,11 +40,12 @@ public class LinkService {
         link.setDeprecated(true);
         linkRepository.save(link);
 
-        final AccountConfirmedResponseDTO response = new AccountConfirmedResponseDTO(account.getMail(),true,LocalDateTime.now());
+        final AccountConfirmedResponseDTO response = new AccountConfirmedResponseDTO(account.getMail(), true, LocalDateTime.now());
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
     }
+
     @Scheduled(fixedRate = 1800000)
     public void checkLinkExpiration() {
         final List<Link> links = readAll();

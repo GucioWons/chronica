@@ -1,22 +1,22 @@
 package com.chronica.user.logic;
 
-
-
-
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.entity.Link;
 import com.chronica.user.data.entity.Person;
 import com.chronica.user.logic.basic.AccountBasicService;
 import com.chronica.user.logic.security.JWTHandler;
+
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import com.chronica.user.data.dto.request.SignInRequestDTO;
 import com.chronica.user.data.dto.request.SignUpRequestDTO;
 import com.chronica.user.data.dto.response.FindAccountResponseDTO;
@@ -73,7 +73,7 @@ public class AccountService {
                 .body(response);
     }
 
-    public ResponseEntity<FindAccountResponseDTO> findAccountById(Long id){
+    public ResponseEntity<FindAccountResponseDTO> findAccountById(Long id) {
         final Account account = accountBasicService.findAccountById(id);
         final FindAccountResponseDTO response = new FindAccountResponseDTO(account.getUsername(), account.getMail(), account.getPhoneNumber());
 
@@ -82,18 +82,18 @@ public class AccountService {
                 .body(response);
     }
 
-    public ResponseEntity<SignInResponseDTO> signIn(SignInRequestDTO request){
+    public ResponseEntity<SignInResponseDTO> signIn(SignInRequestDTO request) {
         final String mail = request.mail();
         final String password = request.password();
         final Account account = accountBasicService.findAccountByMailAndEnabled(mail);
 
-        if(checkPassword(password,account.getPassword())){
+        if (checkPassword(password, account.getPassword())) {
             final String token = JWTHandler.generateToken(mail);
             final HttpHeaders headers = new HttpHeaders();
 
             headers.add("Authorization", "Bearer " + token);
 
-            final SignInResponseDTO response = new SignInResponseDTO(mail,token, LocalDateTime.now());
+            final SignInResponseDTO response = new SignInResponseDTO(mail, token, LocalDateTime.now());
 
             return ResponseEntity
                     .status(HttpStatus.OK)

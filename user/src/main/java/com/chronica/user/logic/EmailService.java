@@ -17,6 +17,7 @@ public class EmailService {
 
     @Value("${spring.mail.username}")
     private String mail;
+
     @Async
     public void sendEmail(String to, String topic, String confirmationLink) {
         final MimeMessage message = javaMailSender.createMimeMessage();
@@ -28,7 +29,8 @@ public class EmailService {
             helper.setSubject(topic);
             helper.setText(confirmationLink, true);
             javaMailSender.send(message);
-        } catch(MessagingException ignored){}
+        } catch (MessagingException ignored) {
+        }
     }
 }
 

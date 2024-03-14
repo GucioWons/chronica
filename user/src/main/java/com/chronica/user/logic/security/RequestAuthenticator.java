@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -29,6 +28,7 @@ public class RequestAuthenticator extends OncePerRequestFilter {
     private final static Logger LOGGER = LoggerFactory.getLogger(RequestAuthenticator.class);
     private final JWTHandler JWTHandler;
     private final AccountBasicService accountBasicService;
+
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
 

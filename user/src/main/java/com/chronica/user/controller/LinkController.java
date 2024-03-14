@@ -14,6 +14,7 @@ import com.chronica.user.data.dto.response.AccountConfirmedResponseDTO;
 @RequiredArgsConstructor
 public class LinkController {
     private final LinkService linkService;
+
     @GetMapping(value = "/confirmation/{generatedCode}")
     public ResponseEntity<AccountConfirmedResponseDTO> confirmAccount(@PathVariable String generatedCode) {
         return linkService.confirmAccount(generatedCode);

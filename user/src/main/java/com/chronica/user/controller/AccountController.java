@@ -33,7 +33,7 @@ public class AccountController {
     }
 
     @GetMapping(value = "/logout")
-    public String killSession(){
+    public String killSession() {
         return "redirect:/";
     }
 }

@@ -9,14 +9,16 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import com.chronica.user.data.dto.response.ErrorResponseDTO;
+
 import java.time.LocalDateTime;
 
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponseDTO> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest){
+    public ResponseEntity<ErrorResponseDTO> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest) {
         final ErrorResponseDTO errorResponseDto = new ErrorResponseDTO(exception.getMessage(),
                 webRequest.getDescription(false),
                 HttpStatus.BAD_REQUEST,
