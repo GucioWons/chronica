@@ -9,7 +9,6 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ACCOUNTS")
 @RequiredArgsConstructor
 @Setter
 @Getter

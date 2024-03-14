@@ -1,7 +1,7 @@
 package com.chronica.user.data.dto.request;
 
-import com.chronica.user.data.dto.AccountDto;
-import com.chronica.user.data.dto.PersonDto;
+import com.chronica.user.data.dto.AccountDTO;
+import com.chronica.user.data.dto.PersonDTO;
 
-public record SignUpRequestDTO(AccountDto account, PersonDto person) {
+public record SignUpRequestDTO(AccountDTO account, PersonDTO person) {
 }

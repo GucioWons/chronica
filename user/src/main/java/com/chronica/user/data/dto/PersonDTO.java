@@ -1,6 +1,6 @@
 package com.chronica.user.data.dto;
 
-public record PersonDto(String name,
+public record PersonDTO(String name,
                         String lastName,
                         Integer age) {
 }

@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "LINKS")
 public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
