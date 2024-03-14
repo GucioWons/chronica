@@ -18,6 +18,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = { PropertyValueException.class })
     protected ResponseEntity<Object> handlePropertyValueException(PropertyValueException e, WebRequest request) {
-        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+        return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE, request);
     }
 }
