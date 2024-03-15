@@ -1,18 +1,13 @@
 package com.chronica.notification.data.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.*;
-import org.hibernate.annotations.DynamicUpdate;
-
 import java.time.LocalDateTime;
 
-
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "INVITATIONS")
 @RequiredArgsConstructor
-@Setter
-@Getter
+@Data
 public class Invitation extends Notification {
     private Long invitationFromId;
     private Boolean accepted;

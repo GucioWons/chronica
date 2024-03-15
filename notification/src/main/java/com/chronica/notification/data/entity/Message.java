@@ -1,16 +1,12 @@
 package com.chronica.notification.data.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.*;
-import org.hibernate.annotations.DynamicUpdate;
 
-
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "MESSAGES")
 @RequiredArgsConstructor
-@Setter
-@Getter
+@Data
 public class Message extends Notification {
     private Long messageFromId;
 }
