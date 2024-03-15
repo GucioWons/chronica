@@ -32,7 +32,7 @@ public class NotificationController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> queryNotices(@PathVariable Long id){
+    public ResponseEntity<String> deleteNotice(@PathVariable Long id){
         return notificationMasterService.deleteNotice(id);
     }
 
