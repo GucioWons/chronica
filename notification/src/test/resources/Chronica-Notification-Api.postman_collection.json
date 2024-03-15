@@ -143,7 +143,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n \"notificationType\": \"MESSAGE\"\r\n}",
+					"raw": "{\r\n  \"notifications\": [\r\n    {\r\n    }\r\n  ],\r\n  \"filter\": {\r\n    \"notificationType\": \"MESSAGE\"\r\n  },\r\n  \"pageSettings\": {\r\n    \"sortDirection\": \"ASC\",\r\n    \"sortField\": \"id\",\r\n    \"pageSize\": 1,\r\n    \"pageNumber\": 1\r\n  }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

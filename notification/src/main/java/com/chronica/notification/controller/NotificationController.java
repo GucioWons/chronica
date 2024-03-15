@@ -27,7 +27,7 @@ public class NotificationController {
     }
 
     @PostMapping(path = "/query-all")
-    public ResponseEntity<QueryNotificationDTO> queryNotices(@RequestBody NotificationDTO filter){
+    public ResponseEntity<QueryNotificationDTO> queryNotices(@RequestBody QueryNotificationDTO filter){
         return notificationMasterService.queryAll(filter);
     }
 

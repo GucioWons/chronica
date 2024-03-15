@@ -2,23 +2,24 @@ package com.chronica.notification.data.dto;
 
 import com.chronica.notification.data.constant.NotificationType;
 import com.chronica.notification.data.constant.PriorityType;
+import com.chronica.notification.data.constant.SortDirection;
 
 import java.time.LocalDateTime;
 
 public record NotificationDTO(
-                              NotificationType notificationType,
-                              Long id,
-                              String title,
-                              String content,
-                              LocalDateTime createdAt,
-                              LocalDateTime openAt,
-                              Long receiverId,
-                              Boolean deprecated,
-                              Boolean seen,
-                              Long messageFromId,
-                              Long userFromId,
-                              Boolean accepted,
-                              LocalDateTime acceptedAt,
-                              Long groupId,
-                              PriorityType priorityType){
+        NotificationType notificationType,
+        Long id,
+        String title,
+        String content,
+        LocalDateTime createdAt,
+        LocalDateTime openAt,
+        Long receiverId,
+        Boolean deprecated,
+        Boolean seen,
+        Long messageFromId,
+        Long userFromId,
+        Boolean accepted,
+        LocalDateTime acceptedAt,
+        Long groupId,
+        PriorityType priorityType){
 }

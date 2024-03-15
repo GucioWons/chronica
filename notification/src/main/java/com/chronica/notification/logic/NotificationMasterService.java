@@ -8,6 +8,7 @@ import com.chronica.notification.logic.notification.NotificationService;
 import com.chronica.notification.logic.util.PropertyTransfer;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -59,13 +60,15 @@ public class NotificationMasterService {
                 .body(response);
     }
 
-    public ResponseEntity<QueryNotificationDTO> queryAll(NotificationDTO filter){
+    public ResponseEntity<QueryNotificationDTO> queryAll(QueryNotificationDTO request){
 
-        final List<Notification> notices = notificationService.findAll(filter);
+        final Page<Notification> notices = notificationService.findAll(request.filter(), request.pageSettings());
 
         final QueryNotificationDTO response = new QueryNotificationDTO(notices.stream()
                 .map(notificationMapper::mappToDto)
-                .toList());
+                .toList(),
+                request.filter(),
+                request.pageSettings());
 
         return ResponseEntity
                 .status(HttpStatus.OK)

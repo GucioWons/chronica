@@ -1,6 +1,7 @@
 package com.chronica.notification.logic.notification;
 
 import com.chronica.notification.data.constant.NotificationType;
+import com.chronica.notification.data.constant.SortDirection;
 import com.chronica.notification.data.dto.NotificationDTO;
 import com.chronica.notification.data.entity.Notification;
 import jakarta.persistence.criteria.*;
@@ -26,7 +27,7 @@ public class NotificationSpecification<Entity extends Notification> {
             addPredicateIfNotNull(predicates, filter.messageFromId(), "messageFromId", root, cb, false);
             addPredicateIfNotNull(predicates, filter.userFromId(), "userFromId", root, cb, false);
             addPredicateIfNotNull(predicates, filter.priorityType(), "priorityType", root, cb, false);
-            addPredicateIfNotNull(predicates, filter.priorityType(), "groupId", root, cb, false);
+            addPredicateIfNotNull(predicates, filter.groupId(), "groupId", root, cb, false);
 
             return cb.and(predicates.toArray(new Predicate[0]));
         };
