@@ -81,7 +81,7 @@ public class NotificationMasterService {
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Deprecated notification id + " + id);
+                .body("Deprecated notification id: " + id);
     }
 
 }

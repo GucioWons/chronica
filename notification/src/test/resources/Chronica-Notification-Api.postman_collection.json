@@ -143,7 +143,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"notificationType\": \"INVITATION\",\r\n  \"broadcasterId\": 4444578\r\n}",
+					"raw": "{\r\n \"notificationType\": \"MESSAGE\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
