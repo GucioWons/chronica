@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"notificationType\": \"INVITATION\",\r\n  \"id\": 243,\r\n  \"title\": \"inv - testowy xd\",\r\n  \"content\": \"chuj xd\",\r\n  \"createdAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"openAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"receiverId\": 244,\r\n  \"deprecated\": false, \r\n   \"seen\": \"false\",\r\n  \"invitationFromId\": 244,\r\n  \"accepted\": true,\r\n  \"acceptedAt\": \"2024-03-15T16:23:30.667Z\"\r\n}",
+					"raw": "{\r\n  \"notificationType\": \"INVITATION\",\r\n  \"id\": 243,\r\n  \"title\": \"inv - testowy xd\",\r\n  \"content\": \"chuj xd\",\r\n  \"createdAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"openAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"receiverId\": 244,\r\n  \"deprecated\": false, \r\n   \"seen\": \"false\",\r\n  \"userFromId\": 244,\r\n  \"accepted\": true,\r\n  \"acceptedAt\": \"2024-03-15T16:23:30.667Z\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

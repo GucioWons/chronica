@@ -16,7 +16,7 @@ public record NotificationDTO(
                               Boolean deprecated,
                               Boolean seen,
                               Long messageFromId,
-                              Long invitationFromId,
+                              Long userFromId,
                               Boolean accepted,
                               LocalDateTime acceptedAt,
                               PriorityType priorityType){

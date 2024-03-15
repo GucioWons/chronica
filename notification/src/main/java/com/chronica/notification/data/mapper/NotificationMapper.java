@@ -26,7 +26,7 @@ public class NotificationMapper {
         }
 
         if(entity instanceof Invitation){
-            invitationFromId =  ((Invitation) entity).getInvitationFromId();
+            invitationFromId =  ((Invitation) entity).getUserFromId();
             isAccepted =  ((Invitation) entity).getAccepted();
             acceptedAt = ((Invitation) entity).getAcceptedAt();
         }
@@ -62,10 +62,10 @@ public class NotificationMapper {
         } else if (dto.messageFromId() != null) {
             entity = new Message();
             ((Message) entity).setMessageFromId(dto.messageFromId());
-        } else if (dto.invitationFromId() != null) {
+        } else if (dto.userFromId() != null) {
 
             entity = new Invitation();
-            ((Invitation) entity).setInvitationFromId(dto.invitationFromId());
+            ((Invitation) entity).setUserFromId(dto.userFromId());
             ((Invitation) entity).setAccepted(dto.accepted());
             ((Invitation) entity).setAcceptedAt(dto.acceptedAt());
         }

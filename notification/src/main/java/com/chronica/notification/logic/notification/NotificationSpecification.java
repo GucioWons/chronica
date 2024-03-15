@@ -24,7 +24,7 @@ public class NotificationSpecification<Entity extends Notification> {
             addPredicateIfNotNull(predicates, filter.deprecated(), "deprecated", root, cb, false);
             addPredicateIfNotNull(predicates, filter.notificationType(), "notificationType", root, cb, false);
             addPredicateIfNotNull(predicates, filter.messageFromId(), "messageFromId", root, cb, false);
-            addPredicateIfNotNull(predicates, filter.invitationFromId(), "invitationFromId", root, cb, false);
+            addPredicateIfNotNull(predicates, filter.userFromId(), "userFromId", root, cb, false);
             addPredicateIfNotNull(predicates, filter.priorityType(), "priorityType", root, cb, false);
 
             return cb.and(predicates.toArray(new Predicate[0]));
