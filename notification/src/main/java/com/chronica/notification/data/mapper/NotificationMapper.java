@@ -20,6 +20,7 @@ public class NotificationMapper {
         Boolean isAccepted = null;
         LocalDateTime acceptedAt = null;
         PriorityType priorityType = null;
+        Long groupId = null;
 
         if(entity instanceof Message){
             messageFromId =  ((Message) entity).getMessageFromId();
@@ -29,6 +30,7 @@ public class NotificationMapper {
             invitationFromId =  ((Invitation) entity).getUserFromId();
             isAccepted =  ((Invitation) entity).getAccepted();
             acceptedAt = ((Invitation) entity).getAcceptedAt();
+            groupId = ((Invitation) entity).getGroupId();
         }
 
         if(entity instanceof Alert){
@@ -49,6 +51,7 @@ public class NotificationMapper {
                 invitationFromId,
                 isAccepted,
                 acceptedAt,
+                groupId,
                 priorityType
         );
     }
@@ -68,6 +71,7 @@ public class NotificationMapper {
             ((Invitation) entity).setUserFromId(dto.userFromId());
             ((Invitation) entity).setAccepted(dto.accepted());
             ((Invitation) entity).setAcceptedAt(dto.acceptedAt());
+            ((Invitation) entity).setGroupId(dto.groupId());
         }
 
         if (entity != null) {

@@ -19,5 +19,6 @@ public record NotificationDTO(
                               Long userFromId,
                               Boolean accepted,
                               LocalDateTime acceptedAt,
+                              Long groupId,
                               PriorityType priorityType){
 }

@@ -26,6 +26,7 @@ public class NotificationSpecification<Entity extends Notification> {
             addPredicateIfNotNull(predicates, filter.messageFromId(), "messageFromId", root, cb, false);
             addPredicateIfNotNull(predicates, filter.userFromId(), "userFromId", root, cb, false);
             addPredicateIfNotNull(predicates, filter.priorityType(), "priorityType", root, cb, false);
+            addPredicateIfNotNull(predicates, filter.priorityType(), "groupId", root, cb, false);
 
             return cb.and(predicates.toArray(new Predicate[0]));
         };
