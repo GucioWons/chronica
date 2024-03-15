@@ -1,6 +1,6 @@
 package com.chronica.notification.logic;
 
-import com.chronica.notification.data.dto.response.ErrorResponseDto;
+import com.chronica.notification.data.dto.ErrorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +16,13 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponseDto> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest){
-        final ErrorResponseDto errorResponseDto = new ErrorResponseDto(exception.getMessage(),
+    public ResponseEntity<ErrorDTO> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest){
+        final ErrorDTO errorDTO = new ErrorDTO(exception.getMessage(),
                 webRequest.getDescription(false),
                 HttpStatus.BAD_REQUEST,
                 LocalDateTime.now());
-        LOGGER.error(exception.getMessage() + " at " + errorResponseDto.at());
+        LOGGER.error(exception.getMessage() + " at " + errorDTO.at());
 
-        return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);
     }
 }

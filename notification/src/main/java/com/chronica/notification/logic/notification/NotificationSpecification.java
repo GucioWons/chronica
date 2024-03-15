@@ -1,7 +1,7 @@
 package com.chronica.notification.logic.notification;
 
 import com.chronica.notification.data.constant.NotificationType;
-import com.chronica.notification.data.dto.request.QueryNoticeRequestDto;
+import com.chronica.notification.data.dto.NotificationDTO;
 import com.chronica.notification.data.entity.Notification;
 import jakarta.persistence.criteria.*;
 import org.springframework.data.jpa.domain.Specification;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class NotificationSpecification<Entity extends Notification> {
-    public Specification<Entity> findByCriteria(QueryNoticeRequestDto filter) {
+    public Specification<Entity> findByCriteria(NotificationDTO filter) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 

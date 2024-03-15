@@ -1,6 +1,6 @@
 package com.chronica.notification.logic.notification;
 
-import com.chronica.notification.data.dto.request.QueryNoticeRequestDto;
+import com.chronica.notification.data.dto.NotificationDTO;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.exception.NotificationDoesntExistException;
 import com.chronica.notification.data.repository.NotificationRepository;
@@ -27,7 +27,7 @@ public class NotificationService<Entity extends Notification>  {
                 .orElseThrow(() -> new NotificationDoesntExistException("Notification not found"));
     }
 
-    public List<Entity> findAll(QueryNoticeRequestDto filter){
+    public List<Entity> findAll(NotificationDTO filter){
         return notificationRepository.findAll(notificationSpecification.findByCriteria(filter));
     }
 }

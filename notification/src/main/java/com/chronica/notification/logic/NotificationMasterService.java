@@ -1,10 +1,8 @@
 package com.chronica.notification.logic;
 
 import com.chronica.notification.data.constant.NotificationType;
-import com.chronica.notification.data.dto.request.CreateNoticeRequestDto;
-import com.chronica.notification.data.dto.request.QueryNoticeRequestDto;
-import com.chronica.notification.data.dto.request.UpdateNoticeRequestDto;
-import com.chronica.notification.data.dto.response.*;
+import com.chronica.notification.data.dto.NotificationDTO;
+import com.chronica.notification.data.dto.QueryNotificationDTO;
 import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Invitation;
 import com.chronica.notification.data.entity.Message;
@@ -26,16 +24,16 @@ import java.util.function.Consumer;
 
 @Service
 @RequiredArgsConstructor
-public class NotificationApi {
+public class NotificationMasterService {
     private final NotificationService<Notification> notificationService;
 
     @Transactional
-    public ResponseEntity<CreateNoticeResponseDto> createNotice(CreateNoticeRequestDto request){
-        final NotificationType notificationType = request.getNotificationType();
+    public ResponseEntity<NotificationDTO> createNotice(NotificationDTO request){
+        final NotificationType notificationType = request.notificationType();
         final LocalDateTime createdAt = LocalDateTime.now();
 
 
-        Map<NotificationType, Consumer<CreateNoticeRequestDto>> notificationMap = new HashMap<>();
+        Map<NotificationType, Consumer<NotificationDTO>> notificationMap = new HashMap<>();
         notificationMap.put(NotificationType.ALERT, this::createAndSaveAlert);
         notificationMap.put(NotificationType.INVITATION, this::createAndSaveInvitation);
         notificationMap.put(NotificationType.MESSAGE, this::createAndSaveMessage);
@@ -43,14 +41,14 @@ public class NotificationApi {
 
         notificationMap.getOrDefault(notificationType, requestDto -> {}).accept(request);
 
-        final CreateNoticeResponseDto response = new CreateNoticeResponseDto(notificationType, createdAt);
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(response);
+                .body(request);
     }
 
     @Transactional
-    public ResponseEntity<UpdateNoticeResponseDto> updateNotice(UpdateNoticeRequestDto request, Long id){
+    public ResponseEntity<NotificationDTO> updateNotice(NotificationDTO request, Long id){
         final LocalDateTime updatedAt = LocalDateTime.now();
         Notification notification = notificationService.findById(id);
 
@@ -58,76 +56,73 @@ public class NotificationApi {
 
         notificationService.save(notification);
 
-        final UpdateNoticeResponseDto response = new UpdateNoticeResponseDto(id, updatedAt);
-
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(response);
+                .body(request);
     }
 
-    public ResponseEntity<ReadNoticeResponseDto> readNotice(Long id){
+    public ResponseEntity<?> readNotice(Long id){
         final Notification notification = notificationService.findById(id);
-        final ReadNoticeResponseDto response = NoticeMapper.readNoticeResponseMapper(notification);
+
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(response);
+                .body("its ok");
     }
 
-    public ResponseEntity<QueryNoticeResponseDto> queryAll(QueryNoticeRequestDto filter){
+    public ResponseEntity<QueryNotificationDTO> queryAll(NotificationDTO filter){
         final List notices = notificationService.findAll(filter);
-        final QueryNoticeResponseDto response = NoticeMapper.queryNoticeResponseMapper(notices);
+        final QueryNotificationDTO response = NoticeMapper.queryNoticeResponseMapper(notices);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(response);
     }
 
-    public ResponseEntity<DeprecateNoticeResponseDto> deleteNotice(Long id){
+    public ResponseEntity<String> deleteNotice(Long id){
         final Notification notification = notificationService.findById(id);
+
         notification.setDeprecated(true);
 
         notificationService.save(notification);
 
-        final DeprecateNoticeResponseDto response = new DeprecateNoticeResponseDto(id, true, LocalDateTime.now());
-
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(response);
+                .body("Deprecated notification id + " + id);
     }
 
-    private void createAndSaveAlert(CreateNoticeRequestDto request){
+    private void createAndSaveAlert(NotificationDTO request){
         Alert alert = new Alert();
 
         populateAndSaveNotification(alert, request, NotificationType.ALERT);
-        alert.setPriorityType(request.getAlert().priorityType());
+        alert.setPriorityType(request.priorityType());
 
         notificationService.save(alert);
     }
 
-    private void createAndSaveInvitation(CreateNoticeRequestDto request){
+    private void createAndSaveInvitation(NotificationDTO request){
         Invitation invitation = new Invitation();
 
         populateAndSaveNotification(invitation, request, NotificationType.INVITATION);
-        invitation.setInvitationFromId(request.getInvitation().invitationFromId());
+        invitation.setInvitationFromId(request.invitationFromId());
         invitation.setAccepted(false);
 
         notificationService.save(invitation);
     }
 
-    private void createAndSaveMessage(CreateNoticeRequestDto request){
+    private void createAndSaveMessage(NotificationDTO request){
         Message message = new Message();
 
         populateAndSaveNotification(message, request, NotificationType.MESSAGE);
-        message.setMessageFromId(request.getMessage().messageFromId());
+        message.setMessageFromId(request.messageFromId());
 
         notificationService.save(message);
     }
 
-    private void populateAndSaveNotification(Notification notification, CreateNoticeRequestDto request, NotificationType type){
+    private void populateAndSaveNotification(Notification notification, NotificationDTO request, NotificationType type){
         notification.setNotificationType(type);
-        notification.setTitle(request.getNotification().title());
-        notification.setContent(request.getNotification().content());
+        notification.setTitle(request.title());
+        notification.setContent(request.content());
         notification.setCreatedAt(LocalDateTime.now());
-        notification.setReceiverId(request.getNotification().receiverId());
+        notification.setReceiverId(request.receiverId());
     }
 
 }
