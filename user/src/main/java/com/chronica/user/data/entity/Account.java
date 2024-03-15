@@ -2,6 +2,7 @@ package com.chronica.user.data.entity;
 
 import com.chronica.user.data.constant.Role;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -10,8 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @RequiredArgsConstructor
-@Setter
-@Getter
+@Data
 public class Account {
 
     @Id
@@ -29,8 +29,8 @@ public class Account {
     private Boolean deprecated = false;
     private Role role = Role.USER;
     private LocalDateTime createdAt = LocalDateTime.now();
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
+
 }

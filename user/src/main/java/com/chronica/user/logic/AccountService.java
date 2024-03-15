@@ -1,8 +1,14 @@
 package com.chronica.user.logic;
 
+import com.chronica.user.data.dto.AccountDTO;
+import com.chronica.user.data.dto.PersonDTO;
+import com.chronica.user.data.dto.UserDTO;
+import com.chronica.user.data.dto.AuthorizationDTO;
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.entity.Link;
 import com.chronica.user.data.entity.Person;
+import com.chronica.user.data.mapper.AccountMapper;
+import com.chronica.user.data.mapper.PersonMapper;
 import com.chronica.user.logic.basic.AccountBasicService;
 import com.chronica.user.logic.security.JWTHandler;
 
@@ -17,12 +23,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.chronica.user.data.dto.request.SignInRequestDTO;
-import com.chronica.user.data.dto.request.SignUpRequestDTO;
-import com.chronica.user.data.dto.response.FindAccountResponseDTO;
-import com.chronica.user.data.dto.response.SignInResponseDTO;
-import com.chronica.user.data.dto.response.SignUpResponseDTO;
-
 import java.time.LocalDateTime;
 
 @Service
@@ -36,23 +36,15 @@ public class AccountService {
     @Value("${app.account.confirmation.api}")
     private String confirmationAddress;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final AccountMapper accountMapper;
+    private final PersonMapper personMapper;
 
 
     @Transactional
-    public ResponseEntity<SignUpResponseDTO> create(SignUpRequestDTO request) {
-        final Account account = new Account();
-        final Person person = new Person();
-        final String mail = request.account().mail();
-        final String password = request.account().password();
+    public ResponseEntity<UserDTO> create(UserDTO request) {
+        final Account account = accountMapper.mappToEntity(request.account());
+        final Person person = personMapper.mappToEntity(request.person());
 
-        person.setName(request.person().name());
-        person.setLastName(request.person().lastName());
-        person.setAge(request.person().age());
-
-        account.setUsername(request.account().username());
-        account.setMail(mail);
-        account.setPhoneNumber(request.account().phoneNumber());
-        account.setPassword(bCryptPasswordEncoder.encode(password));
         account.setPerson(person);
 
         accountBasicService.update(account);
@@ -64,25 +56,30 @@ public class AccountService {
         final String link = confirmationAddress + linkEntity.getGeneratedCode();
         final String htmlBody = "<h1>Witaj!</h1><p>Kliknij <a href='" + link + "'>tutaj</a> aby aktywować swoje konto.</p>";
 
-        emailService.sendEmail(mail, "Welcome: Account Confirmation", htmlBody);
+        emailService.sendEmail(account.getMail(), "Welcome: Account Confirmation", htmlBody);
 
-        final SignUpResponseDTO response = new SignUpResponseDTO(mail, LocalDateTime.now(), account.getIsActive());
+        final UserDTO response = new UserDTO(accountMapper.mappToDTO(account),personMapper.mappToDTO(person));
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
     }
 
-    public ResponseEntity<FindAccountResponseDTO> findAccountById(Long id) {
+    public ResponseEntity<UserDTO> findAccountById(Long id) {
         final Account account = accountBasicService.findAccountById(id);
-        final FindAccountResponseDTO response = new FindAccountResponseDTO(account.getUsername(), account.getMail(), account.getPhoneNumber());
+        final Person person = account.getPerson();
+
+        final AccountDTO accountDTO = accountMapper.mappToDTO(account);
+        final PersonDTO personDTO = personMapper.mappToDTO(person);
+
+        final UserDTO response = new UserDTO(accountDTO, personDTO);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(response);
     }
 
-    public ResponseEntity<SignInResponseDTO> signIn(SignInRequestDTO request) {
+    public ResponseEntity<AuthorizationDTO> signIn(AccountDTO request) {
         final String mail = request.mail();
         final String password = request.password();
         final Account account = accountBasicService.findAccountByMailAndEnabled(mail);
@@ -93,7 +90,7 @@ public class AccountService {
 
             headers.add("Authorization", "Bearer " + token);
 
-            final SignInResponseDTO response = new SignInResponseDTO(mail, token, LocalDateTime.now());
+            final AuthorizationDTO response = new AuthorizationDTO(mail, token, LocalDateTime.now());
 
             return ResponseEntity
                     .status(HttpStatus.OK)

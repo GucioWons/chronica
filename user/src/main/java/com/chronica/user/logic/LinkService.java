@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import com.chronica.user.data.dto.response.AccountConfirmedResponseDTO;
+import com.chronica.user.data.dto.LinkConfirmationDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,7 +30,7 @@ public class LinkService {
     }
 
     @Transactional
-    public ResponseEntity<AccountConfirmedResponseDTO> confirmAccount(String generatedVal) {
+    public ResponseEntity<LinkConfirmationDTO> confirmAccount(String generatedVal) {
         final Link link = linkRepository.findLinkEntityByGeneratedCode(generatedVal);
         final Account account = link.getAccount();
 
@@ -40,7 +40,7 @@ public class LinkService {
         link.setDeprecated(true);
         linkRepository.save(link);
 
-        final AccountConfirmedResponseDTO response = new AccountConfirmedResponseDTO(account.getMail(), true, LocalDateTime.now());
+        final LinkConfirmationDTO response = new LinkConfirmationDTO(account.getMail(), true, LocalDateTime.now());
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);

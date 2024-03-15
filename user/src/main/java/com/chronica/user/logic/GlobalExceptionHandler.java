@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import com.chronica.user.data.dto.response.ErrorResponseDTO;
+import com.chronica.user.data.dto.ErrorDTO;
 
 import java.time.LocalDateTime;
 
@@ -18,13 +18,13 @@ public class GlobalExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponseDTO> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest) {
-        final ErrorResponseDTO errorResponseDto = new ErrorResponseDTO(exception.getMessage(),
+    public ResponseEntity<ErrorDTO> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest) {
+        final ErrorDTO errorDto = new ErrorDTO(exception.getMessage(),
                 webRequest.getDescription(false),
                 HttpStatus.BAD_REQUEST,
                 LocalDateTime.now());
-        LOGGER.error(exception.getMessage() + " at " + errorResponseDto.at());
+        LOGGER.error(exception.getMessage() + " at " + errorDto.at());
 
-        return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
     }
 }

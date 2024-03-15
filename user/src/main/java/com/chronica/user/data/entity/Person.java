@@ -5,8 +5,7 @@ import lombok.*;
 
 @Entity
 @RequiredArgsConstructor
-@Setter
-@Getter
+@Data
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,4 +15,5 @@ public class Person {
     private Integer age;
     @OneToOne(mappedBy = "person")
     private Account account;
+
 }
