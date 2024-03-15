@@ -25,7 +25,8 @@ public class Notification implements Serializable {
     protected Boolean deprecated = false;
     protected NotificationType notificationType;
 
-    public Notification(Long id, String title, String content, LocalDateTime createdAt, LocalDateTime openAt, Long receiverId, Boolean deprecated) {
+    public Notification(NotificationType notificationType, Long id, String title, String content, LocalDateTime createdAt, LocalDateTime openAt, Long receiverId, Boolean deprecated) {
+        this.notificationType = notificationType;
         this.id = id;
         this.title = title;
         this.content = content;

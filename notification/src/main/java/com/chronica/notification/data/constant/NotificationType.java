@@ -10,7 +10,7 @@ public enum NotificationType {
     NEWSLETTER(2),
     ALERT(3);
 
-    public Integer id;
+    public final Integer id;
 
     NotificationType(Integer id) {
         this.id = id;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+
 @Component
 public class NotificationMapper {
 
@@ -18,11 +19,7 @@ public class NotificationMapper {
         Long invitationFromId = null;
         Boolean isAccepted = null;
         LocalDateTime acceptedAt = null;
-        String priorityType = null;
-
-        if(entity instanceof Alert){
-            priorityType = String.valueOf(((Alert) entity).getPriorityType());
-        }
+        PriorityType priorityType = null;
 
         if(entity instanceof Message){
             messageFromId =  ((Message) entity).getMessageFromId();
@@ -31,10 +28,14 @@ public class NotificationMapper {
         if(entity instanceof Invitation){
             invitationFromId =  ((Invitation) entity).getInvitationFromId();
             isAccepted =  ((Invitation) entity).getAccepted();
-            acceptedAt =((Invitation) entity).getAcceptedAt();
+            acceptedAt = ((Invitation) entity).getAcceptedAt();
         }
 
-       return new NotificationDTO(
+        if(entity instanceof Alert){
+            priorityType = ((Alert) entity).getPriorityType();
+        }
+
+        return new NotificationDTO(
                 entity.getNotificationType(),
                 entity.getId(),
                 entity.getTitle(),
@@ -52,35 +53,32 @@ public class NotificationMapper {
     }
 
     public Notification mappToEntity(NotificationDTO dto) {
-        Notification entity;
+        Notification entity = null;
 
-        if(dto.priorityType() != null){
+        if (dto.priorityType() != null) {
             entity = new Alert();
-            ((Alert) entity).setPriorityType(PriorityType.valueOf(dto.priorityType()));
-        }
-
-        if(dto.messageFromId() != null){
+            ((Alert) entity).setPriorityType(dto.priorityType());
+        } else if (dto.messageFromId() != null) {
             entity = new Message();
             ((Message) entity).setMessageFromId(dto.messageFromId());
-        }
+        } else if (dto.invitationFromId() != null) {
 
-        else {
             entity = new Invitation();
             ((Invitation) entity).setInvitationFromId(dto.invitationFromId());
             ((Invitation) entity).setAccepted(dto.accepted());
             ((Invitation) entity).setAcceptedAt(dto.acceptedAt());
         }
 
-        entity.setId(dto.id());
-        entity.setNotificationType(dto.notificationType());
-        entity.setTitle(dto.title());
-        entity.setContent(dto.content());
-        entity.setCreatedAt(dto.createdAt());
-        entity.setOpenAt(dto.openAt());
-        entity.setReceiverId(dto.receiverId());
-        entity.setDeprecated(dto.deprecated());
+        if (entity != null) {
+            entity.setNotificationType(dto.notificationType());
+            entity.setTitle(dto.title());
+            entity.setContent(dto.content());
+            entity.setCreatedAt(dto.createdAt());
+            entity.setOpenAt(dto.openAt());
+            entity.setReceiverId(dto.receiverId());
+            entity.setDeprecated(dto.deprecated());
+        }
 
         return entity;
     }
-
 }
