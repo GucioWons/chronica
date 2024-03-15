@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "bf29a865-3c18-4e68-b79d-2d20727a409c",
+		"name": "Chronica-User-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18656948"
+	},
+	"item": [
+		{
+			"name": "Sign-up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"account\": {\r\n    \"id\": 0,\r\n    \"username\": \"testing\",\r\n    \"mail\": \"testing@o2.pl\",\r\n    \"phoneNumber\": 323211122,\r\n    \"password\": \"123\",\r\n    \"isActive\": true,\r\n    \"deprecated\": true,\r\n    \"role\": \"ADMINISTRATOR\",\r\n    \"createdAt\": \"2024-03-15T13:56:04.310Z\"\r\n  },\r\n  \"person\": {\r\n    \"id\": 0,\r\n    \"name\": \"stringas\",\r\n    \"lastName\": \"stringas\",\r\n    \"age\": 0\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/accounts/sign-up",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"accounts",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign-in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"mail\": \"testing@o2.pl\",\r\n  \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/accounts/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"accounts",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/accounts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"accounts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete account",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/accounts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"accounts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
