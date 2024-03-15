@@ -7,13 +7,13 @@
 	},
 	"item": [
 		{
-			"name": "Create Notification",
+			"name": "Create Message",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"notificationType\": \"MESSAGE\",\r\n  \"notification\": {\r\n    \"title\": \"1\",\r\n    \"content\": \"2\",\r\n    \"createdAt\": \"2024-03-09T00:11:58.153Z\",\r\n    \"openAt\": \"2024-03-09T00:11:58.153Z\",\r\n    \"receiverId\": 1,\r\n    \"deprecated\": true\r\n  },\r\n  \"message\": {\r\n    \"broadcasterId\": 3333\r\n  },\r\n  \"alert\": {\r\n    \"priorityType\": \"IMPORTANT\"\r\n  },\r\n  \"invitation\": {\r\n  }\r\n}",
+					"raw": "{\r\n  \"notificationType\": \"MESSAGE\",\r\n  \"id\": 111,\r\n  \"title\": \"notyfikacja-testowa-message\",\r\n  \"content\": \"stringss-contencik\",\r\n  \"createdAt\": \"2024-03-15T15:52:48.351Z\",\r\n  \"openAt\": \"2024-03-15T15:52:48.351Z\",\r\n  \"receiverId\": 23,\r\n  \"deprecated\": true,\r\n  \"messageFromId\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,7 +21,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8083/api/notifications/create",
+					"raw": "http://localhost:8083/api/notifications",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -29,8 +29,65 @@
 					"port": "8083",
 					"path": [
 						"api",
-						"notifications",
-						"create"
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Alert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"notificationType\": \"ALERT\",\r\n  \"id\": 23,\r\n  \"title\": \"alercik - testowy\",\r\n  \"content\": \"chuj xd\",\r\n  \"createdAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"openAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"receiverId\": 244,\r\n  \"deprecated\": false,\r\n  \"priorityType\": \"DEFAULT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/api/notifications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Invitation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"notificationType\": \"INVITATION\",\r\n  \"id\": 243,\r\n  \"title\": \"inv - testowy\",\r\n  \"content\": \"chuj xd\",\r\n  \"createdAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"openAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"receiverId\": 244,\r\n  \"deprecated\": false, \r\n  \"invitationFromId\": 244,\r\n  \"accepted\": true,\r\n  \"acceptedAt\": \"2024-03-15T16:23:30.667Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/api/notifications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"notifications"
 					]
 				}
 			},
@@ -116,7 +173,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"title\": \"string\",\r\n  \"createdAt\": \"2024-03-09T12:00:52.099Z\",\r\n  \"receiverId\": 0,\r\n  \"deprecated\": true,\r\n  \"notificationType\": \"MESSAGE\",\r\n  \"messageFromId\": 0,\r\n  \"invitationFromId\": 0,\r\n  \"priorityType\": \"IMPORTANT\",\r\n  \"accepted\": true,\r\n  \"acceptedAt\": \"2024-03-09T12:00:52.099Z\",\r\n  \"settings\": {\r\n    \"pageNumber\": 0,\r\n    \"pageSize\": 5,\r\n    \"direction\": \"string\",\r\n    \"totalElements\": 0,\r\n    \"totalPages\": 0,\r\n    \"isLast\": true\r\n  }\r\n}",
+					"raw": "{\r\n  \"notificationType\": \"MESSAGE\",\r\n  \"id\": 1,\r\n  \"title\": \"2 - pdated\",\r\n  \"content\": \"333\",\r\n  \"createdAt\": \"2024-03-15T15:54:59.039Z\",\r\n  \"openAt\": \"2024-03-15T15:54:59.039Z\",\r\n  \"receiverId\": 24444\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -124,7 +181,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8083/api/notifications/query-all-sorted",
+					"raw": "http://localhost:8083/api/notifications/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -133,7 +190,7 @@
 					"path": [
 						"api",
 						"notifications",
-						"query-all-sorted"
+						"1"
 					]
 				}
 			},

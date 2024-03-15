@@ -18,5 +18,5 @@ public record NotificationDTO(
                               Long invitationFromId,
                               Boolean accepted,
                               LocalDateTime acceptedAt,
-                              PriorityType priorityType){
+                              String priorityType){
 }

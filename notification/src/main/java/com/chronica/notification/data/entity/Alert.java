@@ -9,5 +9,5 @@ import lombok.*;
 @RequiredArgsConstructor
 @Data
 public class Alert extends Notification {
-private PriorityType priorityType = PriorityType.Default;
+private PriorityType priorityType = PriorityType.DEFAULT;
 }
