@@ -1,19 +1,19 @@
 {
 	"info": {
-		"_postman_id": "c3e44d56-df77-4a3b-a7ff-59d4b1bf9d8f",
+		"_postman_id": "bf29a865-3c18-4e68-b79d-2d20727a409c",
 		"name": "Chronica-User-Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "18656948"
 	},
 	"item": [
 		{
-			"name": "CreateUserAccount",
+			"name": "Sign-up",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"accountDto\": {\r\n    \"username\": \"kuba\",\r\n    \"mail\": \"kuba@o2.pl\",\r\n    \"phoneNumber\": 123456789,\r\n    \"password\": \"123456\"\r\n  },\r\n  \"personDto\": {\r\n    \"name\": \"Kuba\",\r\n    \"lastName\": \"Testowy\",\r\n    \"age\": 12\r\n  }\r\n}",
+					"raw": "{\r\n  \"account\": {\r\n    \"id\": 0,\r\n    \"username\": \"testing\",\r\n    \"mail\": \"testing@o2.pl\",\r\n    \"phoneNumber\": 323211122,\r\n    \"password\": \"123\",\r\n    \"isActive\": true,\r\n    \"deprecated\": true,\r\n    \"role\": \"ADMINISTRATOR\",\r\n    \"createdAt\": \"2024-03-15T13:56:04.310Z\"\r\n  },\r\n  \"person\": {\r\n    \"id\": 0,\r\n    \"name\": \"stringas\",\r\n    \"lastName\": \"stringas\",\r\n    \"age\": 0\r\n  }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,7 +21,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/api/account/sign-up",
+					"raw": "http://localhost:8081/api/accounts/sign-up",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -29,7 +29,7 @@
 					"port": "8081",
 					"path": [
 						"api",
-						"account",
+						"accounts",
 						"sign-up"
 					]
 				}
@@ -37,13 +37,13 @@
 			"response": []
 		},
 		{
-			"name": "SignIn",
+			"name": "Sign-in",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"mail\": \"kuba@o2.pl\",\r\n  \"password\": \"123456\"\r\n}",
+					"raw": "{\r\n  \"mail\": \"testing@o2.pl\",\r\n  \"password\": \"123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -51,7 +51,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/api/account/sign-in",
+					"raw": "http://localhost:8081/api/accounts/sign-in",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -59,7 +59,7 @@
 					"port": "8081",
 					"path": [
 						"api",
-						"account",
+						"accounts",
 						"sign-in"
 					]
 				}
@@ -67,12 +67,12 @@
 			"response": []
 		},
 		{
-			"name": "FindAccountById",
+			"name": "Find account",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/api/account/read/1",
+					"raw": "http://localhost:8081/api/accounts/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -80,8 +80,28 @@
 					"port": "8081",
 					"path": [
 						"api",
-						"account",
-						"read",
+						"accounts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete account",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/accounts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"accounts",
 						"1"
 					]
 				}
