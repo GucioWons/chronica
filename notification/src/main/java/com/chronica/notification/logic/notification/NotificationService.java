@@ -33,16 +33,7 @@ public class NotificationService<Entity extends Notification>  {
     }
 
     public Page<Entity> findAll(NotificationDTO filter, PagingAndSortingDTO page){
-        Sort.Direction drctn;
-
-        if(page.sortDirection().equals("DESC"))
-        {
-            drctn = Sort.Direction.DESC;
-        } else {
-            drctn = Sort.Direction.ASC;
-        }
-
-        final Sort sortBy = Sort.by(drctn, page.sortField());
+        final Sort sortBy = Sort.by(page.sortDirection().getDir(), page.sortField());
         final PageRequest pageProp = PageRequest.of(page.pageNumber(), page.pageSize(), sortBy);
 
         return notificationRepository.findAll(notificationSpecification.findByCriteria(filter), pageProp);
