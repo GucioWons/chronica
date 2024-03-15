@@ -1,6 +1,6 @@
 package com.chronica.user.controller;
 
-import com.chronica.user.data.dto.AccountDTO;
+import com.chronica.user.data.dto.SignInDTO;
 import com.chronica.user.data.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -21,13 +21,18 @@ public class AccountController {
     }
 
     @PostMapping(value = "/sign-in")
-    public ResponseEntity<AuthorizationDTO> loggIn(@RequestBody AccountDTO request) {
+    public ResponseEntity<AuthorizationDTO> loggIn(@RequestBody SignInDTO request) {
         return accountService.signIn(request);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserDTO> getAccount(@PathVariable Long id) {
         return accountService.findAccountById(id);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteAccount(@PathVariable Long id) {
+        return accountService.deleteAccount(id);
     }
 
     @GetMapping(value = "/logout")

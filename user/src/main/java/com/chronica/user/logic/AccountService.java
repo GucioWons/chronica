@@ -1,9 +1,6 @@
 package com.chronica.user.logic;
 
-import com.chronica.user.data.dto.AccountDTO;
-import com.chronica.user.data.dto.PersonDTO;
-import com.chronica.user.data.dto.UserDTO;
-import com.chronica.user.data.dto.AuthorizationDTO;
+import com.chronica.user.data.dto.*;
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.entity.Link;
 import com.chronica.user.data.entity.Person;
@@ -79,7 +76,19 @@ public class AccountService {
                 .body(response);
     }
 
-    public ResponseEntity<AuthorizationDTO> signIn(AccountDTO request) {
+    public ResponseEntity<String> deleteAccount(Long id) {
+        final Account account = accountBasicService.findAccountById(id);
+
+        account.setDeprecated(true);
+
+        accountBasicService.update(account);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Usunieto konto o id " + id);
+    }
+
+    public ResponseEntity<AuthorizationDTO> signIn(SignInDTO request) {
         final String mail = request.mail();
         final String password = request.password();
         final Account account = accountBasicService.findAccountByMailAndEnabled(mail);
