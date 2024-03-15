@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"notificationType\": \"MESSAGE\",\r\n  \"id\": 111,\r\n  \"title\": \"notyfikacja-testowa-message\",\r\n  \"content\": \"stringss-contencik\",\r\n  \"createdAt\": \"2024-03-15T15:52:48.351Z\",\r\n  \"openAt\": \"2024-03-15T15:52:48.351Z\",\r\n  \"receiverId\": 23,\r\n  \"deprecated\": true,\r\n  \"messageFromId\": 1\r\n}",
+					"raw": "{\r\n  \"notificationType\": \"MESSAGE\",\r\n  \"id\": 111,\r\n  \"title\": \"notyfikacja-testowa-message\",\r\n  \"content\": \"stringss-contencik\",\r\n  \"createdAt\": \"2024-03-15T15:52:48.351Z\",\r\n  \"openAt\": \"2024-03-15T15:52:48.351Z\",\r\n  \"receiverId\": 23,\r\n  \"deprecated\": false,\r\n  \"seen\": \"false\",\r\n  \"messageFromId\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -42,7 +42,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"notificationType\": \"ALERT\",\r\n  \"id\": 23,\r\n  \"title\": \"alercik - testowy\",\r\n  \"content\": \"chuj xd\",\r\n  \"createdAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"openAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"receiverId\": 244,\r\n  \"deprecated\": false,\r\n  \"priorityType\": \"DEFAULT\"\r\n}",
+					"raw": "{\r\n  \"notificationType\": \"ALERT\",\r\n  \"id\": 23,\r\n  \"title\": \"alercik - testowy\",\r\n  \"content\": \"chuj xd\",\r\n  \"createdAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"openAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"receiverId\": 244,\r\n  \"deprecated\": false,\r\n   \"seen\": \"false\",\r\n  \"priorityType\": \"SPAM\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"notificationType\": \"INVITATION\",\r\n  \"id\": 243,\r\n  \"title\": \"inv - testowy\",\r\n  \"content\": \"chuj xd\",\r\n  \"createdAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"openAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"receiverId\": 244,\r\n  \"deprecated\": false, \r\n  \"invitationFromId\": 244,\r\n  \"accepted\": true,\r\n  \"acceptedAt\": \"2024-03-15T16:23:30.667Z\"\r\n}",
+					"raw": "{\r\n  \"notificationType\": \"INVITATION\",\r\n  \"id\": 243,\r\n  \"title\": \"inv - testowy xd\",\r\n  \"content\": \"chuj xd\",\r\n  \"createdAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"openAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"receiverId\": 244,\r\n  \"deprecated\": false, \r\n   \"seen\": \"false\",\r\n  \"invitationFromId\": 244,\r\n  \"accepted\": true,\r\n  \"acceptedAt\": \"2024-03-15T16:23:30.667Z\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

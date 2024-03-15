@@ -14,6 +14,7 @@ public record NotificationDTO(
                               LocalDateTime openAt,
                               Long receiverId,
                               Boolean deprecated,
+                              Boolean seen,
                               Long messageFromId,
                               Long invitationFromId,
                               Boolean accepted,

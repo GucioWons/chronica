@@ -44,6 +44,7 @@ public class NotificationMapper {
                 entity.getOpenAt(),
                 entity.getReceiverId(),
                 entity.getDeprecated(),
+                entity.getSeen(),
                 messageFromId,
                 invitationFromId,
                 isAccepted,
@@ -77,6 +78,7 @@ public class NotificationMapper {
             entity.setOpenAt(dto.openAt());
             entity.setReceiverId(dto.receiverId());
             entity.setDeprecated(dto.deprecated());
+            entity.setSeen(dto.seen());
         }
 
         return entity;
