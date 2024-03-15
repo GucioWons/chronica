@@ -17,7 +17,7 @@ public class NotificationSpecification<Entity extends Notification> {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            addPredicateIfNotNull(predicates, filter.priorityType(), "seen", root, cb, false);
+            addPredicateIfNotNull(predicates, filter.seen(), "seen", root, cb, false);
             addPredicateIfNotNull(predicates, filter.title(), "title", root, cb, true);
             addPredicateIfNotNull(predicates, filter.content(), "content", root, cb, false);
             addPredicateIfNotNull(predicates, filter.createdAt(), "createdAt", root, cb, false);
