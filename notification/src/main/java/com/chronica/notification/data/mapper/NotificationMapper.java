@@ -57,22 +57,26 @@ public class NotificationMapper {
     }
 
     public Notification mappToEntity(NotificationDTO dto) {
-        Notification entity = null;
+        Notification entity;
 
         if (dto.priorityType() != null) {
-            entity = new Alert();
-            ((Alert) entity).setPriorityType(dto.priorityType());
-        } else if (dto.messageFromId() != null) {
-            entity = new Message();
-            ((Message) entity).setMessageFromId(dto.messageFromId());
-        } else if (dto.userFromId() != null) {
+                entity = new Alert();
+                ((Alert) entity).setPriorityType(dto.priorityType());
+        }
 
+        else if (dto.messageFromId() != null) {
+                entity = new Message();
+            ((Message) entity).setMessageFromId(dto.messageFromId());
+        }
+
+        else if (dto.userFromId() != null) {
             entity = new Invitation();
             ((Invitation) entity).setUserFromId(dto.userFromId());
             ((Invitation) entity).setAccepted(dto.accepted());
             ((Invitation) entity).setAcceptedAt(dto.acceptedAt());
             ((Invitation) entity).setGroupId(dto.groupId());
         }
+
         else {
             entity = new Notification();
         }

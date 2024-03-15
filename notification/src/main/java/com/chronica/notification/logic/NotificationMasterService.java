@@ -52,7 +52,6 @@ public class NotificationMasterService {
 
     public ResponseEntity<NotificationDTO> readNotice(Long id){
         final Notification notification = notificationService.findById(id);
-
         final NotificationDTO response = notificationMapper.mappToDto(notification);
 
         return ResponseEntity
@@ -61,7 +60,6 @@ public class NotificationMasterService {
     }
 
     public ResponseEntity<QueryNotificationDTO> queryAll(QueryNotificationDTO request){
-
         final Page<Notification> notices = notificationService.findAll(request.filter(), request.pageSettings());
 
         final QueryNotificationDTO response = new QueryNotificationDTO(notices.stream()
@@ -86,5 +84,4 @@ public class NotificationMasterService {
                 .status(HttpStatus.OK)
                 .body("Deprecated notification id: " + id);
     }
-
 }

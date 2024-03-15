@@ -1,17 +1,14 @@
 package com.chronica.notification.logic.notification;
 
 import com.chronica.notification.data.dto.NotificationDTO;
-import com.chronica.notification.data.dto.PagingAndSortingDTO;
+import com.chronica.notification.data.dto.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.exception.NotificationDoesntExistException;
 import com.chronica.notification.data.repository.NotificationRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class NotificationService<Entity extends Notification>  {
@@ -32,7 +29,7 @@ public class NotificationService<Entity extends Notification>  {
                 .orElseThrow(() -> new NotificationDoesntExistException("Notification not found"));
     }
 
-    public Page<Entity> findAll(NotificationDTO filter, PagingAndSortingDTO page){
+    public Page<Entity> findAll(NotificationDTO filter, PaginationAndSortDTO page){
         final Sort sortBy = Sort.by(page.sortDirection().getDir(), page.sortField());
         final PageRequest pageProp = PageRequest.of(page.pageNumber(), page.pageSize(), sortBy);
 
