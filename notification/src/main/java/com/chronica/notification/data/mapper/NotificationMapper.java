@@ -73,17 +73,18 @@ public class NotificationMapper {
             ((Invitation) entity).setAcceptedAt(dto.acceptedAt());
             ((Invitation) entity).setGroupId(dto.groupId());
         }
-
-        if (entity != null) {
-            entity.setNotificationType(dto.notificationType());
-            entity.setTitle(dto.title());
-            entity.setContent(dto.content());
-            entity.setCreatedAt(dto.createdAt());
-            entity.setOpenAt(dto.openAt());
-            entity.setReceiverId(dto.receiverId());
-            entity.setDeprecated(dto.deprecated());
-            entity.setSeen(dto.seen());
+        else {
+            entity = new Notification();
         }
+
+        entity.setNotificationType(dto.notificationType());
+        entity.setTitle(dto.title());
+        entity.setContent(dto.content());
+        entity.setCreatedAt(dto.createdAt());
+        entity.setOpenAt(dto.openAt());
+        entity.setReceiverId(dto.receiverId());
+        entity.setDeprecated(dto.deprecated());
+        entity.setSeen(dto.seen());
 
         return entity;
     }
