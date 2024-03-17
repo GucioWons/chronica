@@ -1,6 +1,6 @@
 package org.chronica.group.api.group.dto;
 
-import org.chronica.group.api.group.entity.Category;
+import org.chronica.group.api.group.enumerated.Category;
 
 public record GroupDTO(
         Long id,

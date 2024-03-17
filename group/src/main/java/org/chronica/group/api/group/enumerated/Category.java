@@ -1,4 +1,4 @@
-package org.chronica.group.api.group.entity;
+package org.chronica.group.api.group.enumerated;
 
 public enum Category {
     IT, SALESFORCE, OTHER
