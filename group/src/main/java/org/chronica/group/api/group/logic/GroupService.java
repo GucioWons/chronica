@@ -25,14 +25,14 @@ public class GroupService {
 
     public GroupDTO getGroupById(Long id) {
         return groupRepository
-                .findByIdOptional(id)
+                .findByIdNotDeprecated(id)
                 .map(groupMapper::mapToDTO)
                 .orElseThrow(IllegalArgumentException::new);
     }
 
     public List<GroupDTO> getGroups() {
         return groupRepository
-                .listAll()
+                .listAllNotDeprecated()
                 .stream()
                 .map(groupMapper::mapToDTO)
                 .toList();
@@ -41,7 +41,7 @@ public class GroupService {
     @Transactional
     public GroupDTO updateGroup(Long groupId, GroupDTO toUpdate) {
         Group group = groupRepository
-                .findByIdOptional(groupId)
+                .findByIdNotDeprecated(groupId)
                 .map(entity -> groupMapper.mapToUpdateEntity(entity, toUpdate))
                 .orElseThrow(IllegalArgumentException::new);
         group.persist();
@@ -51,7 +51,7 @@ public class GroupService {
     @Transactional
     public String deprecateGroup(Long groupId) {
         Group group = groupRepository
-                .findByIdOptional(groupId)
+                .findByIdNotDeprecated(groupId)
                 .orElseThrow(IllegalAccessError::new);
         group.setDeprecated(true);
         group.persist();
