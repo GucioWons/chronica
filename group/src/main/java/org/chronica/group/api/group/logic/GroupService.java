@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.chronica.group.api.group.dto.GroupDTO;
 import org.chronica.group.api.group.entity.Group;
+import org.chronica.group.api.group.exception.NoGroupException;
 import org.chronica.group.api.group.mapper.GroupMapper;
 import org.chronica.group.api.group.repository.GroupRepository;
 
@@ -23,11 +24,11 @@ public class GroupService {
         return groupMapper.mapToDTO(group);
     }
 
-    public GroupDTO getGroupById(Long id) {
+    public GroupDTO getGroupById(Long groupId) {
         return groupRepository
-                .findByIdNotDeprecated(id)
+                .findByIdNotDeprecated(groupId)
                 .map(groupMapper::mapToDTO)
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new NoGroupException("Cannot find Group with id " + groupId));
     }
 
     public List<GroupDTO> getGroups() {
@@ -43,7 +44,7 @@ public class GroupService {
         Group group = groupRepository
                 .findByIdNotDeprecated(groupId)
                 .map(entity -> groupMapper.mapToUpdateEntity(entity, toUpdate))
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new NoGroupException("Cannot find Group with id " + groupId));
         group.persist();
         return groupMapper.mapToDTO(group);
     }
@@ -52,7 +53,7 @@ public class GroupService {
     public String deprecateGroup(Long groupId) {
         Group group = groupRepository
                 .findByIdNotDeprecated(groupId)
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(() -> new NoGroupException("Cannot find Group with id " + groupId));
         group.setDeprecated(true);
         group.persist();
         return "Group has been deprecated.";
