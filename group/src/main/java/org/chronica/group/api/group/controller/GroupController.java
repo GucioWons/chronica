@@ -49,4 +49,13 @@ public class GroupController {
                 .ok(groupService.updateGroup(groupId, toUpdate), MediaType.APPLICATION_JSON)
                 .build();
     }
+
+    @DELETE
+    @Path("/{groupId}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public RestResponse<String> deleteGroup(@PathParam("groupId") Long groupId) {
+        return RestResponse.ResponseBuilder
+                .ok(groupService.deprecateGroup(groupId), MediaType.TEXT_PLAIN)
+                .build();
+    }
 }

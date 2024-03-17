@@ -47,4 +47,14 @@ public class GroupService {
         group.persist();
         return groupMapper.mapToDTO(group);
     }
+
+    @Transactional
+    public String deprecateGroup(Long groupId) {
+        Group group = groupRepository
+                .findByIdOptional(groupId)
+                .orElseThrow(IllegalAccessError::new);
+        group.setDeprecated(true);
+        group.persist();
+        return "Group has been deprecated.";
+    }
 }
