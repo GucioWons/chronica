@@ -16,5 +16,5 @@ public class Group extends PanacheEntity {
     private String description;
     private Category category;
     private Long ownerId;
-    private boolean deprecated;
+    private boolean deprecated = false;
 }
