@@ -13,11 +13,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificationService<Entity extends Notification>  {
     private final NotificationRepository<Entity> notificationRepository;
-    private final NotificationSpecification<Entity> notificationSpecification;
 
-    public NotificationService(NotificationRepository<Entity> notificationRepository, NotificationSpecification notificationSpecification) {
+    public NotificationService(NotificationRepository<Entity> notificationRepository) {
         this.notificationRepository = notificationRepository;
-        this.notificationSpecification = notificationSpecification;
     }
 
     public void save(Entity entity) {
@@ -29,11 +27,11 @@ public class NotificationService<Entity extends Notification>  {
                 .orElseThrow(() -> new NotificationDoesntExistException("Notification not found"));
     }
 
-    public Page<Entity> findAll(NotificationDTO filter, PaginationAndSortDTO page){
+    public Page<Entity> findAll(PaginationAndSortDTO page){
         Sort sortBy = Sort.by(page.sortDirection().getDir(), page.sortField());
         PageRequest pageProp = PageRequest.of(page.pageNumber(), page.pageSize(), sortBy);
 
-        return notificationRepository.findAll(notificationSpecification.findByCriteria(filter), pageProp);
+        return notificationRepository.findAll(pageProp);
     }
 
 

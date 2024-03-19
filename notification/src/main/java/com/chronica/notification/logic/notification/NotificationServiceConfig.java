@@ -13,17 +13,17 @@ import org.springframework.context.annotation.Configuration;
 public class NotificationServiceConfig {
 
     @Bean
-    public NotificationService<Message> messageService(MessageRepository messageRepository, NotificationSpecification notificationSpecification) {
-        return new NotificationService<>(messageRepository,notificationSpecification);
+    public NotificationService<Message> messageService(MessageRepository messageRepository) {
+        return new NotificationService<>(messageRepository);
     }
 
     @Bean
-    public NotificationService<Invitation> invitationService(InvitationRepository invitationRepository, NotificationSpecification notificationSpecification) {
-        return new NotificationService<>(invitationRepository,notificationSpecification);
+    public NotificationService<Invitation> invitationService(InvitationRepository invitationRepository) {
+        return new NotificationService<>(invitationRepository);
     }
 
     @Bean
-    public NotificationService<Alert> alertService(AlertRepository alertRepository, NotificationSpecification notificationSpecification) {
-        return new NotificationService<>(alertRepository,notificationSpecification);
+    public NotificationService<Alert> alertService(AlertRepository alertRepository) {
+        return new NotificationService<>(alertRepository);
     }
 }
