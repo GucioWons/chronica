@@ -30,8 +30,8 @@ public class NotificationService<Entity extends Notification>  {
     }
 
     public Page<Entity> findAll(NotificationDTO filter, PaginationAndSortDTO page){
-        final Sort sortBy = Sort.by(page.sortDirection().getDir(), page.sortField());
-        final PageRequest pageProp = PageRequest.of(page.pageNumber(), page.pageSize(), sortBy);
+        Sort sortBy = Sort.by(page.sortDirection().getDir(), page.sortField());
+        PageRequest pageProp = PageRequest.of(page.pageNumber(), page.pageSize(), sortBy);
 
         return notificationRepository.findAll(notificationSpecification.findByCriteria(filter), pageProp);
     }

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @Data
 public class Invitation extends Notification {
-    private Long userFromId;
+    private Long invitationFromUserId;
     private Boolean accepted;
     private LocalDateTime acceptedAt;
     private Long groupId;

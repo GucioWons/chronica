@@ -24,11 +24,11 @@ public class NotificationMasterService {
 
     @Transactional
     public ResponseEntity<NotificationDTO> createNotice(NotificationDTO request){
-        final Notification notification = notificationMapper.mappToEntity(request);
+        Notification notification = notificationMapper.mappToEntity(request);
 
         notificationService.save(notification);
 
-        final NotificationDTO response = notificationMapper.mappToDto(notification);
+        NotificationDTO response = notificationMapper.mappToDto(notification);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -37,14 +37,14 @@ public class NotificationMasterService {
 
     @Transactional
     public ResponseEntity<NotificationDTO> updateNotice(NotificationDTO request, Long id){
-        final Notification notification = notificationService.findById(id);
-        final Notification updated = notificationMapper.mappToEntity(request);
+        Notification notification = notificationService.findById(id);
+        Notification updated = notificationMapper.mappToEntity(request);
 
         propertyTransfer.copyNonNullProperties(updated,notification);
 
         notificationService.save(notification);
 
-        final NotificationDTO response = notificationMapper.mappToDto(notification);
+        NotificationDTO response = notificationMapper.mappToDto(notification);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -52,8 +52,8 @@ public class NotificationMasterService {
     }
 
     public ResponseEntity<NotificationDTO> readNotice(Long id){
-        final Notification notification = notificationService.findById(id);
-        final NotificationDTO response = notificationMapper.mappToDto(notification);
+        Notification notification = notificationService.findById(id);
+        NotificationDTO response = notificationMapper.mappToDto(notification);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -61,9 +61,9 @@ public class NotificationMasterService {
     }
 
     public ResponseEntity<QueryNotificationDTO> queryAll(QueryNotificationDTO request){
-        final Page<Notification> notices = notificationService.findAll(request.filter(), request.pageSettings());
+        Page<Notification> notices = notificationService.findAll(request.filter(), request.pageSettings());
 
-        final QueryNotificationDTO response = new QueryNotificationDTO(notices.stream()
+        QueryNotificationDTO response = new QueryNotificationDTO(notices.stream()
                 .map(notificationMapper::mappToDto)
                 .toList(),
                 request.filter(),
@@ -75,7 +75,7 @@ public class NotificationMasterService {
     }
 
     public ResponseEntity<String> deleteNotice(Long id){
-        final Notification notification = notificationService.findById(id);
+        Notification notification = notificationService.findById(id);
 
         notification.setDeprecated(true);
 

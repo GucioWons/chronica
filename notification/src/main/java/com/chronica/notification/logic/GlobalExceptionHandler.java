@@ -17,9 +17,10 @@ public class GlobalExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorDTO> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest){
-        final ErrorDTO errorDTO = new ErrorDTO(exception.getMessage(),
+        ErrorDTO errorDTO = new ErrorDTO(exception.getMessage(),
                 webRequest.getDescription(false),
                 LocalDateTime.now());
+
         LOGGER.error(exception.getMessage() + " at " + errorDTO.at());
 
         return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);

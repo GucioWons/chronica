@@ -8,5 +8,5 @@ import lombok.*;
 @RequiredArgsConstructor
 @Data
 public class Message extends Notification {
-    private Long messageFromId;
+    private Long messageFromUserId;
 }
