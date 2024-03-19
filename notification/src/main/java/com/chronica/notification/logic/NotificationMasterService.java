@@ -61,7 +61,7 @@ public class NotificationMasterService {
     }
 
     public ResponseEntity<QueryNotificationDTO> queryAll(QueryNotificationDTO request){
-        Page<Notification> notices = notificationService.findAll(request.filter(), request.pageSettings());
+        Page<Notification> notices = notificationService.findAll(request.pageSettings());
 
         QueryNotificationDTO response = new QueryNotificationDTO(notices.stream()
                 .map(notificationMapper::mappToDto)
