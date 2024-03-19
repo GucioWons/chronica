@@ -1,7 +1,7 @@
 package com.chronica.notification.controller;
 
 import com.chronica.notification.data.dto.NotificationDTO;
-import com.chronica.notification.data.dto.QueryNotificationDTO;
+import com.chronica.notification.data.dto.PaginationAndSortDTO;
 import com.chronica.notification.logic.NotificationMasterService;
 
 import lombok.RequiredArgsConstructor;
@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/notifications", produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -27,7 +29,7 @@ public class NotificationController {
     }
 
     @GetMapping(path = "")
-    public ResponseEntity<QueryNotificationDTO> getNotifications(@RequestBody QueryNotificationDTO request){
+    public ResponseEntity<List<NotificationDTO>> getNotifications(@RequestBody PaginationAndSortDTO request){
         return notificationMasterService.queryAll(request);
     }
 

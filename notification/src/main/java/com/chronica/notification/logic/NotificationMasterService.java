@@ -1,7 +1,7 @@
 package com.chronica.notification.logic;
 
 import com.chronica.notification.data.dto.NotificationDTO;
-import com.chronica.notification.data.dto.QueryNotificationDTO;
+import com.chronica.notification.data.dto.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.mapper.NotificationMapper;
 import com.chronica.notification.logic.notification.NotificationService;
@@ -60,14 +60,12 @@ public class NotificationMasterService {
                 .body(response);
     }
 
-    public ResponseEntity<QueryNotificationDTO> queryAll(QueryNotificationDTO request){
-        Page<Notification> notices = notificationService.findAll(request.pageSettings());
+    public ResponseEntity<List<NotificationDTO>> queryAll(PaginationAndSortDTO request){
+        Page<Notification> notices = notificationService.findAll(request);
 
-        QueryNotificationDTO response = new QueryNotificationDTO(notices.stream()
+        List<NotificationDTO> response = notices.stream()
                 .map(notificationMapper::mappToDto)
-                .toList(),
-                request.filter(),
-                request.pageSettings());
+                .toList();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
