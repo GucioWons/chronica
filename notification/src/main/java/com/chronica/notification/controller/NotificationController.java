@@ -17,27 +17,27 @@ public class NotificationController {
     private final NotificationMasterService notificationMasterService;
 
     @PostMapping(path = "")
-    public ResponseEntity<NotificationDTO> createNotice(@RequestBody NotificationDTO request){
+    public ResponseEntity<NotificationDTO> createNotification(@RequestBody NotificationDTO request){
         return notificationMasterService.createNotice(request);
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<?> readNotice(@PathVariable Long id){
+    public ResponseEntity<?> getNotification(@PathVariable Long id){
         return notificationMasterService.readNotice(id);
     }
 
-    @PostMapping(path = "/query-all")
-    public ResponseEntity<QueryNotificationDTO> queryNotices(@RequestBody QueryNotificationDTO filter){
-        return notificationMasterService.queryAll(filter);
+    @GetMapping(path = "")
+    public ResponseEntity<QueryNotificationDTO> getNotifications(@RequestBody QueryNotificationDTO request){
+        return notificationMasterService.queryAll(request);
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> deleteNotice(@PathVariable Long id){
+    public ResponseEntity<String> deleteNotification(@PathVariable Long id){
         return notificationMasterService.deleteNotice(id);
     }
 
     @PatchMapping(path = "/{id}")
-    public ResponseEntity<NotificationDTO> updateNotice(@PathVariable Long id, @RequestBody NotificationDTO request){
+    public ResponseEntity<NotificationDTO> updateNotification(@PathVariable Long id, @RequestBody NotificationDTO request){
         return notificationMasterService.updateNotice(request,id);
     }
 }
