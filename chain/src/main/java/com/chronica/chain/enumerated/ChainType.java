@@ -1,4 +1,4 @@
-package com.chronica.chain;
+package com.chronica.chain.enumerated;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

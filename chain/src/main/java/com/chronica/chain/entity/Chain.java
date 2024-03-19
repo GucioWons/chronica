@@ -1,9 +1,7 @@
-package com.chronica.chain;
+package com.chronica.chain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.chronica.chain.enumerated.ChainType;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,11 +16,18 @@ public class Chain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String title;
+    @Column
     private String description;
+    @Column(nullable = false)
     private ChainType type;
+    @Column
     private BigDecimal estimation;
+    @Column
     private BigDecimal timeLeft;
+    @Column
     private Integer points;
+    @Column(nullable = false)
     private boolean deprecated;
 }
