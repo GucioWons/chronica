@@ -19,7 +19,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorDTO> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest){
         final ErrorDTO errorDTO = new ErrorDTO(exception.getMessage(),
                 webRequest.getDescription(false),
-                HttpStatus.BAD_REQUEST,
                 LocalDateTime.now());
         LOGGER.error(exception.getMessage() + " at " + errorDTO.at());
 
