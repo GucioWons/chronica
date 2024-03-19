@@ -3,23 +3,22 @@ package com.chronica.notification.data.dto;
 import com.chronica.notification.data.constant.NotificationType;
 import com.chronica.notification.data.constant.PriorityType;
 import com.chronica.notification.data.constant.SortDirection;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-
-public record NotificationDTO(
-        NotificationType notificationType,
-        Long id,
-        String title,
-        String content,
-        LocalDateTime createdAt,
-        LocalDateTime openAt,
-        Long receiverId,
-        Boolean deprecated,
-        Boolean seen,
-        Long messageFromId,
-        Long userFromId,
-        Boolean accepted,
-        LocalDateTime acceptedAt,
-        Long groupId,
-        PriorityType priorityType){
+@Data
+@AllArgsConstructor
+public class NotificationDTO {
+    private NotificationType notificationType;
+    private Long id;
+    private String title;
+    private String content;
+    private LocalDateTime createdAt;
+    private LocalDateTime viewAt;
+    private Long receiverId;
+    private Boolean deprecated;
+    private Boolean seen;
 }

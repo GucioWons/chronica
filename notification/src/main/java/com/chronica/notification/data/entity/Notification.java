@@ -20,19 +20,19 @@ public class Notification implements Serializable {
     protected String title;
     protected String content;
     protected LocalDateTime createdAt;
-    protected LocalDateTime openAt;
+    protected LocalDateTime viewAt;
     protected Long receiverId;
     protected Boolean deprecated = false;
     protected NotificationType notificationType;
     protected Boolean seen = false;
 
-    public Notification(NotificationType notificationType, Long id, String title, String content, LocalDateTime createdAt, LocalDateTime openAt, Long receiverId, Boolean deprecated, Boolean seen) {
+    public Notification(NotificationType notificationType, Long id, String title, String content, LocalDateTime createdAt, LocalDateTime viewAt, Long receiverId, Boolean deprecated, Boolean seen) {
         this.notificationType = notificationType;
         this.id = id;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
-        this.openAt = openAt;
+        this.viewAt = viewAt;
         this.receiverId = receiverId;
         this.deprecated = deprecated;
         this.seen = seen;
