@@ -3,14 +3,13 @@ package com.chronica.notification.data.dto;
 import com.chronica.notification.data.constant.NotificationType;
 import com.chronica.notification.data.constant.PriorityType;
 import com.chronica.notification.data.constant.SortDirection;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
-@Data
-@AllArgsConstructor
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class NotificationDTO {
     private NotificationType notificationType;
     private Long id;

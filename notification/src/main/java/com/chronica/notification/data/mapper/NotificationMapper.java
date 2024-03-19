@@ -1,31 +1,26 @@
 package com.chronica.notification.data.mapper;
 
-import com.chronica.notification.data.constant.PriorityType;
 import com.chronica.notification.data.dto.NotificationDTO;
-import com.chronica.notification.data.entity.Alert;
-import com.chronica.notification.data.entity.Invitation;
-import com.chronica.notification.data.entity.Message;
 import com.chronica.notification.data.entity.Notification;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
-
 
 @Component
 public class NotificationMapper {
 
     public NotificationDTO mappToDto(Notification entity) {
-        return new NotificationDTO(
-                entity.getNotificationType(),
-                entity.getId(),
-                entity.getTitle(),
-                entity.getContent(),
-                entity.getCreatedAt(),
-                entity.getViewAt(),
-                entity.getReceiverId(),
-                entity.getDeprecated(),
-                entity.getSeen()
-        );
+        NotificationDTO dto = new NotificationDTO();
+
+        dto.setNotificationType(entity.getNotificationType());
+        dto.setId(entity.getId());
+        dto.setTitle(entity.getTitle());
+        dto.setContent(entity.getContent());
+        dto.setCreatedAt(entity.getCreatedAt());
+        dto.setViewAt(entity.getViewAt());
+        dto.setReceiverId(entity.getReceiverId());
+        dto.setDeprecated(entity.getDeprecated());
+        dto.setSeen(entity.getSeen());
+
+        return dto;
     }
 
     public Notification mappToEntity(NotificationDTO dto) {
