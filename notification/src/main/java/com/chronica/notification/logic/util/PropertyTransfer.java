@@ -3,13 +3,15 @@ package com.chronica.notification.logic.util;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.stereotype.Component;
 
 import java.beans.PropertyDescriptor;
 import java.util.HashSet;
 import java.util.Set;
 
+@Component
 public class PropertyTransfer {
-    public static void copyNonNullProperties(Object source, Object target) {
+    public void copyNonNullProperties(Object source, Object target) {
        BeanWrapper srcWrap = new BeanWrapperImpl(source);
        PropertyDescriptor[] pds = srcWrap.getPropertyDescriptors();
 

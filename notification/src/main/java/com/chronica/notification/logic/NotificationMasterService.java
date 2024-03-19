@@ -20,6 +20,7 @@ import java.util.List;
 public class NotificationMasterService {
     private final NotificationService<Notification> notificationService;
     private final NotificationMapper notificationMapper;
+    private final PropertyTransfer propertyTransfer;
 
     @Transactional
     public ResponseEntity<NotificationDTO> createNotice(NotificationDTO request){
@@ -39,7 +40,7 @@ public class NotificationMasterService {
         final Notification notification = notificationService.findById(id);
         final Notification updated = notificationMapper.mappToEntity(request);
 
-        PropertyTransfer.copyNonNullProperties(updated,notification);
+        propertyTransfer.copyNonNullProperties(updated,notification);
 
         notificationService.save(notification);
 
