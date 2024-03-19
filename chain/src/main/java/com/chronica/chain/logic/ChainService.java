@@ -1,6 +1,7 @@
 package com.chronica.chain.logic;
 
-import com.chronica.chain.entity.Chain;
+import com.chronica.chain.dto.ChainDTO;
+import com.chronica.chain.mapper.ChainMapper;
 import com.chronica.chain.repository.ChainRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,14 +10,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ChainService {
     private final ChainRepository chainRepository;
+    private final ChainMapper chainMapper;
 
-    public Chain createChain(Chain chain) {
-        return chainRepository.save(chain);
+    public ChainDTO createChain(ChainDTO chain) {
+        return chainMapper.mapToDTO(chainRepository.save(chainMapper.mapToEntity(chain)));
     }
 
-    public Chain getChainById(Long chainId) {
+    public ChainDTO getChainById(Long chainId) {
         return chainRepository
                 .findById(chainId)
+                .map(chainMapper::mapToDTO)
                 .orElseThrow(IllegalAccessError::new);
     }
 }

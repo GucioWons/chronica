@@ -1,6 +1,6 @@
 package com.chronica.chain.controller;
 
-import com.chronica.chain.entity.Chain;
+import com.chronica.chain.dto.ChainDTO;
 import com.chronica.chain.logic.ChainService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,14 +15,14 @@ public class ChainController {
     private final ChainService chainService;
 
     @PostMapping
-    public ResponseEntity<Chain> createChain(@RequestBody Chain chain) {
+    public ResponseEntity<ChainDTO> createChain(@RequestBody ChainDTO chain) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(chainService.createChain(chain));
     }
 
     @GetMapping("/{chainId}")
-    public ResponseEntity<Chain> getChainById(@PathVariable("chainId") Long chainId) {
+    public ResponseEntity<ChainDTO> getChainById(@PathVariable("chainId") Long chainId) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(chainService.getChainById(chainId));
