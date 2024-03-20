@@ -1,15 +1,17 @@
-package com.chronica.notification.data.dto;
+package com.chronica.notification.data.dto.integrant;
 
 import com.chronica.notification.data.constant.NotificationType;
-import com.chronica.notification.data.constant.PriorityType;
-import com.chronica.notification.data.constant.SortDirection;
+import com.chronica.notification.data.dto.abstraction.BaseDTO;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class NotificationDTO {
     private NotificationType notificationType;
     private Long id;

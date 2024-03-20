@@ -5,8 +5,13 @@ import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@RequiredArgsConstructor
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Message extends Notification {
     private Long messageFromUserId;
+
+
+
 }

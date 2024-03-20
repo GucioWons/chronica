@@ -1,6 +1,6 @@
-package com.chronica.notification.logic;
+package com.chronica.notification.logic.util;
 
-import com.chronica.notification.data.dto.ErrorDTO;
+import com.chronica.notification.data.dto.record.ErrorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

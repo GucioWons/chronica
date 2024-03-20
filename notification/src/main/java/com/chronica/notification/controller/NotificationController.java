@@ -1,7 +1,7 @@
 package com.chronica.notification.controller;
 
-import com.chronica.notification.data.dto.NotificationDTO;
-import com.chronica.notification.data.dto.PaginationAndSortDTO;
+import com.chronica.notification.data.dto.abstraction.BaseDTO;
+import com.chronica.notification.data.dto.record.PaginationAndSortDTO;
 import com.chronica.notification.logic.NotificationMasterService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,27 +19,27 @@ public class NotificationController {
     private final NotificationMasterService notificationMasterService;
 
     @PostMapping(path = "")
-    public ResponseEntity<NotificationDTO> createNotification(@RequestBody NotificationDTO request){
-        return notificationMasterService.createNotice(request);
+    public ResponseEntity<BaseDTO> createNotification(@RequestBody BaseDTO request){
+        return notificationMasterService.createNotification(request);
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> getNotification(@PathVariable Long id){
-        return notificationMasterService.readNotice(id);
+        return notificationMasterService.readNotification(id);
     }
 
     @GetMapping(path = "")
-    public ResponseEntity<List<NotificationDTO>> getNotifications(@RequestBody PaginationAndSortDTO request){
-        return notificationMasterService.queryAll(request);
+    public ResponseEntity<List<BaseDTO>> getNotifications(@RequestBody PaginationAndSortDTO request){
+        return notificationMasterService.getAllNotifications(request);
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteNotification(@PathVariable Long id){
-        return notificationMasterService.deleteNotice(id);
+        return notificationMasterService.deleteNotification(id);
     }
 
     @PatchMapping(path = "/{id}")
-    public ResponseEntity<NotificationDTO> updateNotification(@PathVariable Long id, @RequestBody NotificationDTO request){
-        return notificationMasterService.updateNotice(request,id);
+    public ResponseEntity<BaseDTO> updateNotification(@PathVariable Long id, @RequestBody BaseDTO request){
+        return notificationMasterService.updateNotification(request,id);
     }
 }

@@ -1,7 +1,6 @@
 package com.chronica.notification.logic.notification;
 
-import com.chronica.notification.data.dto.NotificationDTO;
-import com.chronica.notification.data.dto.PaginationAndSortDTO;
+import com.chronica.notification.data.dto.record.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.exception.NotificationDoesntExistException;
 import com.chronica.notification.data.repository.NotificationRepository;
@@ -33,7 +32,5 @@ public class NotificationService<Entity extends Notification>  {
 
         return notificationRepository.findAll(pageProp);
     }
-
-
 
 }

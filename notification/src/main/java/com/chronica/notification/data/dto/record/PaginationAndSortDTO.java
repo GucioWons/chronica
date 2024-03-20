@@ -1,5 +1,4 @@
-package com.chronica.notification.data.dto;
-
+package com.chronica.notification.data.dto.record;
 
 import com.chronica.notification.data.constant.SortDirection;
 

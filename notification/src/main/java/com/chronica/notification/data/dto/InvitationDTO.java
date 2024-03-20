@@ -1,17 +1,21 @@
 package com.chronica.notification.data.dto;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Value;
+import com.chronica.notification.data.dto.abstraction.BaseDTO;
+import com.chronica.notification.data.dto.integrant.NotificationDTO;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Value
-public class InvitationDTO extends NotificationDTO{
-    Long invitationFromUserId;
-    Boolean accepted;
-    LocalDateTime acceptedAt;
-    Long groupId;
+
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class InvitationDTO extends BaseDTO {
+    private Long invitationFromUserId;
+    private Boolean accepted;
+    private LocalDateTime acceptedAt;
+    private Long groupId;
+    private NotificationDTO baseData;
 }

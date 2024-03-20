@@ -13,4 +13,5 @@ public class Invitation extends Notification {
     private Boolean accepted;
     private LocalDateTime acceptedAt;
     private Long groupId;
+
 }

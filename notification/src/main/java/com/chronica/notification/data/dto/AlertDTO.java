@@ -1,13 +1,16 @@
 package com.chronica.notification.data.dto;
 
 import com.chronica.notification.data.constant.PriorityType;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Value;
+import com.chronica.notification.data.dto.abstraction.BaseDTO;
+import com.chronica.notification.data.dto.integrant.NotificationDTO;
+import lombok.*;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Value
-public class AlertDTO extends NotificationDTO{
-    PriorityType priorityType;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class AlertDTO extends BaseDTO {
+    private PriorityType priorityType;
+    private NotificationDTO baseData;
 }
