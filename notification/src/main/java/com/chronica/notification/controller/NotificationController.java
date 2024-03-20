@@ -2,7 +2,7 @@ package com.chronica.notification.controller;
 
 import com.chronica.notification.data.dto.abstraction.BaseDTO;
 import com.chronica.notification.data.dto.record.PaginationAndSortDTO;
-import com.chronica.notification.logic.NotificationMasterService;
+import com.chronica.notification.logic.ServiceMajorNotification;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,30 +16,30 @@ import java.util.List;
 @RequestMapping(path = "/api/notifications", produces = {MediaType.APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
 public class NotificationController {
-    private final NotificationMasterService notificationMasterService;
+    private final ServiceMajorNotification serviceMajorNotification;
 
     @PostMapping(path = "")
     public ResponseEntity<BaseDTO> createNotification(@RequestBody BaseDTO request){
-        return notificationMasterService.createNotification(request);
+        return serviceMajorNotification.createNotification(request);
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> getNotification(@PathVariable Long id){
-        return notificationMasterService.readNotification(id);
+        return serviceMajorNotification.readNotification(id);
     }
 
     @GetMapping(path = "")
     public ResponseEntity<List<BaseDTO>> getNotifications(@RequestBody PaginationAndSortDTO request){
-        return notificationMasterService.getAllNotifications(request);
+        return serviceMajorNotification.getAllNotifications(request);
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteNotification(@PathVariable Long id){
-        return notificationMasterService.deleteNotification(id);
+        return serviceMajorNotification.deleteNotification(id);
     }
 
     @PatchMapping(path = "/{id}")
     public ResponseEntity<BaseDTO> updateNotification(@PathVariable Long id, @RequestBody BaseDTO request){
-        return notificationMasterService.updateNotification(request,id);
+        return serviceMajorNotification.updateNotification(request,id);
     }
 }

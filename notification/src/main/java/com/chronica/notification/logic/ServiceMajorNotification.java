@@ -7,10 +7,10 @@ import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Invitation;
 import com.chronica.notification.data.entity.Message;
 import com.chronica.notification.data.entity.Notification;
-import com.chronica.notification.data.mapper.AlertMapper;
-import com.chronica.notification.data.mapper.InvitationMapper;
-import com.chronica.notification.data.mapper.MessageMapper;
-import com.chronica.notification.data.mapper.implementation.MapperModelImpl;
+import com.chronica.notification.data.mapper.injection.AlertMapper;
+import com.chronica.notification.data.mapper.injection.InvitationMapper;
+import com.chronica.notification.data.mapper.injection.MessageMapper;
+import com.chronica.notification.data.mapper.MapperMajorNotification;
 import com.chronica.notification.data.mapper.implementation.MapperImpl;
 import com.chronica.notification.data.mapper.injection.NotificationMapper;
 import com.chronica.notification.logic.notification.NotificationService;
@@ -30,11 +30,11 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class NotificationMasterService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(NotificationService.class);
+public class ServiceMajorNotification {
+
     private final NotificationService<Notification> notificationService;
     private final NotificationMapper notificationMapper;
-    private MapperModelImpl<BaseDTO,Notification> baseMapper;
+    private MapperMajorNotification<BaseDTO,Notification> baseMapper;
     private final PropertyTransfer propertyTransfer;
 
     @Transactional
@@ -108,20 +108,20 @@ public class NotificationMasterService {
                 .body("Deprecated notification id: " + id);
     }
 
-    private MapperModelImpl mapper(Object request){
+    private MapperMajorNotification mapper(Object request){
         MessageMapper messageMapper = new MessageMapper(notificationMapper);
         InvitationMapper invitationMapper = new InvitationMapper(notificationMapper);
         AlertMapper alertMapper = new AlertMapper(notificationMapper);
 
         if(request instanceof MessageDTO || request instanceof Message){
-            return new MapperModelImpl(messageMapper);
+            return new MapperMajorNotification(messageMapper);
         } else if(request instanceof AlertDTO || request instanceof Alert){
-            return new MapperModelImpl(alertMapper);
+            return new MapperMajorNotification(alertMapper);
         } else if(request instanceof InvitationDTO || request instanceof Invitation) {
-            return new MapperModelImpl(invitationMapper);
+            return new MapperMajorNotification(invitationMapper);
         }
 
-        return new MapperModelImpl(new MapperImpl());
+        return new MapperMajorNotification(new MapperImpl());
     }
 
 }

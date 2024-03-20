@@ -1,12 +1,13 @@
-package com.chronica.notification.data.mapper.implementation;
+package com.chronica.notification.data.mapper;
 
 import com.chronica.notification.data.dto.abstraction.BaseDTO;
 import com.chronica.notification.data.entity.Notification;
+import com.chronica.notification.data.mapper.implementation.MapperImpl;
 
 
-public class MapperModelImpl<DTO extends BaseDTO,ENTITY extends Notification>  {
+public class MapperMajorNotification<DTO extends BaseDTO,ENTITY extends Notification>  {
     private final MapperImpl<DTO,ENTITY> mapper;
-    public MapperModelImpl(MapperImpl<DTO,ENTITY> mapper) {
+    public MapperMajorNotification(MapperImpl<DTO,ENTITY> mapper) {
         this.mapper = mapper;
     }
 

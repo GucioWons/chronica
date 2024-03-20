@@ -1,4 +1,4 @@
-package com.chronica.notification.data.mapper;
+package com.chronica.notification.data.mapper.injection;
 
 import com.chronica.notification.data.dto.InvitationDTO;
 import com.chronica.notification.data.dto.integrant.NotificationDTO;
