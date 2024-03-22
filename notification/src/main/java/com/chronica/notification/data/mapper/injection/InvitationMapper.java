@@ -4,12 +4,12 @@ import com.chronica.notification.data.dto.InvitationDTO;
 import com.chronica.notification.data.dto.integrant.NotificationDTO;
 import com.chronica.notification.data.entity.Invitation;
 import com.chronica.notification.data.entity.Notification;
-import com.chronica.notification.data.mapper.implementation.MapperImpl;
-import com.chronica.notification.data.mapper.injection.NotificationMapper;
+import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public class InvitationMapper extends MapperImpl<InvitationDTO, Invitation> {
+@Service
+public class InvitationMapper implements Mapper<InvitationDTO, Invitation> {
 
     private final NotificationMapper notificationMapper;
 

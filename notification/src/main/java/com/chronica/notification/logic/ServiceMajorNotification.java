@@ -1,25 +1,14 @@
 package com.chronica.notification.logic;
 
-import com.chronica.notification.data.dto.*;
 import com.chronica.notification.data.dto.abstraction.BaseDTO;
 import com.chronica.notification.data.dto.record.PaginationAndSortDTO;
-import com.chronica.notification.data.entity.Alert;
-import com.chronica.notification.data.entity.Invitation;
-import com.chronica.notification.data.entity.Message;
 import com.chronica.notification.data.entity.Notification;
-import com.chronica.notification.data.mapper.injection.AlertMapper;
-import com.chronica.notification.data.mapper.injection.InvitationMapper;
-import com.chronica.notification.data.mapper.injection.MessageMapper;
-import com.chronica.notification.data.mapper.MapperMajorNotification;
-import com.chronica.notification.data.mapper.implementation.MapperImpl;
-import com.chronica.notification.data.mapper.injection.NotificationMapper;
+import com.chronica.notification.data.mapper.implementation.MapperImplementation;
 import com.chronica.notification.logic.notification.NotificationService;
 import com.chronica.notification.logic.util.PropertyTransfer;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,19 +22,18 @@ import java.util.List;
 public class ServiceMajorNotification {
 
     private final NotificationService<Notification> notificationService;
-    private final NotificationMapper notificationMapper;
-    private MapperMajorNotification<BaseDTO,Notification> baseMapper;
+
+    private final MapperImplementation mapperImplementation;
     private final PropertyTransfer propertyTransfer;
 
     @Transactional
     public ResponseEntity<BaseDTO> createNotification(BaseDTO request){
-        baseMapper = mapper(request);
 
-        Notification notification = baseMapper.mappToEntity(request);
+        Notification notification = mapperImplementation.mappToEntity(request);
 
         notificationService.save(notification);
 
-        BaseDTO response = baseMapper.mappToDto(notification);
+        BaseDTO response = mapperImplementation.mappToDto(notification);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -54,17 +42,15 @@ public class ServiceMajorNotification {
 
     @Transactional
     public ResponseEntity<BaseDTO> updateNotification(BaseDTO request, Long id){
-        baseMapper = mapper(request);
-
         Notification notification = notificationService.findById(id);
 
-        Notification updated = baseMapper.mappToEntity(request);
+        Notification updated = mapperImplementation.mappToEntity(request);
 
         propertyTransfer.copyNonNullProperties(updated,notification);
 
         notificationService.save(notification);
 
-        BaseDTO response = baseMapper.mappToDto(notification);
+        BaseDTO response = mapperImplementation.mappToDto(notification);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -72,12 +58,9 @@ public class ServiceMajorNotification {
     }
 
     public ResponseEntity<BaseDTO> readNotification(Long id){
-
         Notification notification = notificationService.findById(id);
 
-        baseMapper = mapper(notification);
-
-        BaseDTO response = baseMapper.mappToDto(notification);
+        BaseDTO response = mapperImplementation.mappToDto(notification);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -88,7 +71,7 @@ public class ServiceMajorNotification {
         Page<Notification> notices = notificationService.findAll(request);
 
         List<BaseDTO> response = notices.stream()
-                .map(g -> mapper(g).mappToDto(g))
+                .map(mapperImplementation::mappToDto)
                 .toList();
 
         return ResponseEntity
@@ -106,22 +89,6 @@ public class ServiceMajorNotification {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body("Deprecated notification id: " + id);
-    }
-
-    private MapperMajorNotification mapper(Object request){
-        MessageMapper messageMapper = new MessageMapper(notificationMapper);
-        InvitationMapper invitationMapper = new InvitationMapper(notificationMapper);
-        AlertMapper alertMapper = new AlertMapper(notificationMapper);
-
-        if(request instanceof MessageDTO || request instanceof Message){
-            return new MapperMajorNotification(messageMapper);
-        } else if(request instanceof AlertDTO || request instanceof Alert){
-            return new MapperMajorNotification(alertMapper);
-        } else if(request instanceof InvitationDTO || request instanceof Invitation) {
-            return new MapperMajorNotification(invitationMapper);
-        }
-
-        return new MapperMajorNotification(new MapperImpl());
     }
 
 }

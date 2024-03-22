@@ -4,12 +4,12 @@ import com.chronica.notification.data.dto.AlertDTO;
 import com.chronica.notification.data.dto.integrant.NotificationDTO;
 import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Notification;
-import com.chronica.notification.data.mapper.implementation.MapperImpl;
-import com.chronica.notification.data.mapper.injection.NotificationMapper;
+import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public class AlertMapper extends MapperImpl<AlertDTO, Alert> {
+@Service
+public class AlertMapper implements Mapper<AlertDTO,Alert> {
     private final NotificationMapper notificationMapper;
 
     public AlertMapper(NotificationMapper notificationMapper) {

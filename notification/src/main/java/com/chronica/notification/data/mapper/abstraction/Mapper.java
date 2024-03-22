@@ -1,9 +1,12 @@
 package com.chronica.notification.data.mapper.abstraction;
 
 
+import com.chronica.notification.data.dto.abstraction.BaseDTO;
+import com.chronica.notification.data.entity.Notification;
+import org.springframework.stereotype.Component;
 
-
-public abstract class Mapper<DTO,Entity>{
-    public abstract DTO mappToDto(Entity entity);
-    public abstract Entity mappToEntity(DTO dto);
+@Component
+public interface Mapper<DTO extends BaseDTO,Entity extends Notification>{
+    DTO mappToDto(Entity entity);
+    Entity mappToEntity(DTO dto);
 }
