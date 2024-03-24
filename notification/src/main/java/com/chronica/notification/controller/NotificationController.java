@@ -24,7 +24,7 @@ public class NotificationController {
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<?> getNotification(@PathVariable Long id){
+    public ResponseEntity<BaseDTO> getNotification(@PathVariable Long id){
         return serviceMajorNotification.readNotification(id);
     }
 
