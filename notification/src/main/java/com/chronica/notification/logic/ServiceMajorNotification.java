@@ -22,7 +22,6 @@ import java.util.List;
 public class ServiceMajorNotification {
 
     private final NotificationService<Notification> notificationService;
-
     private final MapperImplementation mapperImplementation;
     private final PropertyTransfer propertyTransfer;
 
