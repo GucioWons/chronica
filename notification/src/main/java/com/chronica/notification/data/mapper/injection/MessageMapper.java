@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public class MessageMapper implements Mapper<MessageDTO,Message> {
 
     private final NotificationMapper notificationMapper;

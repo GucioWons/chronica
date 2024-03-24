@@ -3,7 +3,7 @@ package com.chronica.notification.logic;
 import com.chronica.notification.data.dto.abstraction.BaseDTO;
 import com.chronica.notification.data.dto.record.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
-import com.chronica.notification.data.mapper.implementation.MapperImplementation;
+import com.chronica.notification.data.mapper.MapperImplementation;
 import com.chronica.notification.logic.notification.NotificationService;
 import com.chronica.notification.logic.util.PropertyTransfer;
 import jakarta.transaction.Transactional;

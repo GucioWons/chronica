@@ -8,7 +8,7 @@ import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public class InvitationMapper implements Mapper<InvitationDTO, Invitation> {
 
     private final NotificationMapper notificationMapper;
