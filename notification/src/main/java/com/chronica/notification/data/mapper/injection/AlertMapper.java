@@ -6,7 +6,6 @@ import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class AlertMapper implements Mapper<AlertDTO,Alert> {
@@ -22,7 +21,7 @@ public class AlertMapper implements Mapper<AlertDTO,Alert> {
         NotificationDTO notificationDTO = notificationMapper.mappToDto(alert);
         AlertDTO dto = new AlertDTO();
         dto.setBaseData(notificationDTO);
-        dto.setPriorityType(alert.getPriorityType());
+        dto.setPriority(alert.getPriority());
         return dto;
     }
 
@@ -31,7 +30,7 @@ public class AlertMapper implements Mapper<AlertDTO,Alert> {
         Notification notification = notificationMapper.mappToEntity(alertDTO.getBaseData());
         Alert alert = new Alert();
         alert.setNotification(notification);
-        alert.setPriorityType(alertDTO.getPriorityType());
+        alert.setPriority(alertDTO.getPriority());
         return alert;
     }
 }

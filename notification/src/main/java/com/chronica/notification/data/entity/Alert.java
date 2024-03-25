@@ -1,6 +1,6 @@
 package com.chronica.notification.data.entity;
 
-import com.chronica.notification.data.constant.PriorityType;
+import com.chronica.notification.data.constant.Priority;
 import jakarta.persistence.Entity;
 import lombok.*;
 
@@ -9,6 +9,6 @@ import lombok.*;
 @RequiredArgsConstructor
 @Data
 public class Alert extends Notification {
-    private PriorityType priorityType;
+    private Priority priority;
 
 }

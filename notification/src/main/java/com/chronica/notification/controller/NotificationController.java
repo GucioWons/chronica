@@ -38,7 +38,7 @@ public class NotificationController {
         return serviceMajorNotification.deleteNotification(id);
     }
 
-    @PatchMapping(path = "/{id}")
+    @PutMapping(path = "/{id}")
     public ResponseEntity<BaseDTO> updateNotification(@PathVariable Long id, @RequestBody BaseDTO request){
         return serviceMajorNotification.updateNotification(request,id);
     }

@@ -42,7 +42,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"notificationType\": \"ALERT\",\r\n  \"id\": 23,\r\n  \"title\": \"alercik - testowy\",\r\n  \"content\": \"chuj xd\",\r\n  \"createdAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"openAt\": \"2024-03-15T16:23:30.667Z\",\r\n  \"receiverId\": 244,\r\n  \"deprecated\": false,\r\n   \"seen\": \"false\",\r\n  \"priorityType\": \"SPAM\"\r\n}",
+					"raw": "{\r\n  \"type\": \"alert\",\r\n  \"priority\": \"IMPORTANT\",\r\n  \"baseData\": {\r\n    \"notificationType\": \"ALERT\",\r\n    \"id\": 0,\r\n    \"title\": \"string\",\r\n    \"content\": \"string\",\r\n    \"createdAt\": \"2024-03-20T05:40:56.903Z\",\r\n    \"viewAt\": \"2024-03-20T05:40:56.903Z\",\r\n    \"receiverId\": 0,\r\n    \"deprecated\": true,\r\n    \"seen\": true\r\n  }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -169,11 +169,11 @@
 		{
 			"name": "Update",
 			"request": {
-				"method": "PATCH",
+				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"notificationType\": \"MESSAGE\",\r\n  \"id\": 1,\r\n  \"title\": \"2 - pdated\",\r\n  \"content\": \"333\",\r\n  \"createdAt\": \"2024-03-15T15:54:59.039Z\",\r\n  \"openAt\": \"2024-03-15T15:54:59.039Z\",\r\n  \"receiverId\": 24444\r\n}",
+					"raw": "{\r\n  \"type\": \"message\",\r\n  \"baseData\": {\r\n    \"id\": 2323,\r\n    \"title\": \"string\",\r\n    \"content\": \"string\",\r\n    \"createdAt\": \"2024-03-20T07:05:06.318Z\",\r\n    \"viewAt\": \"2024-03-20T07:05:06.318Z\",\r\n    \"receiverId\": 0\r\n  }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
