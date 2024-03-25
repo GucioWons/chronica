@@ -1,12 +1,10 @@
 package com.chronica.notification.data.mapper.injection;
 
 import com.chronica.notification.data.dto.InvitationDTO;
-import com.chronica.notification.data.dto.integrant.NotificationDTO;
+import com.chronica.notification.data.dto.integrant.BaseDataDTO;
 import com.chronica.notification.data.entity.Invitation;
-import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class InvitationMapper implements Mapper<InvitationDTO, Invitation> {
@@ -19,14 +17,14 @@ public class InvitationMapper implements Mapper<InvitationDTO, Invitation> {
 
     @Override
     public InvitationDTO mappToDto(Invitation invitation) {
-        NotificationDTO notificationDTO = notificationMapper.mappToDto(invitation);
+        BaseDataDTO baseDataDTO = notificationMapper.mappToDto(invitation);
 
         InvitationDTO dto = new InvitationDTO();
         dto.setInviterId(invitation.getInviterId());
         dto.setAccepted(invitation.getAccepted());
         dto.setAcceptedAt(invitation.getAcceptedAt());
         dto.setGroupId(invitation.getGroupId());
-        dto.setBaseData(notificationDTO);
+        dto.setBaseData(baseDataDTO);
 
         return dto;
     }

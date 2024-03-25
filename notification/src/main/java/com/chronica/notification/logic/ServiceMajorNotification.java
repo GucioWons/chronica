@@ -1,6 +1,6 @@
 package com.chronica.notification.logic;
 
-import com.chronica.notification.data.dto.abstraction.BaseDTO;
+import com.chronica.notification.data.dto.abstraction.NotificationDTO;
 import com.chronica.notification.data.dto.record.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.mapper.MapperImplementation;
@@ -26,13 +26,13 @@ public class ServiceMajorNotification {
     private final PropertyTransfer propertyTransfer;
 
     @Transactional
-    public ResponseEntity<BaseDTO> createNotification(BaseDTO request){
+    public ResponseEntity<NotificationDTO> createNotification(NotificationDTO request){
 
         Notification notification = mapperImplementation.mappToEntity(request);
 
         notificationService.save(notification);
 
-        BaseDTO response = mapperImplementation.mappToDto(notification);
+        NotificationDTO response = mapperImplementation.mappToDto(notification);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -40,7 +40,7 @@ public class ServiceMajorNotification {
     }
 
     @Transactional
-    public ResponseEntity<BaseDTO> updateNotification(BaseDTO request, Long id){
+    public ResponseEntity<NotificationDTO> updateNotification(NotificationDTO request, Long id){
         Notification notification = notificationService.findById(id);
 
         Notification updated = mapperImplementation.mappToEntity(request);
@@ -49,27 +49,27 @@ public class ServiceMajorNotification {
 
         notificationService.save(notification);
 
-        BaseDTO response = mapperImplementation.mappToDto(notification);
+        NotificationDTO response = mapperImplementation.mappToDto(notification);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(response);
     }
 
-    public ResponseEntity<BaseDTO> readNotification(Long id){
+    public ResponseEntity<NotificationDTO> readNotification(Long id){
         Notification notification = notificationService.findById(id);
 
-        BaseDTO response = mapperImplementation.mappToDto(notification);
+        NotificationDTO response = mapperImplementation.mappToDto(notification);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(response);
     }
 
-    public ResponseEntity<List<BaseDTO>> getAllNotifications(PaginationAndSortDTO request){
+    public ResponseEntity<List<NotificationDTO>> getAllNotifications(PaginationAndSortDTO request){
         Page<Notification> notices = notificationService.findAll(request);
 
-        List<BaseDTO> response = notices.stream()
+        List<NotificationDTO> response = notices.stream()
                 .map(mapperImplementation::mappToDto)
                 .toList();
 

@@ -1,6 +1,6 @@
 package com.chronica.notification.controller;
 
-import com.chronica.notification.data.dto.abstraction.BaseDTO;
+import com.chronica.notification.data.dto.abstraction.NotificationDTO;
 import com.chronica.notification.data.dto.record.PaginationAndSortDTO;
 import com.chronica.notification.logic.ServiceMajorNotification;
 
@@ -19,17 +19,17 @@ public class NotificationController {
     private final ServiceMajorNotification serviceMajorNotification;
 
     @PostMapping(path = "")
-    public ResponseEntity<BaseDTO> createNotification(@RequestBody BaseDTO request){
+    public ResponseEntity<NotificationDTO> createNotification(@RequestBody NotificationDTO request){
         return serviceMajorNotification.createNotification(request);
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<BaseDTO> getNotification(@PathVariable Long id){
+    public ResponseEntity<NotificationDTO> getNotification(@PathVariable Long id){
         return serviceMajorNotification.readNotification(id);
     }
 
     @GetMapping(path = "")
-    public ResponseEntity<List<BaseDTO>> getNotifications(@RequestBody PaginationAndSortDTO request){
+    public ResponseEntity<List<NotificationDTO>> getNotifications(@RequestBody PaginationAndSortDTO request){
         return serviceMajorNotification.getAllNotifications(request);
     }
 
@@ -39,7 +39,7 @@ public class NotificationController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<BaseDTO> updateNotification(@PathVariable Long id, @RequestBody BaseDTO request){
+    public ResponseEntity<NotificationDTO> updateNotification(@PathVariable Long id, @RequestBody NotificationDTO request){
         return serviceMajorNotification.updateNotification(request,id);
     }
 }

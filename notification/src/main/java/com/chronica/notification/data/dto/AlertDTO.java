@@ -1,8 +1,8 @@
 package com.chronica.notification.data.dto;
 
 import com.chronica.notification.data.constant.Priority;
-import com.chronica.notification.data.dto.abstraction.BaseDTO;
-import com.chronica.notification.data.dto.integrant.NotificationDTO;
+import com.chronica.notification.data.dto.abstraction.NotificationDTO;
+import com.chronica.notification.data.dto.integrant.BaseDataDTO;
 import lombok.*;
 
 
@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlertDTO extends BaseDTO {
+public class AlertDTO extends NotificationDTO {
     private Priority priority;
-    private NotificationDTO baseData;
+    private BaseDataDTO baseData;
 }

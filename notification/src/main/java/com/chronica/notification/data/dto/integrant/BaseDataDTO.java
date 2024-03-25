@@ -1,9 +1,7 @@
 package com.chronica.notification.data.dto.integrant;
 
 import com.chronica.notification.data.constant.NotificationType;
-import com.chronica.notification.data.dto.abstraction.BaseDTO;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotificationDTO {
+public class BaseDataDTO {
     private NotificationType notificationType;
     private Long id;
     private String title;

@@ -1,7 +1,7 @@
 package com.chronica.notification.data.dto;
 
-import com.chronica.notification.data.dto.abstraction.BaseDTO;
-import com.chronica.notification.data.dto.integrant.NotificationDTO;
+import com.chronica.notification.data.dto.abstraction.NotificationDTO;
+import com.chronica.notification.data.dto.integrant.BaseDataDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class InvitationDTO extends BaseDTO {
+public class InvitationDTO extends NotificationDTO {
     private Long inviterId;
     private Boolean accepted;
     private LocalDateTime acceptedAt;
     private Long groupId;
-    private NotificationDTO baseData;
+    private BaseDataDTO baseData;
 }

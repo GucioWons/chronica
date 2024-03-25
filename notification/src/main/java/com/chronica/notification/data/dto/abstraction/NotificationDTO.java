@@ -20,6 +20,6 @@ import lombok.NoArgsConstructor;
         @JsonSubTypes.Type(value = MessageDTO.class, name = "message")
 })
 @NoArgsConstructor
-public abstract class BaseDTO {
+public abstract class NotificationDTO {
 
 }

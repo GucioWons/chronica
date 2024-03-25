@@ -1,9 +1,8 @@
 package com.chronica.notification.data.mapper.injection;
 
 import com.chronica.notification.data.dto.AlertDTO;
-import com.chronica.notification.data.dto.integrant.NotificationDTO;
+import com.chronica.notification.data.dto.integrant.BaseDataDTO;
 import com.chronica.notification.data.entity.Alert;
-import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +16,9 @@ public class AlertMapper implements Mapper<AlertDTO,Alert> {
 
     @Override
     public AlertDTO mappToDto(Alert alert) {
-        NotificationDTO notificationDTO = notificationMapper.mappToDto(alert);
+        BaseDataDTO baseDataDTO = notificationMapper.mappToDto(alert);
         AlertDTO dto = new AlertDTO();
-        dto.setBaseData(notificationDTO);
+        dto.setBaseData(baseDataDTO);
         dto.setPriority(alert.getPriority());
         return dto;
     }

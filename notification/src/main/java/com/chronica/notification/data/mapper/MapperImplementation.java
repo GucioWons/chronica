@@ -3,7 +3,7 @@ package com.chronica.notification.data.mapper;
 import com.chronica.notification.data.dto.AlertDTO;
 import com.chronica.notification.data.dto.InvitationDTO;
 import com.chronica.notification.data.dto.MessageDTO;
-import com.chronica.notification.data.dto.abstraction.BaseDTO;
+import com.chronica.notification.data.dto.abstraction.NotificationDTO;
 import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Invitation;
 import com.chronica.notification.data.entity.Message;
@@ -22,7 +22,7 @@ public class MapperImplementation {
     private final MessageMapper messageMapper;
     private final AlertMapper alertMapper;
 
-    public BaseDTO mappToDto(Notification notification) {
+    public NotificationDTO mappToDto(Notification notification) {
         if(notification instanceof Alert)
             return alertMapper.mappToDto((Alert) notification);
 
@@ -36,7 +36,7 @@ public class MapperImplementation {
     }
 
 
-    public Notification mappToEntity(BaseDTO dto) {
+    public Notification mappToEntity(NotificationDTO dto) {
         if(dto instanceof AlertDTO)
             return alertMapper.mappToEntity((AlertDTO) dto);
 

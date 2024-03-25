@@ -1,14 +1,14 @@
 package com.chronica.notification.data.mapper.injection;
 
-import com.chronica.notification.data.dto.integrant.NotificationDTO;
+import com.chronica.notification.data.dto.integrant.BaseDataDTO;
 import com.chronica.notification.data.entity.Notification;
 import org.springframework.stereotype.Component;
 
 @Component
 public class NotificationMapper {
 
-    public NotificationDTO mappToDto(Notification entity) {
-        NotificationDTO dto = new NotificationDTO();
+    public BaseDataDTO mappToDto(Notification entity) {
+        BaseDataDTO dto = new BaseDataDTO();
 
         dto.setNotificationType(entity.getNotificationType());
         dto.setId(entity.getId());
@@ -23,7 +23,7 @@ public class NotificationMapper {
         return dto;
     }
 
-    public void mappToEntity(Notification entity,NotificationDTO dto) {
+    public void mappToEntity(Notification entity, BaseDataDTO dto) {
 
         entity.setNotificationType(dto.getNotificationType());
         entity.setTitle(dto.getTitle());
