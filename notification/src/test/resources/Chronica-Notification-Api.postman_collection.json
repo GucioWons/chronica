@@ -42,7 +42,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type\": \"alert\",\r\n    \"priority\": \"IMPORTANT\",\r\n    \"notificationType\": \"ALERT\",\r\n    \"id\": 0,\r\n    \"title\": \"string\",\r\n    \"content\": \"string\",\r\n    \"createdAt\": \"2024-03-20T05:40:56.903Z\",\r\n    \"viewAt\": \"2024-03-20T05:40:56.903Z\",\r\n    \"receiverId\": 0,\r\n    \"deprecated\": true,\r\n    \"seen\": true\r\n  }\r\n",
+					"raw": "{\r\n    \"type\": \"alert\",\r\n    \"priority\": \"IMPORTANT\",\r\n    \"id\": 0,\r\n    \"title\": \"string\",\r\n    \"content\": \"string\",\r\n    \"createdAt\": \"2024-03-20T05:40:56.903Z\",\r\n    \"viewAt\": \"2024-03-20T05:40:56.903Z\",\r\n    \"receiverId\": 0,\r\n    \"deprecated\": true,\r\n    \"seen\": true\r\n  }\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"type\": \"invitation\",\r\n   \"inviterId\": 100000,\r\n    \"notificationType\": \"INVITATION\",\r\n    \"id\": 0,\r\n    \"title\": \"string\",\r\n    \"content\": \"string\",\r\n    \"createdAt\": \"2024-03-20T05:40:56.903Z\",\r\n    \"viewAt\": \"2024-03-20T05:40:56.903Z\",\r\n    \"receiverId\": 0,\r\n    \"deprecated\": true,\r\n    \"seen\": true\r\n  }\r\n",
+					"raw": "{\r\n   \"type\": \"invitation\",\r\n   \"inviterId\": 100000,\r\n    \"id\": 0,\r\n    \"title\": \"string\",\r\n    \"content\": \"string\",\r\n    \"createdAt\": \"2024-03-20T05:40:56.903Z\",\r\n    \"viewAt\": \"2024-03-20T05:40:56.903Z\",\r\n    \"receiverId\": 0,\r\n    \"deprecated\": true,\r\n    \"seen\": true\r\n  }\r\n",
 					"options": {
 						"raw": {
 							"language": "json"

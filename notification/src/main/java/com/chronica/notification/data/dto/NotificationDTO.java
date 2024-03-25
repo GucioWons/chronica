@@ -1,10 +1,6 @@
-package com.chronica.notification.data.dto.abstraction;
+package com.chronica.notification.data.dto;
 
 
-import com.chronica.notification.data.constant.NotificationType;
-import com.chronica.notification.data.dto.AlertDTO;
-import com.chronica.notification.data.dto.InvitationDTO;
-import com.chronica.notification.data.dto.MessageDTO;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
@@ -29,7 +25,6 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 public class NotificationDTO {
-    private NotificationType notificationType;
     private Long id;
     private String title;
     private String content;

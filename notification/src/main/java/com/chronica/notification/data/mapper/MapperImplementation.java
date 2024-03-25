@@ -3,7 +3,7 @@ package com.chronica.notification.data.mapper;
 import com.chronica.notification.data.dto.AlertDTO;
 import com.chronica.notification.data.dto.InvitationDTO;
 import com.chronica.notification.data.dto.MessageDTO;
-import com.chronica.notification.data.dto.abstraction.NotificationDTO;
+import com.chronica.notification.data.dto.NotificationDTO;
 import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Invitation;
 import com.chronica.notification.data.entity.Message;

@@ -1,6 +1,5 @@
 package com.chronica.notification.data.entity;
 
-import com.chronica.notification.data.constant.NotificationType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
@@ -26,19 +25,6 @@ public class Notification implements Serializable {
     protected LocalDateTime viewAt;
     protected Long receiverId;
     protected Boolean deprecated = false;
-    protected NotificationType notificationType;
     protected Boolean seen = false;
-
-    public Notification(NotificationType notificationType, Long id, String title, String content, LocalDateTime createdAt, LocalDateTime viewAt, Long receiverId, Boolean deprecated, Boolean seen) {
-        this.notificationType = notificationType;
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.createdAt = createdAt;
-        this.viewAt = viewAt;
-        this.receiverId = receiverId;
-        this.deprecated = deprecated;
-        this.seen = seen;
-    }
     public Notification(){}
 }

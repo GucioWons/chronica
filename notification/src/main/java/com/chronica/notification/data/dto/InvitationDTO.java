@@ -1,6 +1,5 @@
 package com.chronica.notification.data.dto;
 
-import com.chronica.notification.data.dto.abstraction.NotificationDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;

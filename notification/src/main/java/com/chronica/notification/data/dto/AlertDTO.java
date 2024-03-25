@@ -1,7 +1,6 @@
 package com.chronica.notification.data.dto;
 
 import com.chronica.notification.data.constant.Priority;
-import com.chronica.notification.data.dto.abstraction.NotificationDTO;
 import lombok.*;
 
 
