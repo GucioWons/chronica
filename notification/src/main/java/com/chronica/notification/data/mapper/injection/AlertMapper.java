@@ -27,10 +27,12 @@ public class AlertMapper implements Mapper<AlertDTO,Alert> {
 
     @Override
     public Alert mappToEntity(AlertDTO alertDTO) {
-        Notification notification = notificationMapper.mappToEntity(alertDTO.getBaseData());
         Alert alert = new Alert();
-        alert.setNotification(notification);
+
+        notificationMapper.mappToEntity(alert, alertDTO.getBaseData());
+
         alert.setPriority(alertDTO.getPriority());
+
         return alert;
     }
 }

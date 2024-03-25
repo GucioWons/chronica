@@ -23,8 +23,7 @@ public class NotificationMapper {
         return dto;
     }
 
-    public Notification mappToEntity(NotificationDTO dto) {
-    Notification entity = new Notification();
+    public void mappToEntity(Notification entity,NotificationDTO dto) {
 
         entity.setNotificationType(dto.getNotificationType());
         entity.setTitle(dto.getTitle());
@@ -33,8 +32,5 @@ public class NotificationMapper {
         entity.setViewAt(dto.getViewAt());
         entity.setReceiverId(dto.getReceiverId());
         entity.setSeen(dto.getSeen());
-
-        return entity;
     }
-
 }

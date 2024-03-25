@@ -42,31 +42,4 @@ public class Notification implements Serializable {
     }
     public Notification(){}
 
-    public void setNotification(Notification notification) {
-        if(notification.getTitle() != null) {
-            this.title = notification.getTitle();
-        }
-        if(notification.getContent() != null) {
-            this.content = notification.getContent();
-        }
-        if(notification.getCreatedAt() != null) {
-            this.createdAt = notification.getCreatedAt();
-        }
-        if(notification.getViewAt() != null) {
-            this.viewAt = notification.getViewAt();
-        }
-        if(notification.getReceiverId() != null) {
-            this.receiverId = notification.getReceiverId();
-        }
-        if(notification.getNotificationType() != null) {
-            this.notificationType = notification.getNotificationType();
-        }
-        if(notification.getSeen() != null) {
-        this.seen = notification.getSeen();
-        }
-    }
-
-    public Notification getNotification(){
-        return this;
-    }
 }

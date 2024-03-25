@@ -28,9 +28,11 @@ public class MessageMapper implements Mapper<MessageDTO,Message> {
 
     public Message mappToEntity(MessageDTO messageDTO) {
         Message message = new Message();
+
+        notificationMapper.mappToEntity(message,messageDTO.getBaseData());
+
         message.setMessageFromUserId(messageDTO.getMessageFromUserId());
-        Notification notification = notificationMapper.mappToEntity(messageDTO.getBaseData());
-        message.setNotification(notification);
+
         return message;
     }
 }

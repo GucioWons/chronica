@@ -33,10 +33,10 @@ public class InvitationMapper implements Mapper<InvitationDTO, Invitation> {
 
     @Override
     public Invitation mappToEntity(InvitationDTO invitationDTO) {
-        Notification notification = notificationMapper.mappToEntity(invitationDTO.getBaseData());
-
         Invitation invitation = new Invitation();
-        invitation.setNotification(notification);
+
+        notificationMapper.mappToEntity(invitation,invitationDTO.getBaseData());
+
         invitation.setInvitationFromUserId(invitationDTO.getInvitationFromUserId());
         invitation.setAccepted(invitationDTO.getAccepted());
         invitation.setAcceptedAt(invitationDTO.getAcceptedAt());
