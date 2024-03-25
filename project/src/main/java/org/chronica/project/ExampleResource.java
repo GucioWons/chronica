@@ -1,4 +1,4 @@
-package org.chronica;
+package org.chronica.project;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
