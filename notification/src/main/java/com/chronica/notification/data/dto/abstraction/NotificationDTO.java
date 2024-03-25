@@ -1,13 +1,18 @@
 package com.chronica.notification.data.dto.abstraction;
 
 
+import com.chronica.notification.data.constant.NotificationType;
 import com.chronica.notification.data.dto.AlertDTO;
 import com.chronica.notification.data.dto.InvitationDTO;
 import com.chronica.notification.data.dto.MessageDTO;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.time.LocalDateTime;
 
 
 @JsonTypeInfo(
@@ -20,6 +25,17 @@ import lombok.NoArgsConstructor;
         @JsonSubTypes.Type(value = MessageDTO.class, name = "message")
 })
 @NoArgsConstructor
-public abstract class NotificationDTO {
-
+@Getter
+@Setter
+@AllArgsConstructor
+public class NotificationDTO {
+    private NotificationType notificationType;
+    private Long id;
+    private String title;
+    private String content;
+    private LocalDateTime createdAt;
+    private LocalDateTime viewAt;
+    private Long receiverId;
+    private Boolean deprecated;
+    private Boolean seen;
 }

@@ -1,7 +1,6 @@
 package com.chronica.notification.data.dto;
 
 import com.chronica.notification.data.dto.abstraction.NotificationDTO;
-import com.chronica.notification.data.dto.integrant.BaseDataDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,5 +12,4 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MessageDTO extends NotificationDTO {
     private Long messageFromUserId;
-    private BaseDataDTO baseData;
 }

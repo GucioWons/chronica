@@ -1,7 +1,6 @@
 package com.chronica.notification.data.mapper.injection;
 
 import com.chronica.notification.data.dto.MessageDTO;
-import com.chronica.notification.data.dto.integrant.BaseDataDTO;
 import com.chronica.notification.data.entity.Message;
 import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;
@@ -17,8 +16,7 @@ public class MessageMapper implements Mapper<MessageDTO,Message> {
 
     public MessageDTO mappToDto(Message message) {
         MessageDTO dto = new MessageDTO();
-      BaseDataDTO baseData = notificationMapper.mappToDto(message);
-      dto.setBaseData(baseData);
+       notificationMapper.mappToDto(dto,message);
       dto.setMessageFromUserId(message.getMessageFromUserId());
       return dto;
     }
@@ -26,7 +24,7 @@ public class MessageMapper implements Mapper<MessageDTO,Message> {
     public Message mappToEntity(MessageDTO messageDTO) {
         Message message = new Message();
 
-        notificationMapper.mappToEntity(message,messageDTO.getBaseData());
+        notificationMapper.mappToEntity(message,messageDTO);
 
         message.setMessageFromUserId(messageDTO.getMessageFromUserId());
 
