@@ -10,5 +10,4 @@ import lombok.*;
 @Data
 public class Alert extends Notification {
     private Priority priority;
-
 }

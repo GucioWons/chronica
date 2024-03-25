@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InvitationDTO extends BaseDTO {
-    private Long invitationFromUserId;
+    private Long inviterId;
     private Boolean accepted;
     private LocalDateTime acceptedAt;
     private Long groupId;

@@ -15,7 +15,6 @@ public class AlertMapper implements Mapper<AlertDTO,Alert> {
         this.notificationMapper = notificationMapper;
     }
 
-
     @Override
     public AlertDTO mappToDto(Alert alert) {
         NotificationDTO notificationDTO = notificationMapper.mappToDto(alert);

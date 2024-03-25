@@ -11,7 +11,4 @@ import lombok.*;
 @Setter
 public class Message extends Notification {
     private Long messageFromUserId;
-
-
-
 }

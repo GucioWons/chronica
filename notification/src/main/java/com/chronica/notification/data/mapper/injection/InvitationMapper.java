@@ -22,7 +22,7 @@ public class InvitationMapper implements Mapper<InvitationDTO, Invitation> {
         NotificationDTO notificationDTO = notificationMapper.mappToDto(invitation);
 
         InvitationDTO dto = new InvitationDTO();
-        dto.setInvitationFromUserId(invitation.getInvitationFromUserId());
+        dto.setInviterId(invitation.getInviterId());
         dto.setAccepted(invitation.getAccepted());
         dto.setAcceptedAt(invitation.getAcceptedAt());
         dto.setGroupId(invitation.getGroupId());
@@ -37,7 +37,7 @@ public class InvitationMapper implements Mapper<InvitationDTO, Invitation> {
 
         notificationMapper.mappToEntity(invitation,invitationDTO.getBaseData());
 
-        invitation.setInvitationFromUserId(invitationDTO.getInvitationFromUserId());
+        invitation.setInviterId(invitationDTO.getInviterId());
         invitation.setAccepted(invitationDTO.getAccepted());
         invitation.setAcceptedAt(invitationDTO.getAcceptedAt());
         invitation.setGroupId(invitationDTO.getGroupId());

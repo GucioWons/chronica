@@ -41,5 +41,4 @@ public class Notification implements Serializable {
         this.seen = seen;
     }
     public Notification(){}
-
 }

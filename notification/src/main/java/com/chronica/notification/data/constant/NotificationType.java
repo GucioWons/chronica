@@ -2,7 +2,6 @@ package com.chronica.notification.data.constant;
 
 import lombok.Getter;
 
-
 @Getter
 public enum NotificationType {
     MESSAGE(0),
