@@ -30,4 +30,26 @@ public class ChainMapper {
                 entity.isDeprecated()
         );
     }
+
+    public Chain mapToUpdateEntity(Chain entity, ChainDTO dto) {
+        if (dto.title() != null) {
+            entity.setTitle(dto.title());
+        }
+        if (dto.description() != null) {
+            entity.setDescription(dto.description());
+        }
+        if (dto.type() != null) {
+            entity.setType(dto.type());
+        }
+        if (dto.estimation() != null) {
+            entity.setEstimation(dto.estimation());
+        }
+        if (dto.timeLeft() != null) {
+            entity.setTimeLeft(dto.timeLeft());
+        }
+        if (dto.points() != null) {
+            entity.setPoints(dto.points());
+        }
+        return entity;
+    }
 }
