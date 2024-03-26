@@ -27,4 +27,11 @@ public class ChainController {
                 .status(HttpStatus.OK)
                 .body(chainService.getChainById(chainId));
     }
+
+    @PutMapping("/{chainId}")
+    public ResponseEntity<ChainDTO> updateChain(@PathVariable("chainId") Long chainId, @RequestBody ChainDTO chainDto) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(chainService.updateChainById(chainId, chainDto));
+    }
 }

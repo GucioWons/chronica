@@ -22,4 +22,11 @@ public class ChainService {
                 .map(chainMapper::mapToDTO)
                 .orElseThrow(IllegalAccessError::new);
     }
+
+    public ChainDTO updateChainById(Long chainId, ChainDTO chainDto) {
+        return chainRepository
+                .findById(chainId)
+                .map(chain -> chainMapper.mapToDTO(chainRepository.save(chainMapper.mapToUpdateEntity(chain, chainDto))))
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }
