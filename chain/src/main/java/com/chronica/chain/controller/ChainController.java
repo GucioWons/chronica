@@ -34,4 +34,11 @@ public class ChainController {
                 .status(HttpStatus.OK)
                 .body(chainService.updateChainById(chainId, chainDto));
     }
+
+    @DeleteMapping("/{chainId}")
+    public ResponseEntity<String> deleteChain(@PathVariable("chainId") Long chainId) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(chainService.deleteChainById(chainId));
+    }
 }

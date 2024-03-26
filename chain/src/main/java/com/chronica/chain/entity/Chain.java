@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,16 +19,21 @@ public class Chain {
     private Long id;
     @Column(nullable = false)
     private String title;
+    @ManyToOne
+    @JoinColumn(name="base_chain_id")
+    private Chain baseChain;
+    @OneToMany(mappedBy="chain")
+    private List<Chain> childChains;
     @Column
     private String description;
     @Column(nullable = false)
     private ChainType type;
     @Column
-    private BigDecimal estimation;
+    private BigDecimal estimation = BigDecimal.ZERO;
     @Column
-    private BigDecimal timeLeft;
+    private BigDecimal timeLeft = BigDecimal.ZERO;
     @Column
-    private Integer points;
+    private Integer points = 0;
     @Column(nullable = false)
     private boolean deprecated;
 }
