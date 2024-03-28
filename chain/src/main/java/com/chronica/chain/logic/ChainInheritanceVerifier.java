@@ -15,11 +15,11 @@ public class ChainInheritanceVerifier {
     }
 
     private void verifyInheritance(Chain chain, Set<Chain> visited) {
-        if (chain == null) {
+        if (chain.getBaseChain() == null) {
             return;
         }
 
-        if (chain.getType().getLevel() > chain.getBaseChain().getType().getLevel()) {
+        if (chain.getType().getLevel() <= chain.getBaseChain().getType().getLevel()) {
             throw new IllegalArgumentException();
         }
 

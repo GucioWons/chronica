@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Entity
+@Entity(name = "chain_sraka")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,7 +22,7 @@ public class Chain {
     @ManyToOne
     @JoinColumn(name="base_chain_id")
     private Chain baseChain;
-    @OneToMany(mappedBy="chain")
+    @OneToMany(mappedBy="baseChain")
     private List<Chain> childChains;
     @Column
     private String description;

@@ -17,7 +17,8 @@ public class ChainService {
     public ChainDTO createChain(ChainDTO chain) {
         Chain toSave = chainMapper.mapToEntity(chain);
         chainInheritanceVerifier.verifyInheritance(toSave);
-        return chainMapper.mapToDTO(chainRepository.save(toSave));
+        return chainMapper.mapToDTO(
+                chainRepository.save(toSave));
     }
 
     public ChainDTO getChainById(Long chainId) {
@@ -30,7 +31,9 @@ public class ChainService {
     public ChainDTO updateChainById(Long chainId, ChainDTO chainDto) {
         return chainRepository
                 .findByIdAndDeprecatedFalse(chainId)
-                .map(chain -> chainMapper.mapToDTO(chainRepository.save(chainMapper.mapToUpdateEntity(chain, chainDto))))
+                .map(chain -> chainMapper.mapToDTO(
+                        chainRepository.save(
+                        chainMapper.mapToUpdateEntity(chain, chainDto))))
                 .orElseThrow(IllegalArgumentException::new);
     }
 
@@ -42,6 +45,8 @@ public class ChainService {
     }
 
     private String handleDeprecation(Chain chain) {
+        chain.setBaseChain(null);
+        chain.setChildChains(null);
         chain.setDeprecated(true);
         return "Chain has been deprecated.";
     }

@@ -6,40 +6,39 @@ import com.chronica.chain.repository.ChainRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @RequiredArgsConstructor
 public class ChainMapper {
+    private final BaseChainMapper baseChainMapper;
+    private final ChildChainMapper childChainMapper;
     private final ChainRepository chainRepository;
 
     public Chain mapToEntity(ChainDTO dto) {
         Chain entity = new Chain();
         entity.setTitle(dto.getTitle());
-        entity.setBaseChain(getExistingChain(dto.getBaseChain().getId()));
-        entity.setChildChains(getExistingChainList(dto.getChildChains()));
+        if (dto.getBaseChain() != null) {
+            entity.setBaseChain(getExistingChain(dto.getBaseChain().id()));
+        }
         entity.setDescription(dto.getDescription());
         entity.setType(dto.getType());
         entity.setEstimation(dto.getEstimation());
         entity.setTimeLeft(dto.getTimeLeft());
         entity.setPoints(dto.getPoints());
-        entity.setDeprecated(dto.isDeprecated());
         return entity;
     }
 
     public ChainDTO mapToDTO(Chain entity) {
-        return new ChainDTO(
-                entity.getId(),
-                entity.getTitle(),
-                mapExistingChainToDTO(entity.getBaseChain()),
-                mapExistingChainListToDTO(entity.getChildChains()),
-                entity.getDescription(),
-                entity.getType(),
-                entity.getEstimation(),
-                entity.getTimeLeft(),
-                entity.getPoints(),
-                entity.isDeprecated()
-        );
+        ChainDTO dto = new ChainDTO();
+        dto.setId(entity.getId());
+        dto.setTitle(entity.getTitle());
+        dto.setBaseChain(baseChainMapper.mapBaseChainToDTO(entity.getBaseChain()));
+        dto.setChildChains(childChainMapper.mapChildChainsListToDTO(entity.getChildChains()));
+        dto.setDescription(entity.getDescription());
+        dto.setType(entity.getType());
+        dto.setEstimation(entity.getEstimation());
+        dto.setTimeLeft(entity.getTimeLeft());
+        dto.setPoints(entity.getPoints());
+        return dto;
     }
 
     public Chain mapToUpdateEntity(Chain entity, ChainDTO dto) {
@@ -47,12 +46,9 @@ public class ChainMapper {
             entity.setTitle(dto.getTitle());
         }
         if (dto.getBaseChain() != null) {
-            entity.setBaseChain(getExistingChain(dto.getBaseChain().getId()));
+            entity.setBaseChain(getExistingChain(dto.getBaseChain().id()));
         } else {
             entity.setBaseChain(null);
-        }
-        if (dto.getChildChains() != null) {
-            entity.setChildChains(getExistingChainList(dto.getChildChains()));
         }
         if (dto.getDescription() != null) {
             entity.setDescription(dto.getDescription());
@@ -72,25 +68,9 @@ public class ChainMapper {
         return entity;
     }
 
-    public List<ChainDTO> mapExistingChainListToDTO(List<Chain> chains) {
-        return chains.stream()
-                .map(this::mapToDTO)
-                .toList();
-    }
-
-    public ChainDTO mapExistingChainToDTO(Chain chain) {
-        return mapToDTO(chain);
-    }
-
-    public List<Chain> getExistingChainList(List<ChainDTO> chains) {
-        return chains.stream()
-                .map(chain -> getExistingChain(chain.getId()))
-                .toList();
-    }
-
-    public Chain getExistingChain(Long chainId) {
+    private Chain getExistingChain(Long id) {
         return chainRepository
-                .findByIdAndDeprecatedFalse(chainId)
-                .orElseThrow(IllegalArgumentException::new);
+                .findByIdAndDeprecatedFalse(id)
+                .orElseThrow(IllegalAccessError::new);
     }
 }
