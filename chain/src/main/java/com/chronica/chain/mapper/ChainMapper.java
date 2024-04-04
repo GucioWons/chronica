@@ -19,6 +19,9 @@ public class ChainMapper {
         if (dto.getBaseChain() != null) {
             entity.setBaseChain(getExistingChain(dto.getBaseChain().id()));
         }
+        if (dto.getChildChains() != null) {
+            entity.setChildChains(dto.getChildChains().stream().map(child -> getExistingChain(child.id())).toList());
+        }
         entity.setDescription(dto.getDescription());
         entity.setType(dto.getType());
         entity.setEstimation(dto.getEstimation());
@@ -49,6 +52,10 @@ public class ChainMapper {
             entity.setBaseChain(getExistingChain(dto.getBaseChain().id()));
         } else {
             entity.setBaseChain(null);
+        }
+        if(dto.getChildChains() != null) {
+            entity.getChildChains().clear();
+            dto.getChildChains().forEach(chain -> entity.addChild(getExistingChain(chain.id())));
         }
         if (dto.getDescription() != null) {
             entity.setDescription(dto.getDescription());
