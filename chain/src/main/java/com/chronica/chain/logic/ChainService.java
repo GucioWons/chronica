@@ -46,8 +46,9 @@ public class ChainService {
 
     private String handleDeprecation(Chain chain) {
         chain.setBaseChain(null);
-        chain.setChildChains(null);
+        chain.getChildChains().clear();
         chain.setDeprecated(true);
+        chainRepository.save(chain);
         return "Chain has been deprecated.";
     }
 }
