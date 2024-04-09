@@ -32,6 +32,15 @@ public class ProjectController {
     }
 
     @GET
+    @Path("/group/{groupId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public RestResponse<List<ProjectDTO>> getProjectsByGroupId(Long groupId) {
+        return RestResponse.ResponseBuilder
+                .ok(projectService.getProjectsByGroupId(groupId), MediaType.APPLICATION_JSON)
+                .build();
+    }
+
+    @GET
     @Path("/{projectId}")
     @Produces(MediaType.APPLICATION_JSON)
     public RestResponse<ProjectDTO> getProjectById(@PathParam("projectId") Long projectId) {

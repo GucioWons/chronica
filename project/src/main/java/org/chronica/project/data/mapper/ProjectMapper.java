@@ -9,37 +9,24 @@ import java.time.LocalDateTime;
 
 @ApplicationScoped
 public class ProjectMapper {
-    public ProjectDTO mappToDTO(Project entity) {
+    public ProjectDTO mapToDTO(Project entity) {
         return new ProjectDTO(
                 entity.id,
                 entity.getName(),
                 entity.getGroupId(),
                 entity.getCreatedDate(),
-                entity.getLastChangesDate(),
+                entity.getLastChangeDate(),
                 entity.isDeprecated()
         );
     }
 
-    public Project mappToEntity(ProjectDTO dto) {
+    public Project mapToEntity(ProjectDTO dto) {
         return new Project(
                 dto.name(),
                 dto.groupId(),
                 dto.createdDate(),
-                dto.lastChangesDate(),
+                dto.lastChangeDate(),
                 dto.isDeprecated()
         );
-    }
-
-    public Project mappToUpdateEntity(Project entity, ProjectDTO dto) {
-        if (dto.name() != null) {
-            entity.setName(dto.name());
-        }
-        if (dto.groupId() != null) {
-            entity.setGroupId(dto.groupId());
-        }
-        if (dto.lastChangesDate() != null) {
-            entity.setLastChangesDate(LocalDateTime.now());
-        }
-        return entity;
     }
 }

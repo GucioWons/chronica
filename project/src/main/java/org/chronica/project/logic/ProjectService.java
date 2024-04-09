@@ -9,6 +9,7 @@ import org.chronica.project.data.exception.NoProjectException;
 import org.chronica.project.data.mapper.ProjectMapper;
 import org.chronica.project.data.repository.ProjectRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -20,34 +21,51 @@ public class ProjectService {
 
     @Transactional
     public ProjectDTO createProject(ProjectDTO toSave) {
-        Project project = projectMapper.mappToEntity(toSave);
+        Project project = projectMapper.mapToEntity(toSave);
         project.persist();
-        return projectMapper.mappToDTO(project);
+        return projectMapper.mapToDTO(project);
     }
 
     public ProjectDTO getProjectById(Long projectId) {
         return projectRepository
                 .findByIdNotDeprecated(projectId)
-                .map(projectMapper::mappToDTO)
+                .map(projectMapper::mapToDTO)
                 .orElseThrow(() -> new NoProjectException("Cannot find Project with id " + projectId));
+    }
+
+    public List<ProjectDTO> getProjectsByGroupId(Long groupId) {
+        return projectRepository
+                .findByGroupId(groupId)
+                .stream()
+                .map(projectMapper::mapToDTO)
+                .toList();
     }
 
     public List<ProjectDTO> getProjects() {
         return projectRepository
                 .listAllNotDeprecated()
                 .stream()
-                .map(projectMapper::mappToDTO)
+                .map(projectMapper::mapToDTO)
                 .toList();
     }
 
     @Transactional
     public ProjectDTO updateProject(Long projectId, ProjectDTO toUpdate) {
         Project project = projectRepository
-                .findByIdNotDeprecated(projectId)
-                .map(entity -> projectMapper.mappToUpdateEntity(entity,toUpdate))
-                .orElseThrow(() -> new NoProjectException("Cannot find Project with id " + projectId));
+                .findByIdNotDeprecated(projectId).orElseThrow(() -> new NoProjectException("Cant update, project not exist"));
+
+        if (toUpdate.name() != null) {
+            project.setName(toUpdate.name());
+        }
+        if (toUpdate.groupId() != null) {
+            project.setGroupId(toUpdate.groupId());
+        }
+        if (toUpdate.lastChangeDate() != null) {
+            project.setLastChangeDate(LocalDateTime.now());
+        }
+
         project.persist();
-        return projectMapper.mappToDTO(project);
+        return projectMapper.mapToDTO(project);
     }
 
     @Transactional
@@ -59,5 +77,7 @@ public class ProjectService {
         project.persist();
         return "Project has been deprecated.";
     }
+
+
 }
 

@@ -9,7 +9,6 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 
 @Entity
@@ -21,6 +20,6 @@ public class Project extends PanacheEntity {
     private String name;
     private Long groupId;
     private LocalDate createdDate;
-    private LocalDateTime lastChangesDate;
+    private LocalDateTime lastChangeDate;
     private boolean deprecated = false;
 }

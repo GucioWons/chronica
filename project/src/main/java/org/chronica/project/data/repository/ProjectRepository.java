@@ -13,6 +13,13 @@ public class ProjectRepository implements PanacheRepository<Project> {
         return findByIdOptional(id)
                 .filter(project -> !project.isDeprecated());
     }
+
+    public List<Project> findByGroupId(Long groupId){
+        List<Project> groupProjects = list("groupId", groupId);
+        return groupProjects.stream()
+                .filter(g -> !g.isDeprecated())
+                .toList();
+    }
     public List<Project> listAllNotDeprecated() {
         return list("deprecated", false);
     }
