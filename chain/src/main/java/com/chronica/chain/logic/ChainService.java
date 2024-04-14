@@ -2,6 +2,7 @@ package com.chronica.chain.logic;
 
 import com.chronica.chain.dto.ChainDTO;
 import com.chronica.chain.entity.Chain;
+import com.chronica.chain.exception.NoChainException;
 import com.chronica.chain.mapper.ChainMapper;
 import com.chronica.chain.repository.ChainRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,23 +26,24 @@ public class ChainService {
         return chainRepository
                 .findByIdAndDeprecatedFalse(chainId)
                 .map(chainMapper::mapToDTO)
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(() -> new NoChainException("Cannot find Chain with id" + chainId));
     }
 
     public ChainDTO updateChainById(Long chainId, ChainDTO chainDto) {
         return chainRepository
                 .findByIdAndDeprecatedFalse(chainId)
-                .map(chain -> chainMapper.mapToDTO(
-                        chainRepository.save(
-                        chainMapper.mapToUpdateEntity(chain, chainDto))))
-                .orElseThrow(IllegalArgumentException::new);
+                .map(chain ->
+                        chainMapper.mapToDTO(
+                                chainRepository.save(
+                                        chainMapper.mapToUpdateEntity(chain, chainDto))))
+                .orElseThrow(() -> new NoChainException("Cannot find Chain with id" + chainId));
     }
 
     public String deleteChainById(Long chainId) {
         return chainRepository
                 .findByIdAndDeprecatedFalse(chainId)
                 .map(this::handleDeprecation)
-                .orElseThrow();
+                .orElseThrow(() -> new NoChainException("Cannot find Chain with id" + chainId));
     }
 
     private String handleDeprecation(Chain chain) {
