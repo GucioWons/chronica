@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "a0bd98d5-0f02-43cb-a3a1-e2b186b1e2e1",
+		"name": "Chronica-Chain-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33506091"
+	},
+	"item": [
+		{
+			"name": "CreateChain",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"TEST_CHAIN\",\r\n    \"type\": \"TASK\",\r\n    \"description\": \"TEST_CHAIN_DESCRIPTION\",\r\n    \"estimation\": 10,\r\n    \"timeLeft\": 10,\r\n    \"points\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/api/chains",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"chains"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateChainWithChildren",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/api/chains",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"chains"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetChainById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/api/chains/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"chains",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateChain",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"UPDATED_TEST_CHAIN\",\r\n    \"type\": \"STORY\",\r\n    \"description\": \"UPDATED_TEST_CHAIN_DESCRIPTION\",\r\n    \"estimation\": 10,\r\n    \"timeLeft\": 10,\r\n    \"points\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/api/chains/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"chains",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteChainById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/api/chains/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"chains",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
