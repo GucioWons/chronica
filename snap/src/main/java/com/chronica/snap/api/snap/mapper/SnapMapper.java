@@ -8,23 +8,24 @@ import org.springframework.stereotype.Component;
 public class SnapMapper {
     public Snap mapToEntity(SnapDTO dto) {
         Snap entity = new Snap();
-        entity.setTime(dto.time());
-        entity.setChainId(dto.chainId());
-        entity.setActivity(dto.activity());
-        entity.setDescription(dto.description());
-        entity.setLogDate(dto.logDate());
+        entity.setTime(dto.getTime());
+        entity.setChainId(dto.getChainId());
+        entity.setActivity(dto.getActivity());
+        entity.setDescription(dto.getDescription());
+        entity.setLogDate(dto.getLogDate());
         return entity;
     }
 
     public SnapDTO mapToDTO(Snap entity) {
-        return new SnapDTO(
-                entity.getId(),
-                entity.getTime(),
-                entity.getChainId(),
-                entity.getActivity(),
-                entity.getDescription(),
-                entity.getCreationDate(),
-                entity.getLogDate(),
-                entity.isDeprecated());
+        SnapDTO dto = new SnapDTO();
+        dto.setId(entity.getId());
+        dto.setTime(entity.getTime());
+        dto.setChainId(entity.getChainId());
+        dto.setActivity(entity.getActivity());
+        dto.setDescription(entity.getDescription());
+        dto.setCreationDate(entity.getCreationDate());
+        dto.setLogDate(entity.getLogDate());
+        dto.setDeprecated(entity.isDeprecated());
+        return dto;
     }
 }
