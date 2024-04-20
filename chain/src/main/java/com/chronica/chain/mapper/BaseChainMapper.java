@@ -10,9 +10,10 @@ public class BaseChainMapper {
         if (chain == null) {
             return null;
         }
-        return new BaseChainDTO(
-                chain.getId(),
-                chain.getTitle(),
-                chain.getType());
+        BaseChainDTO dto = new BaseChainDTO();
+        dto.setId(chain.getId());
+        dto.setTitle(chain.getTitle());
+        dto.setType(chain.getType());
+        return dto;
     }
 }
