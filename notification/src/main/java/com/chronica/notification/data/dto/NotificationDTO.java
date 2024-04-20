@@ -7,13 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.chronica.dto.EntityDTO;
 
 import java.time.LocalDateTime;
 
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
         property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = AlertDTO.class, name = "alert"),
@@ -24,8 +24,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class NotificationDTO {
-    private Long id;
+public class NotificationDTO extends EntityDTO {
     private String title;
     private String content;
     private LocalDateTime createdAt;
