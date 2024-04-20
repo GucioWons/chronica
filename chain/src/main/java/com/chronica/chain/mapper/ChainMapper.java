@@ -2,6 +2,7 @@ package com.chronica.chain.mapper;
 
 import com.chronica.chain.dto.ChainDTO;
 import com.chronica.chain.entity.Chain;
+import com.chronica.chain.exception.NoChainException;
 import com.chronica.chain.repository.ChainRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -78,6 +79,6 @@ public class ChainMapper {
     private Chain getExistingChain(Long id) {
         return chainRepository
                 .findByIdAndDeprecatedFalse(id)
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(() -> new NoChainException("Cannot find Chain with id" + id));
     }
 }
