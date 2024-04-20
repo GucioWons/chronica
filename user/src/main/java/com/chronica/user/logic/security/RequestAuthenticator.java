@@ -1,6 +1,8 @@
 package com.chronica.user.logic.security;
 
 import com.chronica.user.data.constant.Role;
+import com.chronica.user.data.exception.AccountDoesntExistException;
+import com.chronica.user.data.repository.AccountRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +17,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import com.chronica.user.logic.basic.AccountBasicService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import java.util.Collection;
 public class RequestAuthenticator extends OncePerRequestFilter {
     private final static Logger LOGGER = LoggerFactory.getLogger(RequestAuthenticator.class);
     private final JWTHandler JWTHandler;
-    private final AccountBasicService accountBasicService;
+    private final AccountRepository accountRepository;
 
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
@@ -42,19 +43,21 @@ public class RequestAuthenticator extends OncePerRequestFilter {
         }
 
         if (mail != null && JWTHandler.validateToken(token, mail)) {
+            accountRepository.findByMail(mail)
+                    .ifPresentOrElse(
+                            account -> authorizeByRole(account.getRole(), account.getMail()),
+                            () -> { throw new AccountDoesntExistException("Account does not exist"); });
 
-            final Role role = accountBasicService.findAccountByMail(mail).getRole();
-            LOGGER.info("Account role: " + role);
-            Collection<GrantedAuthority> getRoleAuthorities = new ArrayList<>();
-            getRoleAuthorities.add((GrantedAuthority) () -> String.valueOf(role));
-
-            Authentication authToken = new UsernamePasswordAuthenticationToken(mail, null, getRoleAuthorities);
-
-            LOGGER.info("Authorities: " + authToken.getAuthorities().size());
-
-            SecurityContextHolder.getContext().setAuthentication(authToken);
         }
-
         filterChain.doFilter(request, response);
+    }
+
+    private void authorizeByRole(Role role, String mail) {
+        LOGGER.info("Account role: " + role);
+        Collection<GrantedAuthority> getRoleAuthorities = new ArrayList<>();
+        getRoleAuthorities.add((GrantedAuthority) () -> String.valueOf(role));
+        Authentication authToken = new UsernamePasswordAuthenticationToken(mail, null, getRoleAuthorities);
+        LOGGER.info("Authorities: " + authToken.getAuthorities().size());
+        SecurityContextHolder.getContext().setAuthentication(authToken);
     }
 }
