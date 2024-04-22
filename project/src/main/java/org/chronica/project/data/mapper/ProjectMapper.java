@@ -9,7 +9,7 @@ import org.chronica.project.data.entity.Project;
 public class ProjectMapper {
     public ProjectDTO mapToDTO(Project entity) {
         ProjectDTO dto = new ProjectDTO();
-        dto.setId(entity.id);
+        dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setGroupId(entity.getGroupId());
         dto.setCreatedDate(entity.getCreatedDate());

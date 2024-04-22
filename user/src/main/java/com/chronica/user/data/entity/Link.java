@@ -4,13 +4,14 @@ import com.chronica.user.logic.util.ConfirmationLinkGenerator;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.chronica.model.ChronicaEntity;
 
 import java.time.LocalDateTime;
 
 @Data
 @Entity
 @NoArgsConstructor
-public class Link {
+public class Link implements ChronicaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
