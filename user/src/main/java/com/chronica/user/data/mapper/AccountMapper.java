@@ -18,12 +18,11 @@ public class AccountMapper {
         dto.setUsername(account.getUsername());
         dto.setMail(account.getMail());
         dto.setPhoneNumber(account.getPhoneNumber());
-        dto.setPassword(account.getPassword());
         dto.setActive(account.isActive());
         dto.setDeprecated(account.isDeprecated());
         dto.setRole(account.getRole());
         dto.setCreatedAt(account.getCreatedAt());
-        dto.setPersonDTO(personMapper.mapToDTO(account.getPerson()));
+        dto.setPerson(personMapper.mapToDTO(account.getPerson()));
         return dto;
     }
 
@@ -33,7 +32,7 @@ public class AccountMapper {
         account.setMail(accountDTO.getMail());
         account.setPhoneNumber(accountDTO.getPhoneNumber());
         account.setPassword(bCryptPasswordEncoder.encode(accountDTO.getPassword()));
-        account.setPerson(personMapper.mapToEntity(accountDTO.getPersonDTO()));
+        account.setPerson(personMapper.mapToEntity(accountDTO.getPerson()));
         return account;
     }
 }

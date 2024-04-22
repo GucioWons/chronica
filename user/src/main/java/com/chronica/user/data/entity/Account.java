@@ -23,7 +23,7 @@ public class Account {
     private Long phoneNumber;
     @Column(nullable = false)
     private String password;
-    private boolean active = true; //For testing switch to true
+    private boolean active = false; //For testing switch to true
     private boolean deprecated = false;
     private Role role = Role.USER;
     private LocalDateTime createdAt = LocalDateTime.now();

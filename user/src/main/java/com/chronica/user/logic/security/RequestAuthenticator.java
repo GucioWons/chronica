@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 @Component
 @RequiredArgsConstructor
@@ -54,8 +54,7 @@ public class RequestAuthenticator extends OncePerRequestFilter {
 
     private void authorizeByRole(Role role, String mail) {
         LOGGER.info("Account role: " + role);
-        Collection<GrantedAuthority> getRoleAuthorities = new ArrayList<>();
-        getRoleAuthorities.add((GrantedAuthority) () -> String.valueOf(role));
+        Collection<GrantedAuthority> getRoleAuthorities = Collections.singleton((GrantedAuthority) () -> String.valueOf(role));
         Authentication authToken = new UsernamePasswordAuthenticationToken(mail, null, getRoleAuthorities);
         LOGGER.info("Authorities: " + authToken.getAuthorities().size());
         SecurityContextHolder.getContext().setAuthentication(authToken);
