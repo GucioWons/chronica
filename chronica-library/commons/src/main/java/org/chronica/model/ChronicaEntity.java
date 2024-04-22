@@ -1,6 +1,6 @@
 package org.chronica.model;
 
-public interface Entity {
+public interface ChronicaEntity {
     Long getId();
     void setId(Long id);
 }

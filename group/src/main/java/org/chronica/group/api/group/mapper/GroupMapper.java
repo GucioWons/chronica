@@ -8,7 +8,7 @@ import org.chronica.group.api.group.entity.Group;
 public class GroupMapper {
     public GroupDTO mapToDTO(Group entity) {
         GroupDTO dto = new GroupDTO();
-        dto.setId(entity.id);
+        dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setDescription(entity.getDescription());
         dto.setCategory(entity.getCategory());

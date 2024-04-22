@@ -4,13 +4,14 @@ import com.chronica.user.data.constant.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.chronica.model.ChronicaEntity;
 
 import java.time.LocalDateTime;
 
 @Entity
 @RequiredArgsConstructor
 @Data
-public class Account {
+public class Account implements ChronicaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
