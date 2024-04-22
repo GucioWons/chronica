@@ -26,6 +26,7 @@ public class SecurityConfiguration {
         http.addFilterBefore(requestAuthenticator, UsernamePasswordAuthenticationFilter.class)
                 .csrf(csrfConfigurer -> csrfConfigurer
                         .ignoringRequestMatchers(mvcMatcherBuilder.pattern(Api.ACCOUNT))
+                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern(Api.LINK))
                 );
 
         http.authorizeHttpRequests(auth -> auth

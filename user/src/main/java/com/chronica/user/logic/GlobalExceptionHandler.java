@@ -1,5 +1,6 @@
 package com.chronica.user.logic;
 
+import com.chronica.user.data.exception.ChronicaException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +18,8 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorDTO> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest webRequest) {
+    @ExceptionHandler(ChronicaException.class)
+    public ResponseEntity<ErrorDTO> handleIllegalArgumentException(ChronicaException exception, WebRequest webRequest) {
         final ErrorDTO errorDto = new ErrorDTO(exception.getMessage(),
                 webRequest.getDescription(false),
                 HttpStatus.BAD_REQUEST,

@@ -19,10 +19,11 @@ public class ChildChainMapper {
     }
 
     private ChildChainDTO mapChildChainToDTO(Chain chain) {
-        return new ChildChainDTO(
-                chain.getId(),
-                chain.getTitle(),
-                chain.getType(),
-                mapChildChainsListToDTO(chain.getChildChains()));
+        ChildChainDTO dto = new ChildChainDTO();
+        dto.setId(chain.getId());
+        dto.setTitle(chain.getTitle());
+        dto.setType(chain.getType());
+        dto.setChildChains(mapChildChainsListToDTO(chain.getChildChains()));
+        return dto;
     }
 }

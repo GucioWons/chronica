@@ -1,16 +1,15 @@
 package com.chronica.user.logic;
 
+import com.chronica.user.data.dto.LinkConfirmationDTO;
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.entity.Link;
+import com.chronica.user.data.mapper.LinkConfirmationMapper;
+import com.chronica.user.data.repository.AccountRepository;
 import com.chronica.user.data.repository.LinkRepository;
-import com.chronica.user.logic.basic.AccountBasicService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import com.chronica.user.data.dto.LinkConfirmationDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,48 +18,40 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LinkService {
     private final LinkRepository linkRepository;
-    private final AccountBasicService accountBasicService;
+    private final AccountRepository accountRepository;
+    private final LinkConfirmationMapper linkConfirmationMapper;
 
     public void createLinkForAccount(Link link) {
         linkRepository.save(link);
     }
 
-    public List<Link> readAll() {
-        return linkRepository.findAll();
-    }
-
     @Transactional
-    public ResponseEntity<LinkConfirmationDTO> confirmAccount(String generatedVal) {
-        final Link link = linkRepository.findLinkEntityByGeneratedCode(generatedVal);
-        final Account account = link.getAccount();
+    public LinkConfirmationDTO confirmAccount(String generatedVal) {
+        Link link = linkRepository.findLinkEntityByGeneratedCode(generatedVal);
+        Account account = link.getAccount();
 
-        account.setIsActive(true);
-        accountBasicService.update(account);
+        account.setActive(true);
+        accountRepository.save(account);
 
         link.setDeprecated(true);
         linkRepository.save(link);
 
-        final LinkConfirmationDTO response = new LinkConfirmationDTO(account.getMail(), true, LocalDateTime.now());
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(response);
+        return linkConfirmationMapper.mapToDTO(account.getMail(), true, LocalDateTime.now());
     }
 
     @Scheduled(fixedRate = 1800000)
     public void checkLinkExpiration() {
-        final List<Link> links = readAll();
-        final LocalDateTime now = LocalDateTime.now();
+        getAll().stream()
+                .filter(link -> link.getGeneratedAt().plusMinutes(link.getExpirationTime()).isBefore(LocalDateTime.now()))
+                .forEach(this::deprecateLink);
+    }
 
-        for (Link link : links) {
-            if (link.getGeneratedAt().plusMinutes(link.getExpirationTime()).isBefore(now)) {
-                final Account account = link.getAccount();
+    private List<Link> getAll() {
+        return linkRepository.findAll();
+    }
 
-                account.setDeprecated(true);
-                link.setDeprecated(true);
-
-                accountBasicService.update(account);
-                linkRepository.save(link);
-            }
-        }
+    private void deprecateLink(Link link) {
+        link.setDeprecated(true);
+        linkRepository.save(link);
     }
 }

@@ -18,10 +18,10 @@ public class ChainMapper {
         Chain entity = new Chain();
         entity.setTitle(dto.getTitle());
         if (dto.getBaseChain() != null) {
-            entity.setBaseChain(getExistingChain(dto.getBaseChain().id()));
+            entity.setBaseChain(getExistingChain(dto.getBaseChain().getId()));
         }
         if (dto.getChildChains() != null) {
-            entity.setChildChains(dto.getChildChains().stream().map(child -> getExistingChain(child.id())).toList());
+            entity.setChildChains(dto.getChildChains().stream().map(child -> getExistingChain(child.getId())).toList());
         }
         entity.setDescription(dto.getDescription());
         entity.setType(dto.getType());
@@ -50,13 +50,13 @@ public class ChainMapper {
             entity.setTitle(dto.getTitle());
         }
         if (dto.getBaseChain() != null) {
-            entity.setBaseChain(getExistingChain(dto.getBaseChain().id()));
+            entity.setBaseChain(getExistingChain(dto.getBaseChain().getId()));
         } else {
             entity.setBaseChain(null);
         }
         if(dto.getChildChains() != null) {
             entity.getChildChains().clear();
-            dto.getChildChains().forEach(chain -> entity.addChild(getExistingChain(chain.id())));
+            dto.getChildChains().forEach(chain -> entity.addChild(getExistingChain(chain.getId())));
         }
         if (dto.getDescription() != null) {
             entity.setDescription(dto.getDescription());
