@@ -1,13 +1,14 @@
 package com.chronica.user.controller;
 
+import com.chronica.user.data.dto.LinkConfirmationDTO;
 import com.chronica.user.logic.LinkService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.chronica.user.data.dto.LinkConfirmationDTO;
 
 @RestController
 @RequestMapping(path = "/api/links")
@@ -17,6 +18,8 @@ public class LinkController {
 
     @GetMapping(value = "/confirmation/{generatedCode}")
     public ResponseEntity<LinkConfirmationDTO> confirmAccount(@PathVariable String generatedCode) {
-        return linkService.confirmAccount(generatedCode);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(linkService.confirmAccount(generatedCode));
     }
 }

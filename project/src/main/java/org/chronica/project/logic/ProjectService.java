@@ -54,13 +54,13 @@ public class ProjectService {
         Project project = projectRepository
                 .findByIdNotDeprecated(projectId).orElseThrow(() -> new NoProjectException("Cant update, project not exist"));
 
-        if (toUpdate.name() != null) {
-            project.setName(toUpdate.name());
+        if (toUpdate.getName() != null) {
+            project.setName(toUpdate.getName());
         }
-        if (toUpdate.groupId() != null) {
-            project.setGroupId(toUpdate.groupId());
+        if (toUpdate.getGroupId() != null) {
+            project.setGroupId(toUpdate.getGroupId());
         }
-        if (toUpdate.lastChangeDate() != null) {
+        if (toUpdate.getLastChangeDate() != null) {
             project.setLastChangeDate(LocalDateTime.now());
         }
 

@@ -5,20 +5,21 @@ import com.chronica.user.data.entity.Person;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersonMapper implements Mapper<Person, PersonDTO> {
-    @Override
-    public PersonDTO mappToDTO(Person person) {
-        return new PersonDTO(person.getId(), person.getName(), person.getLastName(), person.getAge());
+public class PersonMapper {
+    public PersonDTO mapToDTO(Person person) {
+        PersonDTO dto = new PersonDTO();
+        dto.setId(person.getId());
+        dto.setName(person.getName());
+        dto.setLastName(person.getLastName());
+        dto.setAge(person.getAge());
+        return dto;
     }
 
-    @Override
-    public Person mappToEntity(PersonDTO personDTO) {
+    public Person mapToEntity(PersonDTO personDTO) {
         Person person = new Person();
-
-        person.setName(personDTO.name());
-        person.setLastName(personDTO.lastName());
-        person.setAge(person.getAge());
-
+        person.setName(personDTO.getName());
+        person.setLastName(personDTO.getLastName());
+        person.setAge(personDTO.getAge());
         return person;
     }
 }

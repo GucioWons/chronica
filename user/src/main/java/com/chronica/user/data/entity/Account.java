@@ -3,16 +3,15 @@ package com.chronica.user.data.entity;
 import com.chronica.user.data.constant.Role;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import org.chronica.model.ChronicaEntity;
 
 import java.time.LocalDateTime;
 
 @Entity
 @RequiredArgsConstructor
 @Data
-public class Account {
+public class Account implements ChronicaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +24,8 @@ public class Account {
     private Long phoneNumber;
     @Column(nullable = false)
     private String password;
-    private Boolean isActive = true; //For testing switch to true
-    private Boolean deprecated = false;
+    private boolean active = false; //For testing switch to true
+    private boolean deprecated = false;
     private Role role = Role.USER;
     private LocalDateTime createdAt = LocalDateTime.now();
     @OneToOne(cascade = CascadeType.ALL)
