@@ -1,9 +1,11 @@
 package org.chronica.project.data.mapper;
 
 
-import jakarta.enterprise.context.ApplicationScoped;
+
 import org.chronica.project.data.dto.ProjectDTO;
 import org.chronica.project.data.entity.Project;
+
+import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ProjectMapper {

@@ -1,7 +1,6 @@
 package org.chronica.project.logic;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import org.chronica.project.data.dto.ProjectDTO;
 import org.chronica.project.data.entity.Project;
@@ -9,6 +8,8 @@ import org.chronica.project.data.exception.NoProjectException;
 import org.chronica.project.data.mapper.ProjectMapper;
 import org.chronica.project.data.repository.ProjectRepository;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
