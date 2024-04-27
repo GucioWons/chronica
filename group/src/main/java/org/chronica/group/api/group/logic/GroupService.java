@@ -1,7 +1,7 @@
 package org.chronica.group.api.group.logic;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.transaction.Transactional;
+import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.chronica.group.api.group.dto.GroupDTO;
 import org.chronica.group.api.group.entity.Group;

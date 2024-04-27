@@ -1,7 +1,7 @@
 package org.chronica.group.api.group.controller;
 
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import lombok.RequiredArgsConstructor;
 import org.chronica.group.api.group.dto.GroupDTO;
 import org.chronica.group.api.group.logic.GroupService;
