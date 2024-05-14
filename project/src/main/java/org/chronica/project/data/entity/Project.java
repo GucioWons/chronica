@@ -3,6 +3,7 @@ package org.chronica.project.data.entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "my_project")
 public class Project extends PanacheEntity implements ChronicaEntity {
     private String name;
     private Long groupId;

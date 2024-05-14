@@ -6,6 +6,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 import org.chronica.project.data.dto.ProjectDTO;
 import org.chronica.project.data.entity.Project;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 
 @ApplicationScoped
 public class ProjectMapper {
@@ -21,12 +24,10 @@ public class ProjectMapper {
     }
 
     public Project mapToEntity(ProjectDTO dto) {
-        return new Project(
-                dto.getName(),
-                dto.getGroupId(),
-                dto.getCreatedDate(),
-                dto.getLastChangeDate(),
-                dto.isDeprecated()
-        );
+       Project entity = new Project();
+       entity.setName(dto.getName());
+       entity.setGroupId(dto.getGroupId());
+       entity.setCreatedDate(LocalDate.from(LocalDateTime.now()));
+       return entity;
     }
 }
