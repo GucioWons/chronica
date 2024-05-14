@@ -49,7 +49,7 @@ public class GroupClient {
     }
 
     @PutMapping("/{groupId}")
-    public Mono<Object> updateGroup(@PathVariable Long groupId, Object group) {
+    public Mono<Object> updateGroup(@PathVariable Long groupId, @RequestBody Object group) {
         return webClientBuilder.build()
                 .put()
                 .uri(uri + "/{groupId}", groupId)
