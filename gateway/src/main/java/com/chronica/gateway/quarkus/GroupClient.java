@@ -2,8 +2,11 @@ package com.chronica.gateway.quarkus;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/groups")
@@ -17,19 +20,21 @@ public class GroupClient {
     }
 
     @GetMapping()
-    public Mono<Object> getGroups() {
+    public Mono<List<Object>> getGroups() {
         return webClientBuilder.build()
                 .get()
                 .uri(uri)
                 .retrieve()
-                .bodyToMono(Object.class);
+                .bodyToFlux(Object.class)
+                .collectList();
     }
 
     @PostMapping()
-    public Mono<Object> createGroup() {
+    public Mono<Object> createGroup(@RequestBody Object group) {
         return webClientBuilder.build()
-                .get()
+                .post()
                 .uri(uri)
+                .body(BodyInserters.fromValue(group))
                 .retrieve()
                 .bodyToMono(Object.class);
     }
@@ -38,16 +43,17 @@ public class GroupClient {
     public Mono<Object> getGroup(@PathVariable Long groupId) {
         return webClientBuilder.build()
                 .get()
-                .uri(uri + "/{groupId}")
+                .uri(uri + "/{groupId}", groupId)
                 .retrieve()
                 .bodyToMono(Object.class);
     }
 
     @PutMapping("/{groupId}")
-    public Mono<Object> updateGroup(@PathVariable Long groupId) {
+    public Mono<Object> updateGroup(@PathVariable Long groupId, Object group) {
         return webClientBuilder.build()
-                .get()
-                .uri(uri + "/{groupId}")
+                .put()
+                .uri(uri + "/{groupId}", groupId)
+                .body(BodyInserters.fromValue(group))
                 .retrieve()
                 .bodyToMono(Object.class);
     }
@@ -55,8 +61,8 @@ public class GroupClient {
     @DeleteMapping("/{groupId}")
     public Mono<Object> deleteGroup(@PathVariable Long groupId) {
         return webClientBuilder.build()
-                .get()
-                .uri(uri + "/{groupId}")
+                .delete()
+                .uri(uri + "/{groupId}", groupId)
                 .retrieve()
                 .bodyToMono(Object.class);
     }

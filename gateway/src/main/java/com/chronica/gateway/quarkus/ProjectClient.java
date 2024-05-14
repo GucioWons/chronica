@@ -2,8 +2,11 @@ package com.chronica.gateway.quarkus;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/projects")
@@ -17,37 +20,40 @@ public class ProjectClient {
     }
 
     @GetMapping()
-    public Mono<Object> getProjects() {
+    public Mono<List<Object>> getProjects() {
         return webClientBuilder.build()
                 .get()
                 .uri(uri)
                 .retrieve()
-                .bodyToMono(Object.class);
+                .bodyToFlux(Object.class)
+                .collectList();
     }
 
     @PostMapping()
-    public Mono<Object> createProject() {
+    public Mono<Object> createProject(@RequestBody Object project) {
         return webClientBuilder.build()
-                .get()
+                .post()
                 .uri(uri)
+                .body(BodyInserters.fromValue(project))
                 .retrieve()
                 .bodyToMono(Object.class);
     }
 
     @GetMapping("/{projectId}")
-    public Mono<Object> getProject(@PathVariable String projectId) {
+    public Mono<Object> getProject(@PathVariable Long projectId) {
         return webClientBuilder.build()
                 .get()
-                .uri(uri + "/{projectId}")
+                .uri(uri + "/{projectId}", projectId)
                 .retrieve()
                 .bodyToMono(Object.class);
     }
 
     @PutMapping("/{projectId}")
-    public Mono<Object> updateProject(@PathVariable String projectId) {
+    public Mono<Object> updateProject(@PathVariable Long projectId, @RequestBody Object project) {
         return webClientBuilder.build()
-                .get()
-                .uri(uri + "/{projectId}")
+                .put()
+                .uri(uri + "/{projectId}", projectId)
+                .body(BodyInserters.fromValue(project))
                 .retrieve()
                 .bodyToMono(Object.class);
     }
@@ -55,8 +61,8 @@ public class ProjectClient {
     @DeleteMapping("/{projectId}")
     public Mono<Object> deleteProject(@PathVariable Long projectId) {
         return webClientBuilder.build()
-                .get()
-                .uri(uri + "/{projectId}")
+                .delete()
+                .uri(uri + "/{projectId}", projectId)
                 .retrieve()
                 .bodyToMono(Object.class);
     }
@@ -65,7 +71,7 @@ public class ProjectClient {
     public Mono<Object> getProjectByGroupId(@PathVariable Long groupId) {
         return webClientBuilder.build()
                 .get()
-                .uri(uri + "/group/{groupId}")
+                .uri(uri + "/group/{groupId}", groupId)
                 .retrieve()
                 .bodyToMono(Object.class);
     }
