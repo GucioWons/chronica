@@ -1,7 +1,7 @@
 package org.chronica.group.api.group.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

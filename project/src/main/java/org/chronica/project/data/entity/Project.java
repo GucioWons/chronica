@@ -2,13 +2,14 @@ package org.chronica.project.data.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.chronica.model.ChronicaEntity;
 
-import javax.persistence.Entity;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 

@@ -2,9 +2,10 @@ package org.chronica.project.data.repository;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import org.chronica.project.data.entity.Project;
 
-import javax.enterprise.context.ApplicationScoped;
+
 import java.util.List;
 import java.util.Optional;
 

@@ -1,14 +1,13 @@
 package org.chronica.project.controller;
 
 
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import lombok.RequiredArgsConstructor;
 import org.chronica.project.data.dto.ProjectDTO;
 import org.chronica.project.logic.ProjectService;
 import org.jboss.resteasy.reactive.RestResponse;
 
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/api/projects")

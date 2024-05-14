@@ -1,7 +1,7 @@
 package org.chronica.group.api.group.repository;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.chronica.group.api.group.entity.Group;
 
 import java.util.List;
