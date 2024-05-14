@@ -1,5 +1,6 @@
 package com.chronica.gateway.quarkus;
 
+import jakarta.ws.rs.PathParam;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -40,7 +41,7 @@ public class GroupClient {
     }
 
     @GetMapping("/{groupId}")
-    public Mono<Object> getGroup(@PathVariable Long groupId) {
+    public Mono<Object> getGroup(@PathParam("groupId") Long groupId) {
         return webClientBuilder.build()
                 .get()
                 .uri(uri + "/{groupId}", groupId)
@@ -49,7 +50,7 @@ public class GroupClient {
     }
 
     @PutMapping("/{groupId}")
-    public Mono<Object> updateGroup(@PathVariable Long groupId, @RequestBody Object group) {
+    public Mono<Object> updateGroup(@PathParam("groupId") Long groupId, @RequestBody Object group) {
         return webClientBuilder.build()
                 .put()
                 .uri(uri + "/{groupId}", groupId)
@@ -59,7 +60,7 @@ public class GroupClient {
     }
 
     @DeleteMapping("/{groupId}")
-    public Mono<Object> deleteGroup(@PathVariable Long groupId) {
+    public Mono<Object> deleteGroup(@PathParam("groupId") Long groupId) {
         return webClientBuilder.build()
                 .delete()
                 .uri(uri + "/{groupId}", groupId)
