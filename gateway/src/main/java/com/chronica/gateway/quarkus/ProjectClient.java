@@ -21,7 +21,7 @@ public class ProjectClient {
         this.webClientBuilder = webClientBuilder;
     }
 
-    @GetMapping(path = "")
+    @GetMapping(value = "")
     public Mono<List<Object>> getProjects() {
         return webClientBuilder.build()
                 .get()
@@ -31,7 +31,7 @@ public class ProjectClient {
                 .collectList();
     }
 
-    @PostMapping(path = "")
+    @PostMapping(value ="")
     public Mono<Object> createProject(@RequestBody Object project) {
         return webClientBuilder.build()
                 .post()
@@ -41,7 +41,7 @@ public class ProjectClient {
                 .bodyToMono(Object.class);
     }
 
-    @GetMapping(path ="/{projectId}")
+    @GetMapping(value ="/{projectId}")
     public Mono<Object> getProject(@PathParam("projectId") Long projectId) {
         return webClientBuilder.build()
                 .get()
@@ -50,7 +50,7 @@ public class ProjectClient {
                 .bodyToMono(Object.class);
     }
 
-    @PutMapping(path ="/{projectId}")
+    @PutMapping(value ="/{projectId}")
     public Mono<Object> updateProject(@PathParam("projectId") Long projectId, @RequestBody Object project) {
         return webClientBuilder.build()
                 .put()
@@ -60,7 +60,7 @@ public class ProjectClient {
                 .bodyToMono(Object.class);
     }
 
-    @DeleteMapping(path ="/{projectId}")
+    @DeleteMapping(value  ="/{projectId}")
     public Mono<Object> deleteProject(@PathParam("projectId") Long projectId) {
         return webClientBuilder.build()
                 .delete()
@@ -69,8 +69,8 @@ public class ProjectClient {
                 .bodyToMono(Object.class);
     }
 
-    @GetMapping(path = "/group/{groupId}")
-    public Mono<Object> getProjectByGroupId(@PathParam("projectId") Long groupId) {
+    @GetMapping(value ="/group/{groupId}")
+    public Mono<Object> getProjectByGroupId(@PathParam("groupId") Long groupId) {
         return webClientBuilder.build()
                 .get()
                 .uri(uri + "/group/{groupId}", groupId)
