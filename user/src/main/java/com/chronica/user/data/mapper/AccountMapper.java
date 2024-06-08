@@ -3,13 +3,11 @@ package com.chronica.user.data.mapper;
 import com.chronica.user.data.dto.AccountDTO;
 import com.chronica.user.data.entity.Account;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class AccountMapper {
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final PersonMapper personMapper;
 
     public AccountDTO mapToDTO(Account account) {
@@ -31,7 +29,7 @@ public class AccountMapper {
         account.setUsername(accountDTO.getUsername());
         account.setMail(accountDTO.getMail());
         account.setPhoneNumber(accountDTO.getPhoneNumber());
-        account.setPassword(bCryptPasswordEncoder.encode(accountDTO.getPassword()));
+        account.setPassword(accountDTO.getPassword());
         account.setPerson(personMapper.mapToEntity(accountDTO.getPerson()));
         return account;
     }
