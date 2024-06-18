@@ -29,6 +29,11 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
+            <artifactId>quarkus-eureka</artifactId>
+            <groupId>com.github.fmcejudo</groupId>
+            <version>1.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-hibernate-orm-rest-data-panache</artifactId>
         </dependency>
