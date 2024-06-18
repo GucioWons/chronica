@@ -72,14 +72,10 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
-            <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-core</artifactId>
-                <version>${resteasy-core.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-rest-client-jackson</artifactId>
+                <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
                 <version>${quarkus.version}</version>
             </dependency>
             <dependency>
