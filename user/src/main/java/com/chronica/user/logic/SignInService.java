@@ -21,7 +21,7 @@ public class SignInService {
 
     public Optional<SignInHelper> signIn(SignInDTO signInRequest) {
         Account account = accountService.getAccountByMailAndEnabled(signInRequest.mail());
-        if (checkPassword(signInRequest.password(), account.getPassword())) {
+        if (checkPassword(signInRequest.password() + signInRequest.mail(), account.getPassword())) {
             String token = jwtHandler.generateToken(signInRequest.mail());
             return Optional.of(new SignInHelper(token, accountMapper.mapToDTO(account)));
         }
