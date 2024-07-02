@@ -1,7 +1,7 @@
 package org.chronica.group.api.group.mapper;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import org.chronica.group.api.group.dto.GroupDTO;
+import org.chronica.library.group.dto.GroupDTO;
 import org.chronica.group.api.group.entity.Group;
 
 @ApplicationScoped
