@@ -1,4 +1,4 @@
-package org.chronica.model;
+package org.chronica.library.model;
 
 public interface ChronicaEntity {
     Long getId();

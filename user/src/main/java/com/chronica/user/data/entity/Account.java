@@ -4,7 +4,7 @@ import com.chronica.user.data.constant.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.chronica.model.ChronicaEntity;
+import org.chronica.library.model.ChronicaEntity;
 
 import java.time.LocalDateTime;
 

@@ -4,7 +4,7 @@ import com.chronica.snap.api.snap.enumerated.Activity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.dto.EntityDTO;
+import org.chronica.library.dto.EntityDTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

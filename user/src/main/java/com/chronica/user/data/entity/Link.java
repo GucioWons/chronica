@@ -4,7 +4,7 @@ import com.chronica.user.logic.util.ConfirmationLinkGenerator;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.chronica.model.ChronicaEntity;
+import org.chronica.library.model.ChronicaEntity;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,6 @@
 package com.chronica.chain.mapper;
 
-import com.chronica.chain.dto.ChainDTO;
+import org.chronica.library.chain.dto.ChainDTO;
 import com.chronica.chain.entity.Chain;
 import com.chronica.chain.exception.NoChainException;
 import com.chronica.chain.repository.ChainRepository;

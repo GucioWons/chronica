@@ -1,6 +1,6 @@
 package com.chronica.chain.controller;
 
-import com.chronica.chain.dto.ChainDTO;
+import org.chronica.library.chain.dto.ChainDTO;
 import com.chronica.chain.logic.ChainService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

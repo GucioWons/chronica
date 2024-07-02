@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.dto.EntityDTO;
+import org.chronica.library.dto.EntityDTO;
 
 @Getter
 @Setter

@@ -1,10 +1,10 @@
-package com.chronica.chain.dto;
+package org.chronica.library.chain.dto;
 
-import com.chronica.chain.enumerated.ChainType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.dto.EntityDTO;
+import org.chronica.library.chain.enumerated.ChainType;
+import org.chronica.library.dto.EntityDTO;
 
 import java.util.List;
 

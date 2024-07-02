@@ -3,7 +3,7 @@ package org.chronica.group.api.group.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.dto.EntityDTO;
+import org.chronica.library.dto.EntityDTO;
 import org.chronica.group.api.group.enumerated.Category;
 
 @Getter
