@@ -5,16 +5,33 @@ import com.chronica.chain.entity.Chain;
 import com.chronica.chain.exception.NoChainException;
 import com.chronica.chain.repository.ChainRepository;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.commons.mapper.BaseMapper;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ChainMapper {
+public class ChainMapper implements BaseMapper<Chain, ChainDTO> {
     private final BaseChainMapper baseChainMapper;
     private final ChildChainMapper childChainMapper;
     private final ChainRepository chainRepository;
 
-    public Chain mapToEntity(ChainDTO dto) {
+    @Override
+    public ChainDTO mapToDTO(Chain entity) {
+        ChainDTO dto = new ChainDTO();
+        dto.setId(entity.getId());
+        dto.setTitle(entity.getTitle());
+        dto.setBaseChain(baseChainMapper.mapBaseChainToDTO(entity.getBaseChain()));
+        dto.setChildChains(childChainMapper.mapChildChainsListToDTO(entity.getChildChains()));
+        dto.setDescription(entity.getDescription());
+        dto.setType(entity.getType());
+        dto.setEstimation(entity.getEstimation());
+        dto.setTimeLeft(entity.getTimeLeft());
+        dto.setPoints(entity.getPoints());
+        return dto;
+    }
+
+    @Override
+    public Chain mapToNewEntity(ChainDTO dto) {
         Chain entity = new Chain();
         entity.setTitle(dto.getTitle());
         if (dto.getBaseChain() != null) {
@@ -31,20 +48,7 @@ public class ChainMapper {
         return entity;
     }
 
-    public ChainDTO mapToDTO(Chain entity) {
-        ChainDTO dto = new ChainDTO();
-        dto.setId(entity.getId());
-        dto.setTitle(entity.getTitle());
-        dto.setBaseChain(baseChainMapper.mapBaseChainToDTO(entity.getBaseChain()));
-        dto.setChildChains(childChainMapper.mapChildChainsListToDTO(entity.getChildChains()));
-        dto.setDescription(entity.getDescription());
-        dto.setType(entity.getType());
-        dto.setEstimation(entity.getEstimation());
-        dto.setTimeLeft(entity.getTimeLeft());
-        dto.setPoints(entity.getPoints());
-        return dto;
-    }
-
+    @Override
     public Chain mapToUpdateEntity(Chain entity, ChainDTO dto) {
         if (dto.getTitle() != null) {
             entity.setTitle(dto.getTitle());
