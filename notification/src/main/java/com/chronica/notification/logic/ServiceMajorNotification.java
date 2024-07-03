@@ -1,7 +1,7 @@
 package com.chronica.notification.logic;
 
-import com.chronica.notification.data.dto.NotificationDTO;
-import com.chronica.notification.data.dto.record.PaginationAndSortDTO;
+import org.chronica.library.notification.dto.NotificationDTO;
+import org.chronica.library.dto.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.mapper.MapperImplementation;
 import com.chronica.notification.logic.notification.NotificationService;

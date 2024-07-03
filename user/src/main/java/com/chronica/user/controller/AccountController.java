@@ -1,7 +1,7 @@
 package com.chronica.user.controller;
 
-import com.chronica.user.data.dto.AccountDTO;
-import com.chronica.user.data.dto.SignInDTO;
+import org.chronica.library.user.dto.AccountDTO;
+import org.chronica.library.user.dto.SignInDTO;
 import com.chronica.user.logic.AccountService;
 import com.chronica.user.logic.SignInService;
 import com.chronica.user.logic.SignUpService;

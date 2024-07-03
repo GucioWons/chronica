@@ -1,7 +1,7 @@
 package com.chronica.user
 
-import com.chronica.user.data.dto.AccountDTO
-import com.chronica.user.data.dto.SignInDTO
+import org.chronica.library.user.dto.AccountDTO
+import org.chronica.library.user.dto.SignInDTO
 import com.chronica.user.data.entity.Account
 import com.chronica.user.data.exception.WrongCredentialsException
 import com.chronica.user.data.mapper.AccountMapper

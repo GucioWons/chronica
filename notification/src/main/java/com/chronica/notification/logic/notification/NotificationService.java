@@ -1,6 +1,6 @@
 package com.chronica.notification.logic.notification;
 
-import com.chronica.notification.data.dto.record.PaginationAndSortDTO;
+import org.chronica.library.dto.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.exception.NotificationDoesntExistException;
 import com.chronica.notification.data.repository.NotificationRepository;

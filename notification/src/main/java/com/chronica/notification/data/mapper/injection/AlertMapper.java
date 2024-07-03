@@ -1,6 +1,6 @@
 package com.chronica.notification.data.mapper.injection;
 
-import com.chronica.notification.data.dto.AlertDTO;
+import org.chronica.library.notification.dto.AlertDTO;
 import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;

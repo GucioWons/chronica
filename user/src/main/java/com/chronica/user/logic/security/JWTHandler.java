@@ -1,5 +1,6 @@
 package com.chronica.user.logic.security;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -33,9 +34,9 @@ public class JWTHandler {
 
     @Bean
     public void getValuesFromJson() throws IOException {
-        final ObjectMapper objectMapper = new ObjectMapper();
-        final Map map = objectMapper.readValue(new File(filepath), Map.class);
-        this.SECRET = (String) map.get("SECRET");
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, String> map = objectMapper.readValue(new File(filepath), new TypeReference<>() {});
+        this.SECRET = map.get("SECRET");
         LOGGER.info(SECRET);
     }
 
@@ -72,8 +73,7 @@ public class JWTHandler {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts
-                .parserBuilder()
+        return Jwts.parserBuilder()
                 .setSigningKey(getSignKey())
                 .build()
                 .parseClaimsJws(token)
@@ -85,9 +85,7 @@ public class JWTHandler {
     }
 
     public Boolean validateToken(String token, String mail) {
-        final String username = extractUsername(token);
+        String username = extractUsername(token);
         return (username.equals(mail) && !isTokenExpired(token));
     }
-
-
 }

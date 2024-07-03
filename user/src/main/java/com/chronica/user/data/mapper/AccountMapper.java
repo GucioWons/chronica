@@ -1,6 +1,6 @@
 package com.chronica.user.data.mapper;
 
-import com.chronica.user.data.dto.AccountDTO;
+import org.chronica.library.user.dto.AccountDTO;
 import com.chronica.user.data.entity.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

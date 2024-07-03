@@ -1,11 +1,11 @@
 package com.chronica.chain.logic;
 
-import com.chronica.chain.dto.ChainDTO;
 import com.chronica.chain.entity.Chain;
 import com.chronica.chain.exception.NoChainException;
 import com.chronica.chain.mapper.ChainMapper;
 import com.chronica.chain.repository.ChainRepository;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.chain.dto.ChainDTO;
 import org.springframework.stereotype.Service;
 
 @Service

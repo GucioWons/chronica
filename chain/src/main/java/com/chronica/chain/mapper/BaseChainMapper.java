@@ -1,6 +1,6 @@
 package com.chronica.chain.mapper;
 
-import com.chronica.chain.dto.BaseChainDTO;
+import org.chronica.library.chain.dto.BaseChainDTO;
 import com.chronica.chain.entity.Chain;
 import org.springframework.stereotype.Component;
 

@@ -1,10 +1,10 @@
 package com.chronica.user.data.entity;
 
-import com.chronica.user.data.constant.Role;
+import org.chronica.library.user.enumerated.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.chronica.model.ChronicaEntity;
+import org.chronica.library.model.ChronicaEntity;
 
 import java.time.LocalDateTime;
 

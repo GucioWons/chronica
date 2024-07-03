@@ -1,6 +1,6 @@
 package com.chronica.user.logic;
 
-import com.chronica.user.data.dto.AccountDTO;
+import org.chronica.library.user.dto.AccountDTO;
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.entity.Link;
 import com.chronica.user.data.mapper.AccountMapper;
