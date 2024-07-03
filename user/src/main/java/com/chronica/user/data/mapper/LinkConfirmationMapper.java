@@ -1,6 +1,6 @@
 package com.chronica.user.data.mapper;
 
-import com.chronica.user.data.dto.LinkConfirmationDTO;
+import org.chronica.library.user.dto.LinkConfirmationDTO;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package com.chronica.user.logic;
 
-import com.chronica.user.data.dto.SignInDTO;
+import org.chronica.library.user.dto.SignInDTO;
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.mapper.AccountMapper;
 import com.chronica.user.logic.security.JWTHandler;

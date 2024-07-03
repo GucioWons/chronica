@@ -1,4 +1,4 @@
-package org.chronica.library.notification.dto.record;
+package org.chronica.library.dto;
 
 import org.springframework.data.domain.Sort;
 

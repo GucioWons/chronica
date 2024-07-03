@@ -1,6 +1,6 @@
 package com.chronica.user.data.entity;
 
-import com.chronica.user.data.constant.Role;
+import org.chronica.library.user.enumerated.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

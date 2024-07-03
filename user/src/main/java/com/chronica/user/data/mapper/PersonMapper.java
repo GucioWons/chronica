@@ -1,6 +1,6 @@
 package com.chronica.user.data.mapper;
 
-import com.chronica.user.data.dto.PersonDTO;
+import org.chronica.library.user.dto.PersonDTO;
 import com.chronica.user.data.entity.Person;
 import org.springframework.stereotype.Component;
 

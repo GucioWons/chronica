@@ -1,11 +1,11 @@
-package com.chronica.user.data.dto;
+package org.chronica.library.user.dto;
 
-import com.chronica.user.data.constant.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.chronica.library.dto.EntityDTO;
+import org.chronica.library.user.enumerated.Role;
 
 import java.time.LocalDateTime;
 

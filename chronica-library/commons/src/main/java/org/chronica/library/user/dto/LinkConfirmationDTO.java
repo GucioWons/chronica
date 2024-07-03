@@ -1,4 +1,4 @@
-package com.chronica.user.data.dto;
+package org.chronica.library.user.dto;
 
 import java.time.LocalDateTime;
 
