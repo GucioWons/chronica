@@ -1,7 +1,7 @@
 package com.chronica.notification.controller;
 
-import com.chronica.notification.data.dto.NotificationDTO;
-import com.chronica.notification.data.dto.record.PaginationAndSortDTO;
+import org.chronica.library.notification.dto.NotificationDTO;
+import org.chronica.library.notification.dto.record.PaginationAndSortDTO;
 import com.chronica.notification.logic.ServiceMajorNotification;
 
 import lombok.RequiredArgsConstructor;

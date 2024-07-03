@@ -1,6 +1,6 @@
 package com.chronica.notification.data.entity;
 
-import com.chronica.notification.data.constant.Priority;
+import org.chronica.library.notification.enumerated.Priority;
 import jakarta.persistence.Entity;
 import lombok.*;
 

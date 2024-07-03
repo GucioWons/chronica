@@ -1,4 +1,4 @@
-package com.chronica.notification.data.constant;
+package org.chronica.library.notification.enumerated;
 
 import lombok.Getter;
 

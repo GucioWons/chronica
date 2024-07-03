@@ -1,6 +1,6 @@
 package com.chronica.notification.data.mapper.injection;
 
-import com.chronica.notification.data.dto.InvitationDTO;
+import org.chronica.library.notification.dto.InvitationDTO;
 import com.chronica.notification.data.entity.Invitation;
 import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;

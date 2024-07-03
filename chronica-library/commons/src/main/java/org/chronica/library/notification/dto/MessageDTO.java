@@ -1,4 +1,4 @@
-package com.chronica.notification.data.dto;
+package org.chronica.library.notification.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
