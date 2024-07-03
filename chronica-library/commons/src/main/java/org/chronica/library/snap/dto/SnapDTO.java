@@ -1,10 +1,10 @@
-package com.chronica.snap.api.snap.dto;
+package org.chronica.library.snap.dto;
 
-import com.chronica.snap.api.snap.enumerated.Activity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.chronica.library.dto.EntityDTO;
+import org.chronica.library.snap.enumerated.Activity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

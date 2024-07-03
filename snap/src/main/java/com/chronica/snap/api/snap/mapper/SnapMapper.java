@@ -1,6 +1,6 @@
 package com.chronica.snap.api.snap.mapper;
 
-import com.chronica.snap.api.snap.dto.SnapDTO;
+import org.chronica.library.snap.dto.SnapDTO;
 import com.chronica.snap.api.snap.entity.Snap;
 import org.springframework.stereotype.Component;
 
