@@ -19,7 +19,7 @@ public class GroupService {
 
     @Transactional
     public GroupDTO createGroup(GroupDTO toSave) {
-        Group group = groupMapper.mapToEntity(toSave);
+        Group group = groupMapper.mapToNewEntity(toSave);
         group.persist();
         return groupMapper.mapToDTO(group);
     }

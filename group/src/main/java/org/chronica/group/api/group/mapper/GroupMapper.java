@@ -1,11 +1,13 @@
 package org.chronica.group.api.group.mapper;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import org.chronica.library.commons.mapper.BaseMapper;
 import org.chronica.library.group.dto.GroupDTO;
 import org.chronica.group.api.group.entity.Group;
 
 @ApplicationScoped
-public class GroupMapper {
+public class GroupMapper implements BaseMapper<Group, GroupDTO> {
+    @Override
     public GroupDTO mapToDTO(Group entity) {
         GroupDTO dto = new GroupDTO();
         dto.setId(entity.getId());
@@ -17,7 +19,8 @@ public class GroupMapper {
         return dto;
     }
 
-    public Group mapToEntity(GroupDTO dto) {
+    @Override
+    public Group mapToNewEntity(GroupDTO dto) {
         Group entity = new Group();
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
@@ -26,19 +29,20 @@ public class GroupMapper {
         return entity;
     }
 
-    public Group mapToUpdateEntity(Group entity, GroupDTO dto) {
+    @Override
+    public Group mapToUpdateEntity(Group toUpdate, GroupDTO dto) {
         if (dto.getName() != null) {
-            entity.setName(dto.getName());
+            toUpdate.setName(dto.getName());
         }
         if (dto.getDescription() != null) {
-            entity.setDescription(dto.getDescription());
+            toUpdate.setDescription(dto.getDescription());
         }
         if(dto.getCategory() != null) {
-            entity.setCategory(dto.getCategory());
+            toUpdate.setCategory(dto.getCategory());
         }
         if(dto.getOwnerId() != null) {
-            entity.setOwnerId(dto.getOwnerId());
+            toUpdate.setOwnerId(dto.getOwnerId());
         }
-        return entity;
+        return toUpdate;
     }
 }
