@@ -3,7 +3,7 @@ package org.chronica.project.controller;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import lombok.RequiredArgsConstructor;
-import org.chronica.project.data.dto.ProjectDTO;
+import org.chronica.library.project.dto.ProjectDTO;
 import org.chronica.project.logic.ProjectService;
 import org.jboss.resteasy.reactive.RestResponse;
 

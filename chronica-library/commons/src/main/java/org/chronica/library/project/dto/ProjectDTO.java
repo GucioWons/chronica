@@ -1,4 +1,4 @@
-package org.chronica.project.data.dto;
+package org.chronica.library.project.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
