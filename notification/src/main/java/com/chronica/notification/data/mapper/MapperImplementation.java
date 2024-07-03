@@ -22,7 +22,7 @@ public class MapperImplementation {
     private final MessageMapper messageMapper;
     private final AlertMapper alertMapper;
 
-    public NotificationDTO mappToDto(Notification notification) {
+    public NotificationDTO mapToDTO(Notification notification) {
         if(notification instanceof Alert)
             return alertMapper.mapToDTO((Alert) notification);
 
@@ -36,7 +36,7 @@ public class MapperImplementation {
     }
 
 
-    public Notification mappToEntity(NotificationDTO dto) {
+    public Notification mapToNewEntity(NotificationDTO dto) {
         if(dto instanceof AlertDTO)
             return alertMapper.mapToNewEntity((AlertDTO) dto);
 
