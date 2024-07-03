@@ -1,4 +1,4 @@
-package org.chronica.library.dto;
+package org.chronica.library.commons.dto;
 
 import org.springframework.data.domain.Sort;
 

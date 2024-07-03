@@ -3,7 +3,7 @@ package org.chronica.library.project.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.library.dto.EntityDTO;
+import org.chronica.library.commons.dto.EntityDTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

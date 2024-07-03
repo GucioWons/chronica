@@ -1,7 +1,7 @@
 package com.chronica.notification.logic.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.chronica.library.dto.ErrorDTO;
+import org.chronica.library.commons.dto.ErrorDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

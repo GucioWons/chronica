@@ -3,7 +3,7 @@ package org.chronica.library.snap.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.library.dto.EntityDTO;
+import org.chronica.library.commons.dto.EntityDTO;
 import org.chronica.library.snap.enumerated.Activity;
 
 import java.time.LocalDate;
