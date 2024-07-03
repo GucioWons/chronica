@@ -21,7 +21,7 @@ public class SignUpService {
 
     @Transactional
     public AccountDTO signUp(AccountDTO dto) {
-        Account account = accountMapper.mapToEntity(dto);
+        Account account = accountMapper.mapToNewEntity(dto);
         account.setPassword(bCryptPasswordEncoder.encode(dto.getPassword() + dto.getMail()));
         accountRepository.save(account);
 
