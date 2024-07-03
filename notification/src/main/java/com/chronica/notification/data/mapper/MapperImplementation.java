@@ -24,13 +24,13 @@ public class MapperImplementation {
 
     public NotificationDTO mappToDto(Notification notification) {
         if(notification instanceof Alert)
-            return alertMapper.mappToDto((Alert) notification);
+            return alertMapper.mapToDTO((Alert) notification);
 
         else if(notification instanceof Message)
-            return messageMapper.mappToDto((Message) notification);
+            return messageMapper.mapToDTO((Message) notification);
 
         else if(notification instanceof Invitation)
-            return invitationMapper.mappToDto((Invitation) notification);
+            return invitationMapper.mapToDTO((Invitation) notification);
 
         throw new WrongMapperException("Its something wrong with entity/mapper couldnt work");
     }
@@ -38,13 +38,13 @@ public class MapperImplementation {
 
     public Notification mappToEntity(NotificationDTO dto) {
         if(dto instanceof AlertDTO)
-            return alertMapper.mappToEntity((AlertDTO) dto);
+            return alertMapper.mapToNewEntity((AlertDTO) dto);
 
         else if(dto instanceof MessageDTO)
-            return messageMapper.mappToEntity((MessageDTO) dto);
+            return messageMapper.mapToNewEntity((MessageDTO) dto);
 
         else if(dto instanceof InvitationDTO)
-            return invitationMapper.mappToEntity((InvitationDTO) dto);
+            return invitationMapper.mapToNewEntity((InvitationDTO) dto);
 
         throw new WrongMapperException("Its something wrong with entity/mapper couldnt work");
     }

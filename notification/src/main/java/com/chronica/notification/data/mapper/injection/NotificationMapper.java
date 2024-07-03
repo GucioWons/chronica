@@ -6,9 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class NotificationMapper {
-
-    public void mappToDto(NotificationDTO dto,Notification entity) {
-
+    public void mapToDTO(NotificationDTO dto, Notification entity) {
         dto.setId(entity.getId());
         dto.setTitle(entity.getTitle());
         dto.setContent(entity.getContent());
@@ -17,11 +15,9 @@ public class NotificationMapper {
         dto.setReceiverId(entity.getReceiverId());
         dto.setDeprecated(entity.getDeprecated());
         dto.setSeen(entity.getSeen());
-
     }
 
-    public void mappToEntity(Notification entity, NotificationDTO dto) {
-
+    public void mapToNewEntity(Notification entity, NotificationDTO dto) {
         entity.setTitle(dto.getTitle());
         entity.setContent(dto.getContent());
         entity.setCreatedAt(dto.getCreatedAt());
