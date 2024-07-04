@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "my_project")
 public class Project extends PanacheEntity implements ChronicaEntity {
     private String name;
@@ -26,6 +27,8 @@ public class Project extends PanacheEntity implements ChronicaEntity {
     private LocalDate createdDate;
     private LocalDateTime lastChangeDate;
     private boolean deprecated = false;
+
+
 
     @Override
     public Long getId() {
