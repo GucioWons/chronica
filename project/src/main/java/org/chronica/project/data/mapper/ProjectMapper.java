@@ -24,13 +24,13 @@ public class ProjectMapper implements BaseMapper<Project, ProjectDTO> {
 
     @Override
     public Project mapToNewEntity(ProjectDTO dto) {
-        return new Project(
-                dto.getName(),
-                dto.getGroupId(),
-                dto.getCreatedDate(),
-                dto.getLastChangeDate(),
-                dto.isDeprecated()
-        );
+        Project project = new Project();
+        project.setName(dto.getName());
+        project.setGroupId(dto.getGroupId());
+        project.setCreatedDate(dto.getCreatedDate());
+        project.setLastChangeDate(dto.getLastChangeDate());
+        project.setDeprecated(dto.isDeprecated());
+        return project;
     }
 
     @Override

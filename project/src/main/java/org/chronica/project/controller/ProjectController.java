@@ -1,5 +1,6 @@
 package org.chronica.project.controller;
 
+
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import lombok.RequiredArgsConstructor;
