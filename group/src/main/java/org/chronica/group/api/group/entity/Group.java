@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.group.api.group.enumerated.Category;
-import org.chronica.model.ChronicaEntity;
+import org.chronica.library.group.enumerated.Category;
+import org.chronica.library.model.ChronicaEntity;
 
 @Entity
 @Getter

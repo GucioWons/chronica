@@ -1,6 +1,6 @@
 package com.chronica.user.logic;
 
-import com.chronica.user.data.dto.AccountDTO;
+import org.chronica.library.user.dto.AccountDTO;
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.entity.Link;
 import com.chronica.user.data.mapper.AccountMapper;
@@ -21,7 +21,7 @@ public class SignUpService {
 
     @Transactional
     public AccountDTO signUp(AccountDTO dto) {
-        Account account = accountMapper.mapToEntity(dto);
+        Account account = accountMapper.mapToNewEntity(dto);
         account.setPassword(bCryptPasswordEncoder.encode(dto.getPassword() + dto.getMail()));
         accountRepository.save(account);
 

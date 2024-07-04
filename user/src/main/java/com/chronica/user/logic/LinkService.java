@@ -1,6 +1,6 @@
 package com.chronica.user.logic;
 
-import com.chronica.user.data.dto.LinkConfirmationDTO;
+import org.chronica.library.user.dto.LinkConfirmationDTO;
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.entity.Link;
 import com.chronica.user.data.mapper.LinkConfirmationMapper;

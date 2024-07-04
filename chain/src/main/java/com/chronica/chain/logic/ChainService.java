@@ -1,11 +1,11 @@
 package com.chronica.chain.logic;
 
-import com.chronica.chain.dto.ChainDTO;
 import com.chronica.chain.entity.Chain;
 import com.chronica.chain.exception.NoChainException;
 import com.chronica.chain.mapper.ChainMapper;
 import com.chronica.chain.repository.ChainRepository;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.chain.dto.ChainDTO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,7 +16,7 @@ public class ChainService {
     private final ChainInheritanceVerifier chainInheritanceVerifier;
 
     public ChainDTO createChain(ChainDTO chain) {
-        Chain toSave = chainMapper.mapToEntity(chain);
+        Chain toSave = chainMapper.mapToNewEntity(chain);
         chainInheritanceVerifier.verifyInheritance(toSave);
         return chainMapper.mapToDTO(
                 chainRepository.save(toSave));

@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import com.chronica.user.data.dto.ErrorDTO;
+import org.chronica.library.commons.dto.ErrorDTO;
 
 import java.time.LocalDateTime;
 
@@ -20,9 +20,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ChronicaException.class)
     public ResponseEntity<ErrorDTO> handleIllegalArgumentException(ChronicaException exception, WebRequest webRequest) {
-        final ErrorDTO errorDto = new ErrorDTO(exception.getMessage(),
+        ErrorDTO errorDto = new ErrorDTO(exception.getMessage(),
                 webRequest.getDescription(false),
-                HttpStatus.BAD_REQUEST,
                 LocalDateTime.now());
         LOGGER.error(exception.getMessage() + " at " + errorDto.at());
 

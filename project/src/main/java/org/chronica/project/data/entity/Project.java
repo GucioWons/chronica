@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.model.ChronicaEntity;
+import org.chronica.library.model.ChronicaEntity;
 
 
 import java.time.LocalDate;

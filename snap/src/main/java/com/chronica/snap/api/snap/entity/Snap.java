@@ -1,11 +1,11 @@
 package com.chronica.snap.api.snap.entity;
 
-import com.chronica.snap.api.snap.enumerated.Activity;
+import org.chronica.library.snap.enumerated.Activity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.model.ChronicaEntity;
+import org.chronica.library.model.ChronicaEntity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

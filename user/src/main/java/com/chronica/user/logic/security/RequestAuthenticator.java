@@ -1,6 +1,6 @@
 package com.chronica.user.logic.security;
 
-import com.chronica.user.data.constant.Role;
+import org.chronica.library.user.enumerated.Role;
 import com.chronica.user.data.exception.AccountDoesntExistException;
 import com.chronica.user.data.repository.AccountRepository;
 import jakarta.servlet.FilterChain;

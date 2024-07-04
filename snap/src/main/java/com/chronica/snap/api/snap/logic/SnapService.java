@@ -1,7 +1,7 @@
 package com.chronica.snap.api.snap.logic;
 
 import com.chronica.snap.api.snap.data.SnapRepository;
-import com.chronica.snap.api.snap.dto.SnapDTO;
+import org.chronica.library.snap.dto.SnapDTO;
 import com.chronica.snap.api.snap.entity.Snap;
 import com.chronica.snap.api.snap.exception.NoSnapException;
 import com.chronica.snap.api.snap.mapper.SnapMapper;
@@ -23,13 +23,15 @@ public class SnapService {
     }
 
     public SnapDTO createSnap(SnapDTO snap) {
-        return snapMapper.mapToDTO(snapRepository.save(snapMapper.mapToEntity(snap)));
+        return snapMapper.mapToDTO(snapRepository.save(snapMapper.mapToNewEntity(snap)));
     }
 
-    public SnapDTO updateSnap(Long id, SnapDTO snap) {
-        Snap toUpdate = snapMapper.mapToEntity(snap);
-        toUpdate.setId(id);
-        return snapMapper.mapToDTO(snapRepository.save(toUpdate));
+    public SnapDTO updateSnap(Long id, SnapDTO dto) {
+        return snapMapper.mapToDTO(snapRepository
+                .save(snapMapper
+                        .mapToUpdateEntity(snapRepository
+                                .findById(id)
+                                .orElseThrow(() -> new NoSnapException("Cannot find Snap with id " + id)), dto)));
     }
 
     public String deprecateSnap(Long id) {

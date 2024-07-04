@@ -3,7 +3,7 @@ package org.chronica.group.api.group.logic;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.chronica.group.api.group.dto.GroupDTO;
+import org.chronica.library.group.dto.GroupDTO;
 import org.chronica.group.api.group.entity.Group;
 import org.chronica.group.api.group.exception.NoGroupException;
 import org.chronica.group.api.group.mapper.GroupMapper;
@@ -19,7 +19,7 @@ public class GroupService {
 
     @Transactional
     public GroupDTO createGroup(GroupDTO toSave) {
-        Group group = groupMapper.mapToEntity(toSave);
+        Group group = groupMapper.mapToNewEntity(toSave);
         group.persist();
         return groupMapper.mapToDTO(group);
     }
