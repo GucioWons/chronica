@@ -1,33 +1,37 @@
 package com.chronica.notification.data.mapper.injection;
 
+import org.chronica.library.commons.exception.NotImplementedException;
+import org.chronica.library.commons.mapper.BaseMapper;
 import org.chronica.library.notification.dto.MessageDTO;
 import com.chronica.notification.data.entity.Message;
-import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MessageMapper implements Mapper<MessageDTO,Message> {
-
+public class MessageMapper implements BaseMapper<Message, MessageDTO> {
     private final NotificationMapper notificationMapper;
 
     public MessageMapper(NotificationMapper notificationMapper) {
         this.notificationMapper = notificationMapper;
     }
 
-    public MessageDTO mappToDto(Message message) {
+    @Override
+    public MessageDTO mapToDTO(Message message) {
         MessageDTO dto = new MessageDTO();
-       notificationMapper.mappToDto(dto,message);
-      dto.setMessageFromUserId(message.getMessageFromUserId());
-      return dto;
+        notificationMapper.mapToDTO(dto, message);
+        dto.setMessageFromUserId(message.getMessageFromUserId());
+        return dto;
     }
 
-    public Message mappToEntity(MessageDTO messageDTO) {
+    @Override
+    public Message mapToNewEntity(MessageDTO messageDTO) {
         Message message = new Message();
-
-        notificationMapper.mappToEntity(message,messageDTO);
-
+        notificationMapper.mapToNewEntity(message,messageDTO);
         message.setMessageFromUserId(messageDTO.getMessageFromUserId());
-
         return message;
+    }
+
+    @Override
+    public Message mapToUpdateEntity(Message toUpdate, MessageDTO dto) {
+        throw new NotImplementedException();
     }
 }

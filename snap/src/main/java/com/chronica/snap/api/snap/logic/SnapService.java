@@ -23,13 +23,15 @@ public class SnapService {
     }
 
     public SnapDTO createSnap(SnapDTO snap) {
-        return snapMapper.mapToDTO(snapRepository.save(snapMapper.mapToEntity(snap)));
+        return snapMapper.mapToDTO(snapRepository.save(snapMapper.mapToNewEntity(snap)));
     }
 
-    public SnapDTO updateSnap(Long id, SnapDTO snap) {
-        Snap toUpdate = snapMapper.mapToEntity(snap);
-        toUpdate.setId(id);
-        return snapMapper.mapToDTO(snapRepository.save(toUpdate));
+    public SnapDTO updateSnap(Long id, SnapDTO dto) {
+        return snapMapper.mapToDTO(snapRepository
+                .save(snapMapper
+                        .mapToUpdateEntity(snapRepository
+                                .findById(id)
+                                .orElseThrow(() -> new NoSnapException("Cannot find Snap with id " + id)), dto)));
     }
 
     public String deprecateSnap(Long id) {

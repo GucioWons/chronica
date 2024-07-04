@@ -9,7 +9,6 @@ import org.chronica.project.data.exception.NoProjectException;
 import org.chronica.project.data.mapper.ProjectMapper;
 import org.chronica.project.data.repository.ProjectRepository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -21,7 +20,7 @@ public class ProjectService {
 
     @Transactional
     public ProjectDTO createProject(ProjectDTO toSave) {
-        Project project = projectMapper.mapToEntity(toSave);
+        Project project = projectMapper.mapToNewEntity(toSave);
         project.persist();
         return projectMapper.mapToDTO(project);
     }
@@ -50,20 +49,10 @@ public class ProjectService {
     }
 
     @Transactional
-    public ProjectDTO updateProject(Long projectId, ProjectDTO toUpdate) {
-        Project project = projectRepository
-                .findByIdNotDeprecated(projectId).orElseThrow(() -> new NoProjectException("Cant update, project not exist"));
-
-        if (toUpdate.getName() != null) {
-            project.setName(toUpdate.getName());
-        }
-        if (toUpdate.getGroupId() != null) {
-            project.setGroupId(toUpdate.getGroupId());
-        }
-        if (toUpdate.getLastChangeDate() != null) {
-            project.setLastChangeDate(LocalDateTime.now());
-        }
-
+    public ProjectDTO updateProject(Long projectId, ProjectDTO dto) {
+        Project project = projectMapper.mapToUpdateEntity(projectRepository
+                .findByIdNotDeprecated(projectId)
+                .orElseThrow(() -> new NoProjectException("Cant update, project not exist")), dto);
         project.persist();
         return projectMapper.mapToDTO(project);
     }

@@ -1,7 +1,7 @@
 package com.chronica.notification.logic;
 
 import org.chronica.library.notification.dto.NotificationDTO;
-import org.chronica.library.dto.PaginationAndSortDTO;
+import org.chronica.library.commons.dto.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.mapper.MapperImplementation;
 import com.chronica.notification.logic.notification.NotificationService;
@@ -27,12 +27,11 @@ public class ServiceMajorNotification {
 
     @Transactional
     public ResponseEntity<NotificationDTO> createNotification(NotificationDTO request){
-
-        Notification notification = mapperImplementation.mappToEntity(request);
+        Notification notification = mapperImplementation.mapToNewEntity(request);
 
         notificationService.save(notification);
 
-        NotificationDTO response = mapperImplementation.mappToDto(notification);
+        NotificationDTO response = mapperImplementation.mapToDTO(notification);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -43,13 +42,13 @@ public class ServiceMajorNotification {
     public ResponseEntity<NotificationDTO> updateNotification(NotificationDTO request, Long id){
         Notification notification = notificationService.findById(id);
 
-        Notification updated = mapperImplementation.mappToEntity(request);
+        Notification updated = mapperImplementation.mapToNewEntity(request);
 
         propertyTransfer.copyNonNullProperties(updated,notification);
 
         notificationService.save(notification);
 
-        NotificationDTO response = mapperImplementation.mappToDto(notification);
+        NotificationDTO response = mapperImplementation.mapToDTO(notification);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -59,7 +58,7 @@ public class ServiceMajorNotification {
     public ResponseEntity<NotificationDTO> readNotification(Long id){
         Notification notification = notificationService.findById(id);
 
-        NotificationDTO response = mapperImplementation.mappToDto(notification);
+        NotificationDTO response = mapperImplementation.mapToDTO(notification);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -70,7 +69,7 @@ public class ServiceMajorNotification {
         Page<Notification> notices = notificationService.findAll(request);
 
         List<NotificationDTO> response = notices.stream()
-                .map(mapperImplementation::mappToDto)
+                .map(mapperImplementation::mapToDTO)
                 .toList();
 
         return ResponseEntity

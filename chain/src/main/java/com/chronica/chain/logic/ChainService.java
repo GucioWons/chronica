@@ -16,7 +16,7 @@ public class ChainService {
     private final ChainInheritanceVerifier chainInheritanceVerifier;
 
     public ChainDTO createChain(ChainDTO chain) {
-        Chain toSave = chainMapper.mapToEntity(chain);
+        Chain toSave = chainMapper.mapToNewEntity(chain);
         chainInheritanceVerifier.verifyInheritance(toSave);
         return chainMapper.mapToDTO(
                 chainRepository.save(toSave));

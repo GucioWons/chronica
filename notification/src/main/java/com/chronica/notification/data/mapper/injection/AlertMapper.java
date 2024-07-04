@@ -1,12 +1,13 @@
 package com.chronica.notification.data.mapper.injection;
 
+import org.chronica.library.commons.exception.NotImplementedException;
+import org.chronica.library.commons.mapper.BaseMapper;
 import org.chronica.library.notification.dto.AlertDTO;
 import com.chronica.notification.data.entity.Alert;
-import com.chronica.notification.data.mapper.abstraction.Mapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AlertMapper implements Mapper<AlertDTO,Alert> {
+public class AlertMapper implements BaseMapper<Alert, AlertDTO> {
     private final NotificationMapper notificationMapper;
 
     public AlertMapper(NotificationMapper notificationMapper) {
@@ -14,23 +15,23 @@ public class AlertMapper implements Mapper<AlertDTO,Alert> {
     }
 
     @Override
-    public AlertDTO mappToDto(Alert alert) {
+    public AlertDTO mapToDTO(Alert alert) {
         AlertDTO dto = new AlertDTO();
-
-        notificationMapper.mappToDto(dto, alert);
-
+        notificationMapper.mapToDTO(dto, alert);
         dto.setPriority(alert.getPriority());
         return dto;
     }
 
     @Override
-    public Alert mappToEntity(AlertDTO alertDTO) {
+    public Alert mapToNewEntity(AlertDTO dto) {
         Alert alert = new Alert();
-
-        notificationMapper.mappToEntity(alert, alertDTO);
-
-        alert.setPriority(alertDTO.getPriority());
-
+        notificationMapper.mapToNewEntity(alert, dto);
+        alert.setPriority(dto.getPriority());
         return alert;
+    }
+
+    @Override
+    public Alert mapToUpdateEntity(Alert toUpdate, AlertDTO dto) {
+        throw new NotImplementedException();
     }
 }
