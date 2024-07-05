@@ -1,6 +1,8 @@
 package org.chronica.project.logic;
 
+import io.quarkus.eureka.client.EurekaClient;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.project.dto.ProjectDTO;
@@ -17,6 +19,7 @@ import java.util.List;
 public class ProjectService {
     private final ProjectRepository projectRepository;
     private final ProjectMapper projectMapper;
+
 
     @Transactional
     public ProjectDTO createProject(ProjectDTO toSave) {
