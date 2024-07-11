@@ -1,34 +1,21 @@
 package com.chronica.user.data.mapper;
 
+import com.chronica.user.data.entity.Person;
 import org.chronica.library.commons.exception.NotImplementedException;
 import org.chronica.library.commons.mapper.BaseMapper;
 import org.chronica.library.user.dto.PersonDTO;
-import com.chronica.user.data.entity.Person;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-@Component
-public class PersonMapper implements BaseMapper<Person, PersonDTO> {
-    @Override
-    public PersonDTO mapToDTO(Person person) {
-        PersonDTO dto = new PersonDTO();
-        dto.setId(person.getId());
-        dto.setName(person.getName());
-        dto.setLastName(person.getLastName());
-        dto.setAge(person.getAge());
-        return dto;
-    }
+@Mapper(componentModel = "spring")
+public abstract class PersonMapper implements BaseMapper<Person, PersonDTO> {
+    public abstract PersonDTO mapToDTO(Person person);
 
-    @Override
-    public Person mapToNewEntity(PersonDTO personDTO) {
-        Person person = new Person();
-        person.setName(personDTO.getName());
-        person.setLastName(personDTO.getLastName());
-        person.setAge(personDTO.getAge());
-        return person;
-    }
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "account", ignore = true)
+    public abstract Person mapToNewEntity(PersonDTO personDTO);
 
     //TODO updating person
-    @Override
     public Person mapToUpdateEntity(Person toUpdate, PersonDTO dto) {
         throw new NotImplementedException();
     }
