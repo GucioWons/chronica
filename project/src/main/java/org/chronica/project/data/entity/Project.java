@@ -14,7 +14,6 @@ import org.chronica.library.model.ChronicaEntity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
 @Entity
 @Getter
 @Setter
@@ -27,8 +26,6 @@ public class Project extends PanacheEntity implements ChronicaEntity {
     private LocalDate createdDate;
     private LocalDateTime lastChangeDate;
     private boolean deprecated = false;
-
-
 
     @Override
     public Long getId() {
