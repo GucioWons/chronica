@@ -36,9 +36,9 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
-            <artifactId>quarkus-eureka</artifactId>
-            <groupId>com.github.fmcejudo</groupId>
-            <version>1.0.1-SNAPSHOT</version>
+            <groupId>com.github.BenzoEnzo</groupId>
+            <artifactId>quarkus-eureka-chronica</artifactId>
+            <version>quarkus-eureka-parent-0.0.5</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -163,4 +163,10 @@
             </properties>
         </profile>
     </profiles>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 </project>
