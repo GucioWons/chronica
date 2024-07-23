@@ -1,5 +1,5 @@
 interface SubmitButtonProps {
-    onSubmit: any,
+    onSubmit: () => void,
     text: string,
 }
 
@@ -8,7 +8,10 @@ function SubmitButton(props: SubmitButtonProps) {
 
     return (
         <div>
-            <button>
+            <button
+                onSubmit={onSubmit}
+                style={{width: "100%"}}
+            >
                 {text}
             </button>
         </div>

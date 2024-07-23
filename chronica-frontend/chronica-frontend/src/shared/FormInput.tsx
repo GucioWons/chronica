@@ -26,7 +26,10 @@ function FormInput(props: FormInputProps) {
                     type={type ?? "string"}
                     {...register(id)}
                     id={id}
-                    required
+                    required={required}
+                    style={{
+                        width: "100%"
+                    }}
                 />
             </div>
         </div>

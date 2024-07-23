@@ -1,3 +1,4 @@
+import React, { useCallback } from 'react';
 import {useForm} from "react-hook-form";
 import FormInput from "../../shared/FormInput";
 import SubmitButton from "../../shared/SubmitButton";
@@ -10,8 +11,12 @@ interface LoginDTO {
 function LoginForm() {
     const { register, handleSubmit } = useForm<LoginDTO>();
 
+    const onSubmit = useCallback(() => {
+        console.log(register)
+    }, [register]);
+
     return (
-        <div className="auth-card">
+        <div className="auth-card" style={{marginRight: "40px"}}>
             <form>
                 <FormInput
                     label={"Email"}
@@ -26,7 +31,7 @@ function LoginForm() {
                     type="password"
                     required
                 />
-                <SubmitButton onSubmit={ "" } text={"Sign in"} />
+                <SubmitButton onSubmit={onSubmit} text={"Sign in"} />
             </form>
         </div>
     )

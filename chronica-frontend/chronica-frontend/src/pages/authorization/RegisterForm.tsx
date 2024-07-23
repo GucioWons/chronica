@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import {useForm} from "react-hook-form";
 import FormInput from "../../shared/FormInput";
 import SubmitButton from "../../shared/SubmitButton";
@@ -19,8 +20,12 @@ interface RegisterDTO {
 function RegisterForm() {
     const { register, handleSubmit } = useForm<RegisterDTO>();
 
+    const onSubmit = useCallback(() => {
+        console.log(register)
+    }, [register]);
+
     return (
-        <div className="auth-card">
+        <div className="auth-card" style={{marginLeft: "40px"}}>
             <form>
                 <FormInput 
                     label="Username" 
@@ -67,7 +72,7 @@ function RegisterForm() {
                     required
                     type="number"
                 />
-                <SubmitButton onSubmit={""} text={"Sign up"} />
+                <SubmitButton onSubmit={onSubmit} text={"Sign up"} />
             </form>
         </div>
     )

@@ -1,12 +1,19 @@
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import Divider from "../../shared/Divider";
 
 function AuthorizationPage() {
     return (
-        <div className="half-split-page">
-            <LoginForm />
-            <RegisterForm />
-        </div>
+        <Divider
+            direction="horizontal"
+            leftOrTopContent={<LoginForm />}
+            rightOrBottomContent={<RegisterForm />}
+            style={{
+                marginTop: "80px",
+                marginLeft: "120px",
+                marginRight: "120px",
+            }}
+        />
     )
 }
 
