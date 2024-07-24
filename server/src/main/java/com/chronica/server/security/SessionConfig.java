@@ -1,4 +1,4 @@
-package com.chronica.snap;
+package com.chronica.server.security;
 
 
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
