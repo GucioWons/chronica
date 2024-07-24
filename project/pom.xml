@@ -16,6 +16,12 @@
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.2.5</surefire-plugin.version>
     </properties>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -37,13 +43,14 @@
     <dependencies>
         <dependency>
             <groupId>com.github.BenzoEnzo</groupId>
-            <artifactId>quarkus-eureka-chronica</artifactId>
-            <version>quarkus-eureka-parent-0.0.5</version>
+            <artifactId>quarkus-eureka-resteasy-client</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-hibernate-orm-rest-data-panache</artifactId>
         </dependency>
+
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-rest-client-reactive</artifactId>
@@ -163,10 +170,5 @@
             </properties>
         </profile>
     </profiles>
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
+
 </project>
