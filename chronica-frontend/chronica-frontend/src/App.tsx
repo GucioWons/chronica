@@ -1,12 +1,11 @@
-import React from 'react';
 import './App.css';
-import AuthorizationPage from "./pages/authorization/AuthorizationPage";
+import {Outlet} from "react-router";
 
 function App() {
   return (
-      <div>
-        <AuthorizationPage/>
-      </div>
+      <>
+        <Outlet />
+      </>
   );
 }
 
