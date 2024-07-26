@@ -1,32 +1,22 @@
 import { useCallback } from "react";
-import {useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import FormInput from "../../shared/FormInput";
 import SubmitButton from "../../shared/SubmitButton";
-
-interface PersonDTO {
-    name: string,
-    lastName: string,
-    age: number,
-}
-
-interface RegisterDTO {
-    username: string,
-    mail: string,
-    phoneNumber: number,
-    password: string,
-    person: PersonDTO,
-}
+import {AccountDTO, useAuth} from "../../context/useAuth";
 
 function RegisterForm() {
-    const { register, handleSubmit } = useForm<RegisterDTO>();
+    const { register, handleSubmit } = useForm<AccountDTO>();
 
-    const onSubmit = useCallback(() => {
-        console.log(register)
-    }, [register]);
+    const { registerUser } = useAuth();
+
+    const onSubmit: SubmitHandler<AccountDTO> = ((data, event) => {
+        event?.preventDefault();
+        registerUser(data);
+    });
 
     return (
         <div className="auth-card" style={{marginLeft: "40px"}}>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <FormInput 
                     label="Username" 
                     id="username" 
@@ -72,7 +62,7 @@ function RegisterForm() {
                     required
                     type="number"
                 />
-                <SubmitButton onSubmit={onSubmit} text={"Sign up"} />
+                <SubmitButton text={"Sign up"} />
             </form>
         </div>
     )

@@ -1,15 +1,14 @@
 interface SubmitButtonProps {
-    onSubmit: () => void,
     text: string,
 }
 
 function SubmitButton(props: SubmitButtonProps) {
-    const { onSubmit, text } = props;
+    const { text } = props;
 
     return (
         <div>
             <button
-                onSubmit={onSubmit}
+                type="submit"
                 style={{width: "100%"}}
             >
                 {text}

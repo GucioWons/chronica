@@ -31,7 +31,7 @@ function LoginForm() {
                     type="password"
                     required
                 />
-                <SubmitButton onSubmit={onSubmit} text={"Sign in"} />
+                <SubmitButton text={"Sign in"} />
             </form>
         </div>
     )
