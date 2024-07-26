@@ -17,7 +17,7 @@ export interface AccountDTO {
     person: PersonDTO;
 }
 
-interface SignInDTO {
+export interface SignInDTO {
     mail: string;
     password: string;
 }

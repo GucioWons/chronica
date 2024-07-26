@@ -1,23 +1,22 @@
-import React, { useCallback } from 'react';
-import {useForm} from "react-hook-form";
+import React from 'react';
+import {SubmitHandler, useForm} from "react-hook-form";
 import FormInput from "../../shared/FormInput";
 import SubmitButton from "../../shared/SubmitButton";
-
-interface LoginDTO {
-    mail: string;
-    password: string;
-}
+import {SignInDTO, useAuth} from "../../context/useAuth";
 
 function LoginForm() {
-    const { register, handleSubmit } = useForm<LoginDTO>();
+    const { register, handleSubmit } = useForm<SignInDTO>();
 
-    const onSubmit = useCallback(() => {
-        console.log(register)
-    }, [register]);
+    const { loginUser } = useAuth();
+
+    const onSubmit: SubmitHandler<SignInDTO> = ((data, event) => {
+        event?.preventDefault();
+        loginUser(data);
+    });
 
     return (
         <div className="auth-card" style={{marginRight: "40px"}}>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <FormInput
                     label={"Email"}
                     id={"mail"}
