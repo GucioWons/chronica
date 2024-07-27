@@ -28,7 +28,7 @@ interface UserContext {
     registerUser: (dto: AccountDTO) => void,
     loginUser: (dto: SignInDTO) => void,
     // logoutUser: () => void,
-    // isLoggedIn: () => boolean,
+    isLoggedIn: () => boolean,
 }
 
 const UserContext = createContext<UserContext>({} as UserContext);
@@ -55,19 +55,26 @@ export const UserProvider = (props: UserProviderProps) => {
     }, []);
 
     const registerUser = useCallback((dto: AccountDTO) => {
-        axios.post(usersApi + "/accounts/sign-up", { ...dto })
+        axios.post(usersApi + "/accounts/sign-up", {...dto})
             .then(response => console.log(response.data))
             .catch(() => console.log("Error"));
-    },[]);
+    }, []);
 
     const loginUser = useCallback((dto: SignInDTO) => {
-        axios.post(usersApi + "/accounts/sign-in", { ...dto })
-            .then(response => console.log(response))
+        axios.post(usersApi + "/accounts/sign-in", {...dto})
+            .then(response => {
+                console.log(response);
+                setAccount({mail: "", password: "", person: { name: "", lastName: "", age: 0 }, phoneNumber: 0, username: ""});
+            })
             .catch(() => console.log("Error"));
-    },[]);
+    }, []);
+
+    const isLoggedIn = useCallback(() => {
+        return account !== null;
+    }, []);
 
     return (
-        <UserContext.Provider value={{ account, token, registerUser, loginUser }}>
+        <UserContext.Provider value={{ account, token, registerUser, loginUser, isLoggedIn }}>
             {ready ? props.children : null}
         </UserContext.Provider>
     )
