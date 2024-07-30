@@ -63,14 +63,13 @@ export const UserProvider = (props: UserProviderProps) => {
     const loginUser = useCallback((dto: SignInDTO) => {
         axios.post(usersApi + "/accounts/sign-in", {...dto})
             .then(response => {
-                console.log(response);
                 setAccount({mail: "", password: "", person: { name: "", lastName: "", age: 0 }, phoneNumber: 0, username: ""});
             })
             .catch(() => console.log("Error"));
     }, []);
 
     const isLoggedIn = useCallback(() => {
-        return account !== null;
+        return !(account === null || account === undefined);
     }, []);
 
     return (
