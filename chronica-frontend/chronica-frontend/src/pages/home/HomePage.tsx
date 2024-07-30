@@ -1,10 +1,13 @@
 import React from 'react';
+import ProtectedPage from "../../shared/ProtectedPage";
 
 function HomePage() {
     return (
-        <div>
-            HOMEPAGEEEE
-        </div>
+        <ProtectedPage>
+            <div>
+                HOMEPAGEEEE
+            </div>
+        </ProtectedPage>
     )
 }
 

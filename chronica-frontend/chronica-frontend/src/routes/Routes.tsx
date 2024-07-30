@@ -3,7 +3,6 @@ import App from "../App";
 import AuthorizationPage from "../pages/authorization/AuthorizationPage";
 import HomePage from "../pages/home/HomePage";
 import ConfirmationPage from "../pages/authorization/ConfirmationPage";
-import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter(
     [
@@ -13,7 +12,7 @@ export const router = createBrowserRouter(
             children: [
                 {
                     path: "",
-                    element: <ProtectedRoute><HomePage /></ProtectedRoute>
+                    element: <HomePage />
                 },
                 {
                     path: "auth",
