@@ -1,69 +1,72 @@
-import { useCallback } from "react";
-import {SubmitHandler, useForm} from "react-hook-form";
+import {useState} from "react";
+import {UseFormReturn} from "react-hook-form";
 import FormInput from "../../shared/FormInput";
-import SubmitButton from "../../shared/SubmitButton";
 import {AccountDTO, useAuth} from "../../context/useAuth";
+import Form from "../../shared/Form";
 
 function RegisterForm() {
-    const { register, handleSubmit } = useForm<AccountDTO>();
+    const [ _formMethods, setFormMethods ] = useState<UseFormReturn<AccountDTO> | null>(null);
 
     const { registerUser } = useAuth();
 
-    const onSubmit: SubmitHandler<AccountDTO> = ((data, event) => {
-        event?.preventDefault();
+    const onSubmit = ((data: AccountDTO) => {
         registerUser(data);
     });
 
     return (
         <div className="auth-card" style={{marginLeft: "40px"}}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <FormInput 
+            <Form
+                <AccountDTO>
+                id="register"
+                onSubmit={onSubmit}
+                setMethods={setFormMethods}
+            >
+                <FormInput
+                    <AccountDTO>
                     label="Username" 
-                    id="username" 
-                    register={register} 
-                    required
-                />
-                <FormInput 
-                    label="Mail" 
-                    id="mail" 
-                    register={register}
+                    field="username"
                     required
                 />
                 <FormInput
+                    <AccountDTO>
+                    label="Mail" 
+                    field="mail"
+                    required
+                />
+                <FormInput
+                    <AccountDTO>
                     label="Phone number"
-                    id="phoneNumber"
-                    register={register}
+                    field="phoneNumber"
                     required
                     type="number"
                 />
                 <FormInput
+                    <AccountDTO>
                     label="Password"
-                    id="password"
-                    register={register}
+                    field="password"
                     required
                     type="password"
                 />
                 <FormInput
+                    <AccountDTO>
                     label="Name"
-                    id="person.name"
-                    register={register}
+                    field="person.name"
                     required
                 />
                 <FormInput
+                    <AccountDTO>
                     label="Last name"
-                    id="person.lastName"
-                    register={register}
+                    field="person.lastName"
                     required
                 />
                 <FormInput
+                    <AccountDTO>
                     label="Age"
-                    id="person.age"
-                    register={register}
+                    field="person.age"
                     required
                     type="number"
                 />
-                <SubmitButton text={"Sign up"} />
-            </form>
+            </Form>
         </div>
     )
 }

@@ -1,19 +1,21 @@
-import {UseFormRegister} from "react-hook-form";
+import {FieldValues, UseFormRegister, Path} from "react-hook-form";
 
-interface FormInputProps {
+export interface FormInputProps<T extends FieldValues> {
     horizontal?: boolean,
     label: string,
     type?: string,
-    id: string,
+    field: Path<T>,
+    id?: string,
     required?: boolean
-    register: UseFormRegister<any>,
+    register?: UseFormRegister<T>,
 }
 
-function FormInput(props: FormInputProps) {
+function FormInput<T extends FieldValues>(props: FormInputProps<T>) {
     const {
         horizontal,
         label,
         type,
+        field,
         id,
         required,
         register } = props;
@@ -24,9 +26,9 @@ function FormInput(props: FormInputProps) {
             <div className="input-input">
                 <input
                     type={type ?? "string"}
-                    {...register(id)}
-                    id={id}
+                    {...register?.(field)}
                     required={required}
+                    id={id + "-" + field}
                     style={{
                         width: "100%"
                     }}

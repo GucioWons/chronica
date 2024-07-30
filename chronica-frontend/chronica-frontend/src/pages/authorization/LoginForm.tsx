@@ -1,37 +1,40 @@
-import React from 'react';
-import {SubmitHandler, useForm} from "react-hook-form";
+import React, {useState} from 'react';
+import {UseFormReturn} from "react-hook-form";
 import FormInput from "../../shared/FormInput";
-import SubmitButton from "../../shared/SubmitButton";
 import {SignInDTO, useAuth} from "../../context/useAuth";
+import Form from "../../shared/Form";
 
 function LoginForm() {
-    const { register, handleSubmit } = useForm<SignInDTO>();
+    const [ _formMethods, setFormMethods ] = useState<UseFormReturn<SignInDTO> | null>(null);
 
     const { loginUser } = useAuth();
 
-    const onSubmit: SubmitHandler<SignInDTO> = ((data, event) => {
-        event?.preventDefault();
+    const onSubmit = (data: SignInDTO) => {
         loginUser(data);
-    });
+    }
 
     return (
         <div className="auth-card" style={{marginRight: "40px"}}>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <Form
+                <SignInDTO>
+                id="login"
+                onSubmit={onSubmit}
+                setMethods={setFormMethods}
+            >
                 <FormInput
-                    label={"Email"}
-                    id={"mail"}
-                    register={register}
+                    <SignInDTO>
+                    label="Email"
+                    field="mail"
                     required
                 />
                 <FormInput
-                    label={"Password"}
-                    id={"password"}
-                    register={register}
+                    <SignInDTO>
+                    label="Password"
+                    field="password"
                     type="password"
                     required
                 />
-                <SubmitButton text={"Sign in"} />
-            </form>
+            </Form>
         </div>
     )
 }
