@@ -8,7 +8,7 @@ interface FormProps<T extends FieldValues> {
     children: React.ReactNode,
     onSubmit: (data: T) => void,
     setMethods: (methods: UseFormReturn<T>) => void,
-    submitText?: string;
+    submitText?: string,
 }
 
 function Form<T extends FieldValues>(props: FormProps<T>) {

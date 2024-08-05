@@ -1,4 +1,4 @@
-import React, {createContext, useCallback, useEffect, useState} from "react";
+import React, {createContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import axios from "axios";
 import {usersApi} from "../shared/apiConstants";
@@ -22,12 +22,17 @@ export interface SignInDTO {
     password: string;
 }
 
+export interface SignInHelper {
+    account: AccountDTO,
+    token: string,
+}
+
 interface UserContext {
     account: AccountDTO | null,
     token: string | null,
     registerUser: (dto: AccountDTO) => void,
     loginUser: (dto: SignInDTO) => void,
-    // logoutUser: () => void,
+    logoutUser: () => void,
     isLoggedIn: () => boolean,
 }
 
@@ -50,30 +55,43 @@ export const UserProvider = (props: UserProviderProps) => {
         if (account && token) {
             setAccount(JSON.parse(account));
             setToken(token);
+            axios.defaults.headers.common["Authorization"] = "Bearer " + token;
         }
         setReady(true);
     }, []);
 
-    const registerUser = useCallback((dto: AccountDTO) => {
+    const registerUser = (dto: AccountDTO) => {
         axios.post(usersApi + "/accounts/sign-up", {...dto})
             .then(response => console.log(response.data))
             .catch(() => console.log("Error"));
-    }, []);
+    }
 
-    const loginUser = useCallback((dto: SignInDTO) => {
-        axios.post(usersApi + "/accounts/sign-in", {...dto})
+    const loginUser = (dto: SignInDTO) => {
+        axios.post<SignInHelper>(usersApi + "/accounts/sign-in", {...dto})
             .then(response => {
-                setAccount({mail: "", password: "", person: { name: "", lastName: "", age: 0 }, phoneNumber: 0, username: ""});
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("account", JSON.stringify(response.data.account));
+                setToken(response.data.token);
+                setAccount(response.data.account)
+                axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+                navigate("/");
             })
             .catch(() => console.log("Error"));
-    }, []);
+    }
 
-    const isLoggedIn = useCallback(() => {
-        return !(account === null || account === undefined);
-    }, []);
+    const logoutUser = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("account");
+        setToken(null);
+        setAccount(null);
+    }
+
+    const isLoggedIn = () => {
+        return !!account;
+    }
 
     return (
-        <UserContext.Provider value={{ account, token, registerUser, loginUser, isLoggedIn }}>
+        <UserContext.Provider value={{ account, token, registerUser, loginUser, logoutUser, isLoggedIn }}>
             {ready ? props.children : null}
         </UserContext.Provider>
     )
