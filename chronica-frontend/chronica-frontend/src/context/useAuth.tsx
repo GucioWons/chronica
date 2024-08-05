@@ -2,6 +2,7 @@ import React, {createContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import axios from "axios";
 import {usersApi} from "../shared/apiConstants";
+import {toast} from "react-toastify";
 
 export interface PersonDTO {
     name: string,
@@ -14,12 +15,12 @@ export interface AccountDTO {
     mail: string,
     phoneNumber: number,
     password: string,
-    person: PersonDTO;
+    person: PersonDTO,
 }
 
 export interface SignInDTO {
-    mail: string;
-    password: string;
+    mail: string,
+    password: string,
 }
 
 export interface SignInHelper {
@@ -62,8 +63,8 @@ export const UserProvider = (props: UserProviderProps) => {
 
     const registerUser = (dto: AccountDTO) => {
         axios.post(usersApi + "/accounts/sign-up", {...dto})
-            .then(response => console.log(response.data))
-            .catch(() => console.log("Error"));
+            .then(() => toast.success("Successfully registered account!"))
+            .catch(() => toast.error("Cannot register account"));
     }
 
     const loginUser = (dto: SignInDTO) => {
@@ -74,9 +75,10 @@ export const UserProvider = (props: UserProviderProps) => {
                 setToken(response.data.token);
                 setAccount(response.data.account)
                 axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+                toast.success("Successfully logged in!")
                 navigate("/");
             })
-            .catch(() => console.log("Error"));
+            .catch(() => toast.error("Cannot login!"));
     }
 
     const logoutUser = () => {
@@ -84,6 +86,8 @@ export const UserProvider = (props: UserProviderProps) => {
         localStorage.removeItem("account");
         setToken(null);
         setAccount(null);
+        toast.success("Successfully logged out!")
+        navigate("/auth")
     }
 
     const isLoggedIn = () => {

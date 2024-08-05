@@ -1,7 +1,7 @@
 import {useAuth} from "../context/useAuth";
 
 function Navbar() {
-    const { isLoggedIn } = useAuth()
+    const { isLoggedIn, account, logoutUser } = useAuth()
 
     if (!isLoggedIn()) {
         return null;
@@ -28,14 +28,15 @@ function Navbar() {
                 justifyContent: "center",
                 flex: 1
             }}>
-                SEARCHBAR
+                <input/>
             </div>
             <div style={{
                 display: "flex",
                 justifyContent: "center",
                 flex: 1
             }}>
-                USER
+                {account?.username}
+                <button onClick={logoutUser}>logout</button>
             </div>
         </div>
     )
