@@ -30,6 +30,47 @@
             <version>3.2.3</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.checkerframework</groupId>
+            <artifactId>checker-qual</artifactId>
+            <version>3.46.0</version>
+        </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>cz.habarta.typescript-generator</groupId>
+                <artifactId>typescript-generator-maven-plugin</artifactId>
+                <version>3.2.1263</version>
+                <executions>
+                    <execution>
+                        <id>generate</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jsonLibrary>jackson2</jsonLibrary>
+                    <classPatterns>
+                        <classPattern>org.chronica.library.**.*DTO</classPattern>
+                    </classPatterns>
+                    <outputKind>module</outputKind>
+                    <outputFile>../../chronica-frontend/src/shared/dto/dtos.ts</outputFile>
+                    <outputFileType>implementationFile</outputFileType>
+                    <mapEnum>asEnum</mapEnum>
+                    <mapDate>asString</mapDate>
+                    <nonConstEnums>true</nonConstEnums>
+                    <noFileComment>true</noFileComment>
+                    <nullableAnnotations>org.checkerframework.checker.nullness.qual.Nullable</nullableAnnotations>
+                    <nullabilityDefinition>nullAndUndefinedUnion</nullabilityDefinition>
+                    <classesFromAutomaticJaxrsApplication>true</classesFromAutomaticJaxrsApplication>
+                    <namespace>DTOs</namespace>
+                    <sortDeclarations>true</sortDeclarations>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
