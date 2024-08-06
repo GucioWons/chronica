@@ -3,30 +3,10 @@ import {useNavigate} from "react-router";
 import axios from "axios";
 import {usersApi} from "../shared/apiConstants";
 import {toast} from "react-toastify";
-
-export interface PersonDTO {
-    name: string,
-    lastName: string,
-    age: number
-}
-
-export interface AccountDTO {
-    username: string,
-    mail: string,
-    phoneNumber: number,
-    password: string,
-    person: PersonDTO,
-}
-
-export interface SignInDTO {
-    mail: string,
-    password: string,
-}
-
-export interface SignInHelper {
-    account: AccountDTO,
-    token: string,
-}
+import {DTOs} from "../shared/dto/dtos";
+import AccountDTO = DTOs.AccountDTO;
+import SignInDTO = DTOs.SignInDTO;
+import SignInResultDTO = DTOs.SignInResultDTO;
 
 interface UserContext {
     account: AccountDTO | null,
@@ -68,7 +48,7 @@ export const UserProvider = (props: UserProviderProps) => {
     }
 
     const loginUser = (dto: SignInDTO) => {
-        axios.post<SignInHelper>(usersApi + "/accounts/sign-in", {...dto})
+        axios.post<SignInResultDTO>(usersApi + "/accounts/sign-in", {...dto})
             .then(response => {
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("account", JSON.stringify(response.data.account));

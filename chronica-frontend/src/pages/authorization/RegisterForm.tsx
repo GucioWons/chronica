@@ -1,8 +1,10 @@
 import {useState} from "react";
 import {UseFormReturn} from "react-hook-form";
 import FormInput from "../../shared/FormInput";
-import {AccountDTO, useAuth} from "../../context/useAuth";
+import {useAuth} from "../../context/useAuth";
 import Form from "../../shared/Form";
+import {DTOs} from "../../shared/dto/dtos";
+import AccountDTO = DTOs.AccountDTO;
 
 function RegisterForm() {
     const [ _formMethods, setFormMethods ] = useState<UseFormReturn<AccountDTO> | null>(null);
