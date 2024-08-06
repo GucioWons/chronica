@@ -8,7 +8,7 @@ import com.chronica.user.data.mapper.AccountMapper
 import com.chronica.user.logic.AccountService
 import com.chronica.user.logic.SignInService
 import com.chronica.user.logic.security.JWTHandler
-import com.chronica.user.logic.util.SignInHelper
+import org.chronica.library.user.dto.SignInResultDTO
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import spock.lang.Specification
 import spock.lang.Subject
@@ -40,7 +40,7 @@ class SignInServiceSpec extends Specification {
         accountMapper.mapToDTO(account) >> accountDTO
 
         when:
-        Optional<SignInHelper> result = signInService.signIn(signInRequest)
+        Optional<SignInResultDTO> result = signInService.signIn(signInRequest)
 
         then:
         result.isPresent()
@@ -60,7 +60,7 @@ class SignInServiceSpec extends Specification {
         bCryptPasswordEncoder.matches(password + mail, encodedPassword) >> false
 
         when:
-        Optional<SignInHelper> result = signInService.signIn(signInRequest)
+        Optional<SignInResultDTO> result = signInService.signIn(signInRequest)
 
         then:
         !result.isPresent()

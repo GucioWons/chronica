@@ -5,7 +5,7 @@ import org.chronica.library.user.dto.SignInDTO;
 import com.chronica.user.logic.AccountService;
 import com.chronica.user.logic.SignInService;
 import com.chronica.user.logic.SignUpService;
-import com.chronica.user.logic.util.SignInHelper;
+import org.chronica.library.user.dto.SignInResultDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,7 +29,7 @@ public class AccountController {
     }
 
     @PostMapping(value = "/sign-in")
-    public ResponseEntity<SignInHelper> signIn(@RequestBody SignInDTO request) {
+    public ResponseEntity<SignInResultDTO> signIn(@RequestBody SignInDTO request) {
         return signInService.signIn(request)
                 .map(response -> ResponseEntity
                         .status(HttpStatus.OK)
