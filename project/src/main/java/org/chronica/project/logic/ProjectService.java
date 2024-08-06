@@ -1,8 +1,6 @@
 package org.chronica.project.logic;
 
-import io.quarkus.eureka.client.EurekaClient;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.project.dto.ProjectDTO;

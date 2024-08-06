@@ -19,5 +19,4 @@ public class SnapDTO extends EntityDTO {
     private String description;
     private LocalDateTime creationDate;
     private LocalDate logDate;
-    private boolean deprecated;
 }
