@@ -45,8 +45,9 @@ public class RequestAuthenticator extends OncePerRequestFilter {
             Collection<GrantedAuthority> authorities = convertRolesToAuthorities(roles);
             Authentication authToken = new UsernamePasswordAuthenticationToken(mail, null, authorities);
             LOGGER.info("Account mail: {}", mail);
+            int i = 1;
             for(Role s: roles){
-                LOGGER.info("Account roles: {}", s);
+                LOGGER.info("Account role no.{}, privilege: {}",i++, s);
             }
             SecurityContextHolder.getContext().setAuthentication(authToken);
         }
