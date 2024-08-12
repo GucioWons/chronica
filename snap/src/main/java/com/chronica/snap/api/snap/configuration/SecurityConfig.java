@@ -31,7 +31,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/snaps/**")
                         .hasRole("USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/snaps/**")
-                        .hasRole("SYSTEM")
+                        .hasRole("ADMINISTRATOR")
                         .requestMatchers(HttpMethod.GET,"/h2-console/**","/swagger-ui/**","/v3/**")
                         .hasRole("SYSTEM")
                         .anyRequest()
