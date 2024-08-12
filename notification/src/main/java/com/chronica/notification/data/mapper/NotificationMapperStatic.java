@@ -2,9 +2,7 @@ package com.chronica.notification.data.mapper;
 
 import org.chronica.library.notification.dto.NotificationDTO;
 import com.chronica.notification.data.entity.Notification;
-import org.springframework.stereotype.Component;
 
-@Component
 public class NotificationMapperStatic {
     public static void mapToDTO(NotificationDTO dto, Notification entity) {
         dto.setId(entity.getId());
