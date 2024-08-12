@@ -1,4 +1,4 @@
-package com.chronica.notification.logic.notification;
+package com.chronica.notification.logic.service;
 
 import org.chronica.library.commons.dto.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;

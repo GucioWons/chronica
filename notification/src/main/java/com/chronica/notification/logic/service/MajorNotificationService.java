@@ -1,10 +1,9 @@
-package com.chronica.notification.logic;
+package com.chronica.notification.logic.service;
 
 import org.chronica.library.notification.dto.NotificationDTO;
 import org.chronica.library.commons.dto.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.mapper.MapperImplementation;
-import com.chronica.notification.logic.notification.NotificationService;
 import com.chronica.notification.logic.util.PropertyTransfer;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ServiceMajorNotification {
+public class MajorNotificationService {
 
     private final NotificationService<Notification> notificationService;
     private final MapperImplementation mapperImplementation;
@@ -86,7 +85,7 @@ public class ServiceMajorNotification {
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Deprecated notification id: " + id);
+                .body("Deprecated service id: " + id);
     }
 
 }
