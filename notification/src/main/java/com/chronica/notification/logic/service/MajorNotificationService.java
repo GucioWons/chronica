@@ -68,6 +68,7 @@ public class MajorNotificationService {
         Page<Notification> notices = notificationService.findAll(request);
 
         List<NotificationDTO> response = notices.stream()
+                .filter(g -> g.getDeprecated().equals(false))
                 .map(notificationMapperImpl::mapToDTO)
                 .toList();
 
