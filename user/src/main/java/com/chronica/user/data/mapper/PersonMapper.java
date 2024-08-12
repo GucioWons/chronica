@@ -14,7 +14,6 @@ public class PersonMapper implements BaseMapper<Person, PersonDTO> {
         dto.setId(person.getId());
         dto.setName(person.getName());
         dto.setLastName(person.getLastName());
-        dto.setAge(person.getAge());
         return dto;
     }
 
@@ -23,7 +22,6 @@ public class PersonMapper implements BaseMapper<Person, PersonDTO> {
         Person person = new Person();
         person.setName(personDTO.getName());
         person.setLastName(personDTO.getLastName());
-        person.setAge(personDTO.getAge());
         return person;
     }
 
