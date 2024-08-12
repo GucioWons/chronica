@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.chronica.library.model.ChronicaEntity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @RequiredArgsConstructor
@@ -24,9 +25,13 @@ public class Account implements ChronicaEntity {
     private Long phoneNumber;
     @Column(nullable = false)
     private String password;
-    private boolean active = false; //For testing switch to true
+    private boolean active = true; //For testing switch to true
     private boolean deprecated = false;
-    private Role role = Role.USER;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "account_roles", joinColumns = @JoinColumn(name = "account_id"))
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private List<Role> roles;
     private LocalDateTime createdAt = LocalDateTime.now();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")

@@ -6,9 +6,11 @@ import com.chronica.user.data.mapper.AccountMapper;
 import com.chronica.user.logic.security.JWTHandler;
 import org.chronica.library.user.dto.SignInResultDTO;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.user.enumerated.Role;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,7 +24,8 @@ public class SignInService {
     public Optional<SignInResultDTO> signIn(SignInDTO signInRequest) {
         Account account = accountService.getAccountByMailAndEnabled(signInRequest.mail());
         if (checkPassword(signInRequest.password() + signInRequest.mail(), account.getPassword())) {
-            String token = jwtHandler.generateToken(signInRequest.mail());
+            List<Role> roles = account.getRoles();
+            String token = jwtHandler.generateToken(signInRequest.mail(), roles);
             return Optional.of(new SignInResultDTO(token, accountMapper.mapToDTO(account)));
         }
         return Optional.empty();

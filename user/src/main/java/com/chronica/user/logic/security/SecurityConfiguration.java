@@ -26,17 +26,19 @@ public class SecurityConfiguration {
 
         http.addFilterBefore(requestAuthenticator, UsernamePasswordAuthenticationFilter.class)
                 .csrf(csrfConfigurer -> csrfConfigurer
-                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern(Api.ACCOUNT))
+                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/api/accounts/sign-up"))
+                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/api/accounts/sign-in"))
                         .ignoringRequestMatchers(mvcMatcherBuilder.pattern(Api.LINK))
                 );
 
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers(mvcMatcherBuilder.pattern(Api.ACCOUNT)).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/accounts/sign-up")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/accounts/sign-in")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern(Api.LINK)).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern(Api.SWAGGER_UI)).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern(Api.V_3)).permitAll()
                         .anyRequest()
-                        .hasAuthority("USER")
+                        .authenticated()
                 )
                 .logout((logout) -> logout
                         .logoutUrl("/api/account/logout")
@@ -47,12 +49,12 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    protected BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
+    protected WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers("/h2-console/**");
     }
 
