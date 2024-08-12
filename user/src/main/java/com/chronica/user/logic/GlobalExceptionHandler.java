@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
         ErrorDTO errorDto = new ErrorDTO(exception.getMessage(),
                 webRequest.getDescription(false),
                 LocalDateTime.now());
-        LOGGER.error(exception.getMessage() + " at " + errorDto.at());
+        LOGGER.error("{} at {}", exception.getMessage(), errorDto.at());
 
         return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
     }

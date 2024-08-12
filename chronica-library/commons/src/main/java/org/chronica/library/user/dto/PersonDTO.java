@@ -13,5 +13,4 @@ import org.chronica.library.commons.dto.EntityDTO;
 public class PersonDTO extends EntityDTO {
     private String name;
     private String lastName;
-    private Integer age;
 }

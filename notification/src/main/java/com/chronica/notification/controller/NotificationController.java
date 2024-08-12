@@ -2,7 +2,7 @@ package com.chronica.notification.controller;
 
 import org.chronica.library.notification.dto.NotificationDTO;
 import org.chronica.library.commons.dto.PaginationAndSortDTO;
-import com.chronica.notification.logic.ServiceMajorNotification;
+import com.chronica.notification.logic.service.MajorNotificationService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,30 +16,30 @@ import java.util.List;
 @RequestMapping(path = "/api/notifications", produces = {MediaType.APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
 public class NotificationController {
-    private final ServiceMajorNotification serviceMajorNotification;
+    private final MajorNotificationService majorNotificationService;
 
     @PostMapping(path = "")
     public ResponseEntity<NotificationDTO> createNotification(@RequestBody NotificationDTO request){
-        return serviceMajorNotification.createNotification(request);
+        return majorNotificationService.createNotification(request);
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<NotificationDTO> getNotification(@PathVariable Long id){
-        return serviceMajorNotification.readNotification(id);
+        return majorNotificationService.readNotification(id);
     }
 
     @GetMapping(path = "")
     public ResponseEntity<List<NotificationDTO>> getNotifications(@RequestBody PaginationAndSortDTO request){
-        return serviceMajorNotification.getAllNotifications(request);
+        return majorNotificationService.getAllNotifications(request);
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteNotification(@PathVariable Long id){
-        return serviceMajorNotification.deleteNotification(id);
+        return majorNotificationService.deleteNotification(id);
     }
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<NotificationDTO> updateNotification(@PathVariable Long id, @RequestBody NotificationDTO request){
-        return serviceMajorNotification.updateNotification(request,id);
+        return majorNotificationService.updateNotification(request,id);
     }
 }

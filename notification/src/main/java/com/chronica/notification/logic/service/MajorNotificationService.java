@@ -1,10 +1,9 @@
-package com.chronica.notification.logic;
+package com.chronica.notification.logic.service;
 
 import org.chronica.library.notification.dto.NotificationDTO;
 import org.chronica.library.commons.dto.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
-import com.chronica.notification.data.mapper.MapperImplementation;
-import com.chronica.notification.logic.notification.NotificationService;
+import com.chronica.notification.data.mapper.NotificationMapperImpl;
 import com.chronica.notification.logic.util.PropertyTransfer;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -19,19 +18,19 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ServiceMajorNotification {
+public class MajorNotificationService {
 
     private final NotificationService<Notification> notificationService;
-    private final MapperImplementation mapperImplementation;
+    private final NotificationMapperImpl notificationMapperImpl;
     private final PropertyTransfer propertyTransfer;
 
     @Transactional
     public ResponseEntity<NotificationDTO> createNotification(NotificationDTO request){
-        Notification notification = mapperImplementation.mapToNewEntity(request);
+        Notification notification = notificationMapperImpl.mapToNewEntity(request);
 
         notificationService.save(notification);
 
-        NotificationDTO response = mapperImplementation.mapToDTO(notification);
+        NotificationDTO response = notificationMapperImpl.mapToDTO(notification);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -42,13 +41,13 @@ public class ServiceMajorNotification {
     public ResponseEntity<NotificationDTO> updateNotification(NotificationDTO request, Long id){
         Notification notification = notificationService.findById(id);
 
-        Notification updated = mapperImplementation.mapToNewEntity(request);
+        Notification updated = notificationMapperImpl.mapToNewEntity(request);
 
         propertyTransfer.copyNonNullProperties(updated,notification);
 
         notificationService.save(notification);
 
-        NotificationDTO response = mapperImplementation.mapToDTO(notification);
+        NotificationDTO response = notificationMapperImpl.mapToDTO(notification);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -58,7 +57,7 @@ public class ServiceMajorNotification {
     public ResponseEntity<NotificationDTO> readNotification(Long id){
         Notification notification = notificationService.findById(id);
 
-        NotificationDTO response = mapperImplementation.mapToDTO(notification);
+        NotificationDTO response = notificationMapperImpl.mapToDTO(notification);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -69,7 +68,8 @@ public class ServiceMajorNotification {
         Page<Notification> notices = notificationService.findAll(request);
 
         List<NotificationDTO> response = notices.stream()
-                .map(mapperImplementation::mapToDTO)
+                .filter(g -> g.getDeprecated().equals(false))
+                .map(notificationMapperImpl::mapToDTO)
                 .toList();
 
         return ResponseEntity
@@ -86,7 +86,7 @@ public class ServiceMajorNotification {
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Deprecated notification id: " + id);
+                .body("Deprecated service id: " + id);
     }
 
 }

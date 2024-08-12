@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class MapperImplementation {
+public class NotificationMapperImpl {
     private final InvitationMapper invitationMapper;
     private final MessageMapper messageMapper;
     private final AlertMapper alertMapper;
@@ -34,7 +34,6 @@ public class MapperImplementation {
 
         throw new WrongMapperException("Its something wrong with entity/mapper couldnt work");
     }
-
 
     public Notification mapToNewEntity(NotificationDTO dto) {
         if(dto instanceof AlertDTO)

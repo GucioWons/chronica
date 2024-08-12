@@ -13,7 +13,6 @@ public class Person implements ChronicaEntity {
     private Long id;
     private String name;
     private String lastName;
-    private Integer age;
     @OneToOne(mappedBy = "person")
     private Account account;
 
