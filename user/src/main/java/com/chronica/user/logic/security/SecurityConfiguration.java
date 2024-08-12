@@ -1,6 +1,5 @@
 package com.chronica.user.logic.security;
 
-import com.chronica.user.data.constant.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +18,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration {
 
     private final RequestAuthenticator requestAuthenticator;
+    private static final String LINKS = "/api/links/confirmation/**";
+    private static final String SWAGGER_UI = "/swagger-ui/**";
+    private static final String V_3 = "/v3/**";
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -27,7 +29,7 @@ public class SecurityConfiguration {
 
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST,"/api/accounts/sign-in","/api/accounts/sign-up").permitAll()
-                        .requestMatchers(HttpMethod.GET,Api.LINKS,Api.SWAGGER_UI,Api.V_3).permitAll()
+                        .requestMatchers(HttpMethod.GET,LINKS,SWAGGER_UI,V_3).permitAll()
                         .anyRequest()
                         .authenticated()
                 )
