@@ -3,7 +3,7 @@ package com.chronica.user
 import org.chronica.library.user.dto.AccountDTO
 import org.chronica.library.user.dto.SignInDTO
 import com.chronica.user.data.entity.Account
-import com.chronica.user.data.exception.WrongCredentialsException
+import org.chronica.library.user.exception.WrongCredentialsException
 import com.chronica.user.data.mapper.AccountMapper
 import com.chronica.user.logic.AccountService
 import com.chronica.user.logic.SignInService

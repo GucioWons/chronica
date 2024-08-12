@@ -30,7 +30,7 @@ public class EmailService {
         try {
             buildAndSendMail(message, to, topic, generatedCode);
         } catch (MessagingException ignored) {
-            LOGGER.error("Could not send confirmation email with generated code: " + generatedCode + " to " + to);
+            LOGGER.error("Could not send confirmation email with generated code: {} to {}", generatedCode, to);
         }
     }
 

@@ -1,6 +1,6 @@
 package com.chronica.user.logic;
 
-import com.chronica.user.data.exception.ChronicaException;
+import org.chronica.library.user.exception.ChronicaException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
