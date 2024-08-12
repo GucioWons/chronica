@@ -1,4 +1,4 @@
-package com.chronica.snap.api.snap.security;
+package com.chronica.snap.api.snap.configuration;
 
 import com.chronica.user.logic.security.JWTHandler;
 import com.chronica.user.logic.security.RequestAuthenticator;
@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.addFilterBefore(new RequestAuthenticator(new JWTHandler()), UsernamePasswordAuthenticationFilter.class)

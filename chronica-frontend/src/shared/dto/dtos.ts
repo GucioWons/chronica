@@ -11,7 +11,7 @@ export namespace DTOs {
         password: string;
         person: PersonDTO;
         phoneNumber: number;
-        role: Role;
+        roles: Role[];
         username: string;
     }
 
@@ -163,6 +163,7 @@ export namespace DTOs {
     export enum Role {
         ADMINISTRATOR = "ADMINISTRATOR",
         USER = "USER",
+        SYSTEM = "SYSTEM",
     }
 
 }
