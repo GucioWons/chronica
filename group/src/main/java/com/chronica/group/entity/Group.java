@@ -1,6 +1,5 @@
-package org.chronica.group.api.group.entity;
+package com.chronica.group.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,10 @@ import org.chronica.library.model.ChronicaEntity;
 @Setter
 @NoArgsConstructor
 @Table(name = "my_group")
-public class Group extends PanacheEntity implements ChronicaEntity {
+public class Group implements ChronicaEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String description;
     private Category category;

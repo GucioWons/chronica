@@ -1,11 +1,11 @@
-package org.chronica.group.api.group.mapper;
+package com.chronica.group.mapper;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import com.chronica.group.entity.Group;
 import org.chronica.library.commons.mapper.BaseMapper;
 import org.chronica.library.group.dto.GroupDTO;
-import org.chronica.group.api.group.entity.Group;
+import org.springframework.stereotype.Component;
 
-@ApplicationScoped
+@Component
 public class GroupMapper implements BaseMapper<Group, GroupDTO> {
     @Override
     public GroupDTO mapToDTO(Group entity) {

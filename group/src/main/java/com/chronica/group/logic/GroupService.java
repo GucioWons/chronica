@@ -1,17 +1,17 @@
-package org.chronica.group.api.group.logic;
+package com.chronica.group.logic;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import com.chronica.group.entity.Group;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.group.dto.GroupDTO;
-import org.chronica.group.api.group.entity.Group;
-import org.chronica.group.api.group.exception.NoGroupException;
-import org.chronica.group.api.group.mapper.GroupMapper;
-import org.chronica.group.api.group.repository.GroupRepository;
+import com.chronica.group.exception.NoGroupException;
+import com.chronica.group.mapper.GroupMapper;
+import com.chronica.group.repository.GroupRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@ApplicationScoped
+@Service
 @RequiredArgsConstructor
 public class GroupService {
     private final GroupRepository groupRepository;
@@ -19,21 +19,18 @@ public class GroupService {
 
     @Transactional
     public GroupDTO createGroup(GroupDTO toSave) {
-        Group group = groupMapper.mapToNewEntity(toSave);
-        group.persist();
-        return groupMapper.mapToDTO(group);
+        return groupMapper.mapToDTO(groupRepository.save(groupMapper.mapToNewEntity(toSave)));
     }
 
     public GroupDTO getGroupById(Long groupId) {
-        return groupRepository
-                .findByIdNotDeprecated(groupId)
+        return groupRepository.findByIdAndDeprecatedFalse(groupId)
                 .map(groupMapper::mapToDTO)
                 .orElseThrow(() -> new NoGroupException("Cannot find Group with id " + groupId));
     }
 
     public List<GroupDTO> getGroups() {
         return groupRepository
-                .listAllNotDeprecated()
+                .findAllByDeprecatedFalse()
                 .stream()
                 .map(groupMapper::mapToDTO)
                 .toList();
@@ -42,20 +39,19 @@ public class GroupService {
     @Transactional
     public GroupDTO updateGroup(Long groupId, GroupDTO toUpdate) {
         Group group = groupRepository
-                .findByIdNotDeprecated(groupId)
+                .findByIdAndDeprecatedFalse(groupId)
                 .map(entity -> groupMapper.mapToUpdateEntity(entity, toUpdate))
                 .orElseThrow(() -> new NoGroupException("Cannot find Group with id " + groupId));
-        group.persist();
-        return groupMapper.mapToDTO(group);
+        return groupMapper.mapToDTO(groupRepository.save(group));
     }
 
     @Transactional
     public String deprecateGroup(Long groupId) {
         Group group = groupRepository
-                .findByIdNotDeprecated(groupId)
+                .findByIdAndDeprecatedFalse(groupId)
                 .orElseThrow(() -> new NoGroupException("Cannot find Group with id " + groupId));
         group.setDeprecated(true);
-        group.persist();
+        groupRepository.save(group);
         return "Group has been deprecated.";
     }
 }
