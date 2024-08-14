@@ -1,19 +1,14 @@
-package org.chronica.project.data.entity;
+package com.chronica.project.data.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.chronica.library.model.ChronicaEntity;
 
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 
 @Entity
 @Getter
@@ -21,14 +16,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "my_project")
-public class Project extends PanacheEntity implements ChronicaEntity {
+public class Project implements ChronicaEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private Long groupId;
     private LocalDate createdDate;
     private LocalDateTime lastChangeDate;
     private boolean deprecated = false;
-
-
 
     @Override
     public Long getId() {

@@ -1,14 +1,13 @@
-package org.chronica.project.data.mapper;
+package com.chronica.project.data.mapper;
 
-
-import jakarta.enterprise.context.ApplicationScoped;
+import com.chronica.project.data.entity.Project;
 import org.chronica.library.commons.mapper.BaseMapper;
 import org.chronica.library.project.dto.ProjectDTO;
-import org.chronica.project.data.entity.Project;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-@ApplicationScoped
+@Component
 public class ProjectMapper implements BaseMapper<Project, ProjectDTO> {
     @Override
     public ProjectDTO mapToDTO(Project entity) {
