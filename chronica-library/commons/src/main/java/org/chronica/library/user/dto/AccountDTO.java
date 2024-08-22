@@ -8,6 +8,7 @@ import org.chronica.library.commons.dto.EntityDTO;
 import org.chronica.library.user.enumerated.Role;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,7 +21,7 @@ public class AccountDTO extends EntityDTO {
     private String password;
     private boolean isActive;
     private Boolean deprecated;
-    private Role role;
+    private List<Role> roles;
     private LocalDateTime createdAt;
     private PersonDTO person;
 }

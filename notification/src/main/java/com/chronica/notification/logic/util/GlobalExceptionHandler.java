@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
                 webRequest.getDescription(false),
                 LocalDateTime.now());
 
-        LOGGER.error(exception.getMessage() + " at " + errorDTO.at());
+        LOGGER.error("{} at {}", exception.getMessage(), errorDTO.at());
 
         return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);
     }

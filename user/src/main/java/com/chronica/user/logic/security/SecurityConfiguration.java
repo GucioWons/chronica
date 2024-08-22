@@ -1,42 +1,37 @@
 package com.chronica.user.logic.security;
 
-import com.chronica.user.data.constant.Api;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
-import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfiguration {
 
     private final RequestAuthenticator requestAuthenticator;
+    private static final String LINKS = "/api/links/confirmation/**";
+    private static final String SWAGGER_UI = "/swagger-ui/**";
+    private static final String V_3 = "/v3/**";
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
-        MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
-
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.addFilterBefore(requestAuthenticator, UsernamePasswordAuthenticationFilter.class)
-                .csrf(csrfConfigurer -> csrfConfigurer
-                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern(Api.ACCOUNT))
-                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern(Api.LINK))
-                );
+                .csrf(CsrfConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers(mvcMatcherBuilder.pattern(Api.ACCOUNT)).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern(Api.LINK)).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern(Api.SWAGGER_UI)).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern(Api.V_3)).permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/accounts/sign-in","/api/accounts/sign-up").permitAll()
+                        .requestMatchers(HttpMethod.GET,LINKS,SWAGGER_UI,V_3).permitAll()
                         .anyRequest()
-                        .hasAuthority("USER")
+                        .authenticated()
                 )
                 .logout((logout) -> logout
                         .logoutUrl("/api/account/logout")
@@ -47,13 +42,15 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    protected BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/h2-console/**");
+    protected WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("/h2-console/**")
+                .requestMatchers("/swagger-ui/**")
+                .requestMatchers("/v3/**");
     }
 
 }

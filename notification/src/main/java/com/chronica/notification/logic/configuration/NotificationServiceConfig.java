@@ -1,4 +1,4 @@
-package com.chronica.notification.logic.notification;
+package com.chronica.notification.logic.configuration;
 
 import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Invitation;
@@ -6,6 +6,7 @@ import com.chronica.notification.data.entity.Message;
 import com.chronica.notification.data.repository.AlertRepository;
 import com.chronica.notification.data.repository.InvitationRepository;
 import com.chronica.notification.data.repository.MessageRepository;
+import com.chronica.notification.logic.service.NotificationService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

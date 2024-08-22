@@ -4,6 +4,8 @@ import com.chronica.notification.data.entity.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
+import java.util.List;
+
 
 public interface NotificationRepository<Entity extends Notification> extends JpaRepository<Entity,Long>, JpaSpecificationExecutor<Entity> {
 }

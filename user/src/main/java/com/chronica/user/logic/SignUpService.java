@@ -7,8 +7,12 @@ import com.chronica.user.data.mapper.AccountMapper;
 import com.chronica.user.data.repository.AccountRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.user.enumerated.Role;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +27,8 @@ public class SignUpService {
     public AccountDTO signUp(AccountDTO dto) {
         Account account = accountMapper.mapToNewEntity(dto);
         account.setPassword(bCryptPasswordEncoder.encode(dto.getPassword() + dto.getMail()));
+        account.setRoles(dto.getRoles());
         accountRepository.save(account);
-
         Link linkEntity = new Link();
         linkEntity.setAccount(account);
         linkService.createLinkForAccount(linkEntity);

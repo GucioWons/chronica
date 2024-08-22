@@ -19,7 +19,7 @@ public abstract class AccountMapper implements BaseMapper<Account, AccountDTO> {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "active", ignore = true)
-    @Mapping(target = "role", ignore = true)
+    @Mapping(target = "roles", ignore = true)
     @Mapping(target = "deprecated", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     public abstract Account mapToNewEntity(AccountDTO accountDTO);

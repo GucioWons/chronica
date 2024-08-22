@@ -4,11 +4,13 @@ import org.chronica.library.user.dto.SignInDTO;
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.mapper.AccountMapper;
 import com.chronica.user.logic.security.JWTHandler;
-import com.chronica.user.logic.util.SignInHelper;
+import org.chronica.library.user.dto.SignInResultDTO;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.user.enumerated.Role;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,11 +21,12 @@ public class SignInService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final AccountMapper accountMapper;
 
-    public Optional<SignInHelper> signIn(SignInDTO signInRequest) {
+    public Optional<SignInResultDTO> signIn(SignInDTO signInRequest) {
         Account account = accountService.getAccountByMailAndEnabled(signInRequest.mail());
         if (checkPassword(signInRequest.password() + signInRequest.mail(), account.getPassword())) {
-            String token = jwtHandler.generateToken(signInRequest.mail());
-            return Optional.of(new SignInHelper(token, accountMapper.mapToDTO(account)));
+            List<Role> roles = account.getRoles();
+            String token = jwtHandler.generateToken(signInRequest.mail(), roles);
+            return Optional.of(new SignInResultDTO(token, accountMapper.mapToDTO(account)));
         }
         return Optional.empty();
     }

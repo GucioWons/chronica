@@ -1,47 +1,28 @@
 package com.chronica.user.logic.security;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
+import org.chronica.library.user.enumerated.Role;
 import org.springframework.stereotype.Component;
-
-import java.io.File;
-import java.io.IOException;
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
 @Slf4j
+@NoArgsConstructor
 public class JWTHandler {
-    private final static Logger LOGGER = LoggerFactory.getLogger(JWTHandler.class);
-    @Value("${app.key.dir}")
-    private String filepath;
-    private String SECRET;
 
-    @Bean
-    public void getValuesFromJson() throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, String> map = objectMapper.readValue(new File(filepath), new TypeReference<>() {});
-        this.SECRET = map.get("SECRET");
-        LOGGER.info(SECRET);
-    }
-
-    public String generateToken(String userName) {
-        Map<String, Object> claims = new HashMap<>();
+    public String generateToken(String userName, List<Role> roles) {
+        Map<String, Object> claims = Map.of("roles", roles.stream().map(Enum::name).collect(Collectors.toList()));
         return createToken(claims, userName);
     }
 
@@ -50,11 +31,13 @@ public class JWTHandler {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 8500000))
-                .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
+                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 1800))
+                .signWith(getSignKey(), SignatureAlgorithm.HS256)
+                .compact();
     }
 
     private Key getSignKey() {
+        String SECRET = "ABCDEFGHIJKLQQQ123456789XASDASDXASD123123ASDXZASDASD22211CH1U2J3";
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
@@ -87,5 +70,11 @@ public class JWTHandler {
     public Boolean validateToken(String token, String mail) {
         String username = extractUsername(token);
         return (username.equals(mail) && !isTokenExpired(token));
+    }
+
+    public List<Role> extractRoles(String token) {
+        Claims claims = extractAllClaims(token);
+        List<String> roleNames = claims.get("roles", List.class);
+        return roleNames.stream().map(Role::valueOf).collect(Collectors.toList());
     }
 }

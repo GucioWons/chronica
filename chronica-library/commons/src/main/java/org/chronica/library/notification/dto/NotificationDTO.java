@@ -1,7 +1,7 @@
 package org.chronica.library.notification.dto;
 
-//import com.fasterxml.jackson.annotation.JsonSubTypes;
-//import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,14 +10,14 @@ import org.chronica.library.commons.dto.EntityDTO;
 
 import java.time.LocalDateTime;
 
-//@JsonTypeInfo(
-//        use = JsonTypeInfo.Id.NAME,
-//        property = "type")
-//@JsonSubTypes({
-//        @JsonSubTypes.Type(value = AlertDTO.class, name = "alert"),
-//        @JsonSubTypes.Type(value = InvitationDTO.class, name = "invitation"),
-//        @JsonSubTypes.Type(value = MessageDTO.class, name = "message")
-//})
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = AlertDTO.class, name = "alert"),
+        @JsonSubTypes.Type(value = InvitationDTO.class, name = "invitation"),
+        @JsonSubTypes.Type(value = MessageDTO.class, name = "message")
+})
 @NoArgsConstructor
 @Getter
 @Setter
