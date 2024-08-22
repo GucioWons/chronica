@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.library.group.enumerated.Category;
-import org.chronica.library.model.ChronicaEntity;
+import org.chronica.library.enumerated.GroupCategory;
+import org.chronica.library.commons.model.ChronicaEntity;
 
 @Entity
 @Getter
@@ -18,7 +18,7 @@ public class Group implements ChronicaEntity {
     private Long id;
     private String name;
     private String description;
-    private Category category;
+    private GroupCategory groupCategory;
     private Long ownerId;
     private boolean deprecated = false;
 

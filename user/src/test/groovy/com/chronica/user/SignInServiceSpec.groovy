@@ -7,7 +7,7 @@ import com.chronica.user.data.exception.WrongCredentialsException
 import com.chronica.user.data.mapper.AccountMapper
 import com.chronica.user.logic.AccountService
 import com.chronica.user.logic.SignInService
-import com.chronica.user.logic.security.JWTHandler
+import JWTHandler
 import org.chronica.library.user.dto.SignInResultDTO
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import spock.lang.Specification
