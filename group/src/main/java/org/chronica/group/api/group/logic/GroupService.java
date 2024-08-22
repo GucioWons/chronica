@@ -3,11 +3,11 @@ package org.chronica.group.api.group.logic;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.chronica.library.group.dto.GroupDTO;
 import org.chronica.group.api.group.entity.Group;
 import org.chronica.group.api.group.exception.NoGroupException;
 import org.chronica.group.api.group.mapper.GroupMapper;
 import org.chronica.group.api.group.repository.GroupRepository;
+import org.chronica.library.group.dto.GroupDTO;
 
 import java.util.List;
 

@@ -17,6 +17,7 @@ export namespace DTOs {
 
     export interface AlertDTO extends NotificationDTO {
         priority: Priority;
+        type: "alert";
     }
 
     export interface BaseChainDTO extends EntityDTO {
@@ -64,6 +65,7 @@ export namespace DTOs {
         acceptedAt: DateAsString;
         groupId: number;
         inviterId: number;
+        type: "invitation";
     }
 
     export interface LinkConfirmationDTO {
@@ -74,6 +76,7 @@ export namespace DTOs {
 
     export interface MessageDTO extends NotificationDTO {
         messageFromUserId: number;
+        type: "message";
     }
 
     export interface NotificationDTO extends EntityDTO {
@@ -83,6 +86,7 @@ export namespace DTOs {
         receiverId: number;
         seen: boolean;
         title: string;
+        type: "NotificationDTO" | "alert" | "invitation" | "message";
         viewAt: DateAsString;
     }
 
@@ -94,7 +98,6 @@ export namespace DTOs {
     }
 
     export interface PersonDTO extends EntityDTO {
-        age: number;
         lastName: string;
         name: string;
     }
@@ -121,13 +124,14 @@ export namespace DTOs {
         activity: Activity;
         chainId: number;
         creationDate: DateAsString;
-        deprecated: boolean;
         description: string;
         logDate: DateAsString;
         time: number;
     }
 
     export type DateAsString = string;
+
+    export type NotificationDTOUnion = AlertDTO | InvitationDTO | MessageDTO;
 
     export enum Activity {
         DEVELOPMENT = "DEVELOPMENT",
@@ -163,7 +167,6 @@ export namespace DTOs {
     export enum Role {
         ADMINISTRATOR = "ADMINISTRATOR",
         USER = "USER",
-        SYSTEM = "SYSTEM",
     }
 
 }
