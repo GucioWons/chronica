@@ -3,46 +3,20 @@ package com.chronica.project.data.mapper;
 import com.chronica.project.data.entity.Project;
 import org.chronica.library.commons.mapper.BaseMapper;
 import org.chronica.library.project.dto.ProjectDTO;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
-import java.time.LocalDateTime;
 
-@Component
+@Mapper(componentModel = "jakarta")
 public class ProjectMapper implements BaseMapper<Project, ProjectDTO> {
-    @Override
-    public ProjectDTO mapToDTO(Project entity) {
-        ProjectDTO dto = new ProjectDTO();
-        dto.setId(entity.getId());
-        dto.setName(entity.getName());
-        dto.setGroupId(entity.getGroupId());
-        dto.setCreatedDate(entity.getCreatedDate());
-        dto.setLastChangeDate(entity.getLastChangeDate());
-        dto.setDeprecated(entity.isDeprecated());
-        return dto;
-    }
+    ProjectDTO mapToDTO(Project entity);
 
-    @Override
-    public Project mapToNewEntity(ProjectDTO dto) {
-        Project project = new Project();
-        project.setName(dto.getName());
-        project.setGroupId(dto.getGroupId());
-        project.setCreatedDate(dto.getCreatedDate());
-        project.setLastChangeDate(dto.getLastChangeDate());
-        project.setDeprecated(dto.isDeprecated());
-        return project;
-    }
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "deprecated", ignore = true)
+    Project mapToNewEntity(ProjectDTO dto);
 
-    @Override
-    public Project mapToUpdateEntity(Project toUpdate, ProjectDTO dto) {
-        if (dto.getName() != null) {
-            toUpdate.setName(toUpdate.getName());
-        }
-        if (dto.getGroupId() != null) {
-            toUpdate.setGroupId(toUpdate.getGroupId());
-        }
-        if (dto.getLastChangeDate() != null) {
-            toUpdate.setLastChangeDate(LocalDateTime.now());
-        }
-        return toUpdate;
-    }
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "deprecated", ignore = true)
+    Project mapToUpdateEntity(@MappingTarget Project toUpdate, ProjectDTO dto);
 }
