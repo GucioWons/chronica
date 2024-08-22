@@ -1,6 +1,6 @@
 package com.chronica.group.mapper;
 
-import org.chronica.group.api.group.entity.Group;
+import com.chronica.group.entity.Group;
 import org.chronica.library.commons.mapper.BaseMapper;
 import org.chronica.library.group.dto.GroupDTO;
 import org.mapstruct.Mapper;

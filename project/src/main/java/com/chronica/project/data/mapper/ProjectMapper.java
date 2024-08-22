@@ -9,7 +9,7 @@ import org.mapstruct.MappingTarget;
 
 
 @Mapper(componentModel = "jakarta")
-public class ProjectMapper implements BaseMapper<Project, ProjectDTO> {
+public interface ProjectMapper extends BaseMapper<Project, ProjectDTO> {
     ProjectDTO mapToDTO(Project entity);
 
     @Mapping(target = "id", ignore = true)
