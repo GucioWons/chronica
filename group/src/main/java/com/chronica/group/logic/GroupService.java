@@ -3,10 +3,10 @@ package com.chronica.group.logic;
 import com.chronica.group.entity.Group;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.chronica.library.group.dto.GroupDTO;
 import com.chronica.group.exception.NoGroupException;
 import com.chronica.group.mapper.GroupMapper;
 import com.chronica.group.repository.GroupRepository;
+import org.chronica.library.dto.group.GroupDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

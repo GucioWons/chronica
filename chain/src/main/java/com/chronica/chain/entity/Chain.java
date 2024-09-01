@@ -1,11 +1,11 @@
 package com.chronica.chain.entity;
 
-import org.chronica.library.chain.enumerated.ChainType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.chronica.library.commons.model.ChronicaEntity;
+import org.chronica.library.enumerated.ChainType;
 
 import java.math.BigDecimal;
 import java.util.List;

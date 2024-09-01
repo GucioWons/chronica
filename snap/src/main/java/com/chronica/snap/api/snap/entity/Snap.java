@@ -1,11 +1,11 @@
 package com.chronica.snap.api.snap.entity;
 
-import org.chronica.library.snap.enumerated.Activity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.library.model.ChronicaEntity;
+import org.chronica.library.commons.model.ChronicaEntity;
+import org.chronica.library.enumerated.SnapActivity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,7 +23,7 @@ public class Snap implements ChronicaEntity {
     @Column(nullable = false)
     private Long chainId;
     @Column(nullable = false)
-    private Activity activity;
+    private SnapActivity activity;
     private String description;
     @Column(nullable = false)
     private LocalDateTime creationDate = LocalDateTime.now();

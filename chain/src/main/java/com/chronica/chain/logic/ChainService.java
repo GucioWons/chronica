@@ -5,7 +5,7 @@ import com.chronica.chain.exception.NoChainException;
 import com.chronica.chain.mapper.ChainMapper;
 import com.chronica.chain.repository.ChainRepository;
 import lombok.RequiredArgsConstructor;
-import org.chronica.library.chain.dto.ChainDTO;
+import org.chronica.library.dto.chain.ChainDTO;
 import org.springframework.stereotype.Service;
 
 @Service

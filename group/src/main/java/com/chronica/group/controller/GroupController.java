@@ -3,7 +3,7 @@ package com.chronica.group.controller;
 
 import com.chronica.group.logic.GroupService;
 import lombok.RequiredArgsConstructor;
-import org.chronica.library.group.dto.GroupDTO;
+import org.chronica.library.dto.group.GroupDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

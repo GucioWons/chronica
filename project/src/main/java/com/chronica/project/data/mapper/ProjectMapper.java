@@ -2,7 +2,7 @@ package com.chronica.project.data.mapper;
 
 import com.chronica.project.data.entity.Project;
 import org.chronica.library.commons.mapper.BaseMapper;
-import org.chronica.library.project.dto.ProjectDTO;
+import org.chronica.library.dto.project.ProjectDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

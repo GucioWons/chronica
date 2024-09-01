@@ -6,7 +6,7 @@ import com.chronica.project.data.mapper.ProjectMapper;
 import com.chronica.project.data.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.chronica.library.project.dto.ProjectDTO;
+import org.chronica.library.dto.project.ProjectDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

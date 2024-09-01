@@ -2,7 +2,7 @@ package com.chronica.user.data.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.chronica.library.model.ChronicaEntity;
+import org.chronica.library.commons.model.ChronicaEntity;
 
 @Entity
 @RequiredArgsConstructor

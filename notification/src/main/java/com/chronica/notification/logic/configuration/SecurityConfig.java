@@ -1,8 +1,8 @@
 package com.chronica.notification.logic.configuration;
 
-import com.chronica.user.logic.security.JWTHandler;
-import com.chronica.user.logic.security.RequestAuthenticator;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.security.JWTHandler;
+import org.chronica.library.security.RequestAuthenticator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -24,19 +24,19 @@ public class SecurityConfig {
                 .csrf(CsrfConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, "/api/notifications/**")
-                        .hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/api/notifications/**")
-                        .hasRole("USER")
-                        .requestMatchers(HttpMethod.PUT, "/api/notifications/**")
-                        .hasRole("USER")
-                        .requestMatchers(HttpMethod.DELETE, "/api/notifications/**")
-                        .hasRole("ADMINISTRATOR")
-                        .requestMatchers(HttpMethod.GET,"/h2-console/**","/swagger-ui/**","/v3/**")
-                        .hasRole("SYSTEM")
-                        .anyRequest()
-                        .authenticated()
-                );
+                .requestMatchers(HttpMethod.GET, "/api/notifications/**")
+                .hasRole("USER")
+                .requestMatchers(HttpMethod.POST, "/api/notifications/**")
+                .hasRole("USER")
+                .requestMatchers(HttpMethod.PUT, "/api/notifications/**")
+                .hasRole("USER")
+                .requestMatchers(HttpMethod.DELETE, "/api/notifications/**")
+                .hasRole("ADMINISTRATOR")
+                .requestMatchers(HttpMethod.GET, "/h2-console/**", "/swagger-ui/**", "/v3/**")
+                .hasRole("SYSTEM")
+                .anyRequest()
+                .authenticated()
+        );
 
         return http.getOrBuild();
     }
@@ -47,6 +47,4 @@ public class SecurityConfig {
                 .requestMatchers("/swagger-ui/**")
                 .requestMatchers("/v3/**");
     }
-
-
 }

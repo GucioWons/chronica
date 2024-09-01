@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.library.model.ChronicaEntity;
+import org.chronica.library.commons.model.ChronicaEntity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,14 +25,4 @@ public class Project implements ChronicaEntity {
     private LocalDate createdDate;
     private LocalDateTime lastChangeDate;
     private boolean deprecated = false;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

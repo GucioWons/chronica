@@ -1,8 +1,8 @@
 package com.chronica.snap.api.snap.configuration;
 
-import com.chronica.user.logic.security.JWTHandler;
-import com.chronica.user.logic.security.RequestAuthenticator;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.security.JWTHandler;
+import org.chronica.library.security.RequestAuthenticator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

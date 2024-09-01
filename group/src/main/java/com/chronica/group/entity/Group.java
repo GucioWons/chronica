@@ -21,14 +21,4 @@ public class Group implements ChronicaEntity {
     private GroupCategory groupCategory;
     private Long ownerId;
     private boolean deprecated = false;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
