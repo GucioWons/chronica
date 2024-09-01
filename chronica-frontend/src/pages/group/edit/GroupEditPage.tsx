@@ -1,10 +1,9 @@
-import ProtectedPage from "../../shared/ProtectedPage";
-import {DTOs} from "../../shared/dto/dtos";
-import GroupDetail from "./GroupDetail";
 import {useParams} from "react-router";
+import {DTOs} from "../../../shared/dto/dtos";
 import Category = DTOs.Category;
+import GroupForm from "../form/GroupForm";
 
-function GroupPage() {
+function GroupEditPage() {
     const { id } = useParams<{ id: string }>();
 
     //TODO add 404 page
@@ -24,10 +23,10 @@ function GroupPage() {
     }
 
     return (
-        <ProtectedPage>
-            <GroupDetail group={group} />
-        </ProtectedPage>
+        <div className="edit-page">
+            <GroupForm group={group} />
+        </div>
     )
 }
 
-export default GroupPage;
+export default GroupEditPage;

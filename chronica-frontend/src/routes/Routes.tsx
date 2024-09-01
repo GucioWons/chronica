@@ -3,7 +3,8 @@ import App from "../App";
 import AuthorizationPage from "../pages/authorization/AuthorizationPage";
 import HomePage from "../pages/home/HomePage";
 import ConfirmationPage from "../pages/authorization/ConfirmationPage";
-import GroupPage from "../pages/group/GroupPage";
+import GroupPage from "../pages/group/detail/GroupPage";
+import GroupEditPage from "../pages/group/edit/GroupEditPage";
 
 export const router = createBrowserRouter(
     [
@@ -26,6 +27,10 @@ export const router = createBrowserRouter(
                 {
                     path: "group/:id",
                     element: <GroupPage />
+                },
+                {
+                    path: "group/:id/edit",
+                    element: <GroupEditPage />
                 }
             ]
         },

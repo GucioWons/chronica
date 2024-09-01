@@ -9,6 +9,7 @@ interface FormProps<T extends FieldValues> {
     onSubmit: (data: T) => void,
     setMethods: (methods: UseFormReturn<T>) => void,
     submitText?: string,
+    defaultValues?: T
 }
 
 function Form<T extends FieldValues>(props: FormProps<T>) {
@@ -17,7 +18,8 @@ function Form<T extends FieldValues>(props: FormProps<T>) {
         children,
         onSubmit,
         setMethods,
-        submitText
+        submitText,
+        defaultValues
     } = props;
 
     const methods = useForm<T>();
@@ -25,8 +27,11 @@ function Form<T extends FieldValues>(props: FormProps<T>) {
     useEffect(() => {
         if (setMethods) {
             setMethods(methods);
+            if (defaultValues) {
+               methods.reset(defaultValues); 
+            }
         }
-    }, [methods, setMethods]);
+    }, [defaultValues, methods, setMethods]);
 
     const cloneWithRegister = (child: React.ReactNode): React.ReactNode => {
         if (React.isValidElement(child) && child.type === FormInput) {

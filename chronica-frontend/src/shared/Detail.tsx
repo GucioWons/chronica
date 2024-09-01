@@ -3,12 +3,14 @@ import React from "react";
 export interface DetailProps {
     header?: string,
     children: React.ReactNode,
+    button?: React.ReactNode,
 }
 
 function Detail(props: DetailProps) {
     const {
         header,
-        children
+        children,
+        button
     } = props;
 
     return (
@@ -16,6 +18,7 @@ function Detail(props: DetailProps) {
             {header &&
             <div className="detail-header">
                 {header}
+                {button}
             </div>
             }
             <div className="detail-content">
