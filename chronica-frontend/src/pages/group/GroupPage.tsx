@@ -1,9 +1,7 @@
 import ProtectedPage from "../../shared/ProtectedPage";
-import {useState} from "react";
 import {DTOs} from "../../shared/dto/dtos";
 import GroupDetail from "./GroupDetail";
 import {useParams} from "react-router";
-import GroupDTO = DTOs.GroupDTO;
 import Category = DTOs.Category;
 
 function GroupPage() {
@@ -11,7 +9,7 @@ function GroupPage() {
 
     //TODO add 404 page
     if (!id) {
-        return <p>Id not found</p>; // Obsługa przypadku, gdy id nie istnieje
+        return <p>Id not found</p>;
     }
 
     const numericId = parseInt(id, 10);
