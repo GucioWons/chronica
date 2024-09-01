@@ -5,6 +5,7 @@ import HomePage from "../pages/home/HomePage";
 import ConfirmationPage from "../pages/authorization/ConfirmationPage";
 import GroupPage from "../pages/group/detail/GroupPage";
 import GroupEditPage from "../pages/group/edit/GroupEditPage";
+import GroupCreatePage from "../pages/group/create/GroupCreatePage";
 
 export const router = createBrowserRouter(
     [
@@ -31,6 +32,10 @@ export const router = createBrowserRouter(
                 {
                     path: "group/:id/edit",
                     element: <GroupEditPage />
+                },
+                {
+                    path: "group/new",
+                    element: <GroupCreatePage />
                 }
             ]
         },
