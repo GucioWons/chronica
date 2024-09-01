@@ -77,6 +77,26 @@
   flex: 2
 }
 
+.textfield-with-label {
+  display: flex;
+}
+
+.textfield-with-label.horizontal {
+  flex-direction: row;
+}
+
+.textfield-with-label.vertical {
+  flex-direction: column;
+}
+
+.textfield-label {
+  flex: 1
+}
+
+.textfield-text {
+  flex: 2
+}
+
 .navbar {
   display: flex;
   justify-content: space-around;

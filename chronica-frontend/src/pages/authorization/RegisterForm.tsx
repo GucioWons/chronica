@@ -61,13 +61,6 @@ function RegisterForm() {
                     field="person.lastName"
                     required
                 />
-                <FormInput
-                    <AccountDTO>
-                    label="Age"
-                    field="person.age"
-                    required
-                    type="number"
-                />
             </Form>
         </div>
     )
