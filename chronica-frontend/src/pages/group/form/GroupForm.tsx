@@ -1,9 +1,11 @@
-import Form from "../../../shared/Form";
+import Form from "../../../shared/form/Form";
 import {DTOs} from "../../../shared/dto/dtos";
-import GroupDTO = DTOs.GroupDTO;
-import FormInput from "../../../shared/FormInput";
-import {useEffect, useState} from "react";
+import FormInput from "../../../shared/form/FormInput";
+import {useState} from "react";
 import {UseFormReturn} from "react-hook-form";
+import FormSelect from "../../../shared/form/FormSelect";
+import GroupDTO = DTOs.GroupDTO;
+import Category = DTOs.Category;
 
 export interface GroupFormProps {
     group?: GroupDTO
@@ -35,6 +37,13 @@ function GroupForm(props: GroupFormProps) {
                 <GroupDTO>
                 label="Description"
                 field="description"
+            />
+            <FormSelect
+                <GroupDTO, Category>
+                setValue={formMethods?.setValue}
+                field="category"
+                label="Category"
+                options={Object.values(Category)}
             />
         </Form>
     )

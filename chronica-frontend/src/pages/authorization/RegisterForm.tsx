@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {UseFormReturn} from "react-hook-form";
-import FormInput from "../../shared/FormInput";
+import FormInput from "../../shared/form/FormInput";
 import {useAuth} from "../../context/useAuth";
-import Form from "../../shared/Form";
+import Form from "../../shared/form/Form";
 import {DTOs} from "../../shared/dto/dtos";
 import AccountDTO = DTOs.AccountDTO;
 

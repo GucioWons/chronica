@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {FieldValues, SubmitHandler, useForm, UseFormReturn} from "react-hook-form";
-import SubmitButton from "./SubmitButton";
+import SubmitButton from "../SubmitButton";
 import FormInput, {FormInputProps} from "./FormInput";
 
 interface FormProps<T extends FieldValues> {
@@ -39,6 +39,8 @@ function Form<T extends FieldValues>(props: FormProps<T>) {
                 register: methods.register,
                 id: id
             });
+        } else {
+            return child;
         }
     };
 
