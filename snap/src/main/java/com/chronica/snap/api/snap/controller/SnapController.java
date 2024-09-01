@@ -1,8 +1,8 @@
 package com.chronica.snap.api.snap.controller;
 
-import org.chronica.library.snap.dto.SnapDTO;
 import com.chronica.snap.api.snap.logic.SnapService;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.dto.snap.SnapDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

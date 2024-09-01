@@ -1,6 +1,6 @@
 package com.chronica.user.data.mapper;
 
-import org.chronica.library.user.dto.LinkConfirmationDTO;
+import org.chronica.library.dto.user.LinkConfirmationDTO;
 import org.mapstruct.Mapper;
 
 import java.time.LocalDateTime;

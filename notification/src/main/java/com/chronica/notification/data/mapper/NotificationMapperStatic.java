@@ -1,7 +1,7 @@
 package com.chronica.notification.data.mapper;
 
-import org.chronica.library.notification.dto.NotificationDTO;
 import com.chronica.notification.data.entity.Notification;
+import org.chronica.library.dto.notification.NotificationDTO;
 
 public class NotificationMapperStatic {
     public static void mapToDTO(NotificationDTO dto, Notification entity) {

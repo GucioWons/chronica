@@ -1,11 +1,11 @@
 package com.chronica.chain.entity;
 
-import org.chronica.library.chain.enumerated.ChainType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.chronica.library.model.ChronicaEntity;
+import org.chronica.library.commons.model.ChronicaEntity;
+import org.chronica.library.enumerated.ChainType;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -29,7 +29,7 @@ public class Chain implements ChronicaEntity {
     @Column
     private String description;
     @Column(nullable = false)
-    private ChainType type;
+    private ChainType chainType;
     @Column
     private BigDecimal estimation = BigDecimal.ZERO;
     @Column

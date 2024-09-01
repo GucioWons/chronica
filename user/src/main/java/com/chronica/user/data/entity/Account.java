@@ -1,10 +1,10 @@
 package com.chronica.user.data.entity;
 
-import org.chronica.library.user.enumerated.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.chronica.library.model.ChronicaEntity;
+import org.chronica.library.commons.model.ChronicaEntity;
+import org.chronica.library.enumerated.UserRole;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,7 +31,7 @@ public class Account implements ChronicaEntity {
     @CollectionTable(name = "account_roles", joinColumns = @JoinColumn(name = "account_id"))
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    private List<Role> roles;
+    private List<UserRole> userRoles;
     private LocalDateTime createdAt = LocalDateTime.now();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")

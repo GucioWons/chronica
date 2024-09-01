@@ -1,9 +1,5 @@
 package com.chronica.notification.data.mapper;
 
-import org.chronica.library.notification.dto.AlertDTO;
-import org.chronica.library.notification.dto.InvitationDTO;
-import org.chronica.library.notification.dto.MessageDTO;
-import org.chronica.library.notification.dto.NotificationDTO;
 import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Invitation;
 import com.chronica.notification.data.entity.Message;
@@ -13,6 +9,10 @@ import com.chronica.notification.data.mapper.injection.AlertMapper;
 import com.chronica.notification.data.mapper.injection.InvitationMapper;
 import com.chronica.notification.data.mapper.injection.MessageMapper;
 import lombok.AllArgsConstructor;
+import org.chronica.library.dto.notification.AlertDTO;
+import org.chronica.library.dto.notification.InvitationDTO;
+import org.chronica.library.dto.notification.MessageDTO;
+import org.chronica.library.dto.notification.NotificationDTO;
 import org.springframework.stereotype.Service;
 
 @Service

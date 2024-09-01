@@ -1,12 +1,12 @@
 package com.chronica.user.controller;
 
-import org.chronica.library.user.dto.AccountDTO;
-import org.chronica.library.user.dto.SignInDTO;
 import com.chronica.user.logic.AccountService;
 import com.chronica.user.logic.SignInService;
 import com.chronica.user.logic.SignUpService;
-import org.chronica.library.user.dto.SignInResultDTO;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.dto.user.AccountDTO;
+import org.chronica.library.dto.user.SignInDTO;
+import org.chronica.library.dto.user.SignInResultDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

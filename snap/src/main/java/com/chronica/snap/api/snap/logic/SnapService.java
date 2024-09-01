@@ -1,11 +1,11 @@
 package com.chronica.snap.api.snap.logic;
 
 import com.chronica.snap.api.snap.data.SnapRepository;
-import org.chronica.library.snap.dto.SnapDTO;
 import com.chronica.snap.api.snap.entity.Snap;
 import com.chronica.snap.api.snap.exception.NoSnapException;
 import com.chronica.snap.api.snap.mapper.SnapMapper;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.dto.snap.SnapDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,12 +1,12 @@
 package com.chronica.user.logic;
 
-import org.chronica.library.user.dto.AccountDTO;
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.exception.AccountDoesntExistException;
 import com.chronica.user.data.exception.WrongCredentialsException;
 import com.chronica.user.data.mapper.AccountMapper;
 import com.chronica.user.data.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.dto.user.AccountDTO;
 import org.springframework.stereotype.Service;
 
 @Service

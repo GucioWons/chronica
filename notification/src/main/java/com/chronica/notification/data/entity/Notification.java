@@ -2,12 +2,11 @@ package com.chronica.notification.data.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.chronica.library.model.ChronicaEntity;
+import org.chronica.library.commons.model.ChronicaEntity;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

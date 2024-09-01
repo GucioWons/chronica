@@ -3,7 +3,7 @@ package com.chronica.user.data.mapper;
 import com.chronica.user.data.entity.Person;
 import org.chronica.library.commons.exception.NotImplementedException;
 import org.chronica.library.commons.mapper.BaseMapper;
-import org.chronica.library.user.dto.PersonDTO;
+import org.chronica.library.dto.user.PersonDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

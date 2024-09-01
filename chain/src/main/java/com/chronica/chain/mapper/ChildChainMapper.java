@@ -1,7 +1,7 @@
 package com.chronica.chain.mapper;
 
 import com.chronica.chain.entity.Chain;
-import org.chronica.library.chain.dto.ChildChainDTO;
+import org.chronica.library.dto.chain.ChildChainDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

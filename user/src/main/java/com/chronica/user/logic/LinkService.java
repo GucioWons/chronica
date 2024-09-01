@@ -1,6 +1,5 @@
 package com.chronica.user.logic;
 
-import org.chronica.library.user.dto.LinkConfirmationDTO;
 import com.chronica.user.data.entity.Account;
 import com.chronica.user.data.entity.Link;
 import com.chronica.user.data.mapper.LinkConfirmationMapper;
@@ -8,6 +7,7 @@ import com.chronica.user.data.repository.AccountRepository;
 import com.chronica.user.data.repository.LinkRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.dto.user.LinkConfirmationDTO;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
