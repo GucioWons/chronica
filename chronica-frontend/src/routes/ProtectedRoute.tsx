@@ -10,7 +10,7 @@ function ProtectedRoute(props: ProtectedRouteProps) {
     const location = useLocation();
     const { isLoggedIn } = useAuth();
 
-    return isLoggedIn()
+    return !isLoggedIn()
         ? (<>{ props.children }</>)
         : (<Navigate to="/auth" state={{ from: location }} replace />);
 }

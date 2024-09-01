@@ -12,8 +12,8 @@ function TextField(props: TextFieldProps) {
     } = props;
     return (
         <div className={`textfield-with-label ${horizontal ? 'horizontal' : 'vertical'}`}>
-            <div className="textfield-label">{label}:</div>
-            <div className="textfield-text">{text}</div>
+            <div className="textfield-label ${horizontal ? 'horizontal' : 'vertical'">{label}:</div>
+            <div className="textfield-text ${horizontal ? 'horizontal' : 'vertical'" >{text}</div>
         </div>
     )
 }

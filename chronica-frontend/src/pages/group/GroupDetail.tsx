@@ -10,10 +10,14 @@ function GroupDetail(props: GroupDetailProps) {
     const {group} = props;
 
     return (
-        <div>
-            <TextField text={group.name} label={"Name"} />
-            <TextField text={group.description} label={"Description"} />
-            <TextField text={group.category} label={"Category"} />
+        <div className="detail">
+            <div className="detail-header">
+                {group.name}
+            </div>
+            <div className="detail-content">
+                <TextField text={group.description} label={"Description"} />
+                <TextField text={group.category} label={"Category"} horizontal />
+            </div>
         </div>
     );
 }
