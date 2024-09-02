@@ -56,7 +56,8 @@ function ProjectListPage() {
             <Table
                 <ProjectDTO>
                 objects={objects}
-                headers={headers}/>
+                headers={headers}
+                onRowClick={(row) => {console.log(row)}}/>
         </div>
     )
 }

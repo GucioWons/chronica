@@ -5,13 +5,14 @@ import TableContent from "./TableContent";
 export interface TableProps<T> {
     objects: T[],
     headers: TableHeader<T>[]
+    onRowClick?: (row: T) => void
 }
 
 function Table<T>(props: TableProps<T>) {
-    console.log("table")
     const {
         objects,
-        headers
+        headers,
+        onRowClick
     } = props;
 
     return (
@@ -21,6 +22,7 @@ function Table<T>(props: TableProps<T>) {
                 <T>
                 objects={objects}
                 headers={headers}
+                onRowClick={onRowClick}
             />
         </div>
     );

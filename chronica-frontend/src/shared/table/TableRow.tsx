@@ -5,16 +5,21 @@ export interface TableRowProps<T> {
     object: T,
     headers: TableHeader<T>[],
     index: number
+    onClick?: (row: T) => void
 }
 
 function TableRow<T>(props: TableRowProps<T>) {
     const {
         object,
         headers,
-        index
+        index,
+        onClick
     } = props;
     return (
-        <div className={index % 2 === 0 ? "table-row-light" : "table-row-dark"}>
+        <div
+            onClick={onClick ? () => onClick(object) : undefined}
+            className={index % 2 === 0 ? "table-row-light" : "table-row-dark"}
+        >
             {headers.map((header) => (
                 <TableCell value={object[header.field] as string} />
             ))}
