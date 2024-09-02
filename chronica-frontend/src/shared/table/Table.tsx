@@ -8,6 +8,7 @@ export interface TableProps<T> {
 }
 
 function Table<T>(props: TableProps<T>) {
+    console.log("table")
     const {
         objects,
         headers

@@ -3,9 +3,7 @@ export interface TableCellProps {
 }
 
 function TableCell(props: TableCellProps) {
-    return (
-        <div>{props.value}</div>
-    )
+    return <div className="table-cell">{props.value}</div>
 }
 
 export default TableCell;

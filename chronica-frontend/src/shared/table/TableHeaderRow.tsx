@@ -5,12 +5,12 @@ export interface TableHeaderRowProps {
 }
 
 function TableHeaderRow(props: TableHeaderRowProps) {
+    console.log("hrow")
     return (
-        <div>
-            <TableHeaderRow headers={props.headers} />
+        <div className="table-header-row">
             {props.headers.map((header) => {
                 return (
-                    <div>{header.name}</div>
+                    <div className="table-header-cell">{header.name}</div>
                 );
             })}
         </div>

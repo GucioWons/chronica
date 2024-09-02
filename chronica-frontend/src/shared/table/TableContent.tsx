@@ -9,11 +9,12 @@ export interface TableContentProps<T> {
 function TableContent<T>(props: TableContentProps<T>) {
     return (
         <>
-            {props.objects.map((object: T) => (
+            {props.objects.map((object: T, index) => (
                 <TableRow
                     <T>
                     object={object}
                     headers={props.headers}
+                    index={index}
                 />
             ))}
         </>
