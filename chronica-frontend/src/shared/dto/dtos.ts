@@ -11,35 +11,35 @@ export namespace DTOs {
         password: string;
         person: PersonDTO;
         phoneNumber: number;
-        roles: Role[];
+        userRoles: UserRole[];
         username: string;
     }
 
     export interface AlertDTO extends NotificationDTO {
-        priority: Priority;
+        alertPriority: AlertPriority;
         type: "alert";
     }
 
     export interface BaseChainDTO extends EntityDTO {
+        chainType: ChainType;
         title: string;
-        type: ChainType;
     }
 
     export interface ChainDTO extends EntityDTO {
         baseChain: BaseChainDTO;
+        chainType: ChainType;
         childChains: ChildChainDTO[];
         description: string;
         estimation: number;
         points: number;
         timeLeft: number;
         title: string;
-        type: ChainType;
     }
 
     export interface ChildChainDTO extends EntityDTO {
+        chainType: ChainType;
         childChains: ChildChainDTO[];
         title: string;
-        type: ChainType;
     }
 
     export interface EntityDTO {
@@ -53,8 +53,7 @@ export namespace DTOs {
     }
 
     export interface GroupDTO extends EntityDTO {
-        category: Category;
-        deprecated: boolean;
+        category: GroupCategory;
         description: string;
         name: string;
         ownerId: number;
@@ -121,11 +120,11 @@ export namespace DTOs {
     }
 
     export interface SnapDTO extends EntityDTO {
-        activity: Activity;
         chainId: number;
         creationDate: DateAsString;
         description: string;
         logDate: DateAsString;
+        snapActivity: SnapActivity;
         time: number;
     }
 
@@ -133,17 +132,10 @@ export namespace DTOs {
 
     export type NotificationDTOUnion = AlertDTO | InvitationDTO | MessageDTO;
 
-    export enum Activity {
-        DEVELOPMENT = "DEVELOPMENT",
-        MANAGEMENT = "MANAGEMENT",
-        MEETING = "MEETING",
-        OTHER = "OTHER",
-    }
-
-    export enum Category {
-        IT = "IT",
-        SALESFORCE = "SALESFORCE",
-        OTHER = "OTHER",
+    export enum AlertPriority {
+        IMPORTANT = "IMPORTANT",
+        SPAM = "SPAM",
+        DEFAULT = "DEFAULT",
     }
 
     export enum ChainType {
@@ -158,13 +150,20 @@ export namespace DTOs {
         DESC = "DESC",
     }
 
-    export enum Priority {
-        IMPORTANT = "IMPORTANT",
-        SPAM = "SPAM",
-        DEFAULT = "DEFAULT",
+    export enum GroupCategory {
+        IT = "IT",
+        SALESFORCE = "SALESFORCE",
+        OTHER = "OTHER",
     }
 
-    export enum Role {
+    export enum SnapActivity {
+        DEVELOPMENT = "DEVELOPMENT",
+        MANAGEMENT = "MANAGEMENT",
+        MEETING = "MEETING",
+        OTHER = "OTHER",
+    }
+
+    export enum UserRole {
         ADMINISTRATOR = "ADMINISTRATOR",
         USER = "USER",
     }
