@@ -1,7 +1,7 @@
 import {useParams} from "react-router";
 import {DTOs} from "../../../shared/dto/dtos";
-import Category = DTOs.Category;
 import GroupForm from "../form/GroupForm";
+import GroupCategory = DTOs.GroupCategory;
 
 function GroupEditPage() {
     const { id } = useParams<{ id: string }>();
@@ -14,8 +14,7 @@ function GroupEditPage() {
     const numericId = parseInt(id, 10);
 
     const group = {
-        category: Category.IT,
-        deprecated: false,
+        category: GroupCategory.IT,
         description: "Test_description",
         id: numericId,
         name: "TEST " + numericId,
