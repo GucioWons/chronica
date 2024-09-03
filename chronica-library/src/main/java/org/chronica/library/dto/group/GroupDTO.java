@@ -12,8 +12,6 @@ import org.chronica.library.enumerated.GroupCategory;
 public class GroupDTO extends EntityDTO {
     private String name;
     private String description;
-    private GroupCategory groupCategory;
+    private GroupCategory category;
     private Long ownerId;
-    private boolean deprecated;
-
 }

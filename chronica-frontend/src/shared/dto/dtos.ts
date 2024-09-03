@@ -53,9 +53,8 @@ export namespace DTOs {
     }
 
     export interface GroupDTO extends EntityDTO {
-        deprecated: boolean;
+        category: GroupCategory;
         description: string;
-        groupCategory: GroupCategory;
         name: string;
         ownerId: number;
     }

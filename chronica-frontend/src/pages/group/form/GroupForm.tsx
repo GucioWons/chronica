@@ -5,11 +5,11 @@ import {useCallback, useState} from "react";
 import {UseFormReturn} from "react-hook-form";
 import FormSelect from "../../../shared/form/FormSelect";
 import GroupDTO = DTOs.GroupDTO;
-import Category = DTOs.Category;
 import axios from "axios";
 import {groupsApi} from "../../../shared/apiConstants";
 import {useNavigate} from "react-router";
 import { toast } from "react-toastify";
+import GroupCategory = DTOs.GroupCategory;
 
 export interface GroupFormProps {
     group?: GroupDTO
@@ -39,7 +39,7 @@ function GroupForm(props: GroupFormProps) {
                 navigate("group/" + response.data.id);
             })
             .catch(() => toast.error("Could not create group!"));
-    }, []);
+    }, [navigate]);
 
     const handleEdition = useCallback((data: GroupDTO) => {
         axios.put<GroupDTO>(groupsApi + `/groups/${data.id}`, data)
@@ -48,7 +48,7 @@ function GroupForm(props: GroupFormProps) {
                 navigate("group/" + response.data.id);
             })
             .catch(() => toast.error("Could not update group!"));
-    }, []);
+    }, [navigate]);
 
     return (
         <Form
@@ -69,11 +69,11 @@ function GroupForm(props: GroupFormProps) {
                 field="description"
             />
             <FormSelect
-                <GroupDTO, Category>
+                <GroupDTO, GroupCategory>
                 setValue={formMethods?.setValue}
                 field="category"
                 label="Category"
-                options={Object.values(Category)}
+                options={Object.values(GroupCategory)}
             />
         </Form>
     )
