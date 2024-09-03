@@ -34,7 +34,7 @@ function ProjectForm(props: ProjectFormProps) {
         axios.post<ProjectDTO>(projectsApi + "/projects", data)
             .then((response) => {
                 toast.success("Successfully created project!");
-                navigate("project/" + response.data.id);
+                navigate(response.data.id);
             })
             .catch(() => toast.error("Could not create project!"));
     }, [navigate]);
@@ -43,7 +43,7 @@ function ProjectForm(props: ProjectFormProps) {
         axios.put<ProjectDTO>(projectsApi + `/projects/${data.id}`, data)
             .then((response) => {
                 toast.success("Successfully updated project!");
-                navigate("project/" + response.data.id);
+                navigate(response.data.id);
             })
             .catch(() => toast.error("Could not update project!"));
     }, [navigate]);

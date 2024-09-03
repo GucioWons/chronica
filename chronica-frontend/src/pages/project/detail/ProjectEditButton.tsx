@@ -13,7 +13,7 @@ function GroupEditButton(props: ProjectEditButtonProps) {
     const navigate = useNavigate();
 
     const onClick = useCallback(() => {
-        navigate("/projects/" + project.id + "/edit")
+        navigate("edit")
     }, [project.id, navigate]);
 
 
