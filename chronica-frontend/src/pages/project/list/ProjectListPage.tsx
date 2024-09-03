@@ -4,7 +4,6 @@ import {TableHeader} from "../../../shared/table/TableHeader";
 import Table from "../../../shared/table/Table";
 
 function ProjectListPage() {
-    console.log("page")
     const objects: ProjectDTO[] = [
         {
             id: 1,
@@ -43,11 +42,13 @@ function ProjectListPage() {
     const headers: TableHeader<ProjectDTO>[] = [
         {
             name: "Name",
-            field: "name"
+            field: "name",
+            type: "string"
         },
         {
             name: "Group",
-            field: "groupId"
+            field: "groupId",
+            type: "number"
         }
     ]
 
