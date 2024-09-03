@@ -2,8 +2,12 @@ import {DTOs} from "../../../shared/dto/dtos";
 import ProjectDTO = DTOs.ProjectDTO;
 import {TableHeader} from "../../../shared/table/TableHeader";
 import Table from "../../../shared/table/Table";
+import {useNavigate} from "react-router";
+import ProtectedPage from "../../../shared/ProtectedPage";
 
 function ProjectListPage() {
+    const navigate = useNavigate();
+
     const objects: ProjectDTO[] = [
         {
             id: 1,
@@ -41,13 +45,13 @@ function ProjectListPage() {
     ]
 
     return (
-        <div className="list-page">
+        <ProtectedPage>
             <Table
                 <ProjectDTO>
                 objects={objects}
                 headers={headers}
-                onRowClick={(row) => {console.log(row)}}/>
-        </div>
+                onRowClick={(row) => {navigate(`${row.id}`)}}/>
+        </ProtectedPage>
     )
 }
 
