@@ -1,10 +1,11 @@
 import GroupForm from "../form/GroupForm";
+import ProtectedPage from "../../../shared/ProtectedPage";
 
 function GroupCreatePage() {
     return (
-        <div className="create-page">
+        <ProtectedPage>
             <GroupForm />
-        </div>
+        </ProtectedPage>
     )
 }
 

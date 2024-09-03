@@ -2,6 +2,7 @@ import {useParams} from "react-router";
 import {DTOs} from "../../../shared/dto/dtos";
 import GroupForm from "../form/GroupForm";
 import GroupCategory = DTOs.GroupCategory;
+import ProtectedPage from "../../../shared/ProtectedPage";
 
 function GroupEditPage() {
     const { id } = useParams<{ id: string }>();
@@ -22,9 +23,9 @@ function GroupEditPage() {
     }
 
     return (
-        <div className="edit-page">
+        <ProtectedPage>
             <GroupForm group={group} />
-        </div>
+        </ProtectedPage>
     )
 }
 

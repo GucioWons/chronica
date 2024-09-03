@@ -9,14 +9,11 @@ export interface GroupEditButtonProps {
 }
 
 function GroupEditButton(props: GroupEditButtonProps) {
-    const { group } = props;
-
     const navigate = useNavigate();
 
     const onClick = useCallback(() => {
-        navigate("/group/" + group.id + "/edit")
-    }, [group.id, navigate]);
-
+        navigate("edit")
+    }, [navigate]);
 
     return (
         <button onClick={() => onClick()}>Edit</button>
