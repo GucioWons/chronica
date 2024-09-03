@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.chronica.library.dto.project.ProjectDTO;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -49,6 +50,7 @@ public class ProjectService {
         Project project = projectMapper.mapToUpdateEntity(projectRepository
                 .findByIdAndDeprecatedFalse(projectId)
                 .orElseThrow(() -> new NoProjectException("Cant update, project not exist")), dto);
+        project.setLastChangeDate(LocalDateTime.now());
         return projectMapper.mapToDTO(projectRepository.save(project));
     }
 
@@ -58,6 +60,7 @@ public class ProjectService {
                 .findByIdAndDeprecatedFalse(projectId)
                 .orElseThrow(() -> new NoProjectException("Cannot find Project with id " + projectId));
         project.setDeprecated(true);
+        project.setLastChangeDate(LocalDateTime.now());
         projectRepository.save(project);
         return "Project has been deprecated.";
     }

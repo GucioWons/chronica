@@ -15,11 +15,8 @@ function ProjectEditPage() {
     const numericId = parseInt(id, 10);
 
     const project: ProjectDTO = {
-        createdDate: "",
-        deprecated: false,
         groupId: 1,
         id: numericId,
-        lastChangeDate: "",
         name: `Project ${numericId}`
     }
 

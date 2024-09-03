@@ -90,7 +90,7 @@
                         <classPattern>org.chronica.library.**.*DTO</classPattern>
                     </classPatterns>
                     <outputKind>module</outputKind>
-                    <outputFile>../../chronica-frontend/src/shared/dto/dtos.ts</outputFile>
+                    <outputFile>../chronica-frontend/src/shared/dto/dtos.ts</outputFile>
                     <outputFileType>implementationFile</outputFileType>
                     <mapEnum>asEnum</mapEnum>
                     <mapDate>asString</mapDate>

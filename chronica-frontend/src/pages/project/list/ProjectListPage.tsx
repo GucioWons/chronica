@@ -7,34 +7,22 @@ function ProjectListPage() {
     const objects: ProjectDTO[] = [
         {
             id: 1,
-            createdDate: "",
-            deprecated: false,
             groupId: 1,
-            lastChangeDate: "",
             name: "name 1"
         },
         {
             id: 1,
-            createdDate: "",
-            deprecated: false,
             groupId: 1,
-            lastChangeDate: "",
             name: "name 1"
         },
         {
             id: 1,
-            createdDate: "",
-            deprecated: false,
             groupId: 1,
-            lastChangeDate: "",
             name: "name 1"
         },
         {
             id: 1,
-            createdDate: "",
-            deprecated: false,
             groupId: 1,
-            lastChangeDate: "",
             name: "name 1"
         },
     ];
