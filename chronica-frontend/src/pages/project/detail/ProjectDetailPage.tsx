@@ -21,7 +21,6 @@ function ProjectDetailPage() {
         id: numericId,
         lastChangeDate: "",
         name: `Project ${numericId}`
-
     }
 
     return (

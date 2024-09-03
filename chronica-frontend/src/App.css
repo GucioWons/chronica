@@ -109,16 +109,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.detail {
-  margin-left: 100px;
-  margin-right: 100px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px;
-  margin-top: 100px;
-}
-
 .detail-header {
   display: flex;
   border-bottom: solid 1px #7b99dc;
@@ -132,36 +122,6 @@
   margin-top: 10px;
   padding-left: 40px;
   padding-right: 40px;
-}
-
-.edit-page {
-  margin-left: 100px;
-  margin-right: 100px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px;
-  margin-top: 100px;
-}
-
-.create-page {
-  margin-left: 100px;
-  margin-right: 100px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px;
-  margin-top: 100px;
-}
-
-.list-page {
-  margin-left: 100px;
-  margin-right: 100px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px;
-  margin-top: 100px;
 }
 
 .table-header-row {
@@ -191,4 +151,14 @@
   width: 100%;
   text-align: center;
   border: #282c34 1px solid;
+}
+
+.protected-page {
+  margin-left: 100px;
+  margin-right: 100px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  margin-top: 100px;
 }
