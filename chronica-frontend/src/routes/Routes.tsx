@@ -26,15 +26,15 @@ export const router = createBrowserRouter(
                     element: <ConfirmationPage />
                 },
                 {
-                    path: "group/:id",
+                    path: "groups/:id",
                     element: <GroupPage />
                 },
                 {
-                    path: "group/:id/edit",
+                    path: "groups/:id/edit",
                     element: <GroupEditPage />
                 },
                 {
-                    path: "group/new",
+                    path: "groups/new",
                     element: <GroupCreatePage />
                 }
             ]
