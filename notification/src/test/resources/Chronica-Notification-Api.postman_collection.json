@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c3e44d56-df77-4a3b-a7ff-59d4b1bf9d8f",
+		"_postman_id": "e3173742-26e1-4197-8d83-61a7dce29a50",
 		"name": "Chronica-Notification-Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "18656948"
@@ -21,12 +21,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8083/api/notifications",
+					"raw": "http://localhost:9000/api/notifications",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8083",
+					"port": "9000",
 					"path": [
 						"api",
 						"notifications"
@@ -38,6 +38,16 @@
 		{
 			"name": "Create Alert",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZXMiOlsiQURNSU5JU1RSQVRPUiJdLCJzdWIiOiJnb3hlckBvMi5wbCIsImlhdCI6MTcyNTQ2OTI0NCwiZXhwIjoxNzI1NDcxMDQ0fQ.kqASwqtXwCHux0zNKOzn4s71bDmTK2I6IM6BkrbmyEg",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -50,12 +60,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8083/api/notifications",
+					"raw": "http://localhost:9000/api/notifications",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8083",
+					"port": "9000",
 					"path": [
 						"api",
 						"notifications"
@@ -67,6 +77,16 @@
 		{
 			"name": "Create Invitation",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZXMiOlsiQURNSU5JU1RSQVRPUiJdLCJzdWIiOiJnb3hlckBvMi5wbCIsImlhdCI6MTcyNTQ2OTI0NCwiZXhwIjoxNzI1NDcxMDQ0fQ.kqASwqtXwCHux0zNKOzn4s71bDmTK2I6IM6BkrbmyEg",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -79,12 +99,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8083/api/notifications",
+					"raw": "http://localhost:9000/api/notifications",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8083",
+					"port": "9000",
 					"path": [
 						"api",
 						"notifications"

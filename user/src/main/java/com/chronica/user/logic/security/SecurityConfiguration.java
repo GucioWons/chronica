@@ -24,8 +24,6 @@ public class SecurityConfiguration {
     private static final String SWAGGER_UI = "/swagger-ui/**";
     private static final String V_3 = "/v3/**";
 
-
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.addFilterBefore(requestAuthenticator(jwtHandler()), UsernamePasswordAuthenticationFilter.class)
