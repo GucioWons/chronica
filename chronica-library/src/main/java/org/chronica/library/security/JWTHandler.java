@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class JWTHandler {
 
     public String generateToken(String userName, List<UserRole> userRoles) {
-        Map<String, Object> claims = Map.of("roles", userRoles.stream().map(Enum::name).collect(Collectors.toList()));
+        Map<String, Object> claims = Map.of("userRoles", userRoles.stream().map(Enum::name).collect(Collectors.toList()));
         return createToken(claims, userName);
     }
 
@@ -74,7 +74,7 @@ public class JWTHandler {
 
     public List<UserRole> extractRoles(String token) {
         Claims claims = extractAllClaims(token);
-        List<String> roleNames = claims.get("roles", List.class);
+        List<String> roleNames = claims.get("userRoles", List.class);
         return roleNames.stream().map(UserRole::valueOf).collect(Collectors.toList());
     }
 }

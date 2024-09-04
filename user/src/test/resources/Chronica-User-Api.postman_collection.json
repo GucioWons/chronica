@@ -75,6 +75,16 @@
 		{
 			"name": "Find account",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W10sInN1YiI6ImdveGVyQG8yLnBsIiwiaWF0IjoxNzI1NDY3ODg2LCJleHAiOjE3MjU0Njk2ODZ9.2rClUjx4Wz9UwC3uyEjIA-IautnZ_Jd1XQV6gn2PyyQ",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
