@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "dc478b49-e0c8-45b0-bb1e-79af6e21e378",
+		"name": "Chronica-Group-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18656948"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZXMiOlsiQURNSU5JU1RSQVRPUiJdLCJzdWIiOiJnb3hlckBvMi5wbCIsImlhdCI6MTcyNTQ3MDM0MSwiZXhwIjoxNzI1NDcyMTQxfQ.dBCiaBafJ1Nsb3QcOT4T11Dx9-2Tgyt98u3SGTlm9Mw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 0,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"groupCategory\": \"IT\",\n  \"ownerId\": 0,\n  \"deprecated\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/groups",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/groups/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"groups",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZXMiOlsiQURNSU5JU1RSQVRPUiJdLCJzdWIiOiJnb3hlckBvMi5wbCIsImlhdCI6MTcyNTQ3MDM0MSwiZXhwIjoxNzI1NDcyMTQxfQ.dBCiaBafJ1Nsb3QcOT4T11Dx9-2Tgyt98u3SGTlm9Mw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/groups",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZXMiOlsiQURNSU5JU1RSQVRPUiJdLCJzdWIiOiJnb3hlckBvMi5wbCIsImlhdCI6MTcyNTQ3MDM0MSwiZXhwIjoxNzI1NDcyMTQxfQ.dBCiaBafJ1Nsb3QcOT4T11Dx9-2Tgyt98u3SGTlm9Mw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"groupCategory\": \"IT\",\n  \"ownerId\": 0,\n  \"deprecated\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/groups/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"groups",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZXMiOlsiQURNSU5JU1RSQVRPUiJdLCJzdWIiOiJnb3hlckBvMi5wbCIsImlhdCI6MTcyNTQ3MDM0MSwiZXhwIjoxNzI1NDcyMTQxfQ.dBCiaBafJ1Nsb3QcOT4T11Dx9-2Tgyt98u3SGTlm9Mw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/groups/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"groups",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
