@@ -23,7 +23,7 @@ public class Snap implements ChronicaEntity {
     @Column(nullable = false)
     private Long chainId;
     @Column(nullable = false)
-    private SnapActivity activity;
+    private SnapActivity snapActivity;
     private String description;
     @Column(nullable = false)
     private LocalDateTime creationDate = LocalDateTime.now();

@@ -25,11 +25,11 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.GET, "/api/notifications/**")
-                .hasRole("USER")
+                .hasAnyRole("USER", "ADMINISTRATOR")
                 .requestMatchers(HttpMethod.POST, "/api/notifications/**")
-                .hasRole("USER")
+                .hasAnyRole("USER", "ADMINISTRATOR")
                 .requestMatchers(HttpMethod.PUT, "/api/notifications/**")
-                .hasRole("USER")
+                .hasAnyRole("USER", "ADMINISTRATOR")
                 .requestMatchers(HttpMethod.DELETE, "/api/notifications/**")
                 .hasRole("ADMINISTRATOR")
                 .requestMatchers(HttpMethod.GET, "/h2-console/**", "/swagger-ui/**", "/v3/**")

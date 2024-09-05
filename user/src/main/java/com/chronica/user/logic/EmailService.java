@@ -1,6 +1,5 @@
 package com.chronica.user.logic;
 
-import com.chronica.user.logic.security.RequestAuthenticator;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EmailService {
     private final JavaMailSender javaMailSender;
-    private final static Logger LOGGER = LoggerFactory.getLogger(RequestAuthenticator.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
     @Value("${spring.mail.username}")
     private String mail;
