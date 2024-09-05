@@ -3,7 +3,7 @@ import {useAuth} from "../context/useAuth";
 function Navbar() {
     const { isLoggedIn, account, logoutUser } = useAuth()
 
-    if (isLoggedIn()) {
+    if (!isLoggedIn()) {
         return null;
     }
 

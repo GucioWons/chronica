@@ -1,2 +1,3 @@
-export const usersApi = "http://localhost:8081/api"
-export const groupsApi = "http://localhost:8082/api"
+export const accountsApi = "http://localhost:9000/api/accounts"
+export const linksApi = "http://localhost:9000/api/links"
+export const groupsApi = "http://localhost:9000/api/groups"

@@ -1,12 +1,12 @@
 import React, {createContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import axios from "axios";
-import {usersApi} from "../shared/apiConstants";
 import {toast} from "react-toastify";
 import {DTOs} from "../shared/dto/dtos";
 import AccountDTO = DTOs.AccountDTO;
 import SignInDTO = DTOs.SignInDTO;
 import SignInResultDTO = DTOs.SignInResultDTO;
+import {accountsApi} from "../shared/apiConstants";
 
 interface UserContext {
     account: AccountDTO | null,
@@ -42,13 +42,13 @@ export const UserProvider = (props: UserProviderProps) => {
     }, []);
 
     const registerUser = (dto: AccountDTO) => {
-        axios.post(usersApi + "/accounts/sign-up", {...dto})
+        axios.post(accountsApi + "/sign-up", {...dto})
             .then(() => toast.success("Successfully registered account!"))
             .catch(() => toast.error("Cannot register account"));
     }
 
     const loginUser = (dto: SignInDTO) => {
-        axios.post<SignInResultDTO>(usersApi + "/accounts/sign-in", {...dto})
+        axios.post<SignInResultDTO>(accountsApi + "/sign-in", {...dto})
             .then(response => {
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("account", JSON.stringify(response.data.account));
