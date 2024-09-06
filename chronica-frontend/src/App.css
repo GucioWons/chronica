@@ -124,6 +124,35 @@
   padding-right: 40px;
 }
 
+.table-header-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.table-row-light {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffffff;
+}
+
+.table-row-dark {
+  display: flex;
+  justify-content: space-around;
+  background-color: #dddddd;
+}
+
+.table-cell {
+  width: 100%;
+  text-align: center;
+  border: #282c34 1px solid;
+}
+
+.table-header-cell {
+  width: 100%;
+  text-align: center;
+  border: #282c34 1px solid;
+}
+
 .protected-page {
   margin-left: 100px;
   margin-right: 100px;

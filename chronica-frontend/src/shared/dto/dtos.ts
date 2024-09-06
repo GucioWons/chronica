@@ -102,10 +102,9 @@ export namespace DTOs {
     }
 
     export interface ProjectDTO extends EntityDTO {
-        createdDate: DateAsString;
-        deprecated: boolean;
+        createdDate?: Nullable<DateAsString>;
         groupId: number;
-        lastChangeDate: DateAsString;
+        lastChangeDate?: Nullable<DateAsString>;
         name: string;
     }
 
@@ -131,6 +130,8 @@ export namespace DTOs {
     export type DateAsString = string;
 
     export type NotificationDTOUnion = AlertDTO | InvitationDTO | MessageDTO;
+
+    export type Nullable<T> = T | null | undefined;
 
     export enum AlertPriority {
         IMPORTANT = "IMPORTANT",

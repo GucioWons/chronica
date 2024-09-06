@@ -17,7 +17,7 @@ public class ProjectController {
     private final ProjectService projectService;
 
     @PostMapping
-    public ResponseEntity<ProjectDTO> createProject(ProjectDTO toSave) {
+    public ResponseEntity<ProjectDTO> createProject(@RequestBody ProjectDTO toSave) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(projectService.createProject(toSave));
@@ -45,7 +45,7 @@ public class ProjectController {
     }
 
     @PutMapping("/{projectId}")
-    public ResponseEntity<ProjectDTO> updateProject(@PathVariable("projectId") Long projectId, ProjectDTO toUpdate) {
+    public ResponseEntity<ProjectDTO> updateProject(@PathVariable("projectId") Long projectId, @RequestBody ProjectDTO toUpdate) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(projectService.updateProject(projectId, toUpdate));

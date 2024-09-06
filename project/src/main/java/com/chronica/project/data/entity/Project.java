@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.chronica.library.commons.model.ChronicaEntity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,7 +21,7 @@ public class Project implements ChronicaEntity {
     private Long id;
     private String name;
     private Long groupId;
-    private LocalDate createdDate;
+    private LocalDateTime createdDate = LocalDateTime.now();
     private LocalDateTime lastChangeDate;
     private boolean deprecated = false;
 }
