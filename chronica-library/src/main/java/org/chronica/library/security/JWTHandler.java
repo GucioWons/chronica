@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class JWTHandler {
 
     public String generateToken(String userName, List<UserRole> userRoles) {
-        Map<String, Object> claims = Map.of("roles", userRoles.stream().map(Enum::name).collect(Collectors.toList()));
+        Map<String, Object> claims = Map.of("userRoles", userRoles.stream().map(Enum::name).collect(Collectors.toList()));
         return createToken(claims, userName);
     }
 
@@ -31,7 +31,7 @@ public class JWTHandler {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 1800))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 180000))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -74,7 +74,7 @@ public class JWTHandler {
 
     public List<UserRole> extractRoles(String token) {
         Claims claims = extractAllClaims(token);
-        List<String> roleNames = claims.get("roles", List.class);
+        List<String> roleNames = claims.get("userRoles", List.class);
         return roleNames.stream().map(UserRole::valueOf).collect(Collectors.toList());
     }
 }

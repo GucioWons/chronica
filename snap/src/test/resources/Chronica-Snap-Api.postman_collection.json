@@ -1,19 +1,29 @@
 {
 	"info": {
-		"_postman_id": "75ecd725-e240-480d-bf9f-1e8582973911",
+		"_postman_id": "fce5729b-1bf2-4e6a-83eb-8ac41cfa8610",
 		"name": "Chronica-Snap-Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33506091"
+		"_exporter_id": "18656948"
 	},
 	"item": [
 		{
 			"name": "CreateSnap",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZXMiOlsiQURNSU5JU1RSQVRPUiJdLCJzdWIiOiJnb3hlckBvMi5wbCIsImlhdCI6MTcyNTQ2OTI0NCwiZXhwIjoxNzI1NDcxMDQ0fQ.kqASwqtXwCHux0zNKOzn4s71bDmTK2I6IM6BkrbmyEg",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"time\": 1,\r\n    \"chainId\": 1,\r\n    \"activity\": \"DEVELOPMENT\",\r\n    \"description\": \"Test snap\",\r\n    \"logDate\": \"2024-03-10\"\r\n}",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"time\": 0,\r\n  \"chainId\": 0,\r\n  \"snapActivity\": \"DEVELOPMENT\",\r\n  \"description\": \"string\",\r\n  \"creationDate\": \"2024-09-04T17:02:39.551Z\",\r\n  \"logDate\": \"2024-09-04\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,12 +31,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/snaps",
+					"raw": "http://localhost:9000/api/snaps",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "9000",
 					"path": [
 						"api",
 						"snaps"
@@ -38,15 +48,25 @@
 		{
 			"name": "GetSnapById",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W10sInN1YiI6ImdveGVyQG8yLnBsIiwiaWF0IjoxNzI1NDY3ODg2LCJleHAiOjE3MjU0Njk2ODZ9.2rClUjx4Wz9UwC3uyEjIA-IautnZ_Jd1XQV6gn2PyyQ",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/snaps/1",
+					"raw": "http://localhost:9000/api/snaps/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "9000",
 					"path": [
 						"api",
 						"snaps",
@@ -101,15 +121,25 @@
 		{
 			"name": "GetSnapsByChainId",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W10sInN1YiI6ImdveGVyQG8yLnBsIiwiaWF0IjoxNzI1NDY4MzA1LCJleHAiOjE3MjU0NzAxMDV9.cunT_WnJlir5Zc-siFPGH14ulFcyOdJ17CkzcB9oCZg",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/snaps/chain/1",
+					"raw": "http://localhost:9000/api/snaps/chain/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "9000",
 					"path": [
 						"api",
 						"snaps",

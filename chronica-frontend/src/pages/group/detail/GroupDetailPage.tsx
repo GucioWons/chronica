@@ -1,14 +1,13 @@
-import {useNavigate, useParams} from "react-router";
-import {DTOs} from "../../../shared/dto/dtos";
-import GroupForm from "../form/GroupForm";
-
 import ProtectedPage from "../../../shared/ProtectedPage";
+import {DTOs} from "../../../shared/dto/dtos";
+import GroupDetail from "./GroupDetail";
+import {useNavigate, useParams} from "react-router";
+import GroupDTO = DTOs.GroupDTO;
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {groupsApi} from "../../../shared/apiConstants";
-import GroupDTO = DTOs.GroupDTO;
 
-function GroupEditPage() {
+function GroupDetailPage() {
     const { id } = useParams<{ id: string }>();
 
     const [group, setGroup] = useState<GroupDTO>();
@@ -27,9 +26,12 @@ function GroupEditPage() {
 
     return (
         <ProtectedPage>
-            <GroupForm group={group} />
+            <GroupDetail
+                group={group}
+                isLoading={isLoading}
+            />
         </ProtectedPage>
     )
 }
 
-export default GroupEditPage;
+export default GroupDetailPage;

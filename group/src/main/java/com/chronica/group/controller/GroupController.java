@@ -12,11 +12,12 @@ import java.util.List;
 
 @RequestMapping("/api/groups")
 @RequiredArgsConstructor
+@RestController
 public class GroupController {
     private final GroupService groupService;
 
     @PostMapping
-    public ResponseEntity<GroupDTO> createGroup(GroupDTO toSave) {
+    public ResponseEntity<GroupDTO> createGroup(@RequestBody GroupDTO toSave) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(groupService.createGroup(toSave));
@@ -37,7 +38,7 @@ public class GroupController {
     }
 
     @PutMapping("/{groupId}")
-    public ResponseEntity<GroupDTO> updateGroup(@PathVariable("groupId") Long groupId, GroupDTO toUpdate) {
+    public ResponseEntity<GroupDTO> updateGroup(@PathVariable("groupId") Long groupId, @RequestBody GroupDTO toUpdate) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(groupService.updateGroup(groupId, toUpdate));

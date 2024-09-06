@@ -26,26 +26,26 @@ function GroupForm(props: GroupFormProps) {
 
     const onSubmit = (data: GroupDTO) => {
         if (editMode) {
-            handleCreation(data);
-        } else {
             handleEdition(data);
+        } else {
+            handleCreation(data);
         }
     }
 
     const handleCreation = useCallback((data: GroupDTO) => {
-        axios.post<GroupDTO>(groupsApi + "/groups", data)
+        axios.post<GroupDTO>(groupsApi, data)
             .then((response) => {
                 toast.success("Successfully created group!");
-                navigate("group/" + response.data.id);
+                navigate("/groups/" + response.data.id);
             })
             .catch(() => toast.error("Could not create group!"));
     }, [navigate]);
 
     const handleEdition = useCallback((data: GroupDTO) => {
-        axios.put<GroupDTO>(groupsApi + `/groups/${data.id}`, data)
+        axios.put<GroupDTO>(groupsApi + `/${data.id}`, data)
             .then((response) => {
                 toast.success("Successfully updated group!");
-                navigate("group/" + response.data.id);
+                navigate("/groups/" + response.data.id);
             })
             .catch(() => toast.error("Could not update group!"));
     }, [navigate]);
