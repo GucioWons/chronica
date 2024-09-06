@@ -7,11 +7,12 @@ import GroupEditButton from "./GroupEditButton";
 
 export interface GroupDetailProps {
     group?: GroupDTO
-    isLoading: boolean
 }
 
 function GroupDetail(props: GroupDetailProps) {
-    const {group} = props;
+    const {
+        group
+    } = props;
 
     const { account } = useAuth();
 
@@ -22,7 +23,7 @@ function GroupDetail(props: GroupDetailProps) {
     return (
         <Detail
             header={group.name}
-            button={group.ownerId === account?.id ? <GroupEditButton group={group} /> : null}
+            button={group.ownerId === account?.id ? <GroupEditButton /> : null}
         >
             <TextField text={group.description} label={"Description"} />
             <TextField text={group.category} label={"Category"} horizontal />

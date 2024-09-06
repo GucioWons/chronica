@@ -11,15 +11,11 @@ function GroupDetailPage() {
     const { id } = useParams<{ id: string }>();
 
     const [group, setGroup] = useState<GroupDTO>();
-    const [isLoading, setIsLoading] = useState<boolean>(true);
     const navigate = useNavigate();
 
     useEffect(() => {
         axios.get<GroupDTO>(`${groupsApi}/${id}`)
-            .then(data => {
-                setGroup(data.data);
-                setIsLoading(false);
-            })
+            .then(data => setGroup(data.data))
             .catch(() => navigate(-1));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -28,7 +24,6 @@ function GroupDetailPage() {
         <ProtectedPage>
             <GroupDetail
                 group={group}
-                isLoading={isLoading}
             />
         </ProtectedPage>
     )

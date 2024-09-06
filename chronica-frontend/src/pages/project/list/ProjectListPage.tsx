@@ -4,32 +4,20 @@ import {TableHeader} from "../../../shared/table/TableHeader";
 import Table from "../../../shared/table/Table";
 import {useNavigate} from "react-router";
 import ProtectedPage from "../../../shared/ProtectedPage";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {projectsApi} from "../../../shared/apiConstants";
 
 function ProjectListPage() {
     const navigate = useNavigate();
 
-    const objects: ProjectDTO[] = [
-        {
-            id: 1,
-            groupId: 1,
-            name: "name 1"
-        },
-        {
-            id: 1,
-            groupId: 1,
-            name: "name 1"
-        },
-        {
-            id: 1,
-            groupId: 1,
-            name: "name 1"
-        },
-        {
-            id: 1,
-            groupId: 1,
-            name: "name 1"
-        },
-    ];
+    const [projects, setProjects] = useState<ProjectDTO[]>([])
+
+    useEffect(() => {
+        axios.get<ProjectDTO[]>(projectsApi)
+            .then(response => setProjects(response.data))
+            .catch(() => {})
+    }, []);
 
     const headers: TableHeader<ProjectDTO>[] = [
         {
@@ -48,7 +36,7 @@ function ProjectListPage() {
         <ProtectedPage>
             <Table
                 <ProjectDTO>
-                objects={objects}
+                objects={projects}
                 headers={headers}
                 onRowClick={(row) => {navigate(`${row.id}`)}}/>
         </ProtectedPage>

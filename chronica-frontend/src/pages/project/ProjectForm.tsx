@@ -24,26 +24,28 @@ function ProjectForm(props: ProjectFormProps) {
 
     const onSubmit = (data: ProjectDTO) => {
         if (editMode) {
-            handleCreation(data);
-        } else {
             handleEdition(data);
+        } else {
+            handleCreation(data);
         }
     }
 
     const handleCreation = useCallback((data: ProjectDTO) => {
-        axios.post<ProjectDTO>(projectsApi + "/projects", data)
+        //TODO automatically setup groupId
+        axios.post<ProjectDTO>(projectsApi, { ...data, groupId: 1 })
             .then((response) => {
                 toast.success("Successfully created project!");
-                navigate(response.data.id);
+                navigate(`/projects/${response.data.id}`);
             })
             .catch(() => toast.error("Could not create project!"));
     }, [navigate]);
 
     const handleEdition = useCallback((data: ProjectDTO) => {
-        axios.put<ProjectDTO>(projectsApi + `/projects/${data.id}`, data)
+        //TODO automatically setup groupId
+        axios.put<ProjectDTO>(projectsApi + `/${data.id}`, { ...data, groupId: 1 })
             .then((response) => {
                 toast.success("Successfully updated project!");
-                navigate(response.data.id);
+                navigate(`/projects/${response.data.id}`);
             })
             .catch(() => toast.error("Could not update project!"));
     }, [navigate]);

@@ -1,24 +1,24 @@
 import ProtectedPage from "../../../shared/ProtectedPage";
 import ProjectDetail from "./ProjectDetail";
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import {DTOs} from "../../../shared/dto/dtos";
 import ProjectDTO = DTOs.ProjectDTO;
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {projectsApi} from "../../../shared/apiConstants";
 
 function ProjectDetailPage() {
     const { id } = useParams<{ id: string }>();
 
-    //TODO add 404 page
-    if (!id) {
-        return <p>Id not found</p>;
-    }
+    const [project, setProject] = useState<ProjectDTO>();
+    const navigate = useNavigate();
 
-    const numericId = parseInt(id, 10);
-
-    const project: ProjectDTO = {
-        groupId: 1,
-        id: numericId,
-        name: `Project ${numericId}`
-    }
+    useEffect(() => {
+        axios.get<ProjectDTO>(`${projectsApi}/${id}`)
+            .then(data => setProject(data.data))
+            .catch(() => navigate(-1));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <ProtectedPage>
