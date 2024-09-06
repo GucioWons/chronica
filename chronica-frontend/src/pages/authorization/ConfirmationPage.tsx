@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {usersApi} from "../../shared/apiConstants";
 import {useParams} from "react-router";
+import {linksApi} from "../../shared/apiConstants";
 
 function ConfirmationPage(){
     const { confirmation } = useParams<{ confirmation: string }>();
@@ -10,7 +10,7 @@ function ConfirmationPage(){
 
     useEffect(() => {
         if (confirmation) {
-            axios.get(usersApi + "/links/confirmation/" + confirmation)
+            axios.get(linksApi + "/confirmation/" + confirmation)
                 .then(() => setConfirmationResult(true))
                 .catch(() => setConfirmationResult(false));
         }

@@ -31,7 +31,7 @@ public class JWTHandler {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 1800))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 180000))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

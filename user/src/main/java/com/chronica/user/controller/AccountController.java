@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "/api/accounts", produces = {MediaType.APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class AccountController {
     private final SignUpService signUpService;
     private final SignInService signInService;

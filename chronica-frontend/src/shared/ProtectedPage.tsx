@@ -7,9 +7,11 @@ interface ProtectedPageProps {
 
 function ProtectedPage(props: ProtectedPageProps) {
     return (
-        <ProtectedRoute>
-            {props.children}
-        </ProtectedRoute>
+        <div className="protected-page">
+            <ProtectedRoute>
+                {props.children}
+            </ProtectedRoute>
+        </div>
     )
 }
 
