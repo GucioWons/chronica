@@ -66,6 +66,7 @@ export const UserProvider = (props: UserProviderProps) => {
         localStorage.removeItem("account");
         setToken(null);
         setAccount(null);
+        delete axios.defaults.headers.common["Authorization"];
         toast.success("Successfully logged out!")
         navigate("/auth")
     }

@@ -6,7 +6,8 @@ import {useAuth} from "../../../context/useAuth";
 import GroupEditButton from "./GroupEditButton";
 
 export interface GroupDetailProps {
-    group: GroupDTO
+    group?: GroupDTO
+    isLoading: boolean
 }
 
 function GroupDetail(props: GroupDetailProps) {
@@ -14,10 +15,14 @@ function GroupDetail(props: GroupDetailProps) {
 
     const { account } = useAuth();
 
+    if (!group) {
+        return <div>Loading...</div>
+    }
+
     return (
         <Detail
             header={group.name}
-            button={group.ownerId !== account?.id ? <GroupEditButton group={group} /> : null}
+            button={group.ownerId === account?.id ? <GroupEditButton group={group} /> : null}
         >
             <TextField text={group.description} label={"Description"} />
             <TextField text={group.category} label={"Category"} horizontal />

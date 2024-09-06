@@ -3,7 +3,7 @@ import App from "../App";
 import AuthorizationPage from "../pages/authorization/AuthorizationPage";
 import HomePage from "../pages/home/HomePage";
 import ConfirmationPage from "../pages/authorization/ConfirmationPage";
-import GroupPage from "../pages/group/detail/GroupPage";
+import GroupDetailPage from "../pages/group/detail/GroupDetailPage";
 import GroupEditPage from "../pages/group/edit/GroupEditPage";
 import GroupCreatePage from "../pages/group/create/GroupCreatePage";
 
@@ -27,7 +27,7 @@ export const router = createBrowserRouter(
                 },
                 {
                     path: "groups/:id",
-                    element: <GroupPage />
+                    element: <GroupDetailPage />
                 },
                 {
                     path: "groups/:id/edit",

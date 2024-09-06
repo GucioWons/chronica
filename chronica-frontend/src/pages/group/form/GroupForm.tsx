@@ -33,10 +33,10 @@ function GroupForm(props: GroupFormProps) {
     }
 
     const handleCreation = useCallback((data: GroupDTO) => {
-        axios.post<GroupDTO>(groupsApi, { data })
+        axios.post<GroupDTO>(groupsApi, data)
             .then((response) => {
                 toast.success("Successfully created group!");
-                navigate("groups/" + response.data.id);
+                navigate("/groups/" + response.data.id);
             })
             .catch(() => toast.error("Could not create group!"));
     }, [navigate]);
@@ -45,7 +45,7 @@ function GroupForm(props: GroupFormProps) {
         axios.put<GroupDTO>(groupsApi + `/${data.id}`, data)
             .then((response) => {
                 toast.success("Successfully updated group!");
-                navigate("groups/" + response.data.id);
+                navigate("/groups/" + response.data.id);
             })
             .catch(() => toast.error("Could not update group!"));
     }, [navigate]);

@@ -28,7 +28,7 @@ function FormSelect<T extends FieldValues, O extends string | object>(props: For
         if (selectedOption && setValue) {
             setValue(field, selectedOption as PathValue<T, Path<T>>)
         }
-    }, [findOption, setValue]);
+    }, [field, findOption, setValue]);
 
     return (
         <div className={`input-with-label ${horizontal ? 'horizontal' : 'vertical'}`}>
