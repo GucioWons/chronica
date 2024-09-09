@@ -10,6 +10,7 @@ import ProjectListPage from "../pages/project/list/ProjectListPage";
 import ProjectDetailPage from "../pages/project/detail/ProjectDetailPage";
 import ProjectCreatePage from "../pages/project/create/ProjectCreatePage";
 import ProjectEditPage from "../pages/project/edit/ProjectEditPage";
+import ChainCreatePage from "../pages/chain/create/ChainCreatePage";
 
 export const router = createBrowserRouter(
     [
@@ -56,6 +57,10 @@ export const router = createBrowserRouter(
                 {
                     path: "projects/new",
                     element: <ProjectCreatePage />
+                },
+                {
+                    path: "chains/new",
+                    element: <ChainCreatePage />
                 }
             ]
         },
