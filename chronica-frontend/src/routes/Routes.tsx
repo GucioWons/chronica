@@ -11,6 +11,7 @@ import ProjectDetailPage from "../pages/project/detail/ProjectDetailPage";
 import ProjectCreatePage from "../pages/project/create/ProjectCreatePage";
 import ProjectEditPage from "../pages/project/edit/ProjectEditPage";
 import ChainCreatePage from "../pages/chain/create/ChainCreatePage";
+import ChainListPage from "../pages/chain/list/ChainListPage";
 
 export const router = createBrowserRouter(
     [
@@ -57,6 +58,10 @@ export const router = createBrowserRouter(
                 {
                     path: "projects/new",
                     element: <ProjectCreatePage />
+                },
+                {
+                    path: "chains",
+                    element: <ChainListPage />
                 },
                 {
                     path: "chains/new",
