@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api/chains", produces = {MediaType.APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
@@ -26,6 +28,13 @@ public class ChainController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(chainService.getChainById(chainId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ChainDTO>> getChains() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(chainService.getChains());
     }
 
     @PutMapping("/{chainId}")

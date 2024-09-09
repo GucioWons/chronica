@@ -29,7 +29,7 @@ public class Chain implements ChronicaEntity {
     @Column
     private String description;
     @Column(nullable = false)
-    private ChainType chainType;
+    private ChainType type;
     @Column
     private BigDecimal estimation = BigDecimal.ZERO;
     @Column
