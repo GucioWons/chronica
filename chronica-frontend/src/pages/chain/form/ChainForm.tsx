@@ -10,6 +10,7 @@ import {chainsApi} from "../../../shared/apiConstants";
 import ChainSelect from "./ChainSelect";
 import FormSelect from "../../../shared/form/FormSelect";
 import ChainType = DTOs.ChainType;
+import {toast} from "react-toastify";
 
 export interface ChainFormProps {
     chain?: ChainDTO
@@ -19,22 +20,35 @@ function ChainForm(props: ChainFormProps) {
     const { chain } = props;
 
     const editMode: boolean = !!chain;
+    
+    const navigate = useNavigate();
 
     const [ formMethods, setFormMethods ] = useState<UseFormReturn<ChainDTO> | null>(null);
 
     const [chains, setChains] = useState<ChainDTO[]>([])
 
     const onSubmit = (data: ChainDTO) => {
-        // if (editMode) {
-        //     handleEdition(data);
-        // } else {
-        //     handleCreation(data);
-        // }
+        if (editMode) {
+            // handleEdition(data);
+        } else {
+            handleCreation(data);
+        }
     }
+
+    const handleCreation = useCallback((data: ChainDTO) => {
+        axios.post<ChainDTO>(chainsApi, data)
+            .then((response) => {
+                toast.success("Successfully created chain!");
+                navigate("/chains/" + response.data.id);
+            })
+            .catch(() => toast.error("Could not create chain!"));
+    }, [navigate]);
 
     const updateBaseChain = useCallback((baseChain: ChainDTO | null) => {
         if (chain) {
-            chain.baseChain = baseChain;
+            if (baseChain) {
+                chain.baseChain = baseChain;
+            }
         }
     }, [chain]);
 
