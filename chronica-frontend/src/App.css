@@ -77,6 +77,10 @@
   flex: 2
 }
 
+.input-input.chain-select {
+  display: flex;
+}
+
 .textfield-with-label {
   display: flex;
 }
@@ -161,4 +165,12 @@
   transition: 0.3s;
   border-radius: 5px;
   margin-top: 100px;
+}
+
+.chain-select-id {
+  flex: 1;
+}
+
+.chain-select-title {
+  flex: 4;
 }

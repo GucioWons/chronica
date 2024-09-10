@@ -7,7 +7,7 @@ import {UseFormReturn} from "react-hook-form";
 import FormInput from "../../../shared/form/FormInput";
 import axios from "axios";
 import {chainsApi} from "../../../shared/apiConstants";
-import ChainFormInput from "./ChainFormInput";
+import ChainSelect from "./ChainSelect";
 import FormSelect from "../../../shared/form/FormSelect";
 import ChainType = DTOs.ChainType;
 
@@ -86,11 +86,13 @@ function ChainForm(props: ChainFormProps) {
                 field="points"
                 type="number"
             />
-            <ChainFormInput
+            <ChainSelect
+                label="Base chain"
                 chains={chains}
                 selectedChainId={chain?.baseChain?.id}
                 onChange={(newBaseChain) => updateBaseChain(newBaseChain)}
             />
+            {/*TODO ChildChains*/}
         </Form>
     );
 }
