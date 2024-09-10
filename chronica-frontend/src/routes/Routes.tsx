@@ -13,6 +13,7 @@ import ProjectEditPage from "../pages/project/edit/ProjectEditPage";
 import ChainCreatePage from "../pages/chain/create/ChainCreatePage";
 import ChainListPage from "../pages/chain/list/ChainListPage";
 import ChainEditPage from "../pages/chain/edit/ChainEditPage";
+import ChainDetailPage from "../pages/chain/detail/ChainDetailPage";
 
 export const router = createBrowserRouter(
     [
@@ -63,6 +64,10 @@ export const router = createBrowserRouter(
                 {
                     path: "chains",
                     element: <ChainListPage />
+                },
+                {
+                    path: "chains/:id",
+                    element: <ChainDetailPage />
                 },
                 {
                     path: "chains/:id/edit",
