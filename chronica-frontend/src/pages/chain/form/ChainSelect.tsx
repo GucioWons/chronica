@@ -7,8 +7,7 @@ export interface ChainSelectProps {
     chains?: ChainDTO[],
     selectedChainId?: number,
     onChange: (chain: ChainDTO | null) => void,
-    horizontal?: boolean,
-    label: string
+    dontSaveState?: boolean,
 }
 
 function ChainSelect(props: ChainSelectProps) {
@@ -16,16 +15,18 @@ function ChainSelect(props: ChainSelectProps) {
         chains,
         selectedChainId,
         onChange,
-        horizontal,
-        label
+        dontSaveState
     } = props;
 
     const [selectedChain, setSelectedChain] = useState<ChainDTO | null>(null)
 
     const handleChainChange = useCallback((chain: ChainDTO | null) => {
-        setSelectedChain(chain);
+        if (!dontSaveState) {
+            console.log("dupaa");
+            setSelectedChain(chain);
+        }
         onChange(chain);
-    }, [onChange]);
+    }, [dontSaveState, onChange]);
 
     useEffect(() => {
         if (chains && selectedChainId) {
@@ -35,35 +36,17 @@ function ChainSelect(props: ChainSelectProps) {
             }
         }
     }, []);
-    
-    return(
-        <div className={`input-with-label ${horizontal ? 'horizontal' : 'vertical'}`}>
-            <div className="input-label">{label}:</div>
-            <div className="input-input chain-select">
-                <div className="chain-select-id">
-                    <Select
-                        value={selectedChain}
-                        onChange={(option: ChainDTO | null) => handleChainChange(option)}
-                        options={chains}
-                        getOptionLabel={(option: ChainDTO) => option.id.toString()}
-                        getOptionValue={(option: ChainDTO) => option.id ? option.id.toString() : ''}
-                        isSearchable
-                        isClearable
-                    />
-                </div>
-                <div className="chain-select-title">
-                    <Select
-                        value={selectedChain}
-                        onChange={(option: ChainDTO | null) => handleChainChange(option)}
-                        options={chains}
-                        getOptionLabel={(option: ChainDTO) => option.title}
-                        getOptionValue={(option: ChainDTO) => option.id ? option.id.toString() : ''}
-                        isSearchable
-                        isClearable
-                    />
-                </div>
-            </div>
-        </div>
+
+    return (
+        <Select
+            value={selectedChain}
+            onChange={(option: ChainDTO | null) => handleChainChange(option)}
+            options={chains}
+            getOptionLabel={(option: ChainDTO) => `${option.id.toString()} - ${option.title}`}
+            getOptionValue={(option: ChainDTO) => option.id ? option.id.toString() : ''}
+            isSearchable
+            isClearable
+        />
     );
 }
 

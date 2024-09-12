@@ -13,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class ChildChainDTO extends EntityDTO {
     private String title;
-    private ChainType chainType;
+    private ChainType type;
     private List<ChildChainDTO> childChains;
 }

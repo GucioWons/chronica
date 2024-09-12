@@ -21,8 +21,8 @@ export namespace DTOs {
     }
 
     export interface BaseChainDTO extends EntityDTO {
-        type: ChainType;
         title: string;
+        type: ChainType;
     }
 
     export interface ChainDTO extends EntityDTO {
@@ -37,9 +37,9 @@ export namespace DTOs {
     }
 
     export interface ChildChainDTO extends EntityDTO {
-        chainType: ChainType;
         childChains: ChildChainDTO[];
         title: string;
+        type: ChainType;
     }
 
     export interface EntityDTO {

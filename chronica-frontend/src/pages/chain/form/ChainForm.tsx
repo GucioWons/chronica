@@ -11,6 +11,10 @@ import ChainSelect from "./ChainSelect";
 import FormSelect from "../../../shared/form/FormSelect";
 import ChainType = DTOs.ChainType;
 import {toast} from "react-toastify";
+import BaseChainDTO = DTOs.BaseChainDTO;
+import ChainFormSelect from "./ChainFormSelect";
+import ChainFormSelectList from "./ChainFormSelectList";
+import ChildChainDTO = DTOs.ChildChainDTO;
 
 export interface ChainFormProps {
     chain?: ChainDTO
@@ -45,12 +49,12 @@ function ChainForm(props: ChainFormProps) {
     }, [navigate]);
 
     const updateBaseChain = useCallback((baseChain: ChainDTO | null) => {
-        if (chain) {
-            if (baseChain) {
-                chain.baseChain = baseChain;
-            }
-        }
-    }, [chain]);
+        formMethods?.setValue("baseChain", baseChain as BaseChainDTO);
+    }, [formMethods]);
+
+    const updateChildChains = useCallback((childChains: ChainDTO[]) => {
+        formMethods?.setValue("childChains", childChains as ChildChainDTO[]);
+    }, [formMethods]);
 
     useEffect(() => {
         axios.get<ChainDTO[]>(chainsApi)
@@ -100,13 +104,16 @@ function ChainForm(props: ChainFormProps) {
                 field="points"
                 type="number"
             />
-            <ChainSelect
+            <ChainFormSelect
                 label="Base chain"
                 chains={chains}
                 selectedChainId={chain?.baseChain?.id}
                 onChange={(newBaseChain) => updateBaseChain(newBaseChain)}
             />
-            {/*TODO ChildChains*/}
+            <ChainFormSelectList
+                chains={chains}
+                onChange={updateChildChains}
+            />
         </Form>
     );
 }

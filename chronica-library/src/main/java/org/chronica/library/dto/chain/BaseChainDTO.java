@@ -11,5 +11,5 @@ import org.chronica.library.commons.dto.EntityDTO;
 @NoArgsConstructor
 public class BaseChainDTO extends EntityDTO {
     private String title;
-    private ChainType chainType;
+    private ChainType type;
 }
