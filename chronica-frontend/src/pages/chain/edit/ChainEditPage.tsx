@@ -24,6 +24,7 @@ function ChainEditPage() {
         <ProtectedPage>
             <ChainForm
                 chain={chain}
+                onSubmit={() => {}}
             />
         </ProtectedPage>
     )

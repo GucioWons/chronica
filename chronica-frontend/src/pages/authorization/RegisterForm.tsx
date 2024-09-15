@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {UseFormReturn} from "react-hook-form";
+import {useForm, UseFormReturn} from "react-hook-form";
 import FormInput from "../../shared/form/FormInput";
 import {useAuth} from "../../context/useAuth";
 import Form from "../../shared/form/Form";
@@ -7,21 +7,17 @@ import {DTOs} from "../../shared/dto/dtos";
 import AccountDTO = DTOs.AccountDTO;
 
 function RegisterForm() {
-    const [ _formMethods, setFormMethods ] = useState<UseFormReturn<AccountDTO> | null>(null);
+    const form = useForm<AccountDTO>()
 
     const { registerUser } = useAuth();
-
-    const onSubmit = ((data: AccountDTO) => {
-        registerUser(data);
-    });
 
     return (
         <div className="auth-card" style={{marginLeft: "40px"}}>
             <Form
                 <AccountDTO>
                 id="register"
-                onSubmit={onSubmit}
-                setMethods={setFormMethods}
+                onSubmit={(data) => registerUser(data)}
+                form={form}
             >
                 <FormInput
                     <AccountDTO>

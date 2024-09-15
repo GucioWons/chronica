@@ -7,7 +7,7 @@ import ChainSelectDTO = DTOs.ChainSelectDTO;
 
 export interface ChainFormSelectListProps {
     chains: ChainSelectDTO[]
-    onChange: (chain: ChainDTO[]) => void
+    onChange: (chain: ChainSelectDTO[]) => void
 }
 
 function ChainFormSelectList(props: ChainFormSelectListProps) {
@@ -18,6 +18,7 @@ function ChainFormSelectList(props: ChainFormSelectListProps) {
             let newSelectedChains = [...selectedChains];
             newSelectedChains.push(chain);
             setSelectedChains(newSelectedChains);
+            props.onChange(newSelectedChains);
         }
     }, [selectedChains, setSelectedChains]);
 
@@ -29,6 +30,7 @@ function ChainFormSelectList(props: ChainFormSelectListProps) {
             delete newSelectedChains[index];
         }
         setSelectedChains(newSelectedChains);
+        props.onChange(newSelectedChains);
     }, [selectedChains, setSelectedChains])
 
     return(
