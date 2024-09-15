@@ -7,6 +7,7 @@ export interface ChainSelectProps {
     chains?: ChainSelectDTO[],
     defaultChain?: ChainSelectDTO,
     onChange: (chain: ChainSelectDTO | null) => void,
+    isClearable?: boolean
     dontSaveState?: boolean,
 }
 
@@ -15,6 +16,7 @@ function ChainSelect(props: ChainSelectProps) {
         chains,
         defaultChain,
         onChange,
+        isClearable,
         dontSaveState
     } = props;
 
@@ -34,8 +36,8 @@ function ChainSelect(props: ChainSelectProps) {
             options={chains}
             getOptionLabel={(option: ChainSelectDTO) => `${option.id.toString()} - ${option.title}`}
             getOptionValue={(option: ChainSelectDTO) => option.id ? option.id.toString() : ''}
+            isClearable={isClearable}
             isSearchable
-            isClearable
         />
     );
 }

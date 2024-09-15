@@ -2,7 +2,6 @@ import {DTOs} from "../../../shared/dto/dtos";
 import ChainSelect from "./ChainSelect";
 import {useCallback, useState} from "react";
 import ChainFormSelectListRow from "./ChainFormSelectListRow";
-import ChainDTO = DTOs.ChainDTO;
 import ChainSelectDTO = DTOs.ChainSelectDTO;
 
 export interface ChainFormSelectListProps {
@@ -11,6 +10,11 @@ export interface ChainFormSelectListProps {
 }
 
 function ChainFormSelectList(props: ChainFormSelectListProps) {
+    const {
+        chains,
+        onChange
+    } = props;
+
     const [selectedChains, setSelectedChains] = useState<ChainSelectDTO[]>([])
 
     const addSelectedChain = useCallback((chain: ChainSelectDTO | null) => {
@@ -18,33 +22,39 @@ function ChainFormSelectList(props: ChainFormSelectListProps) {
             let newSelectedChains = [...selectedChains];
             newSelectedChains.push(chain);
             setSelectedChains(newSelectedChains);
-            props.onChange(newSelectedChains);
+            onChange(newSelectedChains);
         }
-    }, [selectedChains, setSelectedChains]);
+    }, [selectedChains, setSelectedChains, onChange]);
 
     const updateSelectedChain = useCallback((chain: ChainSelectDTO | null, index: number) => {
-        let newSelectedChains = [...selectedChains];
         if (chain) {
+            let newSelectedChains = [...selectedChains];
             newSelectedChains[index] = chain;
-        } else {
-            delete newSelectedChains[index];
+            setSelectedChains(newSelectedChains);
+            onChange(newSelectedChains);
         }
+    }, [selectedChains, setSelectedChains, onChange])
+
+    const deleteSelectedChain = useCallback((index: number) => {
+        let newSelectedChains = [...selectedChains];
+        newSelectedChains = newSelectedChains.filter((_, i) => i !== index);
         setSelectedChains(newSelectedChains);
-        props.onChange(newSelectedChains);
-    }, [selectedChains, setSelectedChains])
+        onChange(newSelectedChains);
+    },[selectedChains, setSelectedChains, onChange])
 
     return(
         <div className={`input-with-label vertical`}>
             <div className="input-label">Related chains:</div>
             <ChainSelect
-                chains={props.chains}
+                chains={chains}
                 onChange={addSelectedChain}
                 dontSaveState
             />
             {selectedChains.map((chain, index) => (
                 <ChainFormSelectListRow
-                    chains={props.chains}
+                    chains={chains}
                     onChange={updateSelectedChain}
+                    onDelete={deleteSelectedChain}
                     index={index}
                     defaultChain={chain}
                 />

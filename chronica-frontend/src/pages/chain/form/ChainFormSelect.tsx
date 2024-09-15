@@ -27,6 +27,7 @@ function ChainFormSelect(props: ChainFormSelectProps) {
                     chains={chains}
                     defaultChain={defaultChain}
                     onChange={onChange}
+                    isClearable
                 />
             </div>
         </div>

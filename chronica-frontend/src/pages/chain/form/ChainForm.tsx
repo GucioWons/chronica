@@ -12,7 +12,6 @@ import ChainDTO = DTOs.ChainDTO;
 import ChainType = DTOs.ChainType;
 import ChildChainDTO = DTOs.ChildChainDTO;
 import ChainSelectDTO = DTOs.ChainSelectDTO;
-import chainFormSelectList from "./ChainFormSelectList";
 
 export interface ChainFormProps {
     chain?: ChainDTO
@@ -29,6 +28,7 @@ function ChainForm(props: ChainFormProps) {
 
     const baseChain = form.watch("baseChain");
     const childChains = form.watch("childChains");
+    const type = form.watch("type")
 
     const [chains, setChains] = useState<ChainSelectDTO[]>([])
 
@@ -40,7 +40,7 @@ function ChainForm(props: ChainFormProps) {
         form.setValue("childChains", childChains as ChildChainDTO[]);
     }, [form]);
 
-    const filterChains = useCallback(() => {
+    const filterChains = useCallback((destination: "base" | "child") => {
         return chains.filter(
             (chainSelect) =>
                 baseChain?.id !== chainSelect.id &&
@@ -98,12 +98,12 @@ function ChainForm(props: ChainFormProps) {
             />
             <ChainFormSelect
                 label="Base chain"
-                chains={filterChains()}
+                chains={filterChains("base")}
                 defaultChain={chain?.baseChain ?? undefined}
                 onChange={(newBaseChain) => updateBaseChain(newBaseChain)}
             />
             <ChainFormSelectList
-                chains={filterChains()}
+                chains={filterChains("child")}
                 onChange={updateChildChains}
             />
         </Form>

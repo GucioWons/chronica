@@ -2,10 +2,12 @@ import ChainSelect from "./ChainSelect";
 import {DTOs} from "../../../shared/dto/dtos";
 import {useCallback} from "react";
 import ChainSelectDTO = DTOs.ChainSelectDTO;
+import ChainFormSelectListDeleteButton from "./ChainFormSelectListDeleteButton";
 
 export interface ChainFormSelectListRowProps {
     chains: ChainSelectDTO[],
     onChange: (chain: ChainSelectDTO | null, index: number) => void,
+    onDelete: (index: number) => void,
     index: number
     defaultChain: ChainSelectDTO,
 }
@@ -13,21 +15,23 @@ export interface ChainFormSelectListRowProps {
 function ChainFormSelectListRow(props: ChainFormSelectListRowProps) {
     const {
         chains, 
-        onChange, 
+        onChange,
+        onDelete,
         index,
         defaultChain
     } = props;
     
-    const onSelectedChainChange = useCallback((chain: ChainSelectDTO | null) => {
-        onChange(chain, index);
-    }, [index, onChange]);
-    
     return (
-        <ChainSelect
-            chains={chains}
-            onChange={onSelectedChainChange}
-            defaultChain={defaultChain}
-        />
+        <div>
+            <ChainSelect
+                chains={chains}
+                onChange={(chain) => onChange(chain, index)}
+                defaultChain={defaultChain}
+            />
+            <ChainFormSelectListDeleteButton
+                onClick={() => onDelete(index)}
+            />
+        </div>
     )
 }
 
