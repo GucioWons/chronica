@@ -14,7 +14,7 @@ import java.util.List;
 public class ChainDTO extends EntityDTO {
     private String title;
     @Nullable
-    private BaseChainDTO baseChain;
+    private ChainSelectDTO baseChain;
     @Nullable
     private List<ChildChainDTO> childChains;
     private String description;

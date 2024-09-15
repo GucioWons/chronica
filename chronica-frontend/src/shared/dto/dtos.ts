@@ -26,7 +26,7 @@ export namespace DTOs {
     }
 
     export interface ChainDTO extends EntityDTO {
-        baseChain?: Nullable<BaseChainDTO>;
+        baseChain?: Nullable<ChainSelectDTO>;
         childChains?: Nullable<ChildChainDTO[]>;
         description: string;
         estimation?: Nullable<number>;
@@ -36,10 +36,13 @@ export namespace DTOs {
         type: ChainType;
     }
 
-    export interface ChildChainDTO extends EntityDTO {
-        childChains: ChildChainDTO[];
+    export interface ChainSelectDTO extends EntityDTO {
         title: string;
         type: ChainType;
+    }
+
+    export interface ChildChainDTO extends ChainSelectDTO {
+        childChains: ChildChainDTO[];
     }
 
     export interface EntityDTO {

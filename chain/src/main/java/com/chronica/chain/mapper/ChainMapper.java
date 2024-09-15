@@ -19,7 +19,7 @@ import java.util.List;
         componentModel = "spring",
         injectionStrategy = InjectionStrategy.CONSTRUCTOR,
         uses = {
-                BaseChainMapper.class,
+                ChainSelectMapper.class,
                 ChildChainMapper.class,
                 ChainRepository.class
         })
@@ -27,6 +27,7 @@ public abstract class ChainMapper implements BaseMapper<Chain, ChainDTO> {
     @Autowired
     private ChainRepository chainRepository;
 
+    @Mapping(target = "baseChain", qualifiedByName = "toChainSelectDTO")
     public abstract ChainDTO mapToDTO(Chain entity);
 
     @Mapping(target = "id", ignore = true)
