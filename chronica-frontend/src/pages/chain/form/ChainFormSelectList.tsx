@@ -1,18 +1,19 @@
 import {DTOs} from "../../../shared/dto/dtos";
-import ChainDTO = DTOs.ChainDTO;
 import ChainSelect from "./ChainSelect";
 import {useCallback, useState} from "react";
 import ChainFormSelectListRow from "./ChainFormSelectListRow";
+import ChainDTO = DTOs.ChainDTO;
+import ChainSelectDTO = DTOs.ChainSelectDTO;
 
 export interface ChainFormSelectListProps {
-    chains: ChainDTO[]
+    chains: ChainSelectDTO[]
     onChange: (chain: ChainDTO[]) => void
 }
 
 function ChainFormSelectList(props: ChainFormSelectListProps) {
-    const [selectedChains, setSelectedChains] = useState<ChainDTO[]>([])
+    const [selectedChains, setSelectedChains] = useState<ChainSelectDTO[]>([])
 
-    const addSelectedChain = useCallback((chain: ChainDTO | null) => {
+    const addSelectedChain = useCallback((chain: ChainSelectDTO | null) => {
         if (chain) {
             let newSelectedChains = [...selectedChains];
             newSelectedChains.push(chain);
@@ -20,7 +21,7 @@ function ChainFormSelectList(props: ChainFormSelectListProps) {
         }
     }, [selectedChains, setSelectedChains]);
 
-    const updateSelectedChain = useCallback((chain: ChainDTO | null, index: number) => {
+    const updateSelectedChain = useCallback((chain: ChainSelectDTO | null, index: number) => {
         let newSelectedChains = [...selectedChains];
         if (chain) {
             newSelectedChains[index] = chain;
@@ -43,7 +44,7 @@ function ChainFormSelectList(props: ChainFormSelectListProps) {
                     chains={props.chains}
                     onChange={updateSelectedChain}
                     index={index}
-                    selectedChainId={chain.id}
+                    defaultChain={chain}
                 />
             ))}
         </div>

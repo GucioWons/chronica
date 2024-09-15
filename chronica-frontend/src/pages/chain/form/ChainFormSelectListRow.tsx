@@ -1,15 +1,13 @@
 import ChainSelect from "./ChainSelect";
 import {DTOs} from "../../../shared/dto/dtos";
-import ChainDTO = DTOs.ChainDTO;
 import {useCallback} from "react";
-import {toast} from "react-toastify";
-import onChange = toast.onChange;
+import ChainSelectDTO = DTOs.ChainSelectDTO;
 
 export interface ChainFormSelectListRowProps {
-    chains: ChainDTO[],
-    onChange: (chain: ChainDTO | null, index: number) => void,
+    chains: ChainSelectDTO[],
+    onChange: (chain: ChainSelectDTO | null, index: number) => void,
     index: number
-    selectedChainId: number,
+    defaultChain: ChainSelectDTO,
 }
 
 function ChainFormSelectListRow(props: ChainFormSelectListRowProps) {
@@ -17,10 +15,10 @@ function ChainFormSelectListRow(props: ChainFormSelectListRowProps) {
         chains, 
         onChange, 
         index,
-        selectedChainId
+        defaultChain
     } = props;
     
-    const onSelectedChainChange = useCallback((chain: ChainDTO | null) => {
+    const onSelectedChainChange = useCallback((chain: ChainSelectDTO | null) => {
         onChange(chain, index);
     }, [index, onChange]);
     
@@ -28,7 +26,7 @@ function ChainFormSelectListRow(props: ChainFormSelectListRowProps) {
         <ChainSelect
             chains={chains}
             onChange={onSelectedChainChange}
-            selectedChainId={selectedChainId}
+            defaultChain={defaultChain}
         />
     )
 }

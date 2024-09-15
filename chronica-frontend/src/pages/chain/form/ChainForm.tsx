@@ -1,5 +1,4 @@
 import {DTOs} from "../../../shared/dto/dtos";
-import ChainDTO = DTOs.ChainDTO;
 import Form from "../../../shared/form/Form";
 import {useNavigate} from "react-router";
 import {useCallback, useEffect, useState} from "react";
@@ -7,14 +6,15 @@ import {UseFormReturn} from "react-hook-form";
 import FormInput from "../../../shared/form/FormInput";
 import axios from "axios";
 import {chainsApi} from "../../../shared/apiConstants";
-import ChainSelect from "./ChainSelect";
 import FormSelect from "../../../shared/form/FormSelect";
-import ChainType = DTOs.ChainType;
 import {toast} from "react-toastify";
-import BaseChainDTO = DTOs.BaseChainDTO;
 import ChainFormSelect from "./ChainFormSelect";
 import ChainFormSelectList from "./ChainFormSelectList";
+import ChainDTO = DTOs.ChainDTO;
+import ChainType = DTOs.ChainType;
+import BaseChainDTO = DTOs.BaseChainDTO;
 import ChildChainDTO = DTOs.ChildChainDTO;
+import ChainSelectDTO = DTOs.ChainSelectDTO;
 
 export interface ChainFormProps {
     chain?: ChainDTO
@@ -29,7 +29,7 @@ function ChainForm(props: ChainFormProps) {
 
     const [ formMethods, setFormMethods ] = useState<UseFormReturn<ChainDTO> | null>(null);
 
-    const [chains, setChains] = useState<ChainDTO[]>([])
+    const [chains, setChains] = useState<ChainSelectDTO[]>([])
 
     const onSubmit = (data: ChainDTO) => {
         if (editMode) {
@@ -48,16 +48,16 @@ function ChainForm(props: ChainFormProps) {
             .catch(() => toast.error("Could not create chain!"));
     }, [navigate]);
 
-    const updateBaseChain = useCallback((baseChain: ChainDTO | null) => {
+    const updateBaseChain = useCallback((baseChain: ChainSelectDTO | null) => {
         formMethods?.setValue("baseChain", baseChain as BaseChainDTO);
     }, [formMethods]);
 
-    const updateChildChains = useCallback((childChains: ChainDTO[]) => {
+    const updateChildChains = useCallback((childChains: ChainSelectDTO[]) => {
         formMethods?.setValue("childChains", childChains as ChildChainDTO[]);
     }, [formMethods]);
 
     useEffect(() => {
-        axios.get<ChainDTO[]>(chainsApi)
+        axios.get<ChainSelectDTO[]>(`${chainsApi}/options`)
             .then(response => setChains(response.data))
             .catch(() => {})
     }, []);
@@ -107,7 +107,7 @@ function ChainForm(props: ChainFormProps) {
             <ChainFormSelect
                 label="Base chain"
                 chains={chains}
-                selectedChainId={chain?.baseChain?.id}
+                defaultChain={chain?.baseChain ?? undefined}
                 onChange={(newBaseChain) => updateBaseChain(newBaseChain)}
             />
             <ChainFormSelectList

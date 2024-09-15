@@ -1,49 +1,39 @@
 import {DTOs} from "../../../shared/dto/dtos";
-import ChainDTO = DTOs.ChainDTO;
 import Select from "react-select";
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useState} from "react";
+import ChainSelectDTO = DTOs.ChainSelectDTO;
 
 export interface ChainSelectProps {
-    chains?: ChainDTO[],
-    selectedChainId?: number,
-    onChange: (chain: ChainDTO | null) => void,
+    chains?: ChainSelectDTO[],
+    defaultChain?: ChainSelectDTO,
+    onChange: (chain: ChainSelectDTO | null) => void,
     dontSaveState?: boolean,
 }
 
 function ChainSelect(props: ChainSelectProps) {
     const {
         chains,
-        selectedChainId,
+        defaultChain,
         onChange,
         dontSaveState
     } = props;
 
-    const [selectedChain, setSelectedChain] = useState<ChainDTO | null>(null)
+    const [selectedChain, setSelectedChain] = useState<ChainSelectDTO | null>(defaultChain ?? null)
 
-    const handleChainChange = useCallback((chain: ChainDTO | null) => {
+    const handleChainChange = useCallback((chain: ChainSelectDTO | null) => {
         if (!dontSaveState) {
-            console.log("dupaa");
             setSelectedChain(chain);
         }
         onChange(chain);
     }, [dontSaveState, onChange]);
 
-    useEffect(() => {
-        if (chains && selectedChainId) {
-            const maybeChain = chains?.find(chain => chain.id === selectedChainId);
-            if(maybeChain) {
-                setSelectedChain(maybeChain);
-            }
-        }
-    }, []);
-
     return (
         <Select
             value={selectedChain}
-            onChange={(option: ChainDTO | null) => handleChainChange(option)}
+            onChange={(option: ChainSelectDTO | null) => handleChainChange(option)}
             options={chains}
-            getOptionLabel={(option: ChainDTO) => `${option.id.toString()} - ${option.title}`}
-            getOptionValue={(option: ChainDTO) => option.id ? option.id.toString() : ''}
+            getOptionLabel={(option: ChainSelectDTO) => `${option.id.toString()} - ${option.title}`}
+            getOptionValue={(option: ChainSelectDTO) => option.id ? option.id.toString() : ''}
             isSearchable
             isClearable
         />
