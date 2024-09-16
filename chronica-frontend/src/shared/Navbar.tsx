@@ -1,10 +1,16 @@
 import {useAuth} from "../context/useAuth";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
     const { isLoggedIn, account, logoutUser } = useAuth()
+    const navigate = useNavigate();
 
     if (!isLoggedIn()) {
         return null;
+    }
+
+    const handleNotificaitons = () => {
+        navigate("/notifications", {replace:true});
     }
 
     return (
@@ -22,6 +28,15 @@ function Navbar() {
                 flex: 1
             }}>
                 CHRONICA
+            </div>
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                flex: 1
+            }}
+            onClick={handleNotificaitons}
+            >
+                NOTIFICATIONS
             </div>
             <div style={{
                 display: "flex",
