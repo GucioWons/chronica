@@ -1,5 +1,6 @@
 package com.chronica.snap.api.snap.exception;
 
+import org.chronica.library.exception.snap.NoSnapException;
 import org.hibernate.PropertyValueException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
