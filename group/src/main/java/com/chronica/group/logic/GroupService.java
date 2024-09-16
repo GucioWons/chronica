@@ -3,7 +3,7 @@ package com.chronica.group.logic;
 import com.chronica.group.entity.Group;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import com.chronica.group.exception.NoGroupException;
+import org.chronica.library.exception.group.NoGroupException;
 import com.chronica.group.mapper.GroupMapper;
 import com.chronica.group.repository.GroupRepository;
 import org.chronica.library.dto.group.GroupDTO;

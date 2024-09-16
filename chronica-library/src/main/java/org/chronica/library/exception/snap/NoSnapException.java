@@ -1,4 +1,4 @@
-package com.chronica.snap.api.snap.exception;
+package org.chronica.library.exception.snap;
 
 public class NoSnapException extends RuntimeException {
     public NoSnapException(String message) {

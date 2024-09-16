@@ -1,7 +1,7 @@
 package com.chronica.chain.logic;
 
 import com.chronica.chain.entity.Chain;
-import com.chronica.chain.exception.NoChainException;
+import org.chronica.library.exception.chain.NoChainException;
 import com.chronica.chain.mapper.ChainMapper;
 import com.chronica.chain.repository.ChainRepository;
 import lombok.RequiredArgsConstructor;

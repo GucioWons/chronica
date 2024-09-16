@@ -2,7 +2,7 @@ package com.chronica.notification.logic.service;
 
 import org.chronica.library.commons.dto.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
-import com.chronica.notification.data.exception.NotificationDoesntExistException;
+import org.chronica.library.exception.notification.NoNotificationException;
 import com.chronica.notification.data.repository.NotificationRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +23,7 @@ public class NotificationService<Entity extends Notification>  {
 
     public Notification findById(Long id){
         return notificationRepository.findById(id)
-                .orElseThrow(() -> new NotificationDoesntExistException("Notification not found"));
+                .orElseThrow(() -> new NoNotificationException("Notification not found"));
     }
 
     public Page<Entity> findAll(PaginationAndSortDTO page){
