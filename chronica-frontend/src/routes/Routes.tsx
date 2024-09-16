@@ -12,6 +12,8 @@ import ProjectDetailPage from "../pages/project/detail/ProjectDetailPage";
 import ProjectCreatePage from "../pages/project/create/ProjectCreatePage";
 import ProjectEditPage from "../pages/project/edit/ProjectEditPage";
 import NotificationDetailPage from "../pages/notification/detail/NotificationDetailPage";
+import SnapDetailPage from "../pages/snap/detail/SnapDetailPage";
+import SnapListPage from "../pages/snap/list/SnapListPage";
 
 export const router = createBrowserRouter(
     [
@@ -66,6 +68,14 @@ export const router = createBrowserRouter(
                 {
                     path: "notifications/:id",
                     element: <NotificationDetailPage />
+                },
+                {
+                    path: "snaps/:id",
+                    element: <SnapDetailPage />
+                },
+                {
+                    path: "snaps/chain/:id",
+                    element: <SnapListPage />
                 }
             ]
         },
