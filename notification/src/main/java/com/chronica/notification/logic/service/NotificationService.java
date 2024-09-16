@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NotificationService<Entity extends Notification>  {
     private final NotificationRepository<Entity> notificationRepository;
@@ -26,11 +28,8 @@ public class NotificationService<Entity extends Notification>  {
                 .orElseThrow(() -> new NoNotificationException("Notification not found"));
     }
 
-    public Page<Entity> findAll(PaginationAndSortDTO page){
-        Sort sortBy = Sort.by(page.sortDirection(), page.sortField());
-        PageRequest pageProp = PageRequest.of(page.pageNumber(), page.pageSize(), sortBy);
-
-        return notificationRepository.findAll(pageProp);
+    public List<Entity> findAll(){
+        return notificationRepository.findAll();
     }
 
 }

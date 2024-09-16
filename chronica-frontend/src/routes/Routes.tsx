@@ -4,12 +4,14 @@ import AuthorizationPage from "../pages/authorization/AuthorizationPage";
 import HomePage from "../pages/home/HomePage";
 import ConfirmationPage from "../pages/authorization/ConfirmationPage";
 import GroupDetailPage from "../pages/group/detail/GroupDetailPage";
+import NotificationListPage from "../pages/notification/list/NotificationListPage";
 import GroupEditPage from "../pages/group/edit/GroupEditPage";
 import GroupCreatePage from "../pages/group/create/GroupCreatePage";
 import ProjectListPage from "../pages/project/list/ProjectListPage";
 import ProjectDetailPage from "../pages/project/detail/ProjectDetailPage";
 import ProjectCreatePage from "../pages/project/create/ProjectCreatePage";
 import ProjectEditPage from "../pages/project/edit/ProjectEditPage";
+import NotificationDetailPage from "../pages/notification/detail/NotificationDetailPage";
 
 export const router = createBrowserRouter(
     [
@@ -56,6 +58,14 @@ export const router = createBrowserRouter(
                 {
                     path: "projects/new",
                     element: <ProjectCreatePage />
+                },
+                {
+                    path: "notifications",
+                    element: <NotificationListPage />
+                },
+                {
+                    path: "notifications/:id",
+                    element: <NotificationDetailPage />
                 }
             ]
         },
