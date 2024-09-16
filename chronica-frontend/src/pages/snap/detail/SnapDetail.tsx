@@ -19,8 +19,10 @@ function SnapDetail(props: SnapDetailProps) {
     return (
         <Detail
         >
-            <TextField text={snap.snapActivity} label={"Activity"}/>
+            <TextField text={snap.snapActivity} label={"Activity"} horizontal/>
             <TextField text={snap.description} label={"Description"} horizontal/>
+            <TextField text={snap.chainId.toString()} label={"ChainId:"} horizontal/>
+            <TextField text={snap.creationDate} label={"Created:"} horizontal/>
         </Detail>
     );
 }
