@@ -1,5 +1,7 @@
 package com.chronica.chain.exception;
 
+import org.chronica.library.exception.chain.InheritanceException;
+import org.chronica.library.exception.chain.NoChainException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

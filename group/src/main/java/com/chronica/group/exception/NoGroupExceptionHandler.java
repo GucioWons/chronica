@@ -1,5 +1,6 @@
 package com.chronica.group.exception;
 
+import org.chronica.library.exception.group.NoGroupException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

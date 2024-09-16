@@ -1,8 +1,8 @@
 package com.chronica.user
 
 import com.chronica.user.data.entity.Account
-import com.chronica.user.data.exception.AccountDoesntExistException
-import com.chronica.user.data.exception.WrongCredentialsException
+import org.chronica.library.exception.user.NoAccountException
+import org.chronica.library.exception.user.WrongCredentialsException
 import com.chronica.user.data.mapper.AccountMapper
 import com.chronica.user.data.repository.AccountRepository
 import com.chronica.user.logic.AccountService
@@ -45,7 +45,7 @@ class AccountServiceSpec extends Specification{
         accountService.deleteAccount(accountId)
 
         then:
-        thrown(AccountDoesntExistException)
+        thrown(NoAccountException)
     }
 
     def "should return account DTO when account exists"() {
@@ -72,7 +72,7 @@ class AccountServiceSpec extends Specification{
         accountService.getAccountById(accountId)
 
         then:
-        thrown(AccountDoesntExistException)
+        thrown(NoAccountException)
     }
 
     def "should return account when account exists and is active"() {

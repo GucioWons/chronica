@@ -1,4 +1,4 @@
-package com.chronica.group.exception;
+package org.chronica.library.exception.group;
 
 public class NoGroupException extends RuntimeException{
     public NoGroupException(String message) {

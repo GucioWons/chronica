@@ -1,8 +1,8 @@
 package com.chronica.user.logic;
 
 import com.chronica.user.data.entity.Account;
-import com.chronica.user.data.exception.AccountDoesntExistException;
-import com.chronica.user.data.exception.WrongCredentialsException;
+import org.chronica.library.exception.user.NoAccountException;
+import org.chronica.library.exception.user.WrongCredentialsException;
 import com.chronica.user.data.mapper.AccountMapper;
 import com.chronica.user.data.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class AccountService {
     public String deleteAccount(Long id) {
         return accountRepository.findById(id)
                 .map(this::deprecateAccount)
-                .orElseThrow(() -> new AccountDoesntExistException("Account not found"));
+                .orElseThrow(() -> new NoAccountException("Account not found"));
     }
 
     private String deprecateAccount(Account account) {
@@ -30,7 +30,7 @@ public class AccountService {
     public AccountDTO getAccountById(Long id) {
         return accountRepository.findById(id)
                 .map(accountMapper::mapToDTO)
-                .orElseThrow(() -> new AccountDoesntExistException("Account not found"));
+                .orElseThrow(() -> new NoAccountException("Account not found"));
     }
 
     public Account getAccountByMailAndEnabled(String mail) {

@@ -1,4 +1,4 @@
-package com.chronica.project.data.exception;
+package org.chronica.library.exception.project;
 
 public class NoProjectException extends RuntimeException{
     public NoProjectException(String message) {

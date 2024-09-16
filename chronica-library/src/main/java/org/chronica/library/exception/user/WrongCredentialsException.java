@@ -1,5 +1,6 @@
-package com.chronica.user.data.exception;
+package org.chronica.library.exception.user;
 
+import org.chronica.library.commons.exception.ChronicaException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

@@ -1,5 +1,6 @@
 package com.chronica.project.data.exception;
 
+import org.chronica.library.exception.project.NoProjectException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

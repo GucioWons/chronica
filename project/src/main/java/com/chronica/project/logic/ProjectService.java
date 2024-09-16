@@ -1,7 +1,7 @@
 package com.chronica.project.logic;
 
 import com.chronica.project.data.entity.Project;
-import com.chronica.project.data.exception.NoProjectException;
+import org.chronica.library.exception.project.NoProjectException;
 import com.chronica.project.data.mapper.ProjectMapper;
 import com.chronica.project.data.repository.ProjectRepository;
 import jakarta.transaction.Transactional;

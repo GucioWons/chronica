@@ -4,7 +4,7 @@ import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Invitation;
 import com.chronica.notification.data.entity.Message;
 import com.chronica.notification.data.entity.Notification;
-import com.chronica.notification.data.exception.WrongMapperException;
+import org.chronica.library.commons.exception.WrongMapperException;
 import com.chronica.notification.data.mapper.injection.AlertMapper;
 import com.chronica.notification.data.mapper.injection.InvitationMapper;
 import com.chronica.notification.data.mapper.injection.MessageMapper;

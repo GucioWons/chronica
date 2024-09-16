@@ -1,7 +1,7 @@
 package com.chronica.chain.logic;
 
 import com.chronica.chain.entity.Chain;
-import com.chronica.chain.exception.InheritanceException;
+import org.chronica.library.exception.chain.InheritanceException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
