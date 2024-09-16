@@ -1,4 +1,4 @@
-package com.chronica.group.exception;
+package com.chronica.group.util;
 
 import org.chronica.library.exception.group.NoGroupException;
 import org.springframework.http.HttpHeaders;
@@ -10,7 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class NoGroupExceptionHandler extends ResponseEntityExceptionHandler {
+public class GroupExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = { NoGroupException.class })
     protected ResponseEntity<Object> toResponse(NoGroupException e, WebRequest request) {
         return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);

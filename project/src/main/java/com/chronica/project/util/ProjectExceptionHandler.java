@@ -1,4 +1,4 @@
-package com.chronica.project.data.exception;
+package com.chronica.project.util;
 
 import org.chronica.library.exception.project.NoProjectException;
 import org.springframework.http.HttpHeaders;
@@ -10,7 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class NoProjectExceptionHandler extends ResponseEntityExceptionHandler {
+public class ProjectExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = { NoProjectException.class })
     protected ResponseEntity<Object> toResponse(NoProjectException e, WebRequest request) {
         return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
