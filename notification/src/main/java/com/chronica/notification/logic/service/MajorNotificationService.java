@@ -64,8 +64,8 @@ public class MajorNotificationService {
                 .body(response);
     }
 
-    public ResponseEntity<List<NotificationDTO>> getAllNotifications(PaginationAndSortDTO request) {
-        Page<Notification> notices = notificationService.findAll(request);
+    public ResponseEntity<List<NotificationDTO>> getAllNotifications() {
+        List<Notification> notices = notificationService.findAll();
 
         List<NotificationDTO> response = notices.stream()
                 .filter(g -> g.getDeprecated().equals(false))

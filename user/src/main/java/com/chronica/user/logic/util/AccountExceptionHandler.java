@@ -1,7 +1,7 @@
-package com.chronica.user.logic;
+package com.chronica.user.logic.util;
 
-import com.chronica.user.data.exception.ChronicaException;
 import lombok.extern.slf4j.Slf4j;
+import org.chronica.library.exception.user.NoAccountException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -15,11 +15,11 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 @Slf4j
-public class GlobalExceptionHandler {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+public class AccountExceptionHandler {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AccountExceptionHandler.class);
 
-    @ExceptionHandler(ChronicaException.class)
-    public ResponseEntity<ErrorDTO> handleIllegalArgumentException(ChronicaException exception, WebRequest webRequest) {
+    @ExceptionHandler(NoAccountException.class)
+    public ResponseEntity<ErrorDTO> handleIllegalArgumentException(NoAccountException exception, WebRequest webRequest) {
         ErrorDTO errorDto = new ErrorDTO(exception.getMessage(),
                 webRequest.getDescription(false),
                 LocalDateTime.now());

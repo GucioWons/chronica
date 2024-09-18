@@ -4,6 +4,7 @@ import AuthorizationPage from "../pages/authorization/AuthorizationPage";
 import HomePage from "../pages/home/HomePage";
 import ConfirmationPage from "../pages/authorization/ConfirmationPage";
 import GroupDetailPage from "../pages/group/detail/GroupDetailPage";
+import NotificationListPage from "../pages/notification/list/NotificationListPage";
 import GroupEditPage from "../pages/group/edit/GroupEditPage";
 import GroupCreatePage from "../pages/group/create/GroupCreatePage";
 import ProjectListPage from "../pages/project/list/ProjectListPage";
@@ -14,6 +15,9 @@ import ChainCreatePage from "../pages/chain/create/ChainCreatePage";
 import ChainListPage from "../pages/chain/list/ChainListPage";
 import ChainEditPage from "../pages/chain/edit/ChainEditPage";
 import ChainDetailPage from "../pages/chain/detail/ChainDetailPage";
+import NotificationDetailPage from "../pages/notification/detail/NotificationDetailPage";
+import SnapDetailPage from "../pages/snap/detail/SnapDetailPage";
+import SnapListPage from "../pages/snap/list/SnapListPage";
 
 export const router = createBrowserRouter(
     [
@@ -76,6 +80,22 @@ export const router = createBrowserRouter(
                 {
                     path: "chains/new",
                     element: <ChainCreatePage />
+                },
+                {
+                    path: "notifications",
+                    element: <NotificationListPage />
+                },
+                {
+                    path: "notifications/:id",
+                    element: <NotificationDetailPage />
+                },
+                {
+                    path: "snaps/:id",
+                    element: <SnapDetailPage />
+                },
+                {
+                    path: "snaps/chain/:id",
+                    element: <SnapListPage />
                 }
             ]
         },

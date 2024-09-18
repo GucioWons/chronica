@@ -29,8 +29,8 @@ public class NotificationController {
     }
 
     @GetMapping(path = "")
-    public ResponseEntity<List<NotificationDTO>> getNotifications(@RequestBody PaginationAndSortDTO request) {
-        return majorNotificationService.getAllNotifications(request);
+    public ResponseEntity<List<NotificationDTO>> getNotifications() {
+        return majorNotificationService.getAllNotifications();
     }
 
     @DeleteMapping(path = "/{id}")
