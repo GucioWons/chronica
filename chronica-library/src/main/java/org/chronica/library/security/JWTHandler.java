@@ -2,17 +2,16 @@ package org.chronica.library.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.chronica.library.enumerated.UserRole;
 import org.springframework.stereotype.Component;
+
 import java.security.Key;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -20,23 +19,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @NoArgsConstructor
 public class JWTHandler {
-
-    public String generateToken(String userName, List<UserRole> userRoles) {
-        Map<String, Object> claims = Map.of("userRoles", userRoles.stream().map(Enum::name).collect(Collectors.toList()));
-        return createToken(claims, userName);
-    }
-
-    private String createToken(Map<String, Object> claims, String userName) {
-        return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(userName)
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 180000))
-                .signWith(getSignKey(), SignatureAlgorithm.HS256)
-                .compact();
-    }
-
-    private Key getSignKey() {
+    public Key getSignKey() {
         String SECRET = "ABCDEFGHIJKLQQQ123456789XASDASDXASD123123ASDXZASDASD22211CH1U2J3";
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
