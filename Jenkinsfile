@@ -1,21 +1,33 @@
 pipeline {
     agent any
+
     environment {
     APP_VERSION = '1.0.0'
     }
+
     stages {
-        stage("build") {
+        stage("Prepare chronica application") {
             steps {
-                   echo 'Building the application...'
+                   echo 'Preparing the application...'
+                   cleanWs()
                    echo "Chronica ver. ${APP_VERSION}"
             }
         }
-        stage("build chronica-library"){
+
+        stage("Build chronica-library"){
             steps {
                 dir("chronica-library"){
                     sh 'mvn clean install'
                 }
             }
         }
+
+         stage("Build eureka server"){
+            steps {
+                dir("server"){
+                    sh 'mvn clean install'
+                }
+            }
+         }
     }
 }
