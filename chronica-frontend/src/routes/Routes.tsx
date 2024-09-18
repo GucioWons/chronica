@@ -11,6 +11,10 @@ import ProjectListPage from "../pages/project/list/ProjectListPage";
 import ProjectDetailPage from "../pages/project/detail/ProjectDetailPage";
 import ProjectCreatePage from "../pages/project/create/ProjectCreatePage";
 import ProjectEditPage from "../pages/project/edit/ProjectEditPage";
+import ChainCreatePage from "../pages/chain/create/ChainCreatePage";
+import ChainListPage from "../pages/chain/list/ChainListPage";
+import ChainEditPage from "../pages/chain/edit/ChainEditPage";
+import ChainDetailPage from "../pages/chain/detail/ChainDetailPage";
 import NotificationDetailPage from "../pages/notification/detail/NotificationDetailPage";
 import SnapDetailPage from "../pages/snap/detail/SnapDetailPage";
 import SnapListPage from "../pages/snap/list/SnapListPage";
@@ -60,6 +64,22 @@ export const router = createBrowserRouter(
                 {
                     path: "projects/new",
                     element: <ProjectCreatePage />
+                },
+                {
+                    path: "chains",
+                    element: <ChainListPage />
+                },
+                {
+                    path: "chains/:id",
+                    element: <ChainDetailPage />
+                },
+                {
+                    path: "chains/:id/edit",
+                    element: <ChainEditPage />
+                },
+                {
+                    path: "chains/new",
+                    element: <ChainCreatePage />
                 },
                 {
                     path: "notifications",

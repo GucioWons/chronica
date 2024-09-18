@@ -9,7 +9,7 @@ import org.chronica.library.commons.dto.EntityDTO;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BaseChainDTO extends EntityDTO {
+public class ChainSelectDTO extends EntityDTO {
     private String title;
-    private ChainType chainType;
+    private ChainType type;
 }

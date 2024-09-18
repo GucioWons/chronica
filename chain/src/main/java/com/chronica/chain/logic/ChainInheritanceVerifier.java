@@ -20,7 +20,7 @@ public class ChainInheritanceVerifier {
             return;
         }
 
-        if (chain.getChainType().getLevel() <= chain.getBaseChain().getChainType().getLevel()) {
+        if (chain.getType().getLevel() <= chain.getBaseChain().getType().getLevel()) {
             throw new InheritanceException("Chain cannot be Base Chain of Chain with the same or lower type.");
         }
 

@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.chronica.library.dto.chain.ChainDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ChainService {
@@ -27,6 +29,14 @@ public class ChainService {
                 .findByIdAndDeprecatedFalse(chainId)
                 .map(chainMapper::mapToDTO)
                 .orElseThrow(() -> new NoChainException("Cannot find Chain with id" + chainId));
+    }
+
+    public List<ChainDTO> getChains() {
+        return chainRepository
+                .findAll()
+                .stream()
+                .map(chainMapper::mapToDTO)
+                .toList();
     }
 
     public ChainDTO updateChainById(Long chainId, ChainDTO chainDto) {

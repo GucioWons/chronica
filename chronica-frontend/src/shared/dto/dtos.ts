@@ -21,25 +21,28 @@ export namespace DTOs {
     }
 
     export interface BaseChainDTO extends EntityDTO {
-        chainType: ChainType;
         title: string;
+        type: ChainType;
     }
 
     export interface ChainDTO extends EntityDTO {
-        baseChain: BaseChainDTO;
-        chainType: ChainType;
-        childChains: ChildChainDTO[];
+        baseChain?: Nullable<ChainSelectDTO>;
+        childChains?: Nullable<ChildChainDTO[]>;
         description: string;
-        estimation: number;
-        points: number;
-        timeLeft: number;
+        estimation?: Nullable<number>;
+        points?: Nullable<number>;
+        timeLeft?: Nullable<number>;
         title: string;
+        type: ChainType;
     }
 
-    export interface ChildChainDTO extends EntityDTO {
-        chainType: ChainType;
-        childChains: ChildChainDTO[];
+    export interface ChainSelectDTO extends EntityDTO {
         title: string;
+        type: ChainType;
+    }
+
+    export interface ChildChainDTO extends ChainSelectDTO {
+        childChains: ChildChainDTO[];
     }
 
     export interface EntityDTO {
