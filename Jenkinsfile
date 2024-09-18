@@ -3,7 +3,6 @@ pipeline {
 
     environment {
     APP_VERSION = "1.0.0"
-    CONTAINER_ID = "c4hr0n1"
     }
 
     stages {
