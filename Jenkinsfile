@@ -9,7 +9,6 @@ pipeline {
         stage("Prepare chronica application") {
             steps {
                    echo 'Preparing the application...'
-                   cleanWs()
                    echo "Chronica ver. ${APP_VERSION}"
             }
         }
