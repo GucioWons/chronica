@@ -26,7 +26,8 @@ public class SignInService {
         if (checkPassword(signInRequest.password() + signInRequest.mail(), account.getPassword())) {
             List<UserRole> roles = account.getUserRoles();
             String token = jwtHandler.generateToken(signInRequest.mail(), roles);
-            return Optional.of(new SignInResultDTO(token, accountMapper.mapToDTO(account)));
+            String refreshToken = jwtHandler.generateToken(signInRequest.mail(), roles);
+            return Optional.of(new SignInResultDTO(token, refreshToken, accountMapper.mapToDTO(account)));
         }
         return Optional.empty();
     }
