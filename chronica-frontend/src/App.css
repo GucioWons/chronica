@@ -174,3 +174,12 @@
 .chain-select-title {
   flex: 4;
 }
+
+.chain-child-chains-list {
+  display: flex;
+  margin-top: 2px
+}
+
+.chain-child-chains-input {
+  width: 100%;
+}

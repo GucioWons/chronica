@@ -1,7 +1,7 @@
 import {DTOs} from "../../../shared/dto/dtos";
 import Form from "../../../shared/form/Form";
-import {useCallback, useEffect, useState} from "react";
-import {useForm, UseFormReturn, useWatch} from "react-hook-form";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {useForm} from "react-hook-form";
 import FormInput from "../../../shared/form/FormInput";
 import axios from "axios";
 import {chainsApi} from "../../../shared/apiConstants";
@@ -28,7 +28,6 @@ function ChainForm(props: ChainFormProps) {
 
     const baseChain = form.watch("baseChain");
     const childChains = form.watch("childChains");
-    const type = form.watch("type")
 
     const [chains, setChains] = useState<ChainSelectDTO[]>([])
 
@@ -43,10 +42,11 @@ function ChainForm(props: ChainFormProps) {
     const filterChains = useCallback((destination: "base" | "child") => {
         return chains.filter(
             (chainSelect) =>
+                chain?.id !== chainSelect.id &&
                 baseChain?.id !== chainSelect.id &&
                 !childChains?.some((childChain) => childChain.id === chainSelect.id)
         );
-    }, [chains, baseChain, childChains]);
+    }, [chains, chain?.id, baseChain?.id, childChains]);
 
     useEffect(() => {
         axios.get<ChainSelectDTO[]>(`${chainsApi}/options`)
@@ -54,12 +54,17 @@ function ChainForm(props: ChainFormProps) {
             .catch(() => {})
     }, []);
 
+    useEffect(() => {
+        console.log(chain?.childChains)
+    }, [chain]);
+
     return (
         <Form
             <ChainDTO>
             id="chain-edit"
             onSubmit={onSubmit}
             form={form}
+            defaultValues={chain}
         >
             <FormInput
                 <ChainDTO>
@@ -105,6 +110,7 @@ function ChainForm(props: ChainFormProps) {
             <ChainFormSelectList
                 chains={filterChains("child")}
                 onChange={updateChildChains}
+                defaultChains={useMemo(() => chain?.childChains ?? [], [chain?.childChains])}
             />
         </Form>
     );

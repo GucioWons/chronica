@@ -1,18 +1,20 @@
 import {DTOs} from "../../../shared/dto/dtos";
 import ChainSelect from "./ChainSelect";
-import {useCallback, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import ChainFormSelectListRow from "./ChainFormSelectListRow";
 import ChainSelectDTO = DTOs.ChainSelectDTO;
 
 export interface ChainFormSelectListProps {
     chains: ChainSelectDTO[]
     onChange: (chain: ChainSelectDTO[]) => void
+    defaultChains: ChainSelectDTO[]
 }
 
 function ChainFormSelectList(props: ChainFormSelectListProps) {
     const {
         chains,
-        onChange
+        onChange,
+        defaultChains
     } = props;
 
     const [selectedChains, setSelectedChains] = useState<ChainSelectDTO[]>([])
@@ -41,6 +43,10 @@ function ChainFormSelectList(props: ChainFormSelectListProps) {
         setSelectedChains(newSelectedChains);
         onChange(newSelectedChains);
     },[selectedChains, setSelectedChains, onChange])
+
+    useEffect(() => {
+        setSelectedChains(defaultChains)
+    }, [defaultChains]);
 
     return(
         <div className={`input-with-label vertical`}>

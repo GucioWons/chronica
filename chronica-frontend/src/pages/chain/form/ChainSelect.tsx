@@ -1,6 +1,6 @@
 import {DTOs} from "../../../shared/dto/dtos";
 import Select from "react-select";
-import {useCallback, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import ChainSelectDTO = DTOs.ChainSelectDTO;
 
 export interface ChainSelectProps {
@@ -28,6 +28,10 @@ function ChainSelect(props: ChainSelectProps) {
         }
         onChange(chain);
     }, [dontSaveState, onChange]);
+
+    useEffect(() => {
+        setSelectedChain(defaultChain ?? null);
+    }, [defaultChain]);
 
     return (
         <Select

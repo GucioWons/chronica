@@ -24,6 +24,7 @@ function Form<T extends FieldValues>(props: FormProps<T>) {
 
     useEffect(() => {
         if (defaultValues) {
+            console.log("twoja stara 7")
             form.reset(defaultValues);
         }
     }, [defaultValues]);

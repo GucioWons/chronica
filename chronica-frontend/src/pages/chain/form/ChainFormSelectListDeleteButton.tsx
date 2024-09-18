@@ -6,7 +6,7 @@ function ChainFormSelectListDeleteButton(props: ChainFormSelectListDeleteButtonP
     const {onClick} = props;
 
     return (
-        <button onClick={() => onClick()}>Delete</button>
+        <button type="button" onClick={() => onClick()}>Delete</button>
     )
 }
 
