@@ -1,4 +1,4 @@
-package org.chronica.library.commons.exception;
+package com.chronica.notification.logic.exception;
 
 public class WrongMapperException extends IllegalArgumentException{
     public WrongMapperException(String message){
