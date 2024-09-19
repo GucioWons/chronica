@@ -1,7 +1,7 @@
 package com.chronica.chain.logic;
 
 import com.chronica.chain.entity.Chain;
-import org.chronica.library.exception.chain.InheritanceException;
+import com.chronica.chain.exception.InheritanceException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +21,11 @@ public class ChainInheritanceVerifier {
         }
 
         if (chain.getChainType().getLevel() <= chain.getBaseChain().getChainType().getLevel()) {
-            throw new InheritanceException("Chain cannot be Base Chain of Chain with the same or lower type.");
+            throw new InheritanceException("");
         }
 
         if (visited.contains(chain)) {
-            throw new InheritanceException("Chains inheritance cannot be looped.");
+            throw new InheritanceException("");
         }
 
         visited.add(chain);
