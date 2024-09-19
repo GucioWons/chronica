@@ -1,11 +1,15 @@
 package org.chronica.library.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
-public class NoEntityException extends RuntimeException {
+public class NoEntityException extends ChronicaException {
     private final String className;
     private final Long id;
+
+    public NoEntityException(ExceptionMessage exceptionMessage, String className, Long id) {
+        super(exceptionMessage);
+        this.className = className;
+        this.id = id;
+    }
 }
