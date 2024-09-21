@@ -49,7 +49,8 @@ export namespace DTOs {
     export interface ErrorDTO {
         apiPath: string;
         at: DateAsString;
-        message: string;
+        data: { [index: string]: any };
+        message: ExceptionMessage;
     }
 
     export interface GroupDTO extends EntityDTO {
@@ -149,6 +150,14 @@ export namespace DTOs {
     export enum Direction {
         ASC = "ASC",
         DESC = "DESC",
+    }
+
+    export enum ExceptionMessage {
+        NO_ENTITY_EXCEPTION = "NO_ENTITY_EXCEPTION",
+        INHERITANCE_EXCEPTION_LEVEL = "INHERITANCE_EXCEPTION_LEVEL",
+        INHERITANCE_EXCEPTION_LOOP = "INHERITANCE_EXCEPTION_LOOP",
+        WRONG_MAPPER = "WRONG_MAPPER",
+        EXPIRED_ACCESS_TOKEN = "EXPIRED_ACCESS_TOKEN",
     }
 
     export enum GroupCategory {
