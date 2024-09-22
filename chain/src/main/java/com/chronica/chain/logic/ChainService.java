@@ -26,7 +26,7 @@ public class ChainService {
         return chainRepository
                 .findByIdAndDeprecatedFalse(chainId)
                 .map(chainMapper::mapToDTO)
-                .orElseThrow(() -> new NoEntityException(Chain.class.getName(), chainId));
+                .orElseThrow(() -> new NoEntityException(Chain.class.getSimpleName(), chainId));
     }
 
     public ChainDTO updateChainById(Long chainId, ChainDTO chainDto) {
@@ -36,14 +36,14 @@ public class ChainService {
                         chainMapper.mapToDTO(
                                 chainRepository.save(
                                         chainMapper.mapToUpdateEntity(chain, chainDto))))
-                .orElseThrow(() -> new NoEntityException(Chain.class.getName(), chainId));
+                .orElseThrow(() -> new NoEntityException(Chain.class.getSimpleName(), chainId));
     }
 
     public String deleteChainById(Long chainId) {
         return chainRepository
                 .findByIdAndDeprecatedFalse(chainId)
                 .map(this::handleDeprecation)
-                .orElseThrow(() -> new NoEntityException(Chain.class.getName(), chainId));
+                .orElseThrow(() -> new NoEntityException(Chain.class.getSimpleName(), chainId));
     }
 
     private String handleDeprecation(Chain chain) {

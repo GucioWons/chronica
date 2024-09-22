@@ -1,8 +1,9 @@
 package com.chronica.chain.logic;
 
 import com.chronica.chain.entity.Chain;
-import com.chronica.chain.exception.InheritanceException;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.exception.ChronicaException;
+import org.chronica.library.exception.dto.enumerated.ErrorMessage;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -21,11 +22,11 @@ public class ChainInheritanceVerifier {
         }
 
         if (chain.getChainType().getLevel() <= chain.getBaseChain().getChainType().getLevel()) {
-            throw new InheritanceException("");
+            throw new ChronicaException(ErrorMessage.INHERITANCE_LEVEL_EXCEPTION);
         }
 
         if (visited.contains(chain)) {
-            throw new InheritanceException("");
+            throw new ChronicaException(ErrorMessage.INHERITANCE_LOOP_EXCEPTION);
         }
 
         visited.add(chain);
