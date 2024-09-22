@@ -1,9 +1,7 @@
 package com.chronica.snap.api.snap.configuration;
 
 import lombok.RequiredArgsConstructor;
-import org.chronica.library.security.JWTHandler;
 import org.chronica.library.security.RequestAuthenticator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -18,20 +16,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
-
-    @Bean
-    public JWTHandler jwtHandler(){
-        return new JWTHandler();
-    }
-
-    @Bean
-    public RequestAuthenticator requestAuthenticator(@Autowired JWTHandler jwtHandler){
-        return new RequestAuthenticator(jwtHandler);
-    }
+    private final RequestAuthenticator requestAuthenticator;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new RequestAuthenticator(new JWTHandler()), UsernamePasswordAuthenticationFilter.class)
+        http.addFilterBefore(requestAuthenticator, UsernamePasswordAuthenticationFilter.class)
                 .csrf(CsrfConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth

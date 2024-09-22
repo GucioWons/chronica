@@ -31,13 +31,13 @@ public class SnapService {
                 .save(snapMapper
                         .mapToUpdateEntity(snapRepository
                                 .findById(id)
-                                .orElseThrow(() -> new NoEntityException(Snap.class.getName(), id)), dto)));
+                                .orElseThrow(() -> new NoEntityException(Snap.class.getSimpleName(), id)), dto)));
     }
 
     public String deprecateSnap(Long id) {
         return snapRepository.findByIdAndDeprecatedFalse(id)
                 .map(this::handleSnapDeprecation)
-                .orElseThrow(() -> new NoEntityException(Snap.class.getName(), id));
+                .orElseThrow(() -> new NoEntityException(Snap.class.getSimpleName(), id));
     }
 
     private String handleSnapDeprecation(Snap snap) {
