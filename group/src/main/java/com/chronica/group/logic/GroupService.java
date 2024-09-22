@@ -25,7 +25,7 @@ public class GroupService {
     public GroupDTO getGroupById(Long groupId) {
         return groupRepository.findByIdAndDeprecatedFalse(groupId)
                 .map(groupMapper::mapToDTO)
-                .orElseThrow(() -> new NoEntityException(Group.class.getName(), groupId));
+                .orElseThrow(() -> new NoEntityException(Group.class.getSimpleName(), groupId));
     }
 
     public List<GroupDTO> getGroups() {
@@ -41,7 +41,7 @@ public class GroupService {
         Group group = groupRepository
                 .findByIdAndDeprecatedFalse(groupId)
                 .map(entity -> groupMapper.mapToUpdateEntity(entity, toUpdate))
-                .orElseThrow(() -> new NoEntityException(Group.class.getName(), groupId));
+                .orElseThrow(() -> new NoEntityException(Group.class.getSimpleName(), groupId));
         return groupMapper.mapToDTO(groupRepository.save(group));
     }
 
@@ -49,7 +49,7 @@ public class GroupService {
     public String deprecateGroup(Long groupId) {
         Group group = groupRepository
                 .findByIdAndDeprecatedFalse(groupId)
-                .orElseThrow(() -> new NoEntityException(Group.class.getName(), groupId));
+                .orElseThrow(() -> new NoEntityException(Group.class.getSimpleName(), groupId));
         group.setDeprecated(true);
         groupRepository.save(group);
         return "Group has been deprecated.";
