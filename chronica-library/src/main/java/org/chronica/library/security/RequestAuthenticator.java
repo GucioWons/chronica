@@ -1,5 +1,6 @@
 package org.chronica.library.security;
 
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,7 +44,6 @@ public class RequestAuthenticator extends OncePerRequestFilter {
                 token = authHeader.substring(7);
                 mail = jwtHandler.extractUsername(token);
             }
-
             if (mail != null && jwtHandler.validateToken(token, mail)) {
                 List<UserRole> userRoles = jwtHandler.extractRoles(token);
                 Collection<GrantedAuthority> authorities = convertRolesToAuthorities(userRoles);
@@ -51,7 +51,7 @@ public class RequestAuthenticator extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
             filterChain.doFilter(request, response);
-        } catch (Exception e) {
+        } catch (JwtException e) {
             resolver.resolveException(request, response, null, e);
         }
     }

@@ -3,7 +3,7 @@ package org.chronica.library.dto.chain;
 import lombok.Getter;
 import lombok.Setter;
 import org.chronica.library.enumerated.ChainType;
-import org.chronica.library.commons.dto.EntityDTO;
+import org.chronica.library.dto.EntityDTO;
 
 import java.math.BigDecimal;
 import java.util.List;

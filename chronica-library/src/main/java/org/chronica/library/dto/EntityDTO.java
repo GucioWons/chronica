@@ -1,4 +1,4 @@
-package org.chronica.library.commons.dto;
+package org.chronica.library.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
