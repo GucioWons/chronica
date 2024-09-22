@@ -20,11 +20,6 @@ export namespace DTOs {
         type: "alert";
     }
 
-    export interface BaseChainDTO extends EntityDTO {
-        title: string;
-        type: ChainType;
-    }
-
     export interface ChainDTO extends EntityDTO {
         baseChain?: Nullable<ChainSelectDTO>;
         childChains?: Nullable<ChildChainDTO[]>;

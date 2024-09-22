@@ -5,6 +5,7 @@ import com.chronica.chain.repository.ChainRepository;
 import org.chronica.library.dto.EntityDTO;
 import org.chronica.library.commons.mapper.BaseMapper;
 import org.chronica.library.dto.chain.ChainDTO;
+import org.chronica.library.exception.NoEntityException;
 import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,10 +36,10 @@ public abstract class ChainMapper implements BaseMapper<Chain, ChainDTO> {
 
     @AfterMapping
     public void setExistingChainList(@MappingTarget Chain entity, ChainDTO dto) {
+        entity.getChildChains().clear();
         if (dto.getChildChains() == null) {
             return;
         }
-        entity.getChildChains().clear();
         dto.getChildChains().forEach(childDTO -> entity.addChild(getExistingChainOrThrow(childDTO)));
     }
 
