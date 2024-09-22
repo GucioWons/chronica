@@ -2,7 +2,7 @@ import Form from "../../../shared/form/Form";
 import {DTOs} from "../../../shared/dto/dtos";
 import FormInput from "../../../shared/form/FormInput";
 import {useCallback, useState} from "react";
-import {UseFormReturn} from "react-hook-form";
+import {useForm, UseFormReturn} from "react-hook-form";
 import FormSelect from "../../../shared/form/FormSelect";
 import GroupDTO = DTOs.GroupDTO;
 import axios from "axios";
@@ -23,7 +23,7 @@ function GroupForm(props: GroupFormProps) {
 
     const navigate = useNavigate();
 
-    const [ formMethods, setFormMethods ] = useState<UseFormReturn<GroupDTO> | null>(null);
+    const form = useForm<GroupDTO>()
 
     const onSubmit = (data: GroupDTO) => {
         if (editMode) {
@@ -58,7 +58,7 @@ function GroupForm(props: GroupFormProps) {
             <GroupDTO>
             id="group-edit"
             onSubmit={onSubmit}
-            setMethods={setFormMethods}
+            form={form}
             defaultValues={group}
         >
             <FormInput
@@ -73,7 +73,7 @@ function GroupForm(props: GroupFormProps) {
             />
             <FormSelect
                 <GroupDTO, GroupCategory>
-                setValue={formMethods?.setValue}
+                setValue={form.setValue}
                 field="category"
                 label="Category"
                 options={Object.values(GroupCategory)}

@@ -21,7 +21,7 @@ public class ChainInheritanceVerifier {
             return;
         }
 
-        if (chain.getChainType().getLevel() <= chain.getBaseChain().getChainType().getLevel()) {
+        if (chain.getType().getLevel() <= chain.getBaseChain().getType().getLevel()) {
             throw new ChronicaException(ErrorMessage.INHERITANCE_LEVEL_EXCEPTION);
         }
 

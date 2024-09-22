@@ -3,7 +3,7 @@ import ProjectDTO = DTOs.ProjectDTO;
 import Form from "../../shared/form/Form";
 import FormInput from "../../shared/form/FormInput";
 import {useCallback, useState} from "react";
-import {UseFormReturn} from "react-hook-form";
+import {useForm, UseFormReturn} from "react-hook-form";
 import axios from "axios";
 import {projectsApi} from "../../shared/apiConstants";
 import {toast} from "react-toastify";
@@ -20,7 +20,7 @@ function ProjectForm(props: ProjectFormProps) {
 
     const navigate = useNavigate();
 
-    const [ _formMethods, setFormMethods ] = useState<UseFormReturn<ProjectDTO> | null>(null);
+    const form = useForm<ProjectDTO>();
 
     const onSubmit = (data: ProjectDTO) => {
         if (editMode) {
@@ -55,7 +55,7 @@ function ProjectForm(props: ProjectFormProps) {
             <ProjectDTO>
             id={`project-${editMode ? "edit" : "create"}`}
             onSubmit={onSubmit}
-            setMethods={setFormMethods}
+            form={form}
             defaultValues={project}
         >
             <FormInput

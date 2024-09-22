@@ -8,6 +8,7 @@ import org.chronica.library.commons.model.ChronicaEntity;
 import org.chronica.library.enumerated.ChainType;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "my_chain")
@@ -25,11 +26,11 @@ public class Chain implements ChronicaEntity {
     private Chain baseChain;
     @OneToMany(orphanRemoval = true)
     @JoinColumn(name="base_chain_id")
-    private List<Chain> childChains;
+    private List<Chain> childChains = new ArrayList<>();
     @Column
     private String description;
     @Column(nullable = false)
-    private ChainType chainType;
+    private ChainType type;
     @Column
     private BigDecimal estimation = BigDecimal.ZERO;
     @Column

@@ -11,8 +11,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ChildChainDTO extends EntityDTO {
-    private String title;
-    private ChainType chainType;
+public class ChildChainDTO extends ChainSelectDTO {
     private List<ChildChainDTO> childChains;
 }
