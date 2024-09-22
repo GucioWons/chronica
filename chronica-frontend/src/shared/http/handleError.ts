@@ -10,7 +10,7 @@ export const useErrorHandler = () => {
     const { logoutUser } = useAuth();
 
     const getErrorMessage = (errorMesage: ErrorMessage, lang: string) => {
-        return ErrorMessages["en"][errorMesage] || ErrorMessages["en"][ErrorMessage.UNEXPECTED_EXCEPTION];
+        return ErrorMessages[lang][errorMesage] || ErrorMessages["en"][ErrorMessage.UNEXPECTED_EXCEPTION];
     };
 
     const formatNoEntityMessage = (message: string, properties: { [index: string]: any }) => {
