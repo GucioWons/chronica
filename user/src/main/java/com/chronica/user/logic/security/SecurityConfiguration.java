@@ -1,9 +1,7 @@
 package com.chronica.user.logic.security;
 
 import lombok.RequiredArgsConstructor;
-import org.chronica.library.security.JWTHandler;
 import org.chronica.library.security.RequestAuthenticator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfiguration {
+    private final RequestAuthenticator requestAuthenticator;
 
     private static final String LINKS = "/api/links/confirmation/**";
     private static final String SWAGGER_UI = "/swagger-ui/**";
@@ -26,7 +25,8 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(requestAuthenticator(jwtHandler()), UsernamePasswordAuthenticationFilter.class)
+
+        http.addFilterBefore(requestAuthenticator, UsernamePasswordAuthenticationFilter.class)
                 .csrf(CsrfConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth
@@ -54,16 +54,4 @@ public class SecurityConfiguration {
                 .requestMatchers("/swagger-ui/**")
                 .requestMatchers("/v3/**");
     }
-
-    @Bean
-    public JWTHandler jwtHandler(){
-        return new JWTHandler();
-    }
-
-    @Bean
-    public RequestAuthenticator requestAuthenticator(@Autowired JWTHandler jwtHandler){
-        return new RequestAuthenticator(jwtHandler);
-    }
-
-
 }

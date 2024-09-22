@@ -1,54 +1,23 @@
 import Form from "../../../shared/form/Form";
 import {DTOs} from "../../../shared/dto/dtos";
 import FormInput from "../../../shared/form/FormInput";
-import {useCallback, useState} from "react";
-import {useForm, UseFormReturn} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import FormSelect from "../../../shared/form/FormSelect";
 import GroupDTO = DTOs.GroupDTO;
-import axios from "axios";
-import {groupsApi} from "../../../shared/apiConstants";
-import {useNavigate} from "react-router";
-import { toast } from "react-toastify";
 import GroupCategory = DTOs.GroupCategory;
 
 export interface GroupFormProps {
     group?: GroupDTO
+    onSubmit: (data: GroupDTO) => void
 }
 
 function GroupForm(props: GroupFormProps) {
-    const { group } = props;
-
-    const editMode: boolean = !!group;
-
-    const navigate = useNavigate();
+    const {
+        group,
+        onSubmit
+    } = props;
 
     const form = useForm<GroupDTO>()
-
-    const onSubmit = (data: GroupDTO) => {
-        if (editMode) {
-            handleEdition(data);
-        } else {
-            handleCreation(data);
-        }
-    }
-
-    const handleCreation = useCallback((data: GroupDTO) => {
-        axios.post<GroupDTO>(groupsApi, data)
-            .then((response) => {
-                toast.success("Successfully created group!");
-                navigate("/groups/" + response.data.id);
-            })
-            .catch(() => toast.error("Could not create group!"));
-    }, [navigate]);
-
-    const handleEdition = useCallback((data: GroupDTO) => {
-        axios.put<GroupDTO>(groupsApi + `/${data.id}`, data)
-            .then((response) => {
-                toast.success("Successfully updated group!");
-                navigate("/groups/" + response.data.id);
-            })
-            .catch(() => toast.error("Could not update group!"));
-    }, [navigate]);
 
     return (
         <Form

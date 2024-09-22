@@ -7,16 +7,19 @@ import ChainDTO = DTOs.ChainDTO;
 import { TableHeader } from "../../../shared/table/TableHeader";
 import ProtectedPage from "../../../shared/ProtectedPage";
 import Table from "../../../shared/table/Table";
+import {useErrorHandler} from "../../../shared/http/handleError";
 
 function ChainListPage() {
     const navigate = useNavigate();
+    const handleError = useErrorHandler();
 
     const [chains, setChains] = useState<ChainDTO[]>([])
 
     useEffect(() => {
         axios.get<ChainDTO[]>(chainsApi)
             .then(response => setChains(response.data))
-            .catch(() => {})
+            .catch((error) => handleError(error))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const headers: TableHeader<ChainDTO>[] = [

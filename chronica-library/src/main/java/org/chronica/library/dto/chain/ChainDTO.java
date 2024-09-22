@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.chronica.library.enumerated.ChainType;
-import org.chronica.library.commons.dto.EntityDTO;
+import org.chronica.library.dto.EntityDTO;
 
 import java.math.BigDecimal;
 import java.util.List;

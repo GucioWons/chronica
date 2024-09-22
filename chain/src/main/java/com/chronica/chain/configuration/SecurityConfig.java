@@ -1,8 +1,7 @@
 package com.chronica.chain.configuration;
 
-import org.chronica.library.security.RequestAuthenticator;
 import lombok.RequiredArgsConstructor;
-import org.chronica.library.security.JWTHandler;
+import org.chronica.library.security.RequestAuthenticator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,10 +16,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
+    private final RequestAuthenticator requestAuthenticator;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new RequestAuthenticator(new JWTHandler()), UsernamePasswordAuthenticationFilter.class)
+        http.addFilterBefore(requestAuthenticator, UsernamePasswordAuthenticationFilter.class)
                 .csrf(CsrfConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth

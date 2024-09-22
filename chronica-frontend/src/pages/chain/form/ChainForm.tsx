@@ -12,6 +12,7 @@ import ChainDTO = DTOs.ChainDTO;
 import ChainType = DTOs.ChainType;
 import ChildChainDTO = DTOs.ChildChainDTO;
 import ChainSelectDTO = DTOs.ChainSelectDTO;
+import {useErrorHandler} from "../../../shared/http/handleError";
 
 export interface ChainFormProps {
     chain?: ChainDTO
@@ -48,15 +49,14 @@ function ChainForm(props: ChainFormProps) {
         );
     }, [chains, chain?.id, baseChain?.id, childChains]);
 
+    const handleError = useErrorHandler();
+
     useEffect(() => {
         axios.get<ChainSelectDTO[]>(`${chainsApi}/options`)
             .then(response => setChains(response.data))
-            .catch(() => {})
+            .catch((error) => handleError(error));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    useEffect(() => {
-        console.log(chain?.childChains)
-    }, [chain]);
 
     return (
         <Form

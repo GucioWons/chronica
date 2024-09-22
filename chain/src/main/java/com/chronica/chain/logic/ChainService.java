@@ -1,11 +1,11 @@
 package com.chronica.chain.logic;
 
 import com.chronica.chain.entity.Chain;
-import org.chronica.library.exception.chain.NoChainException;
 import com.chronica.chain.mapper.ChainMapper;
 import com.chronica.chain.repository.ChainRepository;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.dto.chain.ChainDTO;
+import org.chronica.library.exception.NoEntityException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class ChainService {
         return chainRepository
                 .findByIdAndDeprecatedFalse(chainId)
                 .map(chainMapper::mapToDTO)
-                .orElseThrow(() -> new NoChainException("Cannot find Chain with id" + chainId));
+                .orElseThrow(() -> new NoEntityException(Chain.class.getSimpleName(), chainId));
     }
 
     public List<ChainDTO> getChains() {
@@ -46,14 +46,14 @@ public class ChainService {
                         chainMapper.mapToDTO(
                                 chainRepository.save(
                                         chainMapper.mapToUpdateEntity(chain, chainDto))))
-                .orElseThrow(() -> new NoChainException("Cannot find Chain with id" + chainId));
+                .orElseThrow(() -> new NoEntityException(Chain.class.getSimpleName(), chainId));
     }
 
     public String deleteChainById(Long chainId) {
         return chainRepository
                 .findByIdAndDeprecatedFalse(chainId)
                 .map(this::handleDeprecation)
-                .orElseThrow(() -> new NoChainException("Cannot find Chain with id" + chainId));
+                .orElseThrow(() -> new NoEntityException(Chain.class.getSimpleName(), chainId));
     }
 
     private String handleDeprecation(Chain chain) {

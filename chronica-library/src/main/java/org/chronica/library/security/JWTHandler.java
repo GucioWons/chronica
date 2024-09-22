@@ -31,7 +31,7 @@ public class JWTHandler {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 180000))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60* 15))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -68,8 +68,7 @@ public class JWTHandler {
     }
 
     public Boolean validateToken(String token, String mail) {
-        String username = extractUsername(token);
-        return (username.equals(mail) && !isTokenExpired(token));
+        return !isTokenExpired(token);
     }
 
     public List<UserRole> extractRoles(String token) {

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.chronica.library.commons.dto.EntityDTO;
+import org.chronica.library.dto.EntityDTO;
 
 import java.time.LocalDateTime;
 

@@ -1,7 +1,7 @@
 package com.chronica.project.logic;
 
 import com.chronica.project.data.entity.Project;
-import org.chronica.library.exception.project.NoProjectException;
+import org.chronica.library.exception.NoEntityException;
 import com.chronica.project.data.mapper.ProjectMapper;
 import com.chronica.project.data.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
@@ -26,7 +26,7 @@ public class ProjectService {
         return projectRepository
                 .findByIdAndDeprecatedFalse(projectId)
                 .map(projectMapper::mapToDTO)
-                .orElseThrow(() -> new NoProjectException("Cannot find Project with id " + projectId));
+                .orElseThrow(() -> new NoEntityException(Project.class.getSimpleName(), projectId));
     }
 
     public List<ProjectDTO> getProjectsByGroupId(Long groupId) {
@@ -49,7 +49,7 @@ public class ProjectService {
     public ProjectDTO updateProject(Long projectId, ProjectDTO dto) {
         Project project = projectMapper.mapToUpdateEntity(projectRepository
                 .findByIdAndDeprecatedFalse(projectId)
-                .orElseThrow(() -> new NoProjectException("Cant update, project not exist")), dto);
+                .orElseThrow(() ->  new NoEntityException(Project.class.getSimpleName(), projectId)), dto);
         project.setLastChangeDate(LocalDateTime.now());
         return projectMapper.mapToDTO(projectRepository.save(project));
     }
@@ -58,13 +58,11 @@ public class ProjectService {
     public String deprecateProject(Long projectId) {
         Project project = projectRepository
                 .findByIdAndDeprecatedFalse(projectId)
-                .orElseThrow(() -> new NoProjectException("Cannot find Project with id " + projectId));
+                .orElseThrow(() ->  new NoEntityException(Project.class.getSimpleName(), projectId));
         project.setDeprecated(true);
         project.setLastChangeDate(LocalDateTime.now());
         projectRepository.save(project);
         return "Project has been deprecated.";
     }
-
-
 }
 

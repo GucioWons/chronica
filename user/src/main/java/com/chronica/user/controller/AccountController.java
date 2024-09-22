@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.chronica.library.dto.user.AccountDTO;
 import org.chronica.library.dto.user.SignInDTO;
 import org.chronica.library.dto.user.SignInResultDTO;
+import org.chronica.library.exception.ChronicaException;
+import org.chronica.library.exception.dto.enumerated.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +36,7 @@ public class AccountController {
                         .status(HttpStatus.OK)
                         .header("Authorization", "Bearer " + response.token())
                         .body(response))
-                .orElse(ResponseEntity
-                        .status(HttpStatus.UNAUTHORIZED)
-                        .build());
+                .orElseThrow(() -> new ChronicaException(ErrorMessage.AUTHORIZATION_EXCEPTION));
     }
 
     @GetMapping(value = "/{id}")
@@ -44,6 +44,16 @@ public class AccountController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(accountService.getAccountById(id));
+    }
+
+    @GetMapping(value = "/chronica-exception")
+    public ResponseEntity<AccountDTO> chronicaException() {
+        throw new ChronicaException(ErrorMessage.NOT_IMPLEMENTED_EXCEPTION);
+    }
+
+    @GetMapping(value = "/exception")
+    public ResponseEntity<AccountDTO> exception() {
+        throw new RuntimeException();
     }
 
     @DeleteMapping(value = "/{id}")

@@ -1,12 +1,13 @@
 package com.chronica.user.logic;
 
 import com.chronica.user.data.entity.Account;
-import org.chronica.library.exception.user.NoAccountException;
-import org.chronica.library.exception.user.WrongCredentialsException;
+import org.chronica.library.exception.ChronicaException;
+import org.chronica.library.exception.NoEntityException;
 import com.chronica.user.data.mapper.AccountMapper;
 import com.chronica.user.data.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.dto.user.AccountDTO;
+import org.chronica.library.exception.dto.enumerated.ErrorMessage;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +19,7 @@ public class AccountService {
     public String deleteAccount(Long id) {
         return accountRepository.findById(id)
                 .map(this::deprecateAccount)
-                .orElseThrow(() -> new NoAccountException("Account not found"));
+                .orElseThrow(() -> new NoEntityException(Account.class.getSimpleName(), id));
     }
 
     private String deprecateAccount(Account account) {
@@ -30,11 +31,11 @@ public class AccountService {
     public AccountDTO getAccountById(Long id) {
         return accountRepository.findById(id)
                 .map(accountMapper::mapToDTO)
-                .orElseThrow(() -> new NoAccountException("Account not found"));
+                .orElseThrow(() -> new NoEntityException(Account.class.getSimpleName(), id));
     }
 
     public Account getAccountByMailAndEnabled(String mail) {
         return accountRepository.findByMailAndActive(mail, true)
-                .orElseThrow(() -> new WrongCredentialsException("Wrong mail ! Try again"));
+                .orElseThrow(() -> new ChronicaException(ErrorMessage.AUTHORIZATION_EXCEPTION));
     }
 }
