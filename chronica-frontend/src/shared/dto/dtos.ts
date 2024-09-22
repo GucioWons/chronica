@@ -20,26 +20,24 @@ export namespace DTOs {
         type: "alert";
     }
 
-    export interface BaseChainDTO extends EntityDTO {
-        chainType: ChainType;
-        title: string;
-    }
-
     export interface ChainDTO extends EntityDTO {
-        baseChain: BaseChainDTO;
-        chainType: ChainType;
-        childChains: ChildChainDTO[];
+        baseChain?: Nullable<ChainSelectDTO>;
+        childChains?: Nullable<ChildChainDTO[]>;
         description: string;
-        estimation: number;
-        points: number;
-        timeLeft: number;
+        estimation?: Nullable<number>;
+        points?: Nullable<number>;
+        timeLeft?: Nullable<number>;
         title: string;
+        type: ChainType;
     }
 
-    export interface ChildChainDTO extends EntityDTO {
-        chainType: ChainType;
-        childChains: ChildChainDTO[];
+    export interface ChainSelectDTO extends EntityDTO {
         title: string;
+        type: ChainType;
+    }
+
+    export interface ChildChainDTO extends ChainSelectDTO {
+        childChains: ChildChainDTO[];
     }
 
     export interface EntityDTO {
@@ -49,7 +47,8 @@ export namespace DTOs {
     export interface ErrorDTO {
         apiPath: string;
         at: DateAsString;
-        message: string;
+        message: ErrorMessage;
+        properties: { [index: string]: any };
     }
 
     export interface GroupDTO extends EntityDTO {
@@ -87,13 +86,6 @@ export namespace DTOs {
         title: string;
         type: "NotificationDTO" | "alert" | "invitation" | "message";
         viewAt: DateAsString;
-    }
-
-    export interface PaginationAndSortDTO {
-        pageNumber: number;
-        pageSize: number;
-        sortDirection: Direction;
-        sortField: string;
     }
 
     export interface PersonDTO extends EntityDTO {
@@ -146,9 +138,16 @@ export namespace DTOs {
         BUG = "BUG",
     }
 
-    export enum Direction {
-        ASC = "ASC",
-        DESC = "DESC",
+    export enum ErrorMessage {
+        UNEXPECTED_EXCEPTION = "UNEXPECTED_EXCEPTION",
+        NOT_IMPLEMENTED_EXCEPTION = "NOT_IMPLEMENTED_EXCEPTION",
+        NO_ENTITY_EXCEPTION = "NO_ENTITY_EXCEPTION",
+        INHERITANCE_LEVEL_EXCEPTION = "INHERITANCE_LEVEL_EXCEPTION",
+        INHERITANCE_LOOP_EXCEPTION = "INHERITANCE_LOOP_EXCEPTION",
+        WRONG_MAPPER_EXCEPTION = "WRONG_MAPPER_EXCEPTION",
+        AUTHORIZATION_EXCEPTION = "AUTHORIZATION_EXCEPTION",
+        UNEXPECTED_JWT_EXCEPTION = "UNEXPECTED_JWT_EXCEPTION",
+        EXPIRED_ACCESS_TOKEN_EXCEPTION = "EXPIRED_ACCESS_TOKEN_EXCEPTION",
     }
 
     export enum GroupCategory {

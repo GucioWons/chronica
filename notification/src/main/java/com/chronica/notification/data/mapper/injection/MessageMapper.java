@@ -1,10 +1,11 @@
 package com.chronica.notification.data.mapper.injection;
 
 import com.chronica.notification.data.mapper.NotificationMapperStatic;
-import org.chronica.library.commons.exception.NotImplementedException;
 import com.chronica.notification.data.entity.Message;
 import org.chronica.library.commons.mapper.BaseMapper;
 import org.chronica.library.dto.notification.MessageDTO;
+import org.chronica.library.exception.ChronicaException;
+import org.chronica.library.exception.dto.enumerated.ErrorMessage;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,6 +29,6 @@ public class MessageMapper implements BaseMapper<Message, MessageDTO> {
 
     @Override
     public Message mapToUpdateEntity(Message toUpdate, MessageDTO dto) {
-        throw new NotImplementedException();
+        throw new ChronicaException(ErrorMessage.NOT_IMPLEMENTED_EXCEPTION);
     }
 }

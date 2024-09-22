@@ -4,7 +4,6 @@ import com.chronica.notification.data.entity.Alert;
 import com.chronica.notification.data.entity.Invitation;
 import com.chronica.notification.data.entity.Message;
 import com.chronica.notification.data.entity.Notification;
-import org.chronica.library.commons.exception.WrongMapperException;
 import com.chronica.notification.data.mapper.injection.AlertMapper;
 import com.chronica.notification.data.mapper.injection.InvitationMapper;
 import com.chronica.notification.data.mapper.injection.MessageMapper;
@@ -13,6 +12,8 @@ import org.chronica.library.dto.notification.AlertDTO;
 import org.chronica.library.dto.notification.InvitationDTO;
 import org.chronica.library.dto.notification.MessageDTO;
 import org.chronica.library.dto.notification.NotificationDTO;
+import org.chronica.library.exception.ChronicaException;
+import org.chronica.library.exception.dto.enumerated.ErrorMessage;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,7 +33,7 @@ public class NotificationMapperImpl {
         else if(notification instanceof Invitation)
             return invitationMapper.mapToDTO((Invitation) notification);
 
-        throw new WrongMapperException("Its something wrong with entity/mapper couldnt work");
+        throw new ChronicaException(ErrorMessage.WRONG_MAPPER_EXCEPTION);
     }
 
     public Notification mapToNewEntity(NotificationDTO dto) {
@@ -45,6 +46,6 @@ public class NotificationMapperImpl {
         else if(dto instanceof InvitationDTO)
             return invitationMapper.mapToNewEntity((InvitationDTO) dto);
 
-        throw new WrongMapperException("Its something wrong with entity/mapper couldnt work");
+        throw new ChronicaException(ErrorMessage.WRONG_MAPPER_EXCEPTION);
     }
 }

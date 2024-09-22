@@ -8,13 +8,13 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
-public abstract class SnapMapper implements BaseMapper<Snap, SnapDTO> {
-    public abstract SnapDTO mapToDTO(Snap entity);
+public interface SnapMapper extends BaseMapper<Snap, SnapDTO> {
+    SnapDTO mapToDTO(Snap entity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "creationDate", ignore = true)
-    public abstract Snap mapToNewEntity(SnapDTO dto);
+    Snap mapToNewEntity(SnapDTO dto);
 
     @Mapping(target = "id", ignore = true)
-    public abstract Snap mapToUpdateEntity(@MappingTarget Snap toUpdate, SnapDTO dto);
+    Snap mapToUpdateEntity(@MappingTarget Snap toUpdate, SnapDTO dto);
 }

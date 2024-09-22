@@ -1,13 +1,15 @@
 package com.chronica.user
 
 import com.chronica.user.data.entity.Account
-import org.chronica.library.exception.user.WrongCredentialsException
+
 import com.chronica.user.data.mapper.AccountMapper
 import com.chronica.user.logic.AccountService
 import com.chronica.user.logic.SignInService
 import org.chronica.library.dto.user.AccountDTO
 import org.chronica.library.dto.user.SignInDTO
 import org.chronica.library.dto.user.SignInResultDTO
+import org.chronica.library.exception.ChronicaException
+import org.chronica.library.exception.dto.enumerated.ErrorMessage
 import org.chronica.library.security.JWTHandler
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import spock.lang.Specification
@@ -72,7 +74,7 @@ class SignInServiceSpec extends Specification {
         String password = "password123"
         SignInDTO signInRequest = new SignInDTO(mail, password)
 
-        accountService.getAccountByMailAndEnabled(mail) >> { throw new WrongCredentialsException("Wrong mail ! Try again") }
+        accountService.getAccountByMailAndEnabled(mail) >> { throw new ChronicaException(ErrorMessage.AUTHORIZATION_EXCEPTION) }
 
         when:
         signInService.signIn(signInRequest)

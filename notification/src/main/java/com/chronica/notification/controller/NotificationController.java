@@ -1,6 +1,5 @@
 package com.chronica.notification.controller;
 
-import org.chronica.library.commons.dto.PaginationAndSortDTO;
 import com.chronica.notification.logic.service.MajorNotificationService;
 
 import lombok.RequiredArgsConstructor;

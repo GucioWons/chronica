@@ -7,17 +7,20 @@ import ProtectedPage from "../../../shared/ProtectedPage";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {notificationsApi} from "../../../shared/apiConstants";
+import {useErrorHandler} from "../../../shared/http/handleError";
 
 function NotificationListPage() {
     const navigate = useNavigate();
 
     const [notifications, setNotifications] = useState<NotificationDTO[]>([])
     const [filterType, setFilterType] = useState<string>('all');
+    const handleError = useErrorHandler();
 
     useEffect(() => {
         axios.get<NotificationDTO[]>(notificationsApi)
             .then(response => setNotifications(response.data))
-            .catch(() => {})
+            .catch((error) => handleError(error))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const filteredNotifications = notifications.filter(

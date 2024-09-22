@@ -6,17 +6,18 @@ import NotificationDTO = DTOs.NotificationDTO;
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {notificationsApi} from "../../../shared/apiConstants";
+import {useErrorHandler} from "../../../shared/http/handleError";
 
 function NotificationDetailPage() {
     const { id } = useParams<{ id: string }>();
 
     const [notification,setNotification] = useState<NotificationDTO>();
-    const navigate = useNavigate();
+    const handleError = useErrorHandler();
 
     useEffect(() => {
         axios.get<NotificationDTO>(`${notificationsApi}/${id}`)
             .then(data => setNotification(data.data))
-            .catch(() => navigate(-1));
+            .catch((error) => handleError(error));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

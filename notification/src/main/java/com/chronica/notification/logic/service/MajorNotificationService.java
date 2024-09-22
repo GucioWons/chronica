@@ -1,6 +1,5 @@
 package com.chronica.notification.logic.service;
 
-import org.chronica.library.commons.dto.PaginationAndSortDTO;
 import com.chronica.notification.data.entity.Notification;
 import com.chronica.notification.data.mapper.NotificationMapperImpl;
 import com.chronica.notification.logic.util.PropertyTransfer;
@@ -8,7 +7,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.chronica.library.dto.notification.NotificationDTO;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

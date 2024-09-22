@@ -2,16 +2,17 @@ package org.chronica.library.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.chronica.library.enumerated.UserRole;
 import org.springframework.stereotype.Component;
-
 import java.security.Key;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -51,8 +52,7 @@ public class JWTHandler {
     }
 
     public Boolean validateToken(String token, String mail) {
-        String username = extractUsername(token);
-        return (username.equals(mail) && !isTokenExpired(token));
+        return !isTokenExpired(token);
     }
 
     public List<UserRole> extractRoles(String token) {
