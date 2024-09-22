@@ -6,19 +6,17 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ErrorMessage {
-    UNEXPECTED_EXCEPTION("Unexpected error has occured."),
-    NOT_IMPLEMENTED_EXCEPTION("This function is not implemented."),
+    UNEXPECTED_EXCEPTION,
+    NOT_IMPLEMENTED_EXCEPTION,
 
-    NO_ENTITY_EXCEPTION("Could not find ${className} with id ${id}."),
+    NO_ENTITY_EXCEPTION,
 
-    INHERITANCE_LEVEL_EXCEPTION("Chain cannot be Base Chain of Chain with the same or lower type."),
-    INHERITANCE_LOOP_EXCEPTION("Chains inheritance cannot be looped."),
+    INHERITANCE_LEVEL_EXCEPTION,
+    INHERITANCE_LOOP_EXCEPTION,
 
-    WRONG_MAPPER_EXCEPTION("Its something wrong with entity/mapper couldn't work."),
+    WRONG_MAPPER_EXCEPTION,
 
-    AUTHORIZATION_EXCEPTION("Wrong email or password."),
-    UNEXPECTED_JWT_EXCEPTION("Unexpected JWT error occured."),
-    EXPIRED_ACCESS_TOKEN_EXCEPTION("The access token has expired, sing in again, or refresh access token using refresh token.");
-
-    private final String en;
+    AUTHORIZATION_EXCEPTION,
+    UNEXPECTED_JWT_EXCEPTION,
+    EXPIRED_ACCESS_TOKEN_EXCEPTION;
 }

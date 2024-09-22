@@ -7,12 +7,14 @@ import {chainsApi} from "../../../shared/apiConstants";
 import {DTOs} from "../../../shared/dto/dtos";
 import ChainDTO = DTOs.ChainDTO;
 import {toast} from "react-toastify";
+import {useErrorHandler} from "../../../shared/http/handleError";
 
 function ChainEditPage() {
     const { id } = useParams<{ id: string }>();
 
     const [chain, setChain] = useState<ChainDTO>();
     const navigate = useNavigate();
+    const handleError = useErrorHandler();
 
     const handleEdition = useCallback((data: ChainDTO) => {
         axios.put<ChainDTO>(`${chainsApi}/${id}`, data)
@@ -20,13 +22,13 @@ function ChainEditPage() {
                 toast.success("Successfully updated chain!");
                 navigate("/chains/" + response.data.id);
             })
-            .catch(() => toast.error("Could not update chain!"));
-    }, [navigate]);
+            .catch((error) => handleError(error));
+    }, [navigate, handleError]);
 
     useEffect(() => {
         axios.get<ChainDTO>(`${chainsApi}/${id}`)
             .then(data => setChain(data.data))
-            .catch(() => navigate(-1));
+            .catch((error) => handleError(error));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

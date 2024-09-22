@@ -6,17 +6,18 @@ import {DTOs} from "../../../shared/dto/dtos";
 import ChainDTO = DTOs.ChainDTO;
 import ProtectedPage from "../../../shared/ProtectedPage";
 import ChainDetail from "./ChainDetail";
+import {useErrorHandler} from "../../../shared/http/handleError";
 
 function ChainDetailPage() {
     const { id } = useParams<{ id: string }>();
 
     const [chain, setChain] = useState<ChainDTO>();
-    const navigate = useNavigate();
+    const handleError = useErrorHandler();
 
     useEffect(() => {
         axios.get<ChainDTO>(`${chainsApi}/${id}`)
             .then(data => setChain(data.data))
-            .catch(() => navigate(-1));
+            .catch((error) => handleError(error));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
