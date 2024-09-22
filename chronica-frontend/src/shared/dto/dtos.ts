@@ -49,8 +49,8 @@ export namespace DTOs {
     export interface ErrorDTO {
         apiPath: string;
         at: DateAsString;
-        data: { [index: string]: any };
-        message: ExceptionMessage;
+        message: ErrorMessage;
+        properties: { [index: string]: any };
     }
 
     export interface GroupDTO extends EntityDTO {
@@ -88,13 +88,6 @@ export namespace DTOs {
         title: string;
         type: "NotificationDTO" | "alert" | "invitation" | "message";
         viewAt: DateAsString;
-    }
-
-    export interface PaginationAndSortDTO {
-        pageNumber: number;
-        pageSize: number;
-        sortDirection: Direction;
-        sortField: string;
     }
 
     export interface PersonDTO extends EntityDTO {
@@ -147,17 +140,16 @@ export namespace DTOs {
         BUG = "BUG",
     }
 
-    export enum Direction {
-        ASC = "ASC",
-        DESC = "DESC",
-    }
-
-    export enum ExceptionMessage {
+    export enum ErrorMessage {
+        UNEXPECTED_EXCEPTION = "UNEXPECTED_EXCEPTION",
+        NOT_IMPLEMENTED_EXCEPTION = "NOT_IMPLEMENTED_EXCEPTION",
         NO_ENTITY_EXCEPTION = "NO_ENTITY_EXCEPTION",
-        INHERITANCE_EXCEPTION_LEVEL = "INHERITANCE_EXCEPTION_LEVEL",
-        INHERITANCE_EXCEPTION_LOOP = "INHERITANCE_EXCEPTION_LOOP",
-        WRONG_MAPPER = "WRONG_MAPPER",
-        EXPIRED_ACCESS_TOKEN = "EXPIRED_ACCESS_TOKEN",
+        INHERITANCE_LEVEL_EXCEPTION = "INHERITANCE_LEVEL_EXCEPTION",
+        INHERITANCE_LOOP_EXCEPTION = "INHERITANCE_LOOP_EXCEPTION",
+        WRONG_MAPPER_EXCEPTION = "WRONG_MAPPER_EXCEPTION",
+        AUTHORIZATION_EXCEPTION = "AUTHORIZATION_EXCEPTION",
+        UNEXPECTED_JWT_EXCEPTION = "UNEXPECTED_JWT_EXCEPTION",
+        EXPIRED_ACCESS_TOKEN_EXCEPTION = "EXPIRED_ACCESS_TOKEN_EXCEPTION",
     }
 
     export enum GroupCategory {

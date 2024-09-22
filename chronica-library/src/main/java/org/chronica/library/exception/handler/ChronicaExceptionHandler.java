@@ -3,6 +3,7 @@ package org.chronica.library.exception.handler;
 import org.chronica.library.exception.dto.ErrorDTO;
 import org.chronica.library.exception.ChronicaException;
 import org.chronica.library.exception.NoEntityException;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Map;
 
+@Order(1)
 @ControllerAdvice
 public class ChronicaExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = { NoEntityException.class })

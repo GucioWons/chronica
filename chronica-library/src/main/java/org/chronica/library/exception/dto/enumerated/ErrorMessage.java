@@ -16,7 +16,8 @@ public enum ErrorMessage {
 
     WRONG_MAPPER_EXCEPTION("Its something wrong with entity/mapper couldn't work."),
 
-    UNEXPECTED_JWT_EXCEPTION("Unexpected JWT error occured"),
+    AUTHORIZATION_EXCEPTION("Wrong email or password."),
+    UNEXPECTED_JWT_EXCEPTION("Unexpected JWT error occured."),
     EXPIRED_ACCESS_TOKEN_EXCEPTION("The access token has expired, sing in again, or refresh access token using refresh token.");
 
     private final String en;
