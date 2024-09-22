@@ -19,7 +19,7 @@ public class SnapService {
     public SnapDTO getSnapById(Long id) {
         return snapRepository.findByIdAndDeprecatedFalse(id)
                 .map(snapMapper::mapToDTO)
-                .orElseThrow(() -> new NoEntityException(Snap.class.getName(), id));
+                .orElseThrow(() -> new NoEntityException(Snap.class.getSimpleName(), id));
     }
 
     public SnapDTO createSnap(SnapDTO snap) {

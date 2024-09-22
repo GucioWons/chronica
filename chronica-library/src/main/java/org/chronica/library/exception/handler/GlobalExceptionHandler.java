@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = { Exception.class })
     protected ResponseEntity<Object> handleUnexpectedException(Exception e, WebRequest request) {
-        log.error("An unexpected error of type " + e.getClass().getName() + " occured.", e);
+        log.error("An unexpected error of type " + e.getClass().getSimpleName() + " occured.", e);
         return handleExceptionInternal(e, buildUnexpectedErrorDTO(request), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
