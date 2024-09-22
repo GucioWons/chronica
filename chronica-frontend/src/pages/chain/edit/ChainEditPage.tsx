@@ -13,6 +13,7 @@ function ChainEditPage() {
     const { id } = useParams<{ id: string }>();
 
     const [chain, setChain] = useState<ChainDTO>();
+
     const navigate = useNavigate();
     const handleError = useErrorHandler();
 
@@ -23,7 +24,7 @@ function ChainEditPage() {
                 navigate("/chains/" + response.data.id);
             })
             .catch((error) => handleError(error));
-    }, [navigate, handleError]);
+    }, [id, navigate, handleError]);
 
     useEffect(() => {
         axios.get<ChainDTO>(`${chainsApi}/${id}`)

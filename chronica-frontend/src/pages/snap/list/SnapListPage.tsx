@@ -7,17 +7,21 @@ import ProtectedPage from "../../../shared/ProtectedPage";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {snapsApi} from "../../../shared/apiConstants";
+import {useErrorHandler} from "../../../shared/http/handleError";
 
 function SnapListPage() {
-    const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
 
     const [snaps,setSnaps] = useState<SnapDTO[]>([])
 
+    const navigate = useNavigate();
+    const handleError = useErrorHandler();
+
     useEffect(() => {
         axios.get<SnapDTO[]>(`${snapsApi}/chain/${id}`)
             .then(response => setSnaps(response.data))
-            .catch(() => {})
+            .catch((error) => handleError(error))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const headers: TableHeader<SnapDTO>[] = [

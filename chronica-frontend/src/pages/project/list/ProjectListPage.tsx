@@ -19,6 +19,7 @@ function ProjectListPage() {
         axios.get<ProjectDTO[]>(projectsApi)
             .then(response => setProjects(response.data))
             .catch((error) => handleError(error))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const headers: TableHeader<ProjectDTO>[] = [

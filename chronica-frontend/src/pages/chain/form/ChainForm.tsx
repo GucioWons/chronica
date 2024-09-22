@@ -55,6 +55,7 @@ function ChainForm(props: ChainFormProps) {
         axios.get<ChainSelectDTO[]>(`${chainsApi}/options`)
             .then(response => setChains(response.data))
             .catch((error) => handleError(error));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

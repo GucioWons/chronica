@@ -20,6 +20,7 @@ function NotificationListPage() {
         axios.get<NotificationDTO[]>(notificationsApi)
             .then(response => setNotifications(response.data))
             .catch((error) => handleError(error))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const filteredNotifications = notifications.filter(

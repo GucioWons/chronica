@@ -19,6 +19,7 @@ function ChainListPage() {
         axios.get<ChainDTO[]>(chainsApi)
             .then(response => setChains(response.data))
             .catch((error) => handleError(error))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const headers: TableHeader<ChainDTO>[] = [
