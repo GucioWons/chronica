@@ -21,7 +21,7 @@ public class NotificationService<Entity extends Notification>  {
 
     public Notification findById(Long id){
         return notificationRepository.findById(id)
-                .orElseThrow(() -> new NoEntityException(Notification.class.getName(), id));
+                .orElseThrow(() -> new NoEntityException(Notification.class.getSimpleName(), id));
     }
 
     public List<Entity> findAll(){
