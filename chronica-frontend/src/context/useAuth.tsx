@@ -7,6 +7,7 @@ import AccountDTO = DTOs.AccountDTO;
 import SignInDTO = DTOs.SignInDTO;
 import SignInResultDTO = DTOs.SignInResultDTO;
 import {accountsApi} from "../shared/apiConstants";
+import {useErrorHandler} from "../shared/http/handleError";
 
 interface UserContext {
     account: AccountDTO | null,
@@ -30,6 +31,8 @@ export const UserProvider = (props: UserProviderProps) => {
     const [account, setAccount] = useState<AccountDTO | null>(null);
     const [ready, setReady] = useState(false);
 
+    const handleError = useErrorHandler();
+
     useEffect(() => {
         const account = localStorage.getItem("account");
         const token = localStorage.getItem("token");
@@ -44,7 +47,7 @@ export const UserProvider = (props: UserProviderProps) => {
     const registerUser = (dto: AccountDTO) => {
         axios.post(accountsApi + "/sign-up", {...dto})
             .then(() => toast.success("Successfully registered account!"))
-            .catch(() => toast.error("Cannot register account"));
+            .catch((error) => handleError(error));
     }
 
     const loginUser = (dto: SignInDTO) => {
@@ -58,7 +61,7 @@ export const UserProvider = (props: UserProviderProps) => {
                 toast.success("Successfully logged in!")
                 navigate("/");
             })
-            .catch(() => toast.error("Cannot login!"));
+            .catch((error) => handleError(error));
     }
 
     const logoutUser = () => {
@@ -67,7 +70,7 @@ export const UserProvider = (props: UserProviderProps) => {
         setToken(null);
         setAccount(null);
         delete axios.defaults.headers.common["Authorization"];
-        toast.success("Successfully logged out!")
+        toast.info("Successfully logged out!")
         navigate("/auth")
     }
 

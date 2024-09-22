@@ -7,17 +7,18 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {groupsApi} from "../../../shared/apiConstants";
 import GroupDTO = DTOs.GroupDTO;
+import {useErrorHandler} from "../../../shared/http/handleError";
 
 function GroupEditPage() {
     const { id } = useParams<{ id: string }>();
 
     const [group, setGroup] = useState<GroupDTO>();
-    const navigate = useNavigate();
+    const handleError = useErrorHandler();
 
     useEffect(() => {
         axios.get<GroupDTO>(`${groupsApi}/${id}`)
             .then(data => setGroup(data.data))
-            .catch(() => navigate(-1));
+            .catch((error) => handleError(error));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

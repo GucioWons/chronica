@@ -10,6 +10,7 @@ import {groupsApi} from "../../../shared/apiConstants";
 import {useNavigate} from "react-router";
 import { toast } from "react-toastify";
 import GroupCategory = DTOs.GroupCategory;
+import {useErrorHandler} from "../../../shared/http/handleError";
 
 export interface GroupFormProps {
     group?: GroupDTO
@@ -32,14 +33,16 @@ function GroupForm(props: GroupFormProps) {
         }
     }
 
+    const handleError = useErrorHandler();
+
     const handleCreation = useCallback((data: GroupDTO) => {
         axios.post<GroupDTO>(groupsApi, data)
             .then((response) => {
                 toast.success("Successfully created group!");
                 navigate("/groups/" + response.data.id);
             })
-            .catch(() => toast.error("Could not create group!"));
-    }, [navigate]);
+            .catch((error) => handleError(error));
+    }, [handleError, navigate]);
 
     const handleEdition = useCallback((data: GroupDTO) => {
         axios.put<GroupDTO>(groupsApi + `/${data.id}`, data)
@@ -47,7 +50,7 @@ function GroupForm(props: GroupFormProps) {
                 toast.success("Successfully updated group!");
                 navigate("/groups/" + response.data.id);
             })
-            .catch(() => toast.error("Could not update group!"));
+            .catch((error) => handleError(error));
     }, [navigate]);
 
     return (
