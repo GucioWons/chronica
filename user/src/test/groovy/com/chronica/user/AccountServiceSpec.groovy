@@ -1,11 +1,11 @@
 package com.chronica.user
 
-import com.chronica.user.data.entity.Account
+import com.chronica.user.api.account.entity.Account
 
 
-import com.chronica.user.data.mapper.AccountMapper
-import com.chronica.user.data.repository.AccountRepository
-import com.chronica.user.logic.AccountService
+import com.chronica.user.api.account.mapper.AccountMapper
+import com.chronica.user.api.account.data.AccountRepository
+import com.chronica.user.api.account.logic.AccountService
 import org.chronica.library.dto.user.AccountDTO
 import spock.lang.Specification
 import spock.lang.Subject
