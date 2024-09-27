@@ -27,9 +27,4 @@ public class AccountController {
                 .status(HttpStatus.OK)
                 .body(accountService.deleteAccount(id));
     }
-
-    @GetMapping(value = "/logout")
-    public String killSession() {
-        return "redirect:/";
-    }
 }

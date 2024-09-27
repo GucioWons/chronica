@@ -31,7 +31,7 @@ public class Account implements ChronicaEntity {
     @CollectionTable(name = "account_roles", joinColumns = @JoinColumn(name = "account_id"))
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    private List<UserRole> userRoles;
+    private List<UserRole> roles;
     private LocalDateTime createdAt = LocalDateTime.now();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")

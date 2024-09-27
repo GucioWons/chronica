@@ -51,7 +51,7 @@ public class JWTHandler {
         return extractExpiration(token).before(new Date());
     }
 
-    public Boolean validateToken(String token, String mail) {
+    public Boolean validateToken(String token) {
         return !isTokenExpired(token);
     }
 
