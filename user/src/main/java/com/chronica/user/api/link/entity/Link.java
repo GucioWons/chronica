@@ -1,7 +1,7 @@
-package com.chronica.user.api.auth.link.entity;
+package com.chronica.user.api.link.entity;
 
+import com.chronica.user.api.link.logic.helper.ConfirmationLinkGenerator;
 import com.chronica.user.api.account.entity.Account;
-import com.chronica.user.api.auth.link.logic.helper.ConfirmationLinkGenerator;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

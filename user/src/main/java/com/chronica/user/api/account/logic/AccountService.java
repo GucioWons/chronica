@@ -3,10 +3,10 @@ package com.chronica.user.api.account.logic;
 import com.chronica.user.api.account.data.AccountRepository;
 import com.chronica.user.api.account.entity.Account;
 import com.chronica.user.api.account.mapper.AccountMapper;
+import org.chronica.library.dto.user.AccountDTO;
 import org.chronica.library.exception.ChronicaException;
 import org.chronica.library.exception.NoEntityException;
 import lombok.RequiredArgsConstructor;
-import org.chronica.library.dto.user.AccountDTO;
 import org.chronica.library.exception.dto.enumerated.ErrorMessage;
 import org.springframework.stereotype.Service;
 

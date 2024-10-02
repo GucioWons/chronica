@@ -1,11 +1,11 @@
 package com.chronica.user
 
-import com.chronica.user.api.account.entity.Account
-import com.chronica.user.api.auth.link.entity.Link
-import com.chronica.user.api.auth.link.mapper.LinkConfirmationMapper
 import com.chronica.user.api.account.data.AccountRepository
-import com.chronica.user.api.auth.link.data.LinkRepository
-import com.chronica.user.api.auth.link.logic.LinkService
+import com.chronica.user.api.link.entity.Link
+import com.chronica.user.api.link.mapper.LinkConfirmationMapper
+import com.chronica.user.api.link.data.LinkRepository
+import com.chronica.user.api.link.logic.LinkService
+import com.chronica.user.api.account.entity.Account
 import org.chronica.library.dto.user.LinkConfirmationDTO
 import spock.lang.Specification
 import spock.lang.Subject

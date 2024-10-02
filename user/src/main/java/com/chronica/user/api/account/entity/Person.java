@@ -1,6 +1,5 @@
 package com.chronica.user.api.account.entity;
 
-import com.chronica.user.api.account.entity.Account;
 import jakarta.persistence.*;
 import lombok.*;
 import org.chronica.library.commons.model.ChronicaEntity;
@@ -16,5 +15,4 @@ public class Person implements ChronicaEntity {
     private String lastName;
     @OneToOne(mappedBy = "person")
     private Account account;
-
 }

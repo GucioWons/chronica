@@ -1,8 +1,8 @@
 package com.chronica.user.api.auth.signin.logic;
 
+import com.chronica.user.api.auth.TokenService;
 import com.chronica.user.api.account.entity.Account;
 import com.chronica.user.api.account.logic.AccountService;
-import com.chronica.user.api.auth.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.dto.user.SignInDTO;
 import org.chronica.library.dto.user.SignInResultDTO;

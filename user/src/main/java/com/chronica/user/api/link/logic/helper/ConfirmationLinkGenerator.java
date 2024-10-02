@@ -1,4 +1,4 @@
-package com.chronica.user.api.auth.link.logic.helper;
+package com.chronica.user.api.link.logic.helper;
 
 import java.security.SecureRandom;
 

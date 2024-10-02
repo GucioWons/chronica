@@ -1,4 +1,4 @@
-package com.chronica.user.api.auth.link.mapper;
+package com.chronica.user.api.link.mapper;
 
 import org.chronica.library.dto.user.LinkConfirmationDTO;
 import org.mapstruct.Mapper;

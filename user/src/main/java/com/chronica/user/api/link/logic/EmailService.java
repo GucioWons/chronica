@@ -1,4 +1,4 @@
-package com.chronica.user.api.auth.link.logic;
+package com.chronica.user.api.link.logic;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

@@ -1,6 +1,6 @@
-package com.chronica.user.api.auth.link.controller;
+package com.chronica.user.api.link.controller;
 
-import com.chronica.user.api.auth.link.logic.LinkService;
+import com.chronica.user.api.link.logic.LinkService;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.dto.user.LinkConfirmationDTO;
 import org.springframework.http.HttpStatus;
