@@ -26,23 +26,23 @@ public class RefreshTokenService {
     private final AccessTokenService accessTokenService;
     private final AccountMapper accountMapper;
 
-    public Optional<SignInResultDTO> validateAndRefreshToken(String token) {
-        String mail = jwtHandler.extractUsername(token);
-        if (jwtHandler.validateToken(mail)) {
-            return refreshTokenRepository.findByToken(token)
-                    .map(refreshToken -> refreshToken(refreshToken, mail));
+    public Optional<SignInResultDTO> validateAndRefreshToken(String refreshToken) {
+        String mail = jwtHandler.extractUsername(refreshToken);
+        if (jwtHandler.validateToken(refreshToken, mail)) {
+            return refreshTokenRepository.findByToken(refreshToken)
+                    .map(existingRefreshToken -> refreshToken(existingRefreshToken, mail));
         }
         return Optional.empty();
     }
 
-    private SignInResultDTO refreshToken(RefreshToken refreshToken, String mail) {
+    private SignInResultDTO refreshToken(RefreshToken existingRefreshToken, String mail) {
         Account account = accountService.getAccountByMailAndEnabled(mail);
         SignInResultDTO result = new SignInResultDTO(
                 accessTokenService.getAccessToken(account),
                 createAndGetRefreshToken(account.getUsername()),
                 accountMapper.mapToDTO(account)
         );
-        refreshTokenRepository.delete(refreshToken);
+        refreshTokenRepository.delete(existingRefreshToken);
         return result;
     }
 
@@ -52,5 +52,9 @@ public class RefreshTokenService {
         refreshToken.setToken(tokenGenerator.createToken(Collections.emptyMap(), userName, expirationDate));
         refreshToken.setExpirationDate(expirationDate);
         return refreshTokenRepository.save(refreshToken).getToken();
+    }
+
+    public void deleteRefreshToken(String refreshToken) {
+        refreshTokenRepository.deleteByToken(refreshToken);
     }
 }
