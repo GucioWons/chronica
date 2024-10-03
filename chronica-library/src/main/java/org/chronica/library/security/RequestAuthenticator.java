@@ -44,7 +44,7 @@ public class RequestAuthenticator extends OncePerRequestFilter {
                 token = authHeader.substring(7);
                 mail = jwtHandler.extractUsername(token);
             }
-            if (mail != null && jwtHandler.validateToken(token)) {
+            if (jwtHandler.validateToken(token, mail)) {
                 List<UserRole> userRoles = jwtHandler.extractRoles(token);
                 Collection<GrantedAuthority> authorities = convertRolesToAuthorities(userRoles);
                 Authentication authToken = new UsernamePasswordAuthenticationToken(mail, null, authorities);
