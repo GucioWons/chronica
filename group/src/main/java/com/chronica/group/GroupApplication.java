@@ -10,7 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {
 		"com.chronica.group",
 		"org.chronica.library.exception.handler",
-		"org.chronica.library.security"
+		"org.chronica.library.security",
+		"org.chronica.library.client"
 })
 public class GroupApplication {
 

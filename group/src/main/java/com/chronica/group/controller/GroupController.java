@@ -1,9 +1,12 @@
 package com.chronica.group.controller;
 
 
+import com.chronica.group.logic.GroupInvitationService;
 import com.chronica.group.logic.GroupService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.dto.group.GroupDTO;
+import org.chronica.library.dto.group.GroupInvitationDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,7 @@ import java.util.List;
 @RestController
 public class GroupController {
     private final GroupService groupService;
+    private final GroupInvitationService groupInvitationService;
 
     @PostMapping
     public ResponseEntity<GroupDTO> createGroup(@RequestBody GroupDTO toSave) {
@@ -49,5 +53,12 @@ public class GroupController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(groupService.deprecateGroup(groupId));
+    }
+
+    @PostMapping("/{groupId}/invite-to-group")
+    public ResponseEntity<GroupInvitationDTO> sendInvitationToGroup(@RequestBody GroupInvitationDTO request, @PathVariable Long groupId, HttpServletRequest req){
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(groupInvitationService.sendInvitationToGroup(request, groupId, req));
     }
 }

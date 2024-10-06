@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.chronica.library.enumerated.GroupCategory;
 import org.chronica.library.commons.model.ChronicaEntity;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -21,4 +23,7 @@ public class Group implements ChronicaEntity {
     private GroupCategory category;
     private Long ownerId;
     private boolean deprecated = false;
+
+    @ManyToMany(mappedBy = "groups")
+    private Set<GroupMember> members;
 }

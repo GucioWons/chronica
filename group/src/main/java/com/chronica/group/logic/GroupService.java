@@ -1,6 +1,7 @@
 package com.chronica.group.logic;
 
 import com.chronica.group.entity.Group;
+import com.chronica.group.entity.GroupMember;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.exception.NoEntityException;
@@ -9,7 +10,9 @@ import com.chronica.group.repository.GroupRepository;
 import org.chronica.library.dto.group.GroupDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +22,13 @@ public class GroupService {
 
     @Transactional
     public GroupDTO createGroup(GroupDTO toSave) {
-        return groupMapper.mapToDTO(groupRepository.save(groupMapper.mapToNewEntity(toSave)));
+        Group group = groupMapper.mapToNewEntity(toSave);
+        Set<GroupMember> groupMembers = new HashSet<>();
+        GroupMember groupMember = new GroupMember();
+        groupMember.setUserId(toSave.getOwnerId());
+        groupMembers.add(groupMember);
+        group.setMembers(groupMembers);
+        return groupMapper.mapToDTO(groupRepository.save(group));
     }
 
     public GroupDTO getGroupById(Long groupId) {

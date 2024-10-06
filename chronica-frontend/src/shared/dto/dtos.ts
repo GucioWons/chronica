@@ -58,6 +58,17 @@ export namespace DTOs {
         ownerId: number;
     }
 
+    export interface GroupInvitationDTO extends EntityDTO {
+        group: GroupDTO;
+        invitationStatus: InvitationStatus;
+        invitedUserId: number;
+    }
+
+    export interface GroupMemberDTO extends EntityDTO {
+        groups: GroupDTO[];
+        userId: number;
+    }
+
     export interface InvitationDTO extends NotificationDTO {
         accepted: boolean;
         acceptedAt: DateAsString;
@@ -154,6 +165,12 @@ export namespace DTOs {
         IT = "IT",
         SALESFORCE = "SALESFORCE",
         OTHER = "OTHER",
+    }
+
+    export enum InvitationStatus {
+        REFUSED = "REFUSED",
+        ACCEPTED = "ACCEPTED",
+        AWAITED = "AWAITED",
     }
 
     export enum SnapActivity {
