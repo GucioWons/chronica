@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.chronica.library.dto.EntityDTO;
 import org.chronica.library.enumerated.GroupCategory;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -14,6 +15,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GroupMemberDTO extends EntityDTO {
-    private Long userId;
+    private Long userMemberId;
     private Set<GroupDTO> groups;
 }

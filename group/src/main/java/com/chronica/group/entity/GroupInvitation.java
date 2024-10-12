@@ -20,5 +20,5 @@ public class GroupInvitation {
     @JoinColumn(name = "group_id")
     private Group group;
     private InvitationStatus invitationStatus;
-    private boolean deprecated;
+    private boolean deprecated = false;
 }

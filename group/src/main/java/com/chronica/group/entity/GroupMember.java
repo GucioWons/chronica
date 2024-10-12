@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,13 +17,8 @@ public class GroupMember {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
-    @ManyToMany
-    @JoinTable(
-            name = "group_membership",
-            joinColumns = @JoinColumn(name = "group_member_id"),
-            inverseJoinColumns = @JoinColumn(name = "group_id")
-    )
+    private Long userMemberId;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Group> groups;
     private boolean deprecated = false;
 }

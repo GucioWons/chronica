@@ -24,9 +24,9 @@ public class SecurityConfig {
                 .csrf(CsrfConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.GET, "/api/groups/**")
+                .requestMatchers(HttpMethod.GET, "/api/groups/**", "/api/groups-membership/**")
                 .hasAnyRole("USER", "ADMINISTRATOR")
-                .requestMatchers(HttpMethod.POST, "/api/groups/**")
+                .requestMatchers(HttpMethod.POST, "/api/groups/**", "/api/groups-membership/**")
                 .hasAnyRole("USER", "ADMINISTRATOR")
                 .requestMatchers(HttpMethod.PUT, "/api/groups/**")
                 .hasAnyRole("USER", "ADMINISTRATOR")

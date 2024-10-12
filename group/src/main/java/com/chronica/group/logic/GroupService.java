@@ -2,6 +2,7 @@ package com.chronica.group.logic;
 
 import com.chronica.group.entity.Group;
 import com.chronica.group.entity.GroupMember;
+import com.chronica.group.repository.GroupMemberRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.exception.NoEntityException;
@@ -12,23 +13,34 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class GroupService {
     private final GroupRepository groupRepository;
+    private final GroupMemberRepository groupMemberRepository;
     private final GroupMapper groupMapper;
 
     @Transactional
     public GroupDTO createGroup(GroupDTO toSave) {
+        Set<Group> allGroups = groupRepository.findAllByDeprecatedFalseAndOwnerId(toSave.getOwnerId());
         Group group = groupMapper.mapToNewEntity(toSave);
-        Set<GroupMember> groupMembers = new HashSet<>();
-        GroupMember groupMember = new GroupMember();
-        groupMember.setUserId(toSave.getOwnerId());
-        groupMembers.add(groupMember);
-        group.setMembers(groupMembers);
-        return groupMapper.mapToDTO(groupRepository.save(group));
+
+        if(allGroups.isEmpty()){
+            allGroups = new HashSet<>();
+        }
+
+        GroupMember groupMember;
+        groupMember = new GroupMember();
+        groupMember.setUserMemberId(toSave.getOwnerId());
+        groupMember.setGroups(allGroups);
+        allGroups.add(group);
+
+        groupMemberRepository.save(groupMember);
+
+        return groupMapper.mapToDTO(group);
     }
 
     public GroupDTO getGroupById(Long groupId) {
