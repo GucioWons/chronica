@@ -1,6 +1,5 @@
 package com.chronica.user.api.auth.signin.logic;
 
-import com.chronica.user.api.account.entity.Account;
 import com.chronica.user.api.auth.TokenGenerator;
 import lombok.RequiredArgsConstructor;
 import org.chronica.library.dto.user.AccountDTO;
@@ -19,8 +18,8 @@ public class AccessTokenService {
 
     public String getAccessToken(List<UserRole> roles, AccountDTO account) {
         Map<String, Object> claims = Map.of(
-                "userRoles", roles.stream().map(Enum::name).collect(Collectors.toList(),
-                        ));
+                "userRoles", roles.stream().map(Enum::name).collect(Collectors.toList()),
+                "account", account);
         Date expirationDate = new Date(System.currentTimeMillis() + (long) (1000 * 60 * 30));
         return tokenGenerator.createToken(claims, account.getMail(), expirationDate);
     }

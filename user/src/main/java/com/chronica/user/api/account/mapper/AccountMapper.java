@@ -19,7 +19,7 @@ public abstract class AccountMapper implements BaseMapper<Account, AccountDTO> {
     public abstract AccountDTO mapToDTO(Account user);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "userRoles", ignore = true)
+    @Mapping(target = "roles", ignore = true)
     public abstract Account mapToNewEntity(AccountDTO userDTO);
 
     //TODO updating user

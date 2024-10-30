@@ -27,7 +27,7 @@ public class SignInService {
         if (checkPassword(signInRequest.password() + signInRequest.mail(), account.getPassword())) {
             AccountDTO accountDTO = accountMapper.mapToDTO(account);
             return Optional.of(new SignInResultDTO(
-                    accessTokenService.getAccessToken(accountDTO),
+                    accessTokenService.getAccessToken(account.getRoles(), accountDTO),
                     refreshTokenService.createAndGetRefreshToken(account.getUsername()),
                     accountDTO)
             );

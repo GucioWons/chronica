@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("refresh-token")
+@RequestMapping("api/refresh-token")
 public class RefreshTokenController {
     private final RefreshTokenService refreshTokenService;
 

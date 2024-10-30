@@ -8,6 +8,7 @@ import com.chronica.user.api.auth.refresh.data.RefreshTokenRepository;
 import com.chronica.user.api.auth.refresh.entity.RefreshToken;
 import com.chronica.user.api.auth.signin.logic.AccessTokenService;
 import lombok.RequiredArgsConstructor;
+import org.chronica.library.dto.user.AccountDTO;
 import org.chronica.library.dto.user.SignInResultDTO;
 import org.chronica.library.security.JWTHandler;
 import org.springframework.stereotype.Service;
@@ -37,9 +38,10 @@ public class RefreshTokenService {
 
     private SignInResultDTO refreshToken(RefreshToken existingRefreshToken, String mail) {
         Account account = accountService.getAccountByMailAndEnabled(mail);
+        AccountDTO accountDTO = accountMapper.mapToDTO(account);
         SignInResultDTO result = new SignInResultDTO(
-                accessTokenService.getAccessToken(account),
-                createAndGetRefreshToken(account.getUsername()),
+                accessTokenService.getAccessToken(account.getRoles(), accountDTO),
+                createAndGetRefreshToken(account.getMail()),
                 accountMapper.mapToDTO(account)
         );
         refreshTokenRepository.delete(existingRefreshToken);
