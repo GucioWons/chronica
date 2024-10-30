@@ -30,7 +30,7 @@ public class SecurityConfiguration {
                 .csrf(CsrfConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/sign-in", "/api/accounts/sign-up", "/api/refresh-token").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/accounts/sign-in", "/api/accounts/sign-up", "/api/refresh-token").permitAll()
                         .requestMatchers(HttpMethod.GET,LINKS,SWAGGER_UI,V_3).permitAll()
                         .anyRequest()
                         .authenticated()

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/api/sign-in", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/api/accounts/sign-in", produces = {MediaType.APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
 public class SignInController {
     private final SignInService signInService;
