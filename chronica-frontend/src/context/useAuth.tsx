@@ -6,7 +6,7 @@ import {DTOs} from "../shared/dto/dtos";
 import AccountDTO = DTOs.AccountDTO;
 import SignInDTO = DTOs.SignInDTO;
 import SignInResultDTO = DTOs.SignInResultDTO;
-import {accountsApi} from "../shared/apiConstants";
+import {userApi} from "../shared/apiConstants";
 import {useErrorHandler} from "../shared/http/handleError";
 
 interface UserContext {
@@ -14,6 +14,7 @@ interface UserContext {
     token: string | null,
     registerUser: (dto: AccountDTO) => void,
     loginUser: (dto: SignInDTO) => void,
+    refreshUsersToken: () => void,
     logoutUser: () => void,
     isLoggedIn: () => boolean,
 }
@@ -28,6 +29,7 @@ export const UserProvider = (props: UserProviderProps) => {
     const navigate = useNavigate();
 
     const [token, setToken] = useState<string | null>(null);
+    const [refreshToken, setRefreshToken] = useState<string | null>(null);
     const [account, setAccount] = useState<AccountDTO | null>(null);
     const [ready, setReady] = useState(false);
 
@@ -36,36 +38,51 @@ export const UserProvider = (props: UserProviderProps) => {
     useEffect(() => {
         const account = localStorage.getItem("account");
         const token = localStorage.getItem("token");
-        if (account && token) {
+        const refreshToken = localStorage.getItem("refreshToken")
+        if (account && token && refreshToken) {
             setAccount(JSON.parse(account));
             setToken(token);
+            setRefreshToken(refreshToken)
             axios.defaults.headers.common["Authorization"] = "Bearer " + token;
         }
         setReady(true);
     }, []);
 
     const registerUser = (dto: AccountDTO) => {
-        axios.post(accountsApi + "/sign-up", {...dto})
+        axios.post(userApi + "/sign-up", {...dto})
             .then(() => toast.success("Successfully registered account!"))
             .catch((error) => handleError(error));
     }
 
     const loginUser = (dto: SignInDTO) => {
-        axios.post<SignInResultDTO>(accountsApi + "/sign-in", {...dto})
+        axios.post<SignInResultDTO>(userApi + "/sign-in", {...dto})
             .then(response => {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("account", JSON.stringify(response.data.account));
-                setToken(response.data.token);
-                setAccount(response.data.account)
-                axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-                toast.success("Successfully logged in!")
+                updateAccountAndTokens(response.data);
+                toast.success("Successfully logged in!");
                 navigate("/");
             })
             .catch((error) => handleError(error));
     }
 
+    const refreshUsersToken = () => {
+        axios.post<SignInResultDTO>(userApi + `/refresh-token?token=${refreshToken}`)
+            .then((response) => updateAccountAndTokens(response.data))
+            .catch(() => logoutUser());
+    }
+
+    const updateAccountAndTokens = (signInResult: SignInResultDTO) => {
+        localStorage.setItem("token", signInResult.token);
+        localStorage.setItem("refreshToken", signInResult.refreshToken);
+        localStorage.setItem("account", JSON.stringify(signInResult.account));
+        setToken(signInResult.token);
+        setRefreshToken(signInResult.refreshToken);
+        setAccount(signInResult.account);
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    }
+
     const logoutUser = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken")
         localStorage.removeItem("account");
         setToken(null);
         setAccount(null);
@@ -79,7 +96,7 @@ export const UserProvider = (props: UserProviderProps) => {
     }
 
     return (
-        <UserContext.Provider value={{ account, token, registerUser, loginUser, logoutUser, isLoggedIn }}>
+        <UserContext.Provider value={{ account, token, registerUser, loginUser, refreshUsersToken, logoutUser, isLoggedIn }}>
             {ready ? props.children : null}
         </UserContext.Provider>
     )
