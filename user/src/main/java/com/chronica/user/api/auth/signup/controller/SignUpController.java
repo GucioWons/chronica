@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/api/accounts/sign-up", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/sign-up", produces = {MediaType.APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
 public class SignUpController {
     private final SignUpService signUpService;

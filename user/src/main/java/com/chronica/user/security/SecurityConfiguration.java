@@ -30,16 +30,15 @@ public class SecurityConfiguration {
                 .csrf(CsrfConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/accounts/sign-in", "/api/accounts/sign-up", "/api/refresh-token").permitAll()
-                        .requestMatchers(HttpMethod.GET,LINKS,SWAGGER_UI,V_3).permitAll()
-                        .anyRequest()
-                        .authenticated()
-                );
-//                .logout((logout) -> logout
-//                        .logoutUrl("/api/account/logout")
-//                        .clearAuthentication(true)
-//                        .permitAll());
-
+                .requestMatchers(HttpMethod.POST,
+                        "/sign-in",
+                        "/sign-up",
+                        "/refresh-token")
+                .permitAll()
+                .requestMatchers(HttpMethod.GET, LINKS, SWAGGER_UI, V_3).permitAll()
+                .anyRequest()
+                .authenticated()
+        );
         return http.getOrBuild();
     }
 

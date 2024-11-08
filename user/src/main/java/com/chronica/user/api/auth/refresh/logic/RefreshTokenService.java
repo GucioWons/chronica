@@ -48,10 +48,11 @@ public class RefreshTokenService {
         return result;
     }
 
-    public String createAndGetRefreshToken(String userName) {
-        Date expirationDate = new Date(System.currentTimeMillis() + (long) 1000 * 60 * 60 * 24 * 7);
+    public String createAndGetRefreshToken(String mail) {
+//        1000 * 60 * 60 * 24 * 7
+        Date expirationDate = new Date(System.currentTimeMillis() + (long) 1000 * 60 * 3);
         RefreshToken refreshToken = new RefreshToken();
-        refreshToken.setToken(tokenGenerator.createToken(Collections.emptyMap(), userName, expirationDate));
+        refreshToken.setToken(tokenGenerator.createToken(Collections.emptyMap(), mail, expirationDate));
         refreshToken.setExpirationDate(expirationDate);
         return refreshTokenRepository.save(refreshToken).getToken();
     }

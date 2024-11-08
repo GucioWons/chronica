@@ -20,7 +20,7 @@ public class AccessTokenService {
         Map<String, Object> claims = Map.of(
                 "userRoles", roles.stream().map(Enum::name).collect(Collectors.toList()),
                 "account", account);
-        Date expirationDate = new Date(System.currentTimeMillis() + (long) (1000 * 60 * 30));
+        Date expirationDate = new Date(System.currentTimeMillis() + (long) (1000 * 60 * 2));
         return tokenGenerator.createToken(claims, account.getMail(), expirationDate);
     }
 }

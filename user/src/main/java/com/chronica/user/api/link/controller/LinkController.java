@@ -8,13 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api/links")
+@RequestMapping(path = "/links")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class LinkController {
     private final LinkService linkService;
 
-    @GetMapping(value = "/confirmation/{generatedCode}")
+    @GetMapping(value = "/confirm/{generatedCode}")
     public ResponseEntity<LinkConfirmationDTO> confirmAccount(@PathVariable String generatedCode) {
         return ResponseEntity
                 .status(HttpStatus.OK)
