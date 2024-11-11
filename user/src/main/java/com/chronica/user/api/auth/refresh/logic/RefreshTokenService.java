@@ -49,8 +49,7 @@ public class RefreshTokenService {
     }
 
     public String createAndGetRefreshToken(String mail) {
-//        1000 * 60 * 60 * 24 * 7
-        Date expirationDate = new Date(System.currentTimeMillis() + (long) 1000 * 60 * 3);
+        Date expirationDate = new Date(System.currentTimeMillis() + (long) 1000 * 60 * 60 * 24 * 7);
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setToken(tokenGenerator.createToken(Collections.emptyMap(), mail, expirationDate));
         refreshToken.setExpirationDate(expirationDate);

@@ -26,7 +26,7 @@ public class SignInController {
                         .header("Authorization", "Bearer " + response.token())
                         .body(response))
                 .orElse(ResponseEntity
-                        .status(HttpStatus.UNAUTHORIZED)
+                        .status(HttpStatus.FORBIDDEN)
                         .build());
     }
 }
