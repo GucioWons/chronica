@@ -4,9 +4,6 @@
 export namespace DTOs {
 
     export interface AccountDTO extends EntityDTO {
-        active: boolean;
-        createdAt: DateAsString;
-        deprecated: boolean;
         mail: string;
         password: string;
         person: PersonDTO;
@@ -107,6 +104,7 @@ export namespace DTOs {
 
     export interface SignInResultDTO {
         account: AccountDTO;
+        refreshToken: string;
         token: string;
     }
 

@@ -7,8 +7,6 @@ import ErrorDTO = DTOs.ErrorDTO;
 import ErrorMessage = DTOs.ErrorMessage;
 
 export const useErrorHandler = () => {
-    const { logoutUser } = useAuth();
-
     const getErrorMessage = (errorMesage: ErrorMessage, lang: string) => {
         return ErrorMessages[lang][errorMesage] || ErrorMessages["en"][ErrorMessage.UNEXPECTED_EXCEPTION];
     };
@@ -27,7 +25,7 @@ export const useErrorHandler = () => {
             } else if (errorData.message === ErrorMessage.NO_ENTITY_EXCEPTION) {
                 toast.warning(formatNoEntityMessage(getErrorMessage(errorData.message, "en"), errorData.properties));
             } else if (errorData.message === ErrorMessage.EXPIRED_ACCESS_TOKEN_EXCEPTION || errorData.message === ErrorMessage.UNEXPECTED_JWT_EXCEPTION) {
-                logoutUser();
+                // refreshUsersToken(error.config);
             } else {
                 toast.warning(getErrorMessage(errorData.message, "en"));
             }

@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class JWTExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = { ExpiredJwtException.class })
     protected ResponseEntity<Object> handleExpiredJwtException(ExpiredJwtException e, WebRequest request) {
-        return handleExceptionInternal(e, buildExpiredJwtErrorDTO(request), new HttpHeaders(), HttpStatus.FORBIDDEN, request);
+        return handleExceptionInternal(e, buildExpiredJwtErrorDTO(request), new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
     }
 
     @ExceptionHandler(value = { JwtException.class })

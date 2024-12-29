@@ -1,10 +1,9 @@
 package com.chronica.user
 
-import com.chronica.user.data.entity.Account
-
-import com.chronica.user.data.mapper.AccountMapper
-import com.chronica.user.logic.AccountService
-import com.chronica.user.logic.SignInService
+import com.chronica.user.api.auth.signin.logic.SignInService
+import com.chronica.user.api.account.entity.Account
+import com.chronica.user.api.account.logic.AccountService
+import com.chronica.user.api.account.mapper.AccountMapper
 import org.chronica.library.dto.user.AccountDTO
 import org.chronica.library.dto.user.SignInDTO
 import org.chronica.library.dto.user.SignInResultDTO

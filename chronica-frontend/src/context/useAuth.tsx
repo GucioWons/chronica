@@ -1,19 +1,21 @@
 import React, {createContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router";
-import axios from "axios";
+import axios, {AxiosError, InternalAxiosRequestConfig} from "axios";
 import {toast} from "react-toastify";
 import {DTOs} from "../shared/dto/dtos";
 import AccountDTO = DTOs.AccountDTO;
 import SignInDTO = DTOs.SignInDTO;
 import SignInResultDTO = DTOs.SignInResultDTO;
-import {accountsApi} from "../shared/apiConstants";
+import {userApi} from "../shared/apiConstants";
 import {useErrorHandler} from "../shared/http/handleError";
+import {setupAxiosInterceptor} from "../shared/http/axiosInterceptor";
 
 interface UserContext {
     account: AccountDTO | null,
     token: string | null,
     registerUser: (dto: AccountDTO) => void,
     loginUser: (dto: SignInDTO) => void,
+    refreshToken: (requestConfig: InternalAxiosRequestConfig) => Promise<void>,
     logoutUser: () => void,
     isLoggedIn: () => boolean,
 }
@@ -42,35 +44,72 @@ export const UserProvider = (props: UserProviderProps) => {
             axios.defaults.headers.common["Authorization"] = "Bearer " + token;
         }
         setReady(true);
+
+        setupAxiosInterceptor(refreshToken);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const registerUser = (dto: AccountDTO) => {
-        axios.post(accountsApi + "/sign-up", {...dto})
+        axios.post(userApi + "/sign-up", {...dto})
             .then(() => toast.success("Successfully registered account!"))
             .catch((error) => handleError(error));
     }
 
     const loginUser = (dto: SignInDTO) => {
-        axios.post<SignInResultDTO>(accountsApi + "/sign-in", {...dto})
+        axios.post<SignInResultDTO>(userApi + "/sign-in", {...dto})
             .then(response => {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("account", JSON.stringify(response.data.account));
-                setToken(response.data.token);
-                setAccount(response.data.account)
-                axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-                toast.success("Successfully logged in!")
+                updateAccountAndTokens(response.data);
+                toast.success("Successfully logged in!");
                 navigate("/");
             })
             .catch((error) => handleError(error));
     }
 
+    const refreshToken = (requestConfig: InternalAxiosRequestConfig): Promise<void> => {
+        const tokenToRefresh = localStorage.getItem("refreshToken");
+
+        if (!tokenToRefresh) {
+            logoutUser();
+            return Promise.reject(new Error("No refresh token available"));
+        }
+
+        return axios.post<SignInResultDTO>(userApi + `/refresh-token`, {}, {
+            headers: {
+                Authorization: undefined
+            },
+            params: {
+                token: tokenToRefresh
+            }
+        })
+            .then((response) => {
+                updateAccountAndTokens(response.data);
+                if (requestConfig) {
+                    requestConfig.headers["Authorization"] = `Bearer ${response.data.token}`;
+                }
+            })
+            .catch((error) => {
+                logoutUser();
+                return Promise.reject(error);
+            });
+    }
+
+    const updateAccountAndTokens = (signInResult: SignInResultDTO) => {
+        localStorage.setItem("token", signInResult.token);
+        localStorage.setItem("refreshToken", signInResult.refreshToken);
+        localStorage.setItem("account", JSON.stringify(signInResult.account));
+        setToken(signInResult.token);
+        setAccount(signInResult.account);
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    }
+
     const logoutUser = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken")
         localStorage.removeItem("account");
         setToken(null);
         setAccount(null);
         delete axios.defaults.headers.common["Authorization"];
-        toast.info("Successfully logged out!")
+        toast.info("You have been logged out!")
         navigate("/auth")
     }
 
@@ -79,7 +118,7 @@ export const UserProvider = (props: UserProviderProps) => {
     }
 
     return (
-        <UserContext.Provider value={{ account, token, registerUser, loginUser, logoutUser, isLoggedIn }}>
+        <UserContext.Provider value={{ account, token, registerUser, loginUser, refreshToken, logoutUser, isLoggedIn }}>
             {ready ? props.children : null}
         </UserContext.Provider>
     )
