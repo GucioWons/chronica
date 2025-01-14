@@ -2,7 +2,9 @@ import Detail from "../../../shared/Detail";
 import {DTOs} from "../../../shared/dto/dtos";
 import ProjectDTO = DTOs.ProjectDTO;
 import TextField from "../../../shared/TextField";
-import ProjectEditButton from "./ProjectEditButton";
+import Button from "../../../shared/Button";
+import {useNavigate} from "react-router";
+import {useCallback} from "react";
 
 export interface ProjectDetailProps {
     project?: ProjectDTO
@@ -13,6 +15,12 @@ function ProjectDetail(props: ProjectDetailProps) {
         project
     } = props;
 
+    const navigate = useNavigate();
+
+    const editProject = useCallback(() => {
+        navigate("edit")
+    }, [navigate]);
+
     if (!project) {
         return <div>Loading...</div>
     }
@@ -20,7 +28,13 @@ function ProjectDetail(props: ProjectDetailProps) {
     return (
         <Detail
             header={project.name}
-            button={<ProjectEditButton />}
+            button={
+                <Button
+                    text="Edit"
+                    outlined
+                    onClick={editProject}
+                />
+            }
         >
             <TextField text={project.name} label={"Name"}/>
             <TextField text={project.groupId.toString()} label={"Group"} horizontal/>

@@ -2,7 +2,9 @@ import {DTOs} from "../../../shared/dto/dtos";
 import ChainDTO = DTOs.ChainDTO;
 import Detail from "../../../shared/Detail";
 import TextField from "../../../shared/TextField";
-import ChainEditButton from "./ChainEditButton";
+import Button from "../../../shared/Button";
+import {useCallback} from "react";
+import {useNavigate} from "react-router";
 
 export interface ChainDetailProps {
     chain?: ChainDTO
@@ -10,13 +12,27 @@ export interface ChainDetailProps {
 
 function ChainDetail(props: ChainDetailProps) {
     const { chain } = props;
+
+    const navigate = useNavigate();
+
+    const editChain = useCallback(() => {
+        navigate("edit")
+    }, [navigate]);
+
     if (!chain) {
         return <div>Loading...</div>
     }
+
     return (
         <Detail
             header={chain.title}
-            button={<ChainEditButton />}
+            button={
+                <Button
+                    text="Edit"
+                    outlined
+                    onClick={editChain}
+                />
+            }
         >
             <TextField text={chain.description} label={"Description"} />
             <TextField text={chain.type} label={"Type"} horizontal />
