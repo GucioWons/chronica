@@ -35,6 +35,7 @@ function FormSelect<T extends FieldValues, O extends string | object>(props: For
             <div className="input-label">{label}:</div>
             <div className="input-input">
                 <select
+                    className="basic-select"
                     onChange={(e) => onChange(e.target.value)}
                 >
                     {options.map((option) => {

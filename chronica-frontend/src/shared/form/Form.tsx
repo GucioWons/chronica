@@ -45,10 +45,12 @@ function Form<T extends FieldValues>(props: FormProps<T>) {
     });
 
     return (
-        <form onSubmit={form.handleSubmit(handleOnSubmit)}>
-            {React.Children.map(children, (child) => cloneWithRegister(child))}
-            <Button text={submitText ?? "OK"} />
-        </form>
+        <div className="form-container">
+            <form onSubmit={form.handleSubmit(handleOnSubmit)}>
+                {React.Children.map(children, (child) => cloneWithRegister(child))}
+                <Button text={submitText ?? "OK"} />
+            </form>
+        </div>
     )
 }
 
