@@ -44,6 +44,33 @@
   justify-content: space-between;
 }
 
+.button {
+  border: none;
+  color: #F5F5F5;
+  background-color: #14AE5C;
+  border-radius: 6px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.button:hover {
+  background-color: #009951;
+}
+
+.button-outlined {
+  background-color: #FCFBFB;
+  color: #009951;
+  border: none;
+  border-radius: 6px;
+  padding: 5px;
+  margin: 5px;
+  box-shadow:0 0 0 2px #009951 inset;
+}
+
+.button-outlined:hover {
+  background-color: #E6E6E6;
+}
+
 .auth-card {
   padding: 40px;
   background-color: #7b99dc;

@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {FieldValues, SubmitHandler, UseFormReturn} from "react-hook-form";
-import SubmitButton from "../SubmitButton";
 import FormInput, {FormInputProps} from "./FormInput";
+import Button from "../Button";
 
 interface FormProps<T extends FieldValues> {
     id: string,
@@ -24,7 +24,6 @@ function Form<T extends FieldValues>(props: FormProps<T>) {
 
     useEffect(() => {
         if (defaultValues) {
-            console.log("twoja stara 7")
             form.reset(defaultValues);
         }
     }, [defaultValues]);
@@ -48,7 +47,7 @@ function Form<T extends FieldValues>(props: FormProps<T>) {
     return (
         <form onSubmit={form.handleSubmit(handleOnSubmit)}>
             {React.Children.map(children, (child) => cloneWithRegister(child))}
-            <SubmitButton text={submitText ?? "OK"} />
+            <Button text={submitText ?? "OK"} />
         </form>
     )
 }
