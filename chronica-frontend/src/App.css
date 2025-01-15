@@ -45,12 +45,13 @@
 }
 
 .button {
+  box-sizing: border-box;
   border: none;
   color: #F5F5F5;
   background-color: #14AE5C;
   border-radius: 6px;
   padding: 5px;
-  margin: 5px;
+  margin-top: 8px;
 }
 
 .button:hover {
@@ -84,8 +85,14 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+/*<editor-fold>*/
+.form-container {
+  padding: 8px 16px;
+}
+
 .input-with-label {
   display: flex;
+  margin-top: 8px;
 }
 
 .input-with-label.horizontal {
@@ -104,7 +111,8 @@
   flex: 2
 }
 
-.input-input input{
+.input-input input {
+  box-sizing: border-box;
   padding: 3px 4px;
   border: 2px solid #14AE5C;
   border-radius: 4px;
@@ -113,7 +121,7 @@
 
 .input-input input:focus {
   outline: none;
-  border: 3px solid #02542D;
+  border: 2px solid #02542D;
 }
 
 .input-input.chain-select {
@@ -135,10 +143,21 @@
 .textfield-label.vertical {
   flex: 1
 }
-
 .textfield-text.vertical {
   flex: 2
 }
+
+.basic-select {
+  padding: 3px 4px;
+  border: 2px solid #14AE5C;
+  border-radius: 4px;
+}
+
+.basic-select:focus {
+  outline: none;
+  border: 2px solid #02542D;
+}
+/*</editor-fold>*/
 
 .navbar {
   display: flex;
