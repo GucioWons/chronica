@@ -12,5 +12,6 @@ export const ErrorMessages: Record<string, Record<ErrorMessage, string>> = {
         [ErrorMessage.AUTHORIZATION_EXCEPTION]: "Wrong email or password.",
         [ErrorMessage.UNEXPECTED_JWT_EXCEPTION]: "Unexpected JWT error.",
         [ErrorMessage.EXPIRED_ACCESS_TOKEN_EXCEPTION]: "The access token has expired, sing in again, or refresh access token using refresh token.",
+        [ErrorMessage.EXPIRED_REFRESH_TOKEN_EXCEPTION]: "Not implemented",
     }
 };
