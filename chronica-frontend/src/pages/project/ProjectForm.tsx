@@ -23,6 +23,7 @@ function ProjectForm(props: ProjectFormProps) {
         <Form
             <ProjectDTO>
             id={`project-${editMode ? "edit" : "create"}`}
+            title={editMode ? "Edit Project" : "Create new project"}
             onSubmit={onSubmit}
             form={form}
             defaultValues={project}
