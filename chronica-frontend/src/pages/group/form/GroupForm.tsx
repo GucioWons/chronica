@@ -23,6 +23,7 @@ function GroupForm(props: GroupFormProps) {
         <Form
             <GroupDTO>
             id="group-edit"
+            title="Create new group"
             onSubmit={onSubmit}
             form={form}
             defaultValues={group}

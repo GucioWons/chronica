@@ -62,6 +62,7 @@ function ChainForm(props: ChainFormProps) {
         <Form
             <ChainDTO>
             id="chain-edit"
+            title="Create new chain"
             onSubmit={onSubmit}
             form={form}
             defaultValues={chain}

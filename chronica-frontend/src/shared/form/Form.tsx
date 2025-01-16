@@ -5,9 +5,10 @@ import Button from "../Button";
 
 interface FormProps<T extends FieldValues> {
     id: string,
+    title?: string,
     children: React.ReactNode,
     onSubmit: (data: T) => void,
-    form: UseFormReturn<T, any, undefined>
+    form: UseFormReturn<T>
     submitText?: string,
     defaultValues?: T
 }
@@ -15,6 +16,7 @@ interface FormProps<T extends FieldValues> {
 function Form<T extends FieldValues>(props: FormProps<T>) {
     const {
         id,
+        title,
         children,
         onSubmit,
         form,
@@ -45,11 +47,20 @@ function Form<T extends FieldValues>(props: FormProps<T>) {
     });
 
     return (
-        <div className="form-container">
-            <form onSubmit={form.handleSubmit(handleOnSubmit)}>
-                {React.Children.map(children, (child) => cloneWithRegister(child))}
-                <Button text={submitText ?? "OK"} />
-            </form>
+        <div className="card">
+            {title &&
+                <div className="card-title">
+                    <div>
+                        {title}
+                    </div>
+                </div>
+            }
+            <div className="card-body">
+                <form onSubmit={form.handleSubmit(handleOnSubmit)}>
+                    {React.Children.map(children, (child) => cloneWithRegister(child))}
+                    <Button text={submitText ?? "OK"} />
+                </form>
+            </div>
         </div>
     )
 }
