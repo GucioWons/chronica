@@ -5,12 +5,18 @@ export interface TableHeaderRowProps {
 }
 
 function TableHeaderRow(props: TableHeaderRowProps) {
-    console.log("hrow")
+
+    const getCellClass = (index: number, length: number): string => {
+        if (index === 0) return 'first';
+        if (index === length - 1) return 'last';
+        return 'middle';
+    };
+
     return (
-        <div className="table-header-row">
-            {props.headers.map((header) => {
+        <div className="table-row header">
+            {props.headers.map((header, index) => {
                 return (
-                    <div className="table-header-cell">{header.name}</div>
+                    <div className={`table-cell header ${getCellClass(index, props.headers.length)}`}>{header.name}</div>
                 );
             })}
         </div>
