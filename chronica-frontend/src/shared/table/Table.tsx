@@ -16,7 +16,7 @@ function Table<T>(props: TableProps<T>) {
     } = props;
 
     return (
-        <div>
+        <div className="basic-table">
             <TableHeaderRow headers={headers}/>
             <TableContent
                 <T>

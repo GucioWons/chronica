@@ -194,33 +194,44 @@
   padding-right: 40px;
 }
 
-.table-header-row {
-  display: flex;
-  justify-content: space-around;
+.basic-table {
+    border-bottom: 4px solid #14AE5C;
 }
 
-.table-row-light {
+.table-row {
   display: flex;
   justify-content: space-around;
+  padding: 10px;
+}
+
+.table-row.header {
+  background-color: #14AE5C;
+  border-radius: 8px 8px 0 0;
+}
+
+.table-row.light {
   background-color: #ffffff;
 }
 
-.table-row-dark {
-  display: flex;
-  justify-content: space-around;
-  background-color: #dddddd;
+.table-row.light:hover {
+  background-color: #CFF7D3;
+}
+
+.table-row.dark {
+  background-color: #E9E9E9;
+}
+
+.table-row.dark:hover {
+    background-color: #CFF7D3;
 }
 
 .table-cell {
   width: 100%;
   text-align: center;
-  border: #282c34 1px solid;
 }
 
-.table-header-cell {
-  width: 100%;
-  text-align: center;
-  border: #282c34 1px solid;
+.table-cell.header {
+    color: white;
 }
 
 .protected-page {
