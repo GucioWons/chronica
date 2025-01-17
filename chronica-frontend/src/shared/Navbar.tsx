@@ -1,7 +1,15 @@
 import {useAuth} from "../context/useAuth";
 import { useNavigate } from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faBars, faBell, faRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 
-function Navbar() {
+export interface NavbarProps {
+    invertSideMenuEnabled: () => void;
+}
+
+function Navbar(props: NavbarProps) {
+    const { invertSideMenuEnabled } = props;
+
     const { isLoggedIn, account, logoutUser } = useAuth()
     const navigate = useNavigate();
 
@@ -18,14 +26,14 @@ function Navbar() {
             <div style={{
                 display: "flex",
                 justifyContent: "flex-start",
-                flex: 2
+                flex: 1
             }}>
-                MENU
+                <FontAwesomeIcon onClick={invertSideMenuEnabled} icon={faBars} />
             </div>
             <div style={{
                 display: "flex",
                 justifyContent: "center",
-                flex: 1
+                flex: 2
             }}>
                 CHRONICA
             </div>
@@ -36,22 +44,26 @@ function Navbar() {
             }}
             onClick={handleNotificaitons}
             >
-                NOTIFICATIONS
+                <FontAwesomeIcon icon={faBell} />
             </div>
-            <div style={{
+            <div className="input-input" style={{
                 display: "flex",
                 justifyContent: "center",
                 flex: 1
             }}>
-                <input/>
+                <input placeholder="Search"/>
             </div>
             <div style={{
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "space-around",
                 flex: 1
             }}>
-                {account?.username}
-                <button onClick={logoutUser}>logout</button>
+                <div>
+                    {account?.username}
+                </div>
+                <div>
+                    <FontAwesomeIcon onClick={logoutUser} icon={faRightFromBracket} />
+                </div>
             </div>
         </div>
     )

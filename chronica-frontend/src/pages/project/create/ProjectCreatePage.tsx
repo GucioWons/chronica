@@ -24,7 +24,9 @@ function ProjectCreatePage() {
     }, [navigate, handleError]);
 
     return (
-        <ProtectedPage>
+        <ProtectedPage
+            sideMenuOption='Projects'
+        >
             <ProjectForm
                 onSubmit={handleCreation}
             />

@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {router} from "./routes/Routes";
 import {RouterProvider} from "react-router-dom";
+import './fonts/Metrophobic/Metrophobic-Regular.ttf';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
