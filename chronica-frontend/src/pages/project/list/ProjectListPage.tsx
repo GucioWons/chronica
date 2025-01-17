@@ -36,7 +36,9 @@ function ProjectListPage() {
     ]
 
     return (
-        <ProtectedPage>
+        <ProtectedPage
+            sideMenuOption='Projects'
+        >
             <Table
                 <ProjectDTO>
                 objects={projects}

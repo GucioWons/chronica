@@ -46,7 +46,9 @@ function ChainListPage() {
     ];
 
     return (
-        <ProtectedPage>
+        <ProtectedPage
+            sideMenuOption='Chains'
+        >
             <Table
                 <ChainDTO>
                 objects={chains}

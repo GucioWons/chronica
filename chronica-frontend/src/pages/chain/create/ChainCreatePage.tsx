@@ -23,7 +23,9 @@ function ChainCreatePage() {
     }, [navigate, handleError]);
 
     return (
-        <ProtectedPage>
+        <ProtectedPage
+            sideMenuOption='Chains'
+        >
             <ChainForm
                 onSubmit={handleCreation}
             />
