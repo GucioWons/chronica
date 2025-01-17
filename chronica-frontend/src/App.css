@@ -241,11 +241,18 @@
 
 .protected-page.content {
   margin-top: 60px;
-  margin-left: 120px;
   padding: 10px;
 }
 
-.protected-page.content.full{
+.protected-page.content.small {
+  margin-left: 240px;
+}
+
+.protected-page.content.medium {
+  margin-left: 120px;
+}
+
+.protected-page.content.large {
   margin-left: 0;
   padding: 10px;
 }
@@ -275,19 +282,25 @@
   height: 100vh;
 }
 
-.side-menu {
-  border-right: 2px green solid;
+.side-menu-container {
   height: 100%;
   text-align: center;
-  width: 120px;
+  width: fit-content;
   background-color: white;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.side-menu {
+  border-right: 2px green solid;
+  flex: 1;
 }
 
 .side-menu-option {
+  width:120px;
   padding-top:8px;
-  padding-bottom: 8px
+  padding-bottom: 8px;
+  cursor: pointer
 }
 
 .side-menu-option.selected {

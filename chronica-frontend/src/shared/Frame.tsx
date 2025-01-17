@@ -1,16 +1,19 @@
 import Navbar from "./Navbar";
 import React, {useCallback, useState} from "react";
 import SideMenu from "./SideMenu";
+import {SideMenuOptionType} from "./SideMenuOptionType";
 
 export interface FrameProps {
-    sideMenuOption?: 'Projects' | 'Chains',
+    selectedSideMenuOption?: SideMenuOptionType,
+    setSelectedSideMenuOption: React.Dispatch<React.SetStateAction<"Projects" | "Chains" | undefined>>
     sideMenuEnabled: boolean,
     setSideMenuEnabled: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function Frame(props: FrameProps) {
     const {
-        sideMenuOption,
+        selectedSideMenuOption,
+        setSelectedSideMenuOption,
         sideMenuEnabled,
         setSideMenuEnabled,
     } = props;
@@ -18,8 +21,6 @@ function Frame(props: FrameProps) {
     const invertSideMenuEnabled = useCallback(() => {
         setSideMenuEnabled(!sideMenuEnabled);
     }, [setSideMenuEnabled, sideMenuEnabled]);
-
-    const [selectedSideMenuOption, setSelectedSideMenuOption] = useState<'Projects' | 'Chains' | undefined>(sideMenuOption)
 
     return (
         <div className="frame">
