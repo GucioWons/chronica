@@ -1,5 +1,5 @@
 import ProtectedRoute from "../routes/ProtectedRoute";
-import React from "react";
+import React, {useState} from "react";
 import Frame from "./Frame";
 
 interface ProtectedPageProps {
@@ -9,11 +9,18 @@ interface ProtectedPageProps {
 
 function ProtectedPage(props: ProtectedPageProps) {
     const { children, sideMenuOption } = props;
+
+    const [sideMenuEnabled, setSideMenuEnabled] = useState<boolean>(true)
+
     return (
         <div className="protected-page">
             <ProtectedRoute>
-                <Frame sideMenuOption={sideMenuOption} />
-                <div className="protected-page content">
+                <Frame
+                    sideMenuOption={sideMenuOption}
+                    sideMenuEnabled={sideMenuEnabled}
+                    setSideMenuEnabled={setSideMenuEnabled}
+                />
+                <div className={`protected-page content${sideMenuEnabled ? '' : ' full'}`}>
                     {children}
                 </div>
             </ProtectedRoute>

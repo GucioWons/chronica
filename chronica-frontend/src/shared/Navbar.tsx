@@ -3,7 +3,13 @@ import { useNavigate } from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faBell, faRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 
-function Navbar() {
+export interface NavbarProps {
+    invertSideMenuEnabled: () => void;
+}
+
+function Navbar(props: NavbarProps) {
+    const { invertSideMenuEnabled } = props;
+
     const { isLoggedIn, account, logoutUser } = useAuth()
     const navigate = useNavigate();
 
@@ -22,7 +28,7 @@ function Navbar() {
                 justifyContent: "flex-start",
                 flex: 1
             }}>
-                <FontAwesomeIcon icon={faBars} />
+                <FontAwesomeIcon onClick={invertSideMenuEnabled} icon={faBars} />
             </div>
             <div style={{
                 display: "flex",

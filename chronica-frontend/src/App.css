@@ -245,10 +245,9 @@
   padding: 10px;
 }
 
-.protected-page.something {
-  display: flex;
-  height: 100%;
-  flex-direction: row;
+.protected-page.content.full{
+  margin-left: 0;
+  padding: 10px;
 }
 
 .chain-select-id {
